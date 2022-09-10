@@ -2,20 +2,18 @@ import React from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     // Custom Attributes
+    isRounded: boolean;
 }
-
-// Default attributes for Button
-const defaultProps: ButtonProps = {
-    style: {
-        background: "red",
-    },
-};
 
 // Custom Button Element
 function Button(props: ButtonProps) {
     return (
-        <button {...defaultProps} {...props}>
-            {props.children}
+        <button
+            style={props.isRounded ? { borderRadius: "10px" } : {}}
+            {...props}
+        >
+            <h1>hello</h1>
+            <h2>{props.children}</h2>
         </button>
     );
 }

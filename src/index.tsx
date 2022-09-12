@@ -4,44 +4,45 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Pwa, Intro, Quran } from "./pages/pages";
+import "./index.css";
 
 const isPwaIntroPagePassed = (): boolean => {
-  return localStorage.getItem("pwaIntroPassed") === "true";
+    return localStorage.getItem("pwaIntroPassed") === "true";
 };
 
 //Test mode in local host
 const isLocalhost = Boolean(
-  window.location.hostname === "localhost" ||
-    // [::1] is the IPv6 localhost address.
-    window.location.hostname === "[::1]" ||
-    // 127.0.0.0/8 are considered localhost for IPv4.
-    window.location.hostname.match(
-      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-    )
+    window.location.hostname === "localhost" ||
+        // [::1] is the IPv6 localhost address.
+        window.location.hostname === "[::1]" ||
+        // 127.0.0.0/8 are considered localhost for IPv4.
+        window.location.hostname.match(
+            /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+        )
 );
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+    document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Intro />} />
-        <Route
-          path="/pwa"
-          element={
-            isPwaIntroPagePassed() && !isLocalhost ? (
-              <Navigate replace to="/quran" />
-            ) : (
-              <Pwa />
-            )
-          }
-        />
-        <Route path="/quran" element={<Quran />} />
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
+    <React.StrictMode>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Intro />} />
+                <Route
+                    path="/pwa"
+                    element={
+                        isPwaIntroPagePassed() && !isLocalhost ? (
+                            <Navigate replace to="/quran" />
+                        ) : (
+                            <Pwa />
+                        )
+                    }
+                />
+                <Route path="/quran" element={<Quran />} />
+            </Routes>
+        </BrowserRouter>
+    </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change

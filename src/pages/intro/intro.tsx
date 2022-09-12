@@ -1,16 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "../../components/button";
+import { Header } from "../../components/components";
 
 function Intro() {
     return (
         <div>
-            <h1>Intro Page</h1>
-            <Link to="/quran">
-                <Button isRounded={false} id="" className="">
-                    <div>YYY</div>
-                </Button>
-            </Link>
+            <Header title="HelloWorld">
+                <button>Button</button>
+            </Header>
         </div>
     );
 }

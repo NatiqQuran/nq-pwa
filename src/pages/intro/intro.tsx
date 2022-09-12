@@ -6,7 +6,7 @@ function Intro() {
     return (
         <div>
             <Header title="HelloWorld">
-                <button>Fuck</button>
+                <button>Button</button>
             </Header>
         </div>
     );

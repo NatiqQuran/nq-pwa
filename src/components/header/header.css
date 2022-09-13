@@ -1,9 +1,11 @@
 header {
     display: flex;
+	align-items: center;
     width: calc(100% - 2rem);
     height: 5rem;
     padding: 0 1rem;
     border-bottom: 0.1rem solid #7d7d7d40;
     background: var(--headerColor);
     color: var(--onHeaderColor);
+	user-select: none;
 }

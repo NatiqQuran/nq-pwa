@@ -1,0 +1,138 @@
+html {
+    --primaryColor: #222222;
+    --primaryVariantColor: #0059ff;
+    --secondaryColor: #337aff;
+    --secondaryVariantColor: #337aff;
+    --backgroundColor: #ffffff;
+    --headerColor: #ffffff;
+    --surfaceColor: #ffffff;
+    --errorColor: #b00020;
+    --onPrimaryColor: #ffffff;
+    --onSecondaryColor: #000000;
+    --onBackgroundColor: #000000;
+    --onHeaderColor: #222222;
+    --onSurfaceColor: #000000;
+    --onErrorColor: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+    html {
+        --primaryColor: #8955ff;
+        --primaryVariantColor: #bb86fc;
+        --secondaryColor: #03dac6;
+        --secondaryVariantColor: #00d6c2;
+        --backgroundColor: #121212;
+        --headerColor: #222222;
+        --surfaceColor: #1d1d1d;
+        --errorColor: #cf6679;
+        --onPrimaryColor: #000000;
+        --onSecondaryColor: #000000;
+        --onBackgroundColor: #ffffff;
+        --onHeaderColor: #e9e9e9;
+        --onSurfaceColor: #ffffff;
+        --onErrorColor: #000000;
+    }
+}
+html.nwaThemeLight {
+    --primaryColor: #222222;
+    --primaryVariantColor: #0059ff;
+    --secondaryColor: #337aff;
+    --secondaryVariantColor: #337aff;
+    --backgroundColor: #ffffff;
+    --headerColor: #ffffff;
+    --surfaceColor: #ffffff;
+    --errorColor: #b00020;
+    --onPrimaryColor: #ffffff;
+    --onSecondaryColor: #000000;
+    --onBackgroundColor: #000000;
+    --onHeaderColor: #222222;
+    --onSurfaceColor: #000000;
+    --onErrorColor: #ffffff;
+}
+html.nwaThemeDark {
+    --primaryColor: #8955ff;
+    --primaryVariantColor: #bb86fc;
+    --secondaryColor: #03dac6;
+    --secondaryVariantColor: #00d6c2;
+    --backgroundColor: #121212;
+    --headerColor: #222222;
+    --surfaceColor: #1d1d1d;
+    --errorColor: #cf6679;
+    --onPrimaryColor: #000000;
+    --onSecondaryColor: #000000;
+    --onBackgroundColor: #ffffff;
+    --onHeaderColor: #e9e9e9;
+    --onSurfaceColor: #ffffff;
+    --onErrorColor: #000000;
+}
+
+/* nwaColorBlackGold */
+html.nwaColorBlackGold {
+    --primaryColor: #222222;
+    --primaryVariantColor: #303030;
+    --secondaryColor: #aa8a59;
+    --secondaryVariantColor: #aa8a59;
+    --headerColor: #222222;
+    --onHeaderColor: #e9e9e9;
+}
+@media (prefers-color-scheme: dark) {
+    html.nwaColorBlackGold {
+        --primaryColor: #8955ff;
+        --primaryVariantColor: #bb86fc;
+        --secondaryColor: #03dac6;
+        --secondaryVariantColor: #00d6c2;
+        --headerColor: #222222;
+        --onHeaderColor: #e9e9e9;
+    }
+}
+html.nwaColorBlackGold.nwaThemeLight {
+    --primaryColor: #222222;
+    --primaryVariantColor: #303030;
+    --secondaryColor: #aa8a59;
+    --secondaryVariantColor: #aa8a59;
+    --headerColor: #222222;
+    --onHeaderColor: #e9e9e9;
+}
+html.nwaColorBlackGold.nwaThemeDark {
+    --primaryColor: #8955ff;
+    --primaryVariantColor: #bb86fc;
+    --secondaryColor: #03dac6;
+    --secondaryVariantColor: #00d6c2;
+    --headerColor: #222222;
+    --onHeaderColor: #e9e9e9;
+}
+
+/* nwaColorPurpleGreen */
+html.nwaColorPurpleGreen {
+    --primaryColor: #563a77;
+    --primaryVariantColor: #b516c0;
+    --secondaryColor: #a3b745;
+    --secondaryVariantColor: #a3b745;
+    --headerColor: #563a77;
+    --onHeaderColor: #e9e9e9;
+}
+@media (prefers-color-scheme: dark) {
+    html.nwaColorPurpleGreen {
+        --primaryColor: #8955ff;
+        --primaryVariantColor: #bb86fc;
+        --secondaryColor: #03dac6;
+        --secondaryVariantColor: #00d6c2;
+        --headerColor: #222222;
+        --onHeaderColor: #e9e9e9;
+    }
+}
+html.nwaColorPurpleGreen.nwaThemeLight {
+    --primaryColor: #563a77;
+    --primaryVariantColor: #b516c0;
+    --secondaryColor: #a3b745;
+    --secondaryVariantColor: #a3b745;
+    --headerColor: #563a77;
+    --onHeaderColor: #e9e9e9;
+}
+html.nwaColorPurpleGreen.nwaThemeDark {
+    --primaryColor: #8955ff;
+    --primaryVariantColor: #bb86fc;
+    --secondaryColor: #03dac6;
+    --secondaryVariantColor: #00d6c2;
+    --headerColor: #222222;
+    --onHeaderColor: #e9e9e9;
+}

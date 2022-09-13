@@ -2,7 +2,6 @@
     outline: none;
 }
 
-
 ::-webkit-scrollbar {
     width: 0.8rem;
     height: 0.4rem;
@@ -18,8 +17,8 @@
 }
 
 @media (pointer: none), (hover: none) {
-	::-webkit-scrollbar {
-		width: 0;
-    	height: 0.2rem;
-	}
+    ::-webkit-scrollbar {
+        width: 0;
+        height: 0.2rem;
+    }
 }

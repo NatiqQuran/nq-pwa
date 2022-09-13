@@ -1,27 +1,26 @@
-
 form {
-	width: 100%;
+    width: 100%;
 }
 label,
 input,
 select,
 button {
-	padding: 0 0.7rem;
-	margin: 0.5rem;
-	line-height: 3rem;
-	border: 0.1rem solid #0000;
-	border-radius: 0.5rem;
-	font-size: 1.4rem;
-	background: none;
-	color: var(--onBackgroundColor);
-	user-select: none;
+    padding: 0 0.7rem;
+    margin: 0.5rem;
+    line-height: 3rem;
+    border: 0.1rem solid #0000;
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    background: none;
+    color: var(--onBackgroundColor);
+    user-select: none;
 }
 input,
 select,
 button {
-	border: 0.1rem solid #7d7d7d7d;
+    border: 0.1rem solid #7d7d7d7d;
 }
-input[type=checkbox] {
+input[type="checkbox"] {
     width: 2rem;
     height: 2rem;
     margin: 1rem;
@@ -30,7 +29,7 @@ input {
     width: calc(100% - 2.6rem);
 }
 input,
-input[type=checkbox],
+input[type="checkbox"],
 select {
     margin-inline-start: auto;
 }
@@ -41,39 +40,38 @@ select {
     height: 3.2rem;
 }
 
-
 /* */
 input[type="submit"]:hover,
 select:hover,
 button:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 @media (pointer: fine) {
-	input[type=submit]:hover,
-	button:hover {
-		box-shadow: inset 0 0 10rem #7d7d7d20;
-	}
+    input[type="submit"]:hover,
+    button:hover {
+        box-shadow: inset 0 0 10rem #7d7d7d20;
+    }
 }
 button:active {
-	border: 0.1rem solid #7d7d7d50;
-	box-shadow: inset 0 0 10rem #7d7d7d20;
+    border: 0.1rem solid #7d7d7d50;
+    box-shadow: inset 0 0 10rem #7d7d7d20;
 }
-input[type=submit] {
-	width: calc(100% - 1rem);
-	border: 0.1rem solid var(--primaryColor);
-	background: var(--primaryColor);
-	color: var(--onPrimaryColor);
+input[type="submit"] {
+    width: calc(100% - 1rem);
+    border: 0.1rem solid var(--primaryColor);
+    background: var(--primaryColor);
+    color: var(--onPrimaryColor);
 }
-input[type=submit]:hover {
-	box-shadow: inset 0 0 10rem #7d7d7d60;
+input[type="submit"]:hover {
+    box-shadow: inset 0 0 10rem #7d7d7d60;
 }
-input[type=checkbox]:focus {
-	box-shadow: none;
+input[type="checkbox"]:focus {
+    box-shadow: none;
 }
 input:invalid,
 select:invalid,
 button:invalid {
-	border: 0.1rem solid var(--errorColor);
+    border: 0.1rem solid var(--errorColor);
 }
 
 input[disabled] {
@@ -81,21 +79,20 @@ input[disabled] {
 }
 
 button svg {
-	width: 1.6rem;
-	height: 1.6rem;
-	margin: 0.7rem 0;
+    width: 1.6rem;
+    height: 1.6rem;
+    margin: 0.7rem 0;
 }
 
 header button,
 footer button {
-	border: 0.1rem solid #0000;
+    border: 0.1rem solid #0000;
 }
 header button svg,
 footer button svg {
-	width: 2.4rem;
-	height: 2.4rem;
+    width: 2.4rem;
+    height: 2.4rem;
 }
-
 
 form input + label {
     padding: 0 0.2rem;
@@ -104,13 +101,12 @@ form input + label {
     border-radius: 0.3rem;
     line-height: 1.4rem;
     font-size: 0.9rem;
-    background: #FFF;
+    background: #fff;
     color: #000;
 }
 form input:placeholder-shown + label {
     display: none;
 }
-
 
 form.nwaFromRequested {
     pointer-events: none;
@@ -119,34 +115,38 @@ form.nwaFromRequested input {
     box-shadow: inset 0 0 10rem #00000020;
 }
 form.nwaFromRequested input[type="submit"] {
-	background: linear-gradient(-45deg, var(--primaryColor), var(--secondaryVariantColor), var(--primaryColor));
-	background-size: 200% 200%;
-	color: var(--onPrimaryColor);
-	animation: gradient 3s ease infinite;
-	text-shadow : 0.1rem 0.1rem 0.1rem gray;
+    background: linear-gradient(
+        -45deg,
+        var(--primaryColor),
+        var(--secondaryVariantColor),
+        var(--primaryColor)
+    );
+    background-size: 200% 200%;
+    color: var(--onPrimaryColor);
+    animation: gradient 3s ease infinite;
+    text-shadow: 0.1rem 0.1rem 0.1rem gray;
 }
 @keyframes gradient {
-	0% {
-		background-position: 100% 50%;
-	}
-	50% {
-		background-position: 0% 50%;
-	}
-	100% {
-		background-position: 100% 50%;
-	}
+    0% {
+        background-position: 100% 50%;
+    }
+    50% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
 }
-
 
 input[type="range"] {
-	appearance: none;
-	height: 0.5rem;
+    appearance: none;
+    height: 0.5rem;
 }
 input[type="range"]::-webkit-slider-thumb {
-	appearance: none;
-	width: 1.5rem;
-	height: 1.5rem;
-	border-radius: 50%;
-	background: var(--onBackgroundColor);
-	cursor: pointer;
+    appearance: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: var(--onBackgroundColor);
+    cursor: pointer;
 }

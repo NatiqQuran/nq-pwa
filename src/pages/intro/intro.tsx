@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Header } from "../../components/components";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Header } from '../../components/components'
 
 function Intro() {
     return (
@@ -9,7 +9,7 @@ function Intro() {
                 <button>Button</button>
             </Header>
         </div>
-    );
+    )
 }
 
-export default Intro;
+export default Intro

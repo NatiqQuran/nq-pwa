@@ -1,6 +1,6 @@
 import React from "react";
-import { ReactComponent as Humburger } from "../../assets/svg/humburger.svg";
-import { ReactComponent as Back } from "../../assets/svg/back.svg";
+import { ReactComponent as HumburgerIcon } from "../../assets/svg/humburger.svg";
+import { ReactComponent as BackIcon } from "../../assets/svg/back.svg";
 import "./header.css";
 
 interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -13,11 +13,11 @@ function Header(props: HeaderProps) {
         <header>
             {props.button === "menu" ? (
                 <button>
-                    <Humburger />
+                    <HumburgerIcon />
                 </button>
             ) : props.button === "back" ? (
                 <button>
-                    <Back />
+                    <BackIcon />
                 </button>
             ) : null}
             <h1 style={{ marginInlineEnd: "auto" }}>{props.title}</h1>

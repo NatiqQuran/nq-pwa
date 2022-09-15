@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import { Header } from "../../components/components";
-import useFetch from "../../useFetch";
+import { Header } from "components";
+import { useFetch } from "library";
 
 function Intro() {
-    const [button, setButton] = useState<"back" | "menu">("menu");
-
     const { body, send, response, error, loading } = useFetch(
         "http://127.0.0.1/status"
     );
 
     return (
         <div>
-            <Header title="HelloWorld" button={button}>
+            <Header title="HelloWorld" button={"menu"}>
                 <button onClick={send}>Button</button>
             </Header>
             <h1>{loading ? "loading" : "NULL"}</h1>

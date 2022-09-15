@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Pwa, Intro, Quran } from "./pages/pages";
+import { Pwa, Intro, Quran } from "pages";
 import "./assets/css/style.css";
 import "./assets/css/color.css";
 import "./assets/css/form.css";

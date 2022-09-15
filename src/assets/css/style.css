@@ -16,14 +16,10 @@ svg {
     max-height: 100%;
 }
 
-body svg {
+button svg {
     width: 1.6rem;
     height: 1.6rem;
     margin: 0.7rem 0;
-}
-
-body header svg line {
-    stroke: var(--onHeaderColor);
 }
 
 img {

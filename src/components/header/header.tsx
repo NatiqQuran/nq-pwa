@@ -1,5 +1,6 @@
 import React from "react";
 import { ReactComponent as Humburger } from "../../assets/svg/humburger.svg";
+import { ReactComponent as Back } from "../../assets/svg/back.svg";
 import "./header.css";
 
 interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -10,13 +11,15 @@ interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 function Header(props: HeaderProps) {
     return (
         <header>
-            <button>
-                {props.button === "menu" ? (
+            {props.button === "menu" ? (
+                <button>
                     <Humburger />
-                ) : props.button === "back" ? (
-                    "BACK"
-                ) : null}
-            </button>
+                </button>
+            ) : props.button === "back" ? (
+                <button>
+                    <Back />
+                </button>
+            ) : null}
             <h1 style={{ marginInlineEnd: "auto" }}>{props.title}</h1>
 
             {props.children}

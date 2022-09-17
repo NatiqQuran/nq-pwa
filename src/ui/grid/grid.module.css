@@ -1,0 +1,9 @@
+div.grid {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: blue;
+}
+
+div.grid > div.grid {
+    background-color: aqua;
+}

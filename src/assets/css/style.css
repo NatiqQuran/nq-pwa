@@ -8,6 +8,7 @@ body {
     background: var(--backgroundColor);
     color: var(--onBackgroundColor);
     scroll-behavior: smooth;
+    font-size: 1.4rem;
 }
 
 svg {

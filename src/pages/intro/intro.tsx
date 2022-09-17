@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Header } from "components";
+import { Link } from "react-router-dom";
 import { useFetch } from "library";
+import { Header } from "components";
 
 function Intro() {
     const { body, send, response, error, loading } = useFetch(
@@ -10,7 +11,12 @@ function Intro() {
     return (
         <div>
             <Header title="HelloWorld" button={"menu"}>
-                <button onClick={send}>Button</button>
+                <Link to="/quran">
+                    <button onClick={send}>Quran</button>
+                </Link>
+                <Link to="/pwa">
+                    <button onClick={send}>PWA</button>
+                </Link>
             </Header>
             <h1>{loading ? "loading" : "NULL"}</h1>
             <br />

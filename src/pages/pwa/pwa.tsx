@@ -11,11 +11,8 @@ function Pwa() {
     return (
         <div>
             <Header title="Pwa Intro Page" button={"menu"}>
-                <Link to="/quran">
-                    <button onClick={pwaIntroPagePassed}>Go to Quran</button>
-                </Link>
                 <Link to="/">
-                    <button>Go to Intro</button>
+                    <button onClick={pwaIntroPagePassed}>Intro</button>
                 </Link>
             </Header>
             <Container maxWidth={"sm"}>

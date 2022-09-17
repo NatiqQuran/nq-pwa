@@ -1,5 +1,22 @@
 div.container {
     width: 100%;
     margin: auto;
+    box-sizing: border-box;
     background-color: red;
+}
+
+div.container.xs {
+    max-width: 44.4rem;
+}
+div.container.sm {
+    max-width: 60rem;
+}
+div.container.md {
+    max-width: 90rem;
+}
+div.container.lg {
+    max-width: 120rem;
+}
+div.container.xg {
+    max-width: 150rem;
 }

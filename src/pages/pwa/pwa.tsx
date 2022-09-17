@@ -18,21 +18,36 @@ function Pwa() {
                     <button>Go to Intro</button>
                 </Link>
             </Header>
-            <Container maxWidth={"60rem"} style={{ padding: "5rem" }}>
+            <Container maxWidth={"sm"}>
                 <h1>Container</h1>
             </Container>
-            <Container maxWidth={"70rem"}>
-                <Grid>
-                    <Grid>Grid A</Grid>
-                    <Grid>Grid B</Grid>
-                </Grid>
+            <Container maxWidth={"sm"}>
+                <h1>Container</h1>
             </Container>
-            <Container maxWidth={"80rem"}>
-                <Stack>
+            <Container maxWidth={"sm"} style={{ padding: "20px" }}>
+                <h1>Container</h1>
+            </Container>
+            <Container>
+                <h1>Container</h1>
+            </Container>
+            <Container maxWidth={"sm"}>
+                <Stack
+                    style={{
+                        justifyContent: "center",
+                        gap: "3rem",
+                        padding: "2rem",
+                    }}
+                >
                     <div>Stack 1</div>
                     <div>Stack 2</div>
                     <div>Stack 3</div>
                 </Stack>
+            </Container>
+            <Container maxWidth={"sm"}>
+                <Grid>
+                    <Grid>Grid A</Grid>
+                    <Grid>Grid B</Grid>
+                </Grid>
             </Container>
         </div>
     );

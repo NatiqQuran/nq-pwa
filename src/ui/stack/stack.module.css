@@ -3,3 +3,7 @@ div.stack {
     flex-wrap: wrap;
     background-color: green;
 }
+
+div.stack > * {
+    background-color: aquamarine;
+}

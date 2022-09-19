@@ -2,15 +2,24 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFetch } from "library";
 import { Header } from "components";
+import { Navigation } from "ui";
+import ClickAwayListener from "ui/clickAwayListener/clickAwayListener";
 
 function Intro() {
+    const [navOpen, setNavOpen] = useState<boolean>(false);
     const { body, send, response, error, loading } = useFetch(
         "http://127.0.0.1/status"
     );
 
+    const toggleNavOpen = () => setNavOpen((value) => !value);
+
     return (
         <div>
-            <Header title="HelloWorld" button={"menu"}>
+            <Header
+                title="HelloWorld"
+                button={"menu"}
+                buttonOnClick={toggleNavOpen}
+            >
                 <Link to="/quran">
                     <button onClick={send}>Quran</button>
                 </Link>
@@ -18,13 +27,12 @@ function Intro() {
                     <button onClick={send}>PWA</button>
                 </Link>
             </Header>
-            <h1>{loading ? "loading" : "NULL"}</h1>
-            <br />
-            <h1>{body ? (body as string) : "Not found"}</h1>
-            <br />
-            <h2>Status Code: {response?.status}</h2>
-            <br />
-            <h4>If any Error: {error?.message}</h4>
+
+            <ClickAwayListener onClickAway={() => setNavOpen(false)}>
+                <Navigation open={navOpen}>
+                    <h1>Just Navigation</h1>
+                </Navigation>
+            </ClickAwayListener>
         </div>
     );
 }

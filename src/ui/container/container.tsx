@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./container.module.css";
 
-type ScreenSizes = "xs" | "sm" | "md" | "lg" | "xl";
+type ScreenSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
-    maxWidth?: ScreenSizes;
+    maxWidth?: ScreenSize;
 }
 
-function maxWidthClass(maxWidth: ScreenSizes | undefined) {
+function maxWidthClass(maxWidth: ScreenSize | undefined) {
     return maxWidth ? styles[maxWidth] : "";
 }
 

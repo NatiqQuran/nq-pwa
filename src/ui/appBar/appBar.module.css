@@ -1,4 +1,4 @@
-header {
+.appBar {
     display: flex;
     align-items: center;
     width: calc(100% - 2rem);
@@ -10,19 +10,19 @@ header {
     user-select: none;
 }
 
-header svg line {
+.appBar svg line {
     stroke: var(--onHeaderColor);
 }
 
-header svg circle {
+.appBar svg circle {
     fill: var(--onHeaderColor);
 }
 
-header svg circle[stroke-width] {
+.appBar svg circle[stroke-width] {
     fill: none;
     stroke: var(--onHeaderColor);
 }
 
-header button {
+.appBar button {
     color: var(--onHeaderColor);
 }

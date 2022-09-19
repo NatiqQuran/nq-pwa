@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Grid, Stack } from "ui";
-import { Header } from "components";
+import { AppBar } from "ui";
 
 const pwaIntroPagePassed = () => {
     localStorage.setItem("pwaIntroPassed", "true");
@@ -10,11 +10,11 @@ const pwaIntroPagePassed = () => {
 function Pwa() {
     return (
         <div>
-            <Header title="Pwa Intro Page" button={"menu"}>
+            <AppBar>
                 <Link to="/">
                     <button onClick={pwaIntroPagePassed}>Intro</button>
                 </Link>
-            </Header>
+            </AppBar>
             <Container maxWidth={"sm"}>
                 <h1>Container</h1>
             </Container>

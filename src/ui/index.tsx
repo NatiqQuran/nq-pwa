@@ -8,6 +8,7 @@ import ClickAwayListener from "./clickAwayListener/clickAwayListener";
 import List from "./list/list";
 import ListItem from "./listItem/listItem";
 import ListItemButton from "./listItemButton/listItemButton";
+import Main from "./main/main";
 
 export {
     Container,
@@ -20,4 +21,5 @@ export {
     List,
     ListItem,
     ListItemButton,
+    Main,
 };

@@ -3,10 +3,11 @@
     padding: 1rem;
     border: none;
     background: none;
+    color: var(--primaryColor);
 }
 
 @media (pointer: fine) {
-    .listItemButton:hover {
+    .listItemButtonFilled:hover {
         background: #7d7d7d25;
         cursor: pointer;
     }

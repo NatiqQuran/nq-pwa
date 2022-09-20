@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
     AppBar,
+    Main,
     Navigation,
     ClickAwayListener,
     Button,
@@ -15,7 +16,7 @@ import { ReactComponent as Humburger } from "../../assets/svg/humburger.svg";
 const NavigationList = () => (
     <List>
         <ListItem>
-            <ListItemButton>Contact Us</ListItemButton>
+            <ListItemButton variant="filled">Contact Us</ListItemButton>
         </ListItem>
         <ListItem>
             <ListItemButton>About Natiq</ListItemButton>
@@ -42,6 +43,12 @@ function Intro() {
                     <Button>PWA</Button>
                 </Link>
             </AppBar>
+
+            <Main open={navOpen}>
+                <div>
+                    <h1>Hello World</h1>
+                </div>
+            </Main>
 
             {matches ? (
                 <ClickAwayListener onClickAway={() => setNavOpen(false)}>

@@ -1,0 +1,9 @@
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+.open {
+    margin-inline-end: 22rem;
+    width: 30%;
+}

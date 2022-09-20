@@ -1,0 +1,13 @@
+.listItemButton {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    background: none;
+}
+
+@media (pointer: fine) {
+    .listItemButton:hover {
+        background: #7d7d7d25;
+        cursor: pointer;
+    }
+}

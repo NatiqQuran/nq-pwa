@@ -1,9 +1,28 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { AppBar } from "ui";
-import { Navigation } from "ui";
-import ClickAwayListener from "ui/clickAwayListener/clickAwayListener";
+import {
+    AppBar,
+    Main,
+    Navigation,
+    ClickAwayListener,
+    Button,
+    List,
+    ListItem,
+    ListItemButton,
+} from "ui";
 import { useMedia } from "library";
+import { ReactComponent as Humburger } from "../../assets/svg/humburger.svg";
+
+const NavigationList = () => (
+    <List>
+        <ListItem>
+            <ListItemButton variant="filled">Contact Us</ListItemButton>
+        </ListItem>
+        <ListItem>
+            <ListItemButton>About Natiq</ListItemButton>
+        </ListItem>
+    </List>
+);
 
 function Intro() {
     const [navOpen, setNavOpen] = useState<boolean>(false);
@@ -14,23 +33,32 @@ function Intro() {
     return (
         <div>
             <AppBar>
+                <Button onClick={toggleNavOpen} variant="outlined">
+                    <Humburger />
+                </Button>
                 <Link to="/quran">
-                    <button>Quran</button>
+                    <Button>Quran</Button>
                 </Link>
                 <Link to="/pwa">
-                    <button>PWA</button>
+                    <Button>PWA</Button>
                 </Link>
             </AppBar>
+
+            <Main open={navOpen}>
+                <div>
+                    <h1>Hello World</h1>
+                </div>
+            </Main>
 
             {matches ? (
                 <ClickAwayListener onClickAway={() => setNavOpen(false)}>
                     <Navigation open={navOpen}>
-                        <h1>Just Navigation</h1>
+                        <NavigationList />
                     </Navigation>
                 </ClickAwayListener>
             ) : (
                 <Navigation open={navOpen}>
-                    <h1>Just Navigation</h1>
+                    <NavigationList />
                 </Navigation>
             )}
         </div>

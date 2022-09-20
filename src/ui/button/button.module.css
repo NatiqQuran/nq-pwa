@@ -1,0 +1,38 @@
+.button {
+    padding: 0 0.7rem;
+    margin: 0.5rem;
+    line-height: 3rem;
+    border: 0.1rem solid #0000;
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    background: none;
+    color: var(--onBackgroundColor);
+    user-select: none;
+    cursor: pointer;
+}
+
+.buttonOutlined {
+    border: 0.1rem solid #7d7d7d7d;
+}
+
+.buttonOutlined:active {
+    border: 0.1rem solid #7d7d7d50;
+    box-shadow: inset 0 0 10rem #7d7d7d20;
+}
+
+@media (pointer: fine) {
+    .buttonText:hover,
+    .buttonOutlined:hover {
+        box-shadow: inset 0 0 10rem #7d7d7d20;
+    }
+}
+
+.buttonOutlined:invalid {
+    border: 0.1rem solid var(--errorColor);
+}
+
+.button svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    margin: 0.7rem 0;
+}

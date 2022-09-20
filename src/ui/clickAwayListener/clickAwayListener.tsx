@@ -6,6 +6,7 @@ interface ClickAwayListenerProps extends React.HTMLAttributes<HTMLDivElement> {
 
 function ClickAwayListener(props: ClickAwayListenerProps) {
     const ref = useRef(null);
+
     useEffect(() => {
         const handleOutSideClick = (event: MouseEvent) => {
             if (ref.current && !(ref.current as any).contains(event.target)) {
@@ -15,6 +16,7 @@ function ClickAwayListener(props: ClickAwayListenerProps) {
 
         document.addEventListener("click", handleOutSideClick, true);
 
+        // CleanUp When element unmount
         return () =>
             document.removeEventListener("click", handleOutSideClick, true);
     }, [props.onClickAway]);

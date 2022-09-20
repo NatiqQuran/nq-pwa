@@ -3,8 +3,7 @@ form {
 }
 label,
 input,
-select,
-button {
+select {
     padding: 0 0.7rem;
     margin: 0.5rem;
     line-height: 3rem;
@@ -16,8 +15,7 @@ button {
     user-select: none;
 }
 input,
-select,
-button {
+select {
     border: 0.1rem solid #7d7d7d7d;
 }
 input[type="checkbox"] {
@@ -42,19 +40,13 @@ select {
 
 /* */
 input[type="submit"]:hover,
-select:hover,
-button:hover {
+select:hover {
     cursor: pointer;
 }
 @media (pointer: fine) {
-    input[type="submit"]:hover,
-    button:hover {
+    input[type="submit"]:hover {
         box-shadow: inset 0 0 10rem #7d7d7d20;
     }
-}
-button:active {
-    border: 0.1rem solid #7d7d7d50;
-    box-shadow: inset 0 0 10rem #7d7d7d20;
 }
 input[type="submit"] {
     width: calc(100% - 1rem);
@@ -69,31 +61,13 @@ input[type="checkbox"]:focus {
     box-shadow: none;
 }
 input:invalid,
-select:invalid,
-button:invalid {
+select:invalid {
     border: 0.1rem solid var(--errorColor);
 }
 
 input[disabled] {
     color: #7d7d7d;
 }
-
-button svg {
-    width: 1.6rem;
-    height: 1.6rem;
-    margin: 0.7rem 0;
-}
-
-header button,
-footer button {
-    border: 0.1rem solid #0000;
-}
-header button svg,
-footer button svg {
-    width: 2.4rem;
-    height: 2.4rem;
-}
-
 form input + label {
     padding: 0 0.2rem;
     height: 1.2rem;

@@ -2,7 +2,6 @@
     position: fixed;
     width: 21.9rem;
     height: 100%;
-    padding: 1rem;
     line-height: 3.2rem;
     transition: right 0.3s, left 0.3s;
     border-inline-end: 0.1rem solid #7d7d7d40;

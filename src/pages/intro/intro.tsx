@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-    AppBar,
+    Header,
     Main,
     Navigation,
     ClickAwayListener,
@@ -9,14 +9,18 @@ import {
     List,
     ListItem,
     ListItemButton,
+    useTheme,
+    Page,
+    Gap,
 } from "ui";
 import { useMedia } from "library";
 import { ReactComponent as Humburger } from "../../assets/svg/humburger.svg";
+import styles from "../../assets/css/color.module.css";
 
 const NavigationList = () => (
     <List>
         <ListItem>
-            <ListItemButton variant="filled">Contact Us</ListItemButton>
+            <ListItemButton>Contact Us</ListItemButton>
         </ListItem>
         <ListItem>
             <ListItemButton>About Natiq</ListItemButton>
@@ -25,26 +29,30 @@ const NavigationList = () => (
 );
 
 function Intro() {
+    const [theme, setTheme] = useTheme(styles.colors);
+
     const [navOpen, setNavOpen] = useState<boolean>(false);
     const matches = useMedia("(max-width: 1000px)");
 
     const toggleNavOpen = () => setNavOpen((value) => !value);
 
     return (
-        <div>
-            <AppBar>
+        <Page>
+            <Header>
                 <Button onClick={toggleNavOpen} variant="outlined">
                     <Humburger />
                 </Button>
+                <h1>Natiq</h1>
+                <Gap />
                 <Link to="/quran">
                     <Button>Quran</Button>
                 </Link>
                 <Link to="/pwa">
                     <Button>PWA</Button>
                 </Link>
-            </AppBar>
+            </Header>
 
-            <Main open={navOpen}>
+            <Main open={navOpen} style={{ background: "red" }}>
                 <div>
                     <h1>Hello World</h1>
                 </div>
@@ -61,7 +69,7 @@ function Intro() {
                     <NavigationList />
                 </Navigation>
             )}
-        </div>
+        </Page>
     );
 }
 

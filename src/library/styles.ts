@@ -1,4 +1,4 @@
-const styles = (...styles: React.CSSProperties[]): React.CSSProperties =>
+const joinStyles = (...styles: React.CSSProperties[]): React.CSSProperties =>
     Object.assign({}, ...styles);
 
-export default styles;
+export default joinStyles;

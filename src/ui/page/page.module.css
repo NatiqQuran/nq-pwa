@@ -1,0 +1,7 @@
+.page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+}

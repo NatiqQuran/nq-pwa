@@ -5,12 +5,12 @@
     transition: width 0.3s;
 }
 
-.open {
+.navOpen {
     width: calc(100% - 22rem);
 }
 
 @media screen and (max-width: 1000px) {
-    .open {
+    .navOpen {
         width: 100%;
     }
 }

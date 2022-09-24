@@ -3,11 +3,11 @@ import styles from "./main.module.css";
 import { joinClassNames } from "library";
 
 interface MainProps extends React.HTMLAttributes<HTMLDivElement> {
-    open: boolean;
+    navOpen: boolean;
 }
 
 function Main(props: MainProps) {
-    const variantStyle = props.open ? styles.open : "";
+    const variantStyle = props.navOpen ? styles.navOpen : "";
 
     const classNames = joinClassNames(
         styles.main,

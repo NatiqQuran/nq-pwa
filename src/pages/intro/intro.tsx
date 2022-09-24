@@ -29,7 +29,7 @@ const NavigationList = () => (
 );
 
 function Intro() {
-    const [theme, setTheme] = useTheme(styles.colors);
+    const setTheme = useTheme(styles.colors);
 
     const [navOpen, setNavOpen] = useState<boolean>(false);
     const matches = useMedia("(max-width: 1000px)");
@@ -52,7 +52,7 @@ function Intro() {
                 </Link>
             </Header>
 
-            <Main open={navOpen} style={{ background: "red" }}>
+            <Main navOpen={navOpen} style={{ background: "red" }}>
                 <div>
                     <h1>Hello World</h1>
                 </div>

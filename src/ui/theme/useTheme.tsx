@@ -14,7 +14,7 @@ function useTheme(styles: string) {
         document.querySelector("html")?.classList.add(theme);
     }, [theme]);
 
-    return [theme, setTheme];
+    return setTheme;
 }
 
 export default useTheme;

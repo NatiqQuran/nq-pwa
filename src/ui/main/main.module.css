@@ -1,9 +1,16 @@
 .main {
     display: flex;
     justify-content: center;
+    width: 100%;
+    transition: width 0.3s;
 }
 
-.open {
-    margin-inline-end: 22rem;
-    width: 30%;
+.navOpen {
+    width: calc(100% - 22rem);
+}
+
+@media screen and (max-width: 1000px) {
+    .navOpen {
+        width: 100%;
+    }
 }

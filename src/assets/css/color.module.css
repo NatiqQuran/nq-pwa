@@ -1,4 +1,4 @@
-html {
+.colors {
     --primaryColor: #222222;
     --primaryVariantColor: #0059ff;
     --secondaryColor: #337aff;
@@ -15,7 +15,7 @@ html {
     --onErrorColor: #ffffff;
 }
 @media (prefers-color-scheme: dark) {
-    html {
+    .colors {
         --primaryColor: #8955ff;
         --primaryVariantColor: #bb86fc;
         --secondaryColor: #03dac6;
@@ -32,7 +32,7 @@ html {
         --onErrorColor: #000000;
     }
 }
-html.nwaThemeLight {
+.colors.nwaThemeLight {
     --primaryColor: #222222;
     --primaryVariantColor: #0059ff;
     --secondaryColor: #337aff;
@@ -48,7 +48,7 @@ html.nwaThemeLight {
     --onSurfaceColor: #000000;
     --onErrorColor: #ffffff;
 }
-html.nwaThemeDark {
+.colors.nwaThemeDark {
     --primaryColor: #8955ff;
     --primaryVariantColor: #bb86fc;
     --secondaryColor: #03dac6;
@@ -66,7 +66,7 @@ html.nwaThemeDark {
 }
 
 /* nwaColorBlackGold */
-html.nwaColorBlackGold {
+.colors.nwaColorBlackGold {
     --primaryColor: #222222;
     --primaryVariantColor: #303030;
     --secondaryColor: #aa8a59;
@@ -75,7 +75,7 @@ html.nwaColorBlackGold {
     --onHeaderColor: #e9e9e9;
 }
 @media (prefers-color-scheme: dark) {
-    html.nwaColorBlackGold {
+    .colors.nwaColorBlackGold {
         --primaryColor: #8955ff;
         --primaryVariantColor: #bb86fc;
         --secondaryColor: #03dac6;
@@ -84,7 +84,7 @@ html.nwaColorBlackGold {
         --onHeaderColor: #e9e9e9;
     }
 }
-html.nwaColorBlackGold.nwaThemeLight {
+.colors.nwaColorBlackGold.nwaThemeLight {
     --primaryColor: #222222;
     --primaryVariantColor: #303030;
     --secondaryColor: #aa8a59;
@@ -92,7 +92,7 @@ html.nwaColorBlackGold.nwaThemeLight {
     --headerColor: #222222;
     --onHeaderColor: #e9e9e9;
 }
-html.nwaColorBlackGold.nwaThemeDark {
+.colors.nwaColorBlackGold.nwaThemeDark {
     --primaryColor: #8955ff;
     --primaryVariantColor: #bb86fc;
     --secondaryColor: #03dac6;
@@ -102,7 +102,7 @@ html.nwaColorBlackGold.nwaThemeDark {
 }
 
 /* nwaColorPurpleGreen */
-html.nwaColorPurpleGreen {
+.colors.nwaColorPurpleGreen {
     --primaryColor: #563a77;
     --primaryVariantColor: #b516c0;
     --secondaryColor: #a3b745;
@@ -111,7 +111,7 @@ html.nwaColorPurpleGreen {
     --onHeaderColor: #e9e9e9;
 }
 @media (prefers-color-scheme: dark) {
-    html.nwaColorPurpleGreen {
+    .colors.nwaColorPurpleGreen {
         --primaryColor: #8955ff;
         --primaryVariantColor: #bb86fc;
         --secondaryColor: #03dac6;
@@ -120,7 +120,7 @@ html.nwaColorPurpleGreen {
         --onHeaderColor: #e9e9e9;
     }
 }
-html.nwaColorPurpleGreen.nwaThemeLight {
+.colors.nwaColorPurpleGreen.nwaThemeLight {
     --primaryColor: #563a77;
     --primaryVariantColor: #b516c0;
     --secondaryColor: #a3b745;
@@ -128,7 +128,7 @@ html.nwaColorPurpleGreen.nwaThemeLight {
     --headerColor: #563a77;
     --onHeaderColor: #e9e9e9;
 }
-html.nwaColorPurpleGreen.nwaThemeDark {
+.colors.nwaColorPurpleGreen.nwaThemeDark {
     --primaryColor: #8955ff;
     --primaryVariantColor: #bb86fc;
     --secondaryColor: #03dac6;

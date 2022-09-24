@@ -1,4 +1,4 @@
-const classnames = (...names: string[]): string =>
+const joinClassNames = (...names: string[]): string =>
     names.join(" ");
 
-export default classnames;
+export default joinClassNames;

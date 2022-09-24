@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./list.module.css";
-import { classnames } from "library";
+import { joinClassNames } from "library";
 
 interface ListProps extends React.HTMLAttributes<HTMLUListElement> {}
 
 function List(props: ListProps) {
-    const classes = classnames(styles.list, props.className!);
+    const classNames = joinClassNames(styles.list, props.className!);
     return (
-        <ul {...props} className={classes}>
+        <ul {...props} className={classNames}>
             {props.children}
         </ul>
     );

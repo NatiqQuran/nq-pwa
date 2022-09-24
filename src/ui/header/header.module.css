@@ -1,9 +1,10 @@
 .appBar {
     display: flex;
     align-items: center;
-    width: calc(100% - 2rem);
+    box-sizing: border-box;
+    width: 100%;
     height: 5rem;
-    padding: 0 1rem;
+    padding: 0 2rem;
     border-bottom: 0.1rem solid #7d7d7d40;
     background: var(--headerColor);
     color: var(--onHeaderColor);

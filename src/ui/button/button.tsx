@@ -1,4 +1,4 @@
-import { classnames } from "library";
+import { joinClassNames } from "library";
 import React from "react";
 import styles from "./button.module.css";
 
@@ -12,10 +12,14 @@ function Button(props: ButtonProps) {
             ? styles.buttonOutlined
             : styles.buttonText;
 
-    const classes = classnames(styles.button, variantStyle, props.className!);
+    const classNames = joinClassNames(
+        styles.button,
+        variantStyle,
+        props.className!
+    );
 
     return (
-        <button {...props} className={classes}>
+        <button {...props} className={classNames}>
             {props.children}
         </button>
     );

@@ -1,6 +1,6 @@
 import useFetch from "./useFetch";
-import classnames from "./classnames";
-import styles from "./styles";
+import joinClassNames from "./classnames";
+import joinStyles from "./styles";
 import useMedia from "./useMedia";
 
-export { useFetch, classnames, styles, useMedia }
+export { useFetch, joinClassNames, joinStyles, useMedia }

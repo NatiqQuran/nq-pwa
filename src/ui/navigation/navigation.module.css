@@ -1,7 +1,7 @@
 .navigation {
     position: fixed;
-    width: 21.9rem;
     top: 5.1rem;
+    width: 21.9rem;
     height: calc(100% - 5.1rem);
     line-height: 3.2rem;
     transition: right 0.3s, left 0.3s;

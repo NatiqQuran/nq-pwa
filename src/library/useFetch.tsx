@@ -10,20 +10,20 @@ function useFetch(defaultUrl: string, defaultInit: RequestInit) {
     const [error, setError] = useState<null | Error>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [url, setUrl] = useState<string | URL>(defaultUrl);
-    const [init, setInit] = useState<RequestInit>(defaultInit);
+    const [requestBody, setRequestBody] = useState<object>({});
 
     const send = () => {
         setLoading(true);
-        fetch(url, init)
+        fetch(url, { ...defaultInit, body: JSON.stringify(requestBody) })
             .then((response) => setResponse(response))
-            .catch((error) => setError(error));
-        setLoading(false);
+            .catch((error) => setError(error))
+            .finally(() => setLoading(false));
     };
 
-    const changeInit = (newInit: RequestInit) =>
-        setInit((pervInit) => ({ ...pervInit, ...newInit }));
-
     const changeUrl = (newUrl: string) => setUrl(newUrl);
+
+    const updateRequestBody = (newBody: object) =>
+        setRequestBody((pervBody) => ({ ...pervBody, ...newBody }));
 
     useEffect(() => {
         response
@@ -33,7 +33,15 @@ function useFetch(defaultUrl: string, defaultInit: RequestInit) {
             .catch(() => response.text().then((string) => setBody(string)));
     }, [response]);
 
-    return { changeInit, changeUrl, response, send, body, error, loading };
+    return {
+        updateRequestBody,
+        changeUrl,
+        response,
+        send,
+        body,
+        error,
+        loading,
+    };
 }
 
 export default useFetch;

@@ -3,18 +3,14 @@ import React, { useMemo } from "react";
 import { Button } from "ui";
 
 function Login() {
-    const { changeUrl, changeInit, response, send, loading, error } = useFetch(
-        "http://localhost:8080/account/sendCode/1",
-        {
+    const { changeUrl, updateRequestBody, response, send, loading, error } =
+        useFetch("http://localhost:8080/account/sendCode/1", {
             // This property will never changed
             method: "POST",
-        }
-    );
+        });
 
     const handleInput = (e: any) =>
-        changeInit({
-            body: JSON.stringify({ [e.target.name]: e.target.value }),
-        });
+        updateRequestBody({ [e.target.name]: e.target.value });
 
     const isCodeSended = useMemo(() => {
         if (response?.status === 200) {

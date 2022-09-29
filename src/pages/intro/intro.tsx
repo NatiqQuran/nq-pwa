@@ -50,6 +50,9 @@ function Intro() {
                 <Link to="/pwa">
                     <Button>PWA</Button>
                 </Link>
+                <Link to="/login">
+                    <Button>login</Button>
+                </Link>
             </Header>
 
             <Main navOpen={navOpen} style={{ background: "red" }}>

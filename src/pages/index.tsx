@@ -1,6 +1,6 @@
 import Intro from "./intro/intro";
 import Pwa from "./pwa/pwa";
 import Quran from "./quran/quran";
-import Login from "./login/login";
+import Account from "./account/account";
 
-export { Intro, Pwa, Quran, Login };
+export { Intro, Pwa, Quran, Account };

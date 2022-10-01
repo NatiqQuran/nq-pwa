@@ -9,8 +9,6 @@ function useTheme(styles: string) {
     const [theme, setTheme] = useState(styles);
 
     useEffect(() => {
-        console.log(theme);
-
         document.querySelector("html")?.classList.add(theme);
     }, [theme]);
 

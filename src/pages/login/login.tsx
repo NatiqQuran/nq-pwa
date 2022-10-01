@@ -1,22 +1,58 @@
+import React, { useEffect, useMemo, useState } from "react";
 import { useFetch } from "library";
-import React, { useMemo } from "react";
 import { Button } from "ui";
 
+interface CountdownProps {
+    count: number;
+    children: JSX.Element;
+    onCountdownEnded: Function;
+}
+
+const Countdown = (props: CountdownProps) => {
+    const [time, setTime] = useState<number>(props.count);
+
+    useEffect(() => {
+        if (time <= 0) {
+            props.onCountdownEnded();
+            return;
+        }
+
+        const interval = setInterval(
+            () => setTime((pervTime) => pervTime - 1),
+            1000
+        );
+
+        // Clear Interval after Component Unmounted
+        return () => clearInterval(interval);
+    }, [time]);
+
+    return (
+        <div>
+            {props.children}
+            {time}
+        </div>
+    );
+};
+
 function Login() {
+    const [codeSended, setCodeSended] = useState<boolean>(false);
     const { changeUrl, updateRequestBody, response, send, loading, error } =
         useFetch("http://localhost:8080/account/sendCode/1", {
             // This property will never changed
             method: "POST",
         });
 
-    const handleInput = (e: any) =>
-        updateRequestBody({ [e.target.name]: e.target.value });
+    const handleEmailInput = (e: any) =>
+        updateRequestBody({ email: e.target.value });
 
-    const isCodeSended = useMemo(() => {
+    const handleCodeInput = (e: any) =>
+        updateRequestBody({ code: parseInt(e.target.value, 10) }); // Parse The Code value to number.
+
+    useEffect(() => {
         if (response?.status === 200) {
+            setCodeSended(true);
             changeUrl("http://localhost:8080/account/verify/1");
         }
-        return response?.status === 200;
     }, [response]);
 
     return (
@@ -31,19 +67,33 @@ function Login() {
                     name="email"
                     type="email"
                     placeholder="email"
-                    onChange={handleInput}
+                    onChange={handleEmailInput}
                 />
-                {isCodeSended ? (
-                    <input
-                        name="code"
-                        type="number"
-                        placeholder="code"
-                        onChange={handleInput}
-                    />
+                {codeSended ? (
+                    <>
+                        <input
+                            name="code"
+                            type="number"
+                            placeholder="code"
+                            onChange={handleCodeInput}
+                        />
+                        <Countdown
+                            count={5}
+                            onCountdownEnded={() => setCodeSended(false)}
+                        >
+                            <h1>Remaining time: </h1>
+                        </Countdown>
+                    </>
                 ) : (
                     ""
                 )}
-                <Button variant="outlined" onClick={send}>
+                <Button
+                    variant="outlined"
+                    onClick={() => {
+                        setCodeSended(true);
+                        send();
+                    }}
+                >
                     Send
                 </Button>
             </div>

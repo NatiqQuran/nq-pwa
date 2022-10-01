@@ -3,12 +3,13 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./login";
 import Verify from "./verify";
 
-interface SendCodeData {
+interface AccountVerify {
     email?: string;
+    code?: number;
 }
 
 function Account() {
-    const [data, setData] = useState<SendCodeData>({});
+    const [data, setData] = useState<AccountVerify>({});
     return (
         <Routes>
             <Route

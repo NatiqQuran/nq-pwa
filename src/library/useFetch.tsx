@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
  */
 function useFetch(url: string, init: RequestInit) {
     const [response, setResponse] = useState<Response>();
-    const [body, setBody] = useState<object | string>();
+    const [responseBody, setResponseBody] = useState<object | string>();
     const [error, setError] = useState<null | Error>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [requestBody, setRequestBody] = useState<object>({});
@@ -23,15 +23,17 @@ function useFetch(url: string, init: RequestInit) {
         response
             ?.clone()
             ?.json()
-            .then((json) => setBody(json))
-            .catch(() => response.text().then((string) => setBody(string)));
+            .then((json) => setResponseBody(json))
+            .catch(() =>
+                response.text().then((string) => setResponseBody(string))
+            );
     }, [response]);
 
     return {
         setRequestBody,
         response,
         send,
-        body,
+        responseBody,
         error,
         loading,
     };

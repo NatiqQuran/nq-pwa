@@ -6,7 +6,6 @@ import { Navigate } from "react-router-dom";
 function Login(props: { data: any; setData: any }) {
     const [codeSended, setCodeSended] = useState(false);
     const fetch = useFetch("http://localhost:8080/account/sendCode/1", {
-        // This property will never changed
         method: "POST",
     });
 

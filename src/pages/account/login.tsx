@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "ui";
-import { useFetch } from "library";
+import { useFetch, useHandleInput } from "library";
 import { Navigate } from "react-router-dom";
 
-function Login(props: { data: any; setData: any }) {
+function Login<T, U>(props: { data: T; setData: React.Dispatch<React.SetStateAction<U>> }) {
     const [codeSended, setCodeSended] = useState(false);
 
+    const handler = useHandleInput(props.setData);
     const fetch = useFetch("http://localhost:8080/", { method: "POST", body: JSON.stringify(props.data) });
-
-    const handleEmailInput = (e: any) =>
-        props.setData(() => ({ email: e.target.value }));
 
     useEffect(() => {
         if (fetch.response?.status === 200) {
@@ -30,7 +28,7 @@ function Login(props: { data: any; setData: any }) {
                     name="email"
                     type="email"
                     placeholder="email"
-                    onChange={handleEmailInput}
+                    onChange={handler.handleInput}
                 />
                 <Button
                     variant="outlined"

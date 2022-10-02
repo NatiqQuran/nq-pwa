@@ -21,6 +21,7 @@ function Login<T, U>(props: { data: T; setData: React.Dispatch<React.SetStateAct
         <div>
             <h1>Login page</h1>
             <h3>{fetch.error?.message}</h3>
+            <h5>{handler.target?.validity.valid === false ? `${handler.target.name} Input is not valid`: null}</h5>
             <h4>{fetch.loading ? "Loading" : ""}</h4>
             {/* This can be a form tag but standard form tag doesnt have a prevent default */}
             <div>
@@ -30,12 +31,12 @@ function Login<T, U>(props: { data: T; setData: React.Dispatch<React.SetStateAct
                     placeholder="email"
                     onChange={handler.handleInput}
                 />
-                <Button
+                {handler.target?.validity.valid ? <Button
                     variant="outlined"
                     onClick={fetch.send}
                 >
                     Send
-                </Button>
+                </Button> : null}
             </div>
 
             {codeSended ? (

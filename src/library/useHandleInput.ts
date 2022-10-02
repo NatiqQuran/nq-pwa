@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 /**
  * Handles all the inputs with one function,
@@ -8,6 +8,8 @@ import React from "react";
 function useHandleInput<T>(
     stateSetter: React.Dispatch<React.SetStateAction<T>>
 ) {
+    const [target, setTarget] = useState<HTMLInputElement | null>(null);
+
     const append = (newValue: T) =>
         stateSetter((state) => ({ ...state, ...newValue }));
 
@@ -17,9 +19,11 @@ function useHandleInput<T>(
         } else {
             append({ [e.target.name]: e.target.value } as T);
         }
+
+        setTarget(e.target);
     };
 
-    return { handleInput };
+    return { handleInput, target };
 }
 
 export default useHandleInput;

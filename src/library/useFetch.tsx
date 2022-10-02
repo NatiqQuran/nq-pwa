@@ -15,7 +15,6 @@ function useFetch(url: string, init: RequestInit) {
 
     const send = () => {
         setLoading(true);
-        console.log(requestInit);
          
         fetch(url, requestInit)
             .then((response) => setResponse(response))

@@ -5,9 +5,9 @@ import { joinClassNames } from "library";
 interface ListProps extends React.HTMLAttributes<HTMLUListElement> {}
 
 function List(props: ListProps) {
-    const classNames = joinClassNames(styles.list, props.className!);
+    const joinedClassNames = joinClassNames(styles.list, props.className!);
     return (
-        <ul {...props} className={classNames}>
+        <ul {...props} className={joinedClassNames}>
             {props.children}
         </ul>
     );

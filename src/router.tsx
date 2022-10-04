@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Pwa, Intro, Quran, Account } from "pages";
+import { Pwa, Intro, Quran, Account, Search } from "pages";
 
 const isPwaIntroPagePassed = (): boolean => {
     return localStorage.getItem("pwaIntroPassed") === "true";
@@ -35,6 +35,7 @@ function Router() {
                 />
                 <Route path="/quran" element={<Quran />} />
                 <Route path="/account/*" element={<Account />} />
+                <Route path="/search" element={<Search />} />
             </Routes>
         </BrowserRouter>
     );

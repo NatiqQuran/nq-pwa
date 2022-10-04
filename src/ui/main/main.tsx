@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./main.module.css";
 import { joinClassNames } from "library";
+import styles from "./main.module.css";
 
 interface MainProps extends React.HTMLAttributes<HTMLDivElement> {
-    navOpen: boolean;
+    navOpen?: boolean;
 }
 
 function Main(props: MainProps) {

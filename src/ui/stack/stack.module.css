@@ -1,9 +1,8 @@
 div.stack {
     display: flex;
     flex-wrap: wrap;
-    background-color: green;
 }
 
 div.stack > * {
-    background-color: aquamarine;
+    background-color: none;
 }

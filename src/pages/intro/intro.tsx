@@ -14,7 +14,9 @@ import {
     Gap,
 } from "ui";
 import { useMedia } from "library";
-import { ReactComponent as Humburger } from "../../assets/svg/humburger.svg";
+import { ReactComponent as HumburgerIcon } from "../../assets/svg/humburger.svg";
+import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
+
 import styles from "../../assets/css/color.module.css";
 
 const NavigationList = () => (
@@ -40,7 +42,7 @@ function Intro() {
         <Page>
             <Header>
                 <Button onClick={toggleNavOpen} variant="outlined">
-                    <Humburger />
+                    <HumburgerIcon />
                 </Button>
                 <h1>Natiq</h1>
                 <Gap />
@@ -52,6 +54,11 @@ function Intro() {
                 </Link>
                 <Link to="/account/login">
                     <Button>login</Button>
+                </Link>
+                <Link to="/search">
+                    <Button>
+                        <SearchIcon />
+                    </Button>
                 </Link>
             </Header>
 

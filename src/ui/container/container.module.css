@@ -1,8 +1,8 @@
 div.container {
     width: 100%;
+    padding: 1rem;
     margin: auto;
     box-sizing: border-box;
-    background-color: red;
 }
 
 div.container.xs {

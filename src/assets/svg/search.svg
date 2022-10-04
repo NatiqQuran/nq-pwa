@@ -1,0 +1,5 @@
+<svg>
+	<circle cx="40%" cy="40%" r="29%" stroke-width="12%"></circle>
+	<circle cx="90%" cy="90%" r="6.9%"></circle>
+	<line x1="60%" y1="60%" x2="90%" y2="90%" stroke-width="14%"></line>
+</svg>

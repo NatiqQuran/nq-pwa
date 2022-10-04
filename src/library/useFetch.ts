@@ -9,11 +9,14 @@ function useFetch(url: string, init: RequestInit) {
     const [responseBody, setResponseBody] = useState<object | string>();
     const [error, setError] = useState<null | Error>(null);
     const [loading, setLoading] = useState<boolean>(false);
-    const [requestBody, setRequestBody] = useState<object>({});
+    const [requestInit, setRequestInit] = useState<RequestInit>({});
+
+    useEffect(() => setRequestInit(init), [init.body]);
 
     const send = () => {
         setLoading(true);
-        fetch(url, { ...init, body: JSON.stringify(requestBody) })
+
+        fetch(url, requestInit)
             .then((response) => setResponse(response))
             .catch((error) => setError(error))
             .finally(() => setLoading(false));
@@ -30,7 +33,6 @@ function useFetch(url: string, init: RequestInit) {
     }, [response]);
 
     return {
-        setRequestBody,
         response,
         send,
         responseBody,

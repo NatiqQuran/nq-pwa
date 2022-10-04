@@ -1,16 +1,13 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "ui";
-import { useFetch } from "library";
+import { useFetch, useHandleInput } from "library";
 import { Navigate } from "react-router-dom";
 
-function Login(props: { data: any; setData: any }) {
+function Login<T, U>(props: { data: T; setData: React.Dispatch<React.SetStateAction<U>> }) {
     const [codeSended, setCodeSended] = useState(false);
-    const fetch = useFetch("http://localhost:8080/account/sendCode/1", {
-        method: "POST",
-    });
 
-    const handleEmailInput = (e: any) =>
-        props.setData((data: any) => ({ ...data, email: e.target.value }));
+    const handler = useHandleInput(props.setData);
+    const fetch = useFetch("http://localhost:8080/", { method: "POST", body: JSON.stringify(props.data) });
 
     useEffect(() => {
         if (fetch.response?.status === 200) {
@@ -24,6 +21,7 @@ function Login(props: { data: any; setData: any }) {
         <div>
             <h1>Login page</h1>
             <h3>{fetch.error?.message}</h3>
+            <h5>{handler.target?.validity.valid === false ? `${handler.target.name} Input is not valid`: null}</h5>
             <h4>{fetch.loading ? "Loading" : ""}</h4>
             {/* This can be a form tag but standard form tag doesnt have a prevent default */}
             <div>
@@ -31,17 +29,14 @@ function Login(props: { data: any; setData: any }) {
                     name="email"
                     type="email"
                     placeholder="email"
-                    onChange={handleEmailInput}
+                    onChange={handler.handleInput}
                 />
-                <Button
+                {handler.target?.validity.valid ? <Button
                     variant="outlined"
-                    onClick={() => {
-                        fetch.setRequestBody(props.data);
-                        fetch.send();
-                    }}
+                    onClick={fetch.send}
                 >
                     Send
-                </Button>
+                </Button> : null}
             </div>
 
             {codeSended ? (

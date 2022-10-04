@@ -9,14 +9,14 @@ interface MainProps extends React.HTMLAttributes<HTMLDivElement> {
 function Main(props: MainProps) {
     const variantStyle = props.navOpen ? styles.navOpen : "";
 
-    const classNames = joinClassNames(
+    const joinedClassNames = joinClassNames(
         styles.main,
         variantStyle,
         props.className!
     );
 
     return (
-        <main {...props} className={classNames}>
+        <main {...props} className={joinedClassNames}>
             {props.children}
         </main>
     );

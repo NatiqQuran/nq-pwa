@@ -7,12 +7,12 @@ interface NavigationProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 function Navigation(props: NavigationProps) {
-    const classNames = joinClassNames(
+    const joinedClassNames = joinClassNames(
         styles.navigation,
         props.open ? styles.open : ""
     );
 
-    return <nav className={classNames}>{props.children}</nav>;
+    return <nav className={joinedClassNames}>{props.children}</nav>;
 }
 
 export default Navigation;

@@ -12,14 +12,14 @@ function Button(props: ButtonProps) {
             ? styles.buttonOutlined
             : styles.buttonText;
 
-    const classNames = joinClassNames(
+    const joinedClassNames = joinClassNames(
         styles.button,
         variantStyle,
         props.className!
     );
 
     return (
-        <button {...props} className={classNames}>
+        <button {...props} className={joinedClassNames}>
             {props.children}
         </button>
     );

@@ -54,7 +54,7 @@ function Login() {
                 <Navigate
                     to={`/account/verify`}
                     replace
-                    state={{ email: handler.target?.value }}
+                    state={{ email: data.email }}
                 />
             ) : null}
         </div>

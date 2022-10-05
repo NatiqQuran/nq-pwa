@@ -11,7 +11,7 @@ function useFetch(url: string, init: RequestInit) {
     const [loading, setLoading] = useState<boolean>(false);
     const [requestInit, setRequestInit] = useState<RequestInit>({});
 
-    useEffect(() => setRequestInit(init), [init.body, init.headers]);
+    useEffect(() => setRequestInit(init), [init.body]);
 
     const send = () => {
         setLoading(true);

@@ -1,0 +1,34 @@
+html {
+    --primaryColor: #222222;
+    --primaryVariantColor: #303030;
+    --secondaryColor: #aa8a59;
+    --secondaryVariantColor: #aa8a59;
+    --backgroundColor: #ffffff;
+    --headerColor: #222222;
+    --surfaceColor: #ffffff;
+    --errorColor: #b00020;
+    --onPrimaryColor: #ffffff;
+    --onSecondaryColor: #000000;
+    --onBackgroundColor: #000000;
+    --onHeaderColor: #e9e9e9;
+    --onSurfaceColor: #000000;
+    --onErrorColor: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+    html {
+        --primaryColor: #8955ff;
+        --primaryVariantColor: #bb86fc;
+        --secondaryColor: #03dac6;
+        --secondaryVariantColor: #00d6c2;
+        --backgroundColor: #121212;
+        --headerColor: #222222;
+        --surfaceColor: #1d1d1d;
+        --errorColor: #cf6679;
+        --onPrimaryColor: #000000;
+        --onSecondaryColor: #000000;
+        --onBackgroundColor: #ffffff;
+        --onHeaderColor: #e9e9e9;
+        --onSurfaceColor: #ffffff;
+        --onErrorColor: #000000;
+    }
+}

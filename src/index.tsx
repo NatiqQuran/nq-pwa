@@ -4,7 +4,7 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import Router from "./router";
 import "./assets/css/style.css";
-// import "./assets/css/color.css";
+import "./assets/css/color.css";
 import "./assets/css/form.css";
 import "./assets/css/scrollbar.css";
 

@@ -9,7 +9,6 @@ import List from "./list/list";
 import ListItem from "./listItem/listItem";
 import ListItemButton from "./listItemButton/listItemButton";
 import Main from "./main/main";
-import useTheme from "./theme/useTheme";
 import Page from "./page/page";
 import Gap from "./gap/gap";
 import Hr from "./hr/hr";
@@ -26,7 +25,6 @@ export {
     ListItem,
     ListItemButton,
     Main,
-    useTheme,
     Page,
     Gap,
     Hr,

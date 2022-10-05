@@ -9,15 +9,12 @@ import {
     List,
     ListItem,
     ListItemButton,
-    useTheme,
     Page,
     Gap,
 } from "ui";
 import { useMedia } from "library";
 import { ReactComponent as HumburgerIcon } from "../../assets/svg/humburger.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
-
-import styles from "../../assets/css/color.module.css";
 
 const NavigationList = () => (
     <List>
@@ -31,8 +28,6 @@ const NavigationList = () => (
 );
 
 function Intro() {
-    const setTheme = useTheme(styles.colors);
-
     const [navOpen, setNavOpen] = useState<boolean>(false);
     const matches = useMedia("(max-width: 1000px)");
 

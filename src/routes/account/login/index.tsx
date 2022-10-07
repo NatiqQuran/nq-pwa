@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { Button } from "ui";
 import { useFetch, useHandleInput } from "library";
-import { Navigate } from "react-router-dom";
 
 interface AccountSendCode {
     email?: string;

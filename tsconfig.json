@@ -17,10 +17,10 @@
         "noEmit": true,
         "jsx": "react-jsx",
         "paths": {
-            "library": ["library/index"],
-            "components": ["components/index"],
-            "routes": ["routes/index"],
-            "ui": ["ui/index"]
+            "library": ["library"],
+            "components": ["components"],
+            "routes": ["routes"],
+            "ui": ["ui"]
         }
     },
     "include": ["src"]

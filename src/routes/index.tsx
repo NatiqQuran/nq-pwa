@@ -1,7 +1,7 @@
-import Intro from "./intro/intro";
-import Pwa from "./pwa/pwa";
-import Quran from "./quran/quran";
-import Account from "./account/account";
-import Search from "./search/search";
+import Intro from "./intro";
+import Pwa from "./pwa";
+import Quran from "./quran";
+import Account from "./account";
+import Search from "./search";
 
 export { Intro, Pwa, Quran, Account, Search };

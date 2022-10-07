@@ -19,7 +19,7 @@
         "paths": {
             "library": ["library/index"],
             "components": ["components/index"],
-            "pages": ["pages/index"],
+            "routes": ["routes/index"],
             "ui": ["ui/index"]
         }
     },

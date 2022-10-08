@@ -12,6 +12,7 @@ import Main from "./main/main";
 import Page from "./page/page";
 import Gap from "./gap/gap";
 import Hr from "./hr/hr";
+import SvgIcon from "./svgIcon/svgIcon";
 
 export {
     Container,
@@ -28,4 +29,5 @@ export {
     Page,
     Gap,
     Hr,
+    SvgIcon,
 };

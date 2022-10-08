@@ -1,7 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container, Grid, Stack } from "ui";
-import { Header } from "ui";
+import {
+    Header,
+    Container,
+    Grid,
+    Stack,
+    Button,
+    Page,
+    Main,
+    SvgIcon,
+} from "ui";
+import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
+import styles from "./pwa.module.css";
 
 const pwaIntroPagePassed = () => {
     localStorage.setItem("pwaIntroPassed", "true");
@@ -9,44 +19,45 @@ const pwaIntroPagePassed = () => {
 
 function Pwa() {
     return (
-        <div>
+        <Page>
             <Header>
                 <Link to="/">
-                    <button onClick={pwaIntroPagePassed}>Intro</button>
+                    <Button variant="outlined" onClick={pwaIntroPagePassed}>
+                        Intro
+                    </Button>
                 </Link>
             </Header>
-            <Container maxWidth={"sm"}>
-                <h1>Container</h1>
-            </Container>
-            <Container maxWidth={"sm"}>
-                <h1>Container</h1>
-            </Container>
-            <Container maxWidth={"sm"} style={{ padding: "20px" }}>
-                <h1>Container</h1>
-            </Container>
-            <Container>
-                <h1>Container</h1>
-            </Container>
-            <Container maxWidth={"sm"}>
-                <Stack
+            <Main>
+                <Container
+                    maxWidth="sm"
                     style={{
-                        justifyContent: "center",
-                        gap: "3rem",
-                        padding: "2rem",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        marginTop: "13.4rem",
                     }}
                 >
-                    <div>Stack 1</div>
-                    <div>Stack 2</div>
-                    <div>Stack 3</div>
-                </Stack>
-            </Container>
-            <Container maxWidth={"sm"}>
-                <Grid>
-                    <Grid>Grid A</Grid>
-                    <Grid>Grid B</Grid>
-                </Grid>
-            </Container>
-        </div>
+                    <SvgIcon size={15}>
+                        <Logo />
+                    </SvgIcon>
+                    <h1 style={{ lineHeight: "5rem", fontSize: "3rem" }}>
+                        الْقُرآنُ النّاطِق
+                    </h1>
+                    <Button className={styles.getStartButton}>
+                        Get start now!
+                    </Button>
+                    <span>
+                        <a target="blank" href="https://nategh.info">
+                            Privacy policy
+                        </a>{" "}
+                        .{" "}
+                        <a target="blank" href="https://nategh.info">
+                            Learn more
+                        </a>
+                    </span>
+                </Container>
+            </Main>
+        </Page>
     );
 }
 

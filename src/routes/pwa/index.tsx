@@ -11,7 +11,7 @@ import {
     SvgIcon,
 } from "ui";
 import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
-import "../../assets/css/buttonpwa.css";
+import styles from "./pwa.module.css";
 
 const pwaIntroPagePassed = () => {
     localStorage.setItem("pwaIntroPassed", "true");
@@ -43,7 +43,9 @@ function Pwa() {
                     <h1 style={{ lineHeight: "5rem", fontSize: "3rem" }}>
                         الْقُرآنُ النّاطِق
                     </h1>
-                    <button className="buttonpwa">Get start now!</button>
+                    <Button className={styles.getStartButton}>
+                        Get start now!
+                    </Button>
                     <span>
                         <a target="blank" href="https://nategh.info">
                             Privacy policy

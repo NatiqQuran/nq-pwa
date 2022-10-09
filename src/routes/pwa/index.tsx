@@ -1,15 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-    Header,
-    Container,
-    Grid,
-    Stack,
-    Button,
-    Page,
-    Main,
-    SvgIcon,
-} from "ui";
+import { Header, Container, Button, Page, Main, SvgIcon } from "ui";
 import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
 import styles from "./pwa.module.css";
 

@@ -15,7 +15,7 @@ function Container(props: ContainerProps) {
         props.className!
     );
     return (
-        <div className={joinedClassNames} {...props}>
+        <div {...props} className={joinedClassNames}>
             {props.children}
         </div>
     );

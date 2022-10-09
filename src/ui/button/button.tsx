@@ -16,7 +16,7 @@ function Button(props: ButtonProps) {
     );
 
     return (
-        <button className={joinedClassNames} {...props}>
+        <button {...props} className={joinedClassNames}>
             {props.children}
         </button>
     );

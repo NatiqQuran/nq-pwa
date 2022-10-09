@@ -9,7 +9,7 @@ function ListItemButton(props: React.HTMLAttributes<HTMLButtonElement>) {
     );
 
     return (
-        <button className={joinedClassNames} {...props}>
+        <button {...props} className={joinedClassNames}>
             {props.children}
         </button>
     );

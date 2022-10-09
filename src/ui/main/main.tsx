@@ -16,7 +16,7 @@ function Main(props: MainProps) {
     );
 
     return (
-        <main className={joinedClassNames} {...props}>
+        <main {...props} className={joinedClassNames}>
             {props.children}
         </main>
     );

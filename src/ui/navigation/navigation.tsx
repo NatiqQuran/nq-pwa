@@ -13,7 +13,7 @@ function Navigation(props: NavigationProps) {
     );
 
     return (
-        <nav className={joinedClassNames} {...props}>
+        <nav {...props} className={joinedClassNames}>
             {props.children}
         </nav>
     );

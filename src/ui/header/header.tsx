@@ -6,7 +6,7 @@ function Header(props: React.HTMLAttributes<HTMLDivElement>) {
     const joinedClassNames = joinClassNames(styles.appBar, props.className!);
 
     return (
-        <header className={joinedClassNames} {...props}>
+        <header {...props} className={joinedClassNames}>
             {props.children}
         </header>
     );

@@ -6,7 +6,7 @@ function List(props: React.HTMLAttributes<HTMLUListElement>) {
     const joinedClassNames = joinClassNames(styles.list, props.className!);
 
     return (
-        <ul className={joinedClassNames} {...props}>
+        <ul {...props} className={joinedClassNames}>
             {props.children}
         </ul>
     );

@@ -6,7 +6,7 @@ function Page(props: React.HTMLAttributes<HTMLDivElement>) {
     const joinedClassNames = joinClassNames(styles.page, props.className!);
 
     return (
-        <div className={joinedClassNames} {...props}>
+        <div {...props} className={joinedClassNames}>
             {props.children}
         </div>
     );

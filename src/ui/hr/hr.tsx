@@ -27,7 +27,7 @@ function Hr(props: HrProps) {
     );
 
     return (
-        <hr className={joinedClassNames} style={joinedStyles} {...props}></hr>
+        <hr {...props} className={joinedClassNames} style={joinedStyles}></hr>
     );
 }
 

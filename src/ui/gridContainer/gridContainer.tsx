@@ -1,8 +1,8 @@
 import React from "react";
-import { joinStyles, joinClassNames } from "library";
+import { joinClassNames, joinStyles } from "library";
 import styles from "./gridContainer.module.css";
 
-interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+interface GridContainerProps extends React.HTMLAttributes<HTMLDivElement> {
     xs?: number;
     sm?: number;
     md?: number;
@@ -13,7 +13,7 @@ interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 // Custom Button Element
-function GridContainer(props: ContainerProps) {
+function GridContainer(props: GridContainerProps) {
     const joinedClassNames = joinClassNames(styles.container, props.className!);
     const joinedStyles = joinStyles(
         props.xl ? { gridTemplateColumns: " auto".repeat(props.xl) } : {},
@@ -22,7 +22,7 @@ function GridContainer(props: ContainerProps) {
         props.style!
     );
     return (
-        <div className={joinedClassNames} style={joinedStyles}>
+        <div {...props} className={joinedClassNames} style={joinedStyles}>
             {props.children}
         </div>
     );

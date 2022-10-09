@@ -1,8 +1,6 @@
 import React from "react";
 
-interface ListItemProps extends React.HTMLAttributes<HTMLLIElement> {}
-
-function ListItem(props: ListItemProps) {
+function ListItem(props: React.HTMLAttributes<HTMLLIElement>) {
     return <li {...props}>{props.children}</li>;
 }
 

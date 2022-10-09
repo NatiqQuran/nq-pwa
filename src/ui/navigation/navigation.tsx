@@ -1,8 +1,8 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { joinClassNames } from "library";
 import styles from "./navigation.module.css";
 
-interface NavigationProps extends React.HTMLAttributes<HTMLDivElement> {
+interface NavigationProps extends React.HTMLAttributes<HTMLElement> {
     open: boolean;
 }
 
@@ -12,7 +12,11 @@ function Navigation(props: NavigationProps) {
         props.open ? styles.open : ""
     );
 
-    return <nav className={joinedClassNames}>{props.children}</nav>;
+    return (
+        <nav className={joinedClassNames} {...props}>
+            {props.children}
+        </nav>
+    );
 }
 
 export default Navigation;

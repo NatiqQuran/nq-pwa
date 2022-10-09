@@ -1,13 +1,15 @@
-import { joinClassNames } from "library";
 import React from "react";
+import { joinClassNames } from "library";
 import styles from "./page.module.css";
 
-interface PageProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-function Page(props: PageProps) {
+function Page(props: React.HTMLAttributes<HTMLDivElement>) {
     const joinedClassNames = joinClassNames(styles.page, props.className!);
 
-    return <div className={joinedClassNames}>{props.children}</div>;
+    return (
+        <div className={joinedClassNames} {...props}>
+            {props.children}
+        </div>
+    );
 }
 
 export default Page;

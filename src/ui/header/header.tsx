@@ -1,12 +1,15 @@
 import React from "react";
-import styles from "./header.module.css";
 import { joinClassNames } from "library";
+import styles from "./header.module.css";
 
-interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-function Header(props: HeaderProps) {
+function Header(props: React.HTMLAttributes<HTMLDivElement>) {
     const joinedClassNames = joinClassNames(styles.appBar, props.className!);
-    return <header className={joinedClassNames}>{props.children}</header>;
+
+    return (
+        <header className={joinedClassNames} {...props}>
+            {props.children}
+        </header>
+    );
 }
 
 export default Header;

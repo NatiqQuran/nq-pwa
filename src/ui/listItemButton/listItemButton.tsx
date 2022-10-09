@@ -1,10 +1,8 @@
-import { joinClassNames } from "library";
 import React from "react";
+import { joinClassNames } from "library";
 import styles from "./listItemButton.module.css";
 
-interface ListItemButtonProps extends React.HTMLAttributes<HTMLButtonElement> {}
-
-function ListItemButton(props: ListItemButtonProps) {
+function ListItemButton(props: React.HTMLAttributes<HTMLButtonElement>) {
     const joinedClassNames = joinClassNames(
         styles.listItemButton,
         props.className!

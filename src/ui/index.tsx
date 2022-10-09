@@ -1,7 +1,8 @@
 import Header from "./header/header";
 import Button from "./button/button";
 import Container from "./container/container";
-import Grid from "./grid/grid";
+import GridContainer from "./gridContainer/gridContainer";
+import GridItem from "./gridItem/gridItem";
 import Stack from "./stack/stack";
 import Navigation from "./navigation/navigation";
 import ClickAwayListener from "./clickAwayListener/clickAwayListener";
@@ -16,7 +17,8 @@ import SvgIcon from "./svgIcon/svgIcon";
 
 export {
     Container,
-    Grid,
+    GridContainer,
+    GridItem,
     Stack,
     Navigation,
     ClickAwayListener,

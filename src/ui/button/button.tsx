@@ -1,9 +1,9 @@
-import { joinClassNames } from "library";
 import React from "react";
+import { joinClassNames } from "library";
 import styles from "./button.module.css";
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-    variant?: "outlined" | "text" | "filled";
+    variant?: "text" | "outlined" | "filled";
 }
 
 function Button(props: ButtonProps) {

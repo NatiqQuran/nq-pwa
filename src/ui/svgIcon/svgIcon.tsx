@@ -1,5 +1,5 @@
-import { joinClassNames, joinStyles } from "library";
 import React from "react";
+import { joinClassNames, joinStyles } from "library";
 import styles from "./svgIcon.module.css";
 
 interface SvgIconProps extends React.HTMLAttributes<HTMLElement> {

@@ -1,16 +1,13 @@
-import { joinClassNames } from "library";
 import React from "react";
+import { joinClassNames } from "library";
 import styles from "./button.module.css";
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-    variant?: "outlined" | "text";
+    variant?: "text" | "outlined" | "filled";
 }
 
 function Button(props: ButtonProps) {
-    const variantStyle =
-        props.variant === "outlined"
-            ? styles.buttonOutlined
-            : styles.buttonText;
+    const variantStyle = props.variant ? styles[props.variant] : styles.text;
 
     const joinedClassNames = joinClassNames(
         styles.button,

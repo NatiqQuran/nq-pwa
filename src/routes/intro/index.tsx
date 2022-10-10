@@ -11,6 +11,7 @@ import {
     ListItemButton,
     Page,
     Gap,
+    SvgIcon,
 } from "ui";
 import { useMedia } from "library";
 import { ReactComponent as HumburgerIcon } from "../../assets/svg/humburger.svg";
@@ -37,7 +38,9 @@ function Intro() {
         <Page>
             <Header>
                 <Button onClick={toggleNavOpen} variant="outlined">
-                    <HumburgerIcon />
+                    <SvgIcon color="onHeader">
+                        <HumburgerIcon />
+                    </SvgIcon>
                 </Button>
                 <h1>Natiq</h1>
                 <Gap />
@@ -52,7 +55,9 @@ function Intro() {
                 </Link>
                 <Link to="/search">
                     <Button>
-                        <SearchIcon />
+                        <SvgIcon color="onHeader">
+                            <SearchIcon />
+                        </SvgIcon>
                     </Button>
                 </Link>
             </Header>

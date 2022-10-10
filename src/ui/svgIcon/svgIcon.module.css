@@ -1,0 +1,26 @@
+.svg svg {
+    width: 100%;
+    height: 100%;
+}
+
+.svg.onBackground line {
+    stroke: var(--onBackgroundColor);
+}
+.svg.onBackground circle {
+    fill: var(--onBackgroundColor);
+}
+.svg.onBackground circle[stroke-width] {
+    fill: none;
+    stroke: var(--onBackgroundColor);
+}
+
+.svg.onHeader line {
+    stroke: var(--onHeaderColor);
+}
+.svg.onHeader circle {
+    fill: var(--onHeaderColor);
+}
+.svg.onHeader circle[stroke-width] {
+    fill: none;
+    stroke: var(--onHeaderColor);
+}

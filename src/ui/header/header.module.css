@@ -11,19 +11,6 @@
     user-select: none;
 }
 
-.appBar svg line {
-    stroke: var(--onHeaderColor);
-}
-
-.appBar svg circle {
-    fill: var(--onHeaderColor);
-}
-
-.appBar svg circle[stroke-width] {
-    fill: none;
-    stroke: var(--onHeaderColor);
-}
-
 .appBar button {
     color: var(--onHeaderColor);
 }

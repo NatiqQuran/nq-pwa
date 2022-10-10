@@ -16,6 +16,7 @@ import Hr from "./hr/hr";
 import Form from "./form/form";
 import SvgIcon from "./svgIcon/svgIcon";
 import HistoryBack from "./historyBack/historyBack";
+import Countdown from "./countdown/countdown";
 
 export {
     Container,
@@ -36,4 +37,5 @@ export {
     Form,
     SvgIcon,
     HistoryBack,
+    Countdown,
 };

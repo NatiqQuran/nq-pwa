@@ -55,7 +55,7 @@ function Search() {
     return (
         <Page>
             <Header>
-                <HistoryBack onClick={() => alert("FUCK")}>
+                <HistoryBack>
                     <Button>Cancel</Button>
                 </HistoryBack>
                 <input

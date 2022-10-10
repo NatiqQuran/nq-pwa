@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form } from "ui";
 import { useNavigate } from "react-router-dom";
+import { Button, Form } from "ui";
 import { useFetch, useFormDataHandle } from "library";
 
 interface AccountSendCode {

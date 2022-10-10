@@ -1,41 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useFetch, useFormDataHandle } from "library";
-import { Container, Button, Form } from "ui";
-
-const COUNTDOWN_SECONDS = 10;
-
-interface CountdownProps {
-    count: number;
-    children: JSX.Element;
-    onCountdownEnded: Function;
-}
-
-const Countdown = (props: CountdownProps) => {
-    const [time, setTime] = useState<number>(props.count);
-
-    useEffect(() => {
-        if (time <= 0) {
-            props.onCountdownEnded();
-            return;
-        }
-
-        const interval = setInterval(
-            () => setTime((pervTime) => pervTime - 1),
-            1000
-        );
-
-        // Clear Interval after Component Unmounted
-        return () => clearInterval(interval);
-    }, [time]);
-
-    return (
-        <div>
-            {props.children}
-            {time}
-        </div>
-    );
-};
+import { Container, Button, Form, Countdown } from "ui";
 
 interface AccountVerifyCode {
     email?: string;
@@ -49,7 +15,7 @@ function Verify() {
     });
     const [countDownEnded, setCountDownEnded] = useState<boolean>(false);
 
-    const fetch = useFetch("http://localhost:8080/account/verify/1", {
+    const verifyFetch = useFetch("http://localhost:8080/account/verify/1", {
         method: "POST",
         body: JSON.stringify(data),
     });
@@ -62,22 +28,22 @@ function Verify() {
 
     return (
         <Container>
-            <Form
-                onChange={formDataHandler.handle}
-                onSubmit={countDownEnded ? resendFetch.send : fetch.send}
-            >
+            <Form onChange={formDataHandler.handle} onSubmit={verifyFetch.send}>
                 <input name="code" type="number" placeholder="code" />
-
-                <Countdown
-                    count={COUNTDOWN_SECONDS}
-                    onCountdownEnded={() => setCountDownEnded(true)}
-                >
-                    <h1>Remaining time: </h1>
-                </Countdown>
-
-                {countDownEnded ? <Button>Resend</Button> : null}
-                <Button>verify</Button>
             </Form>
+            <h1>
+                Remaining time:
+                <Countdown
+                    seconds={10}
+                    onCountdownEnded={() => setCountDownEnded(true)}
+                />
+            </h1>
+
+            <Button>Get back</Button>
+            {countDownEnded ? (
+                <Button onClick={resendFetch.send}>Resend</Button>
+            ) : null}
+            <Button onClick={verifyFetch.send}>verify</Button>
         </Container>
     );
 }

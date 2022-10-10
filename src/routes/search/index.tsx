@@ -8,8 +8,8 @@ import {
     Button,
     GridContainer,
     GridItem,
+    HistoryBack,
 } from "ui";
-import { Link } from "react-router-dom";
 
 interface SuraItems {
     title: string;
@@ -55,9 +55,9 @@ function Search() {
     return (
         <Page>
             <Header>
-                <Link to="/">
+                <HistoryBack onClick={() => alert("FUCK")}>
                     <Button>Cancel</Button>
-                </Link>
+                </HistoryBack>
                 <input
                     style={{ background: "#7d7d7d15" }}
                     type="Search"

@@ -15,6 +15,7 @@ import Gap from "./gap/gap";
 import Hr from "./hr/hr";
 import Form from "./form/form";
 import SvgIcon from "./svgIcon/svgIcon";
+import HistoryBack from "./historyBack/historyBack";
 
 export {
     Container,
@@ -34,4 +35,5 @@ export {
     Hr,
     Form,
     SvgIcon,
+    HistoryBack,
 };

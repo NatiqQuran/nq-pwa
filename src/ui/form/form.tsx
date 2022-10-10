@@ -1,20 +1,18 @@
 import React from "react";
 
-interface FormProps extends React.HTMLAttributes<HTMLFormElement> {}
+function Form(props: React.HTMLAttributes<HTMLFormElement>) {
+    return (
+        <form
+            {...props}
+            onSubmit={(e) => {
+                e.preventDefault();
 
-function Form(props: FormProps) {
-    // Change and overwrite some props
-    const formProps: FormProps = {
-        ...props,
-        onSubmit: (e) => {
-            // this can be a optional in the props
-            e.preventDefault();
-
-            props.onSubmit!(null as any);
-        },
-    };
-
-    return <form {...formProps}>{props.children}</form>;
+                props.onSubmit!(null as any);
+            }}
+        >
+            {props.children}
+        </form>
+    );
 }
 
 export default Form;

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useFetch, useHandleInput } from "library";
+import { useFetch, useFormDataHandle } from "library";
 import { Container, Button, Form } from "ui";
+
+const COUNTDOWN_SECONDS = 10;
 
 interface CountdownProps {
     count: number;
@@ -51,23 +53,30 @@ function Verify() {
         method: "POST",
         body: JSON.stringify(data),
     });
-    const handler = useHandleInput(setData);
+
+    const resendFetch = useFetch("http://localhost:8080/account/sendCode/1", {
+        method: "POST",
+        body: JSON.stringify({ email: data.email }),
+    });
+    const formDataHandler = useFormDataHandle(setData);
 
     return (
         <Container>
-            <Form onChange={handler.handleInput} onSubmit={fetch.send}>
+            <Form
+                onChange={formDataHandler.handle}
+                onSubmit={countDownEnded ? resendFetch.send : fetch.send}
+            >
                 <input name="code" type="number" placeholder="code" />
 
                 <Countdown
-                    count={70}
+                    count={COUNTDOWN_SECONDS}
                     onCountdownEnded={() => setCountDownEnded(true)}
                 >
                     <h1>Remaining time: </h1>
                 </Countdown>
 
-                <Button>verify</Button>
-
                 {countDownEnded ? <Button>Resend</Button> : null}
+                <Button>verify</Button>
             </Form>
         </Container>
     );

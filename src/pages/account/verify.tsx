@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useFetch, useHandleInput } from "library";
-import { Container, Button } from "ui";
+import { Container, Button, Form } from "ui";
 
 interface CountdownProps {
     count: number;
@@ -45,6 +45,8 @@ function Verify() {
     const [data, setData] = useState<AccountVerifyCode>({
         email: (location.state as any).email,
     });
+    const [countDownEnded, setCountDownEnded] = useState<boolean>(false);
+
     const fetch = useFetch("http://localhost:8080/account/verify/1", {
         method: "POST",
         body: JSON.stringify(data),
@@ -53,18 +55,20 @@ function Verify() {
 
     return (
         <Container>
-            <input
-                name="code"
-                type="number"
-                placeholder="code"
-                onChange={handler.handleInput}
-            />
-            {/* TODO: handle onCountdownEnded event ( show resend button ) */}
-            <Countdown count={70} onCountdownEnded={() => alert("Ended")}>
-                <h1>Remaining time: </h1>
-            </Countdown>
+            <Form onChange={handler.handleInput} onSubmit={fetch.send}>
+                <input name="code" type="number" placeholder="code" />
 
-            <Button onClick={fetch.send}>verify</Button>
+                <Countdown
+                    count={70}
+                    onCountdownEnded={() => setCountDownEnded(true)}
+                >
+                    <h1>Remaining time: </h1>
+                </Countdown>
+
+                <Button>verify</Button>
+
+                {countDownEnded ? <Button>Resend</Button> : null}
+            </Form>
         </Container>
     );
 }

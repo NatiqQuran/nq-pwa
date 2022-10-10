@@ -13,14 +13,16 @@ function useHandleInput<T>(
     const append = (newValue: T) =>
         stateSetter((state) => ({ ...state, ...newValue }));
 
-    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.type === "number") {
-            append({ [e.target.name]: parseInt(e.target.value, 10) } as T);
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLFormElement>) => {
+        const eAsAny = e as any;
+
+        if (eAsAny.target.type === "number") {
+            append({ [eAsAny.target.name]: parseInt(eAsAny.target.value, 10) } as T);
         } else {
-            append({ [e.target.name]: e.target.value } as T);
+            append({ [eAsAny.target.name]: eAsAny.target.value } as T);
         }
 
-        setTarget(e.target);
+        setTarget(eAsAny.target);
     };
 
     return { handleInput, target };

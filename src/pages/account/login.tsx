@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "ui";
+import { Button, Form } from "ui";
 import { useFetch, useHandleInput } from "library";
 import { Navigate } from "react-router-dom";
 
@@ -35,20 +35,11 @@ function Login() {
                     : null}
             </h5>
             <h4>{fetch.loading ? "Loading" : ""}</h4>
-            {/* This can be a form tag but standard form tag doesnt have a prevent default */}
-            <div>
-                <input
-                    name="email"
-                    type="email"
-                    placeholder="email"
-                    onChange={handler.handleInput}
-                />
-                {handler.target?.validity.valid ? (
-                    <Button variant="outlined" onClick={fetch.send}>
-                        Send
-                    </Button>
-                ) : null}
-            </div>
+
+            <Form onSubmit={fetch.send} onChange={handler.handleInput}>
+                <input name="email" type="email" placeholder="email" />
+                <Button variant="outlined">Send</Button>
+            </Form>
 
             {codeSended ? (
                 <Navigate

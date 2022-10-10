@@ -2,6 +2,6 @@ import useFetch from "./useFetch";
 import joinClassNames from "./classnames";
 import joinStyles from "./styles";
 import useMedia from "./useMedia";
-import useHandleInput from "./useHandleInput";
+import useFormDataHandle from "./useFormDataHandle";
 
-export { useFetch, joinClassNames, joinStyles, useMedia, useHandleInput }
+export { useFetch, joinClassNames, joinStyles, useMedia, useFormDataHandle }

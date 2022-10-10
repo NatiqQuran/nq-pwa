@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { Button } from "ui";
+import { Button, Container } from "ui";
 import { useFetch, useHandleInput } from "library";
 
 interface AccountSendCode {
@@ -26,8 +26,8 @@ function Login() {
     }, [fetch.response]);
 
     return (
-        <div>
-            <h1>Login page</h1>
+        <Container>
+            <h5>Enter email to SignIn or Register account. </h5>
             <h3>{fetch.error?.message}</h3>
             <h5>
                 {handler.target?.validity.valid === false
@@ -36,19 +36,22 @@ function Login() {
             </h5>
             <h4>{fetch.loading ? "Loading" : ""}</h4>
             {/* This can be a form tag but standard form tag doesnt have a prevent default */}
-            <div>
-                <input
-                    name="email"
-                    type="email"
-                    placeholder="email"
-                    onChange={handler.handleInput}
-                />
-                {handler.target?.validity.valid ? (
-                    <Button variant="outlined" onClick={fetch.send}>
-                        Send
-                    </Button>
-                ) : null}
-            </div>
+
+            <input
+                name="email"
+                type="email"
+                placeholder="email"
+                onChange={handler.handleInput}
+            />
+            {handler.target?.validity.valid ? (
+                <Button
+                    variant="filled"
+                    onClick={fetch.send}
+                    style={{ width: "100%" }}
+                >
+                    Send
+                </Button>
+            ) : null}
 
             {codeSended ? (
                 <Navigate
@@ -57,7 +60,7 @@ function Login() {
                     state={{ email: data.email }}
                 />
             ) : null}
-        </div>
+        </Container>
     );
 }
 

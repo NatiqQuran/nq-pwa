@@ -14,8 +14,8 @@ import {
     SvgIcon,
 } from "ui";
 import { useMedia } from "library";
-import { ReactComponent as HumburgerIcon } from "../../assets/svg/humburger.svg";
-import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
+import { ReactComponent as HumburgerIcon } from "../../assets/svg/humburgerIcon.svg";
+import { ReactComponent as SearchIcon } from "../../assets/svg/searchIcon.svg";
 
 const NavigationList = () => (
     <List>

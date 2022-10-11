@@ -27,18 +27,14 @@ function Login() {
     }, [fetch.response]);
 
     return (
-        <Stack gap={1.5} style={{ alignItems: "center" }}>
+        <Stack style={{ alignItems: "center" }}>
             <div>
                 <h5>Enter email to SignIn or Register account. </h5>
                 <h3>{fetch.error?.message}</h3>
                 <h4>{fetch.loading ? "Loading" : ""}</h4>
             </div>
 
-            <Form
-                onSubmit={fetch.send}
-                onChange={formDataHandler.handle}
-                gap={1.5}
-            >
+            <Form onSubmit={fetch.send} onChange={formDataHandler.handle}>
                 <input name="email" type="email" placeholder="email" />
                 <Button variant="filled" style={{ width: "100%" }}>
                     Get verify code

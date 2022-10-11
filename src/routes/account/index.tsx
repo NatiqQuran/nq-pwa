@@ -17,7 +17,7 @@ function Account() {
             }}
         >
             <Header className={styles.header}></Header>
-            <Main gap={1.5} className={styles.main}>
+            <Main className={styles.main}>
                 <Row
                     style={{
                         justifyContent: "center",

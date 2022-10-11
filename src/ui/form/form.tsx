@@ -10,7 +10,7 @@ function Form(props: FormProps) {
     const joinedClassNames = joinClassNames(styles.form, props.className!);
 
     const joinedStyles = joinStyles(
-        props.gap ? { gap: props.gap + "rem" } : {},
+        { gap: props.gap ? props.gap + "rem" : "1.5rem" },
         props.style!
     );
     return (

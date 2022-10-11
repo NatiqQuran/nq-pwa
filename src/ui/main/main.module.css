@@ -1,6 +1,7 @@
 .main {
     display: flex;
     justify-content: center;
+    box-sizing: border-box;
     width: 100%;
     transition: width 0.3s;
 }

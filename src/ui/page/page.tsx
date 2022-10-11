@@ -14,7 +14,7 @@ function Page(props: PageProps) {
         props.direction
             ? { flexDirection: props.direction }
             : { flexDirection: "column" },
-        props.gap ? { gap: props.gap + "rem" } : {},
+        { gap: props.gap ? props.gap + "rem" : "initial" },
         props.style!
     );
 

@@ -68,7 +68,7 @@ function Search() {
                 <Container maxWidth="md">
                     <h2>All: Sura Page Juz Hizb</h2>
                     <Hr />
-                    <GridContainer sm={1} xl={10} rowGap={0.5} columnGap={0.5}>
+                    <GridContainer sm={1} xl={10}>
                         <GridItem
                             xl={2}
                             style={{ height: "5rem", background: "red" }}

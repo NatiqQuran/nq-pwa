@@ -35,7 +35,7 @@ function Verify() {
     const formDataHandler = useFormDataHandle(setData);
 
     return (
-        <Stack gap={1.5} style={{ alignItems: "center" }}>
+        <Stack style={{ alignItems: "center" }}>
             <div style={{ width: "100%" }}>
                 <h3>Enter your code</h3>
                 <span style={{ color: "#7d7d7d" }}>

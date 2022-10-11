@@ -14,7 +14,7 @@ function Header(props: HeaderProps) {
         props.direction
             ? { flexDirection: props.direction }
             : { flexDirection: "row" },
-        props.gap ? { gap: props.gap + "rem" } : {},
+        { gap: props.gap ? props.gap + "rem" : "1.5rem" },
         props.style!
     );
 

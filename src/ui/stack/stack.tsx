@@ -14,7 +14,7 @@ function Stack(props: StackProps) {
         props.direction
             ? { flexDirection: props.direction }
             : { flexDirection: "column" },
-        props.gap ? { gap: props.gap + "rem" } : {},
+        { gap: props.gap ? props.gap + "rem" : "1.5rem" },
         props.style!
     );
 

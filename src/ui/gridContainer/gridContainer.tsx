@@ -17,8 +17,8 @@ function GridContainer(props: GridContainerProps) {
     const joinedClassNames = joinClassNames(styles.container, props.className!);
     const joinedStyles = joinStyles(
         props.xl ? { gridTemplateColumns: " auto".repeat(props.xl) } : {},
-        props.columnGap ? { columnGap: props.columnGap + "rem" } : {},
-        props.rowGap ? { rowGap: props.rowGap + "rem" } : {},
+        { columnGap: props.columnGap ? props.columnGap + "rem" : "1.5rem" },
+        { rowGap: props.rowGap ? props.rowGap + "rem" : "1.5rem" },
         props.style!
     );
     return (

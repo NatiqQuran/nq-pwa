@@ -1,11 +1,13 @@
 import React from "react";
-import { joinClassNames } from "library";
+import { joinClassNames, joinStyles } from "library";
 import styles from "./container.module.css";
 
 type ScreenSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
     maxWidth?: ScreenSize;
+    direction?: "column" | "column-reverse" | "row" | "row-reverse";
+    gap?: number;
 }
 
 function Container(props: ContainerProps) {
@@ -14,8 +16,17 @@ function Container(props: ContainerProps) {
         styles.container,
         props.className!
     );
+
+    const joinedStyles = joinStyles(
+        props.direction
+            ? { flexDirection: props.direction }
+            : { flexDirection: "column" },
+        { gap: props.gap ? props.gap + "rem" : "1.5rem" },
+        props.style!
+    );
+
     return (
-        <div {...props} className={joinedClassNames}>
+        <div {...props} className={joinedClassNames} style={joinedStyles}>
             {props.children}
         </div>
     );

@@ -18,14 +18,19 @@ function Pwa() {
                     </Button>
                 </Link>
             </Header>
-            <Main>
+            <Main
+                style={{
+                    position: "fixed",
+                    top: "6rem",
+                    height: "calc(100% - 6rem)",
+                }}
+            >
                 <Container
                     maxWidth="sm"
                     style={{
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
-                        marginTop: "13.4rem",
                     }}
                 >
                     <SvgIcon size={15}>

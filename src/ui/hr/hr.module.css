@@ -4,13 +4,13 @@
     padding: 0;
     margin: 0.5rem auto;
     background: none;
-    border-top: 0.1rem solid #7d7d7d90;
+    border-top: 0.1rem solid var(--secondaryVariantColor);
 }
 .dotted {
-    border-top: 0.4rem dotted #7d7d7d;
+    border-top: 0.4rem dotted var(--secondaryVariantColor);
 }
 .dashed {
-    border-top: 0.2rem dashed #7d7d7d;
+    border-top: 0.2rem dashed var(--secondaryVariantColor);
 }
 .shortLine {
     width: 30rem;

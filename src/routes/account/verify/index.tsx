@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useFetch, useFormDataHandle } from "library";
-import { Container, Button, Form, Countdown } from "ui";
+import { Button, Form, Countdown, Gap, HistoryBack, Stack, Row } from "ui";
 
 interface AccountVerifyCode {
     email?: string;
@@ -10,9 +10,17 @@ interface AccountVerifyCode {
 
 function Verify() {
     const location = useLocation();
+    const navigate = useNavigate();
     const [data, setData] = useState<AccountVerifyCode>({
-        email: (location.state as any).email,
+        email: !(location.state as AccountVerifyCode)
+            ? ""
+            : (location.state as AccountVerifyCode).email,
     });
+
+    if (data.email === "") {
+        navigate("/account/login", { replace: true });
+    }
+
     const [countDownEnded, setCountDownEnded] = useState<boolean>(false);
 
     const verifyFetch = useFetch("http://localhost:8080/account/verify/1", {
@@ -27,24 +35,44 @@ function Verify() {
     const formDataHandler = useFormDataHandle(setData);
 
     return (
-        <Container>
+        <Stack style={{ alignItems: "center" }}>
+            <div style={{ width: "100%" }}>
+                <h3>Enter your code</h3>
+                <span style={{ color: "#7d7d7d" }}>
+                    We sended a code to your email <b>{data.email}</b>.
+                </span>
+            </div>
+
             <Form onChange={formDataHandler.handle} onSubmit={verifyFetch.send}>
                 <input name="code" type="number" placeholder="code" />
             </Form>
-            <h1>
-                Remaining time:
-                <Countdown
-                    seconds={10}
-                    onCountdownEnded={() => setCountDownEnded(true)}
-                />
-            </h1>
 
-            <Button>Get back</Button>
-            {countDownEnded ? (
-                <Button onClick={resendFetch.send}>Resend</Button>
-            ) : null}
-            <Button onClick={verifyFetch.send}>verify</Button>
-        </Container>
+            <Row style={{ width: "100%" }}>
+                <span>
+                    Remaining time:
+                    <Countdown
+                        seconds={10}
+                        onCountdownEnded={() => setCountDownEnded(true)}
+                    />
+                </span>
+                <Gap />
+                {countDownEnded ? (
+                    <Button variant="text" onClick={resendFetch.send}>
+                        Resend
+                    </Button>
+                ) : null}
+            </Row>
+            <Button
+                variant="filled"
+                onClick={verifyFetch.send}
+                style={{ width: "100%" }}
+            >
+                Verify code
+            </Button>
+            <HistoryBack>
+                <Button>Get back</Button>
+            </HistoryBack>
+        </Stack>
     );
 }
 

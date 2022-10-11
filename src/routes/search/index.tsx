@@ -55,20 +55,20 @@ function Search() {
     return (
         <Page>
             <Header>
-                <HistoryBack>
-                    <Button>Cancel</Button>
-                </HistoryBack>
                 <input
                     style={{ background: "#7d7d7d15" }}
                     type="Search"
                     placeholder="Search Sura, Phrase or numbers(Sura:Aya, Page, Juz, Hizb)"
                 />
+                <HistoryBack>
+                    <Button>Cancel</Button>
+                </HistoryBack>
             </Header>
             <Main>
                 <Container maxWidth="md">
                     <h2>All: Sura Page Juz Hizb</h2>
                     <Hr />
-                    <GridContainer sm={1} xl={10} rowGap={0.5} columnGap={0.5}>
+                    <GridContainer sm={1} xl={10}>
                         <GridItem
                             xl={2}
                             style={{ height: "5rem", background: "red" }}

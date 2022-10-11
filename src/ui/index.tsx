@@ -17,6 +17,8 @@ import Form from "./form/form";
 import SvgIcon from "./svgIcon/svgIcon";
 import HistoryBack from "./historyBack/historyBack";
 import Countdown from "./countdown/countdown";
+import Row from "./row/row";
+import Footer from "./footer/footer";
 
 export {
     Container,
@@ -38,4 +40,6 @@ export {
     SvgIcon,
     HistoryBack,
     Countdown,
+    Row,
+    Footer,
 };

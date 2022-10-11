@@ -1,28 +1,28 @@
 import React from "react";
 import { joinClassNames, joinStyles } from "library";
-import styles from "./stack.module.css";
+import styles from "./footer.module.css";
 
-interface StackProps extends React.HTMLAttributes<HTMLDivElement> {
+interface FooterProps extends React.HTMLAttributes<HTMLElement> {
     direction?: "column" | "column-reverse" | "row" | "row-reverse";
     gap?: number;
 }
 
-function Stack(props: StackProps) {
-    const joinedClassNames = joinClassNames(styles.stack, props.className!);
+function Footer(props: FooterProps) {
+    const joinedClassNames = joinClassNames(styles.footer, props.className!);
 
     const joinedStyles = joinStyles(
         props.direction
             ? { flexDirection: props.direction }
-            : { flexDirection: "column" },
+            : { flexDirection: "row" },
         props.gap ? { gap: props.gap + "rem" } : {},
         props.style!
     );
 
     return (
-        <div {...props} className={joinedClassNames} style={joinedStyles}>
+        <footer {...props} className={joinedClassNames} style={joinedStyles}>
             {props.children}
-        </div>
+        </footer>
     );
 }
 
-export default Stack;
+export default Footer;

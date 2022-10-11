@@ -1,11 +1,7 @@
-form {
-    width: 100%;
-}
 label,
 input,
 select {
     padding: 0 0.7rem;
-    margin: 0.5rem;
     line-height: 3rem;
     border: 0.1rem solid #0000;
     border-radius: 0.5rem;
@@ -13,6 +9,7 @@ select {
     background: none;
     color: var(--onBackgroundColor);
     user-select: none;
+    box-sizing: border-box;
 }
 input,
 select {
@@ -24,7 +21,7 @@ input[type="checkbox"] {
     margin: 1rem;
 }
 input {
-    width: calc(100% - 2.6rem);
+    width: 100%;
 }
 input,
 input[type="checkbox"],

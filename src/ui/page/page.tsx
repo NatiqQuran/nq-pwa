@@ -1,12 +1,25 @@
 import React from "react";
-import { joinClassNames } from "library";
+import { joinClassNames, joinStyles } from "library";
 import styles from "./page.module.css";
 
-function Page(props: React.HTMLAttributes<HTMLDivElement>) {
+interface PageProps extends React.HTMLAttributes<HTMLDivElement> {
+    direction?: "column" | "column-reverse" | "row" | "row-reverse";
+    gap?: number;
+}
+
+function Page(props: PageProps) {
     const joinedClassNames = joinClassNames(styles.page, props.className!);
 
+    const joinedStyles = joinStyles(
+        props.direction
+            ? { flexDirection: props.direction }
+            : { flexDirection: "column" },
+        props.gap ? { gap: props.gap + "rem" } : {},
+        props.style!
+    );
+
     return (
-        <div {...props} className={joinedClassNames}>
+        <div {...props} className={joinedClassNames} style={joinedStyles}>
             {props.children}
         </div>
     );

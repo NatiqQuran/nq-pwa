@@ -55,14 +55,14 @@ function Search() {
     return (
         <Page>
             <Header>
-                <HistoryBack>
-                    <Button>Cancel</Button>
-                </HistoryBack>
                 <input
                     style={{ background: "#7d7d7d15" }}
                     type="Search"
                     placeholder="Search Sura, Phrase or numbers(Sura:Aya, Page, Juz, Hizb)"
                 />
+                <HistoryBack>
+                    <Button>Cancel</Button>
+                </HistoryBack>
             </Header>
             <Main>
                 <Container maxWidth="md">

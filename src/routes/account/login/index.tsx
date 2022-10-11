@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Container } from "ui";
+import { Button, Form, HistoryBack, Stack, Gap } from "ui";
 import { useFetch, useFormDataHandle } from "library";
 
 interface AccountSendCode {
@@ -27,16 +27,28 @@ function Login() {
     }, [fetch.response]);
 
     return (
-        <Container>
-            <h5>Enter email to SignIn or Register account. </h5>
-            <h3>{fetch.error?.message}</h3>
-            <h4>{fetch.loading ? "Loading" : ""}</h4>
+        <Stack gap={1.5} style={{ alignItems: "center" }}>
+            <div>
+                <h5>Enter email to SignIn or Register account. </h5>
+                <h3>{fetch.error?.message}</h3>
+                <h4>{fetch.loading ? "Loading" : ""}</h4>
+            </div>
 
-            <Form onSubmit={fetch.send} onChange={formDataHandler.handle}>
+            <Form
+                onSubmit={fetch.send}
+                onChange={formDataHandler.handle}
+                gap={1.5}
+            >
                 <input name="email" type="email" placeholder="email" />
-                <Button variant="outlined">Send</Button>
+                <Button variant="filled" style={{ width: "100%" }}>
+                    Get verify code
+                </Button>
             </Form>
-        </Container>
+
+            <HistoryBack>
+                <Button>Cancel</Button>
+            </HistoryBack>
+        </Stack>
     );
 }
 

@@ -1,45 +1,42 @@
 import React, { useState } from "react";
-import { Page, Main, Header, Button, SvgIcon, Container } from "ui";
+import { Page, Main, Header, SvgIcon, Container, Stack, Hr, Row } from "ui";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import Login from "./login";
 import Verify from "./verify";
 import { ReactComponent as LogoIcon } from "../../assets/svg/logo.svg";
+import styles from "./accound.module.css";
 
 function Account() {
     return (
-        <Page>
-            <Header
-                style={{
-                    height: "15rem ",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignContent: "flex-end",
-                    alignItems: "flex-end",
-                }}
-            >
-                <SvgIcon color="onHeader" size={5.5}>
-                    <LogoIcon />
-                </SvgIcon>
-                <h1>Natigh</h1>
-            </Header>
-            <Main>
-                <Container
-                    maxWidth="xs"
+        <Page
+            className={styles.page}
+            style={{
+                position: "fixed",
+                alignItems: "center",
+                minHeight: "100%",
+            }}
+        >
+            <Header className={styles.header}></Header>
+            <Main gap={1.5} className={styles.main}>
+                <Row
                     style={{
-                        display: "flex",
-                        flexDirection: "column",
+                        justifyContent: "center",
                     }}
                 >
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={<Navigate to={`/account/login`} replace />}
-                        />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/verify" element={<Verify />} />
-                    </Routes>
-                </Container>
+                    <SvgIcon size={6}>
+                        <LogoIcon />
+                    </SvgIcon>
+                    <h1 style={{ margin: "1rem" }}>Natigh</h1>
+                </Row>
+                <Hr />
+                <Routes>
+                    <Route
+                        path="/"
+                        element={<Navigate to={`/account/login`} replace />}
+                    />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/verify" element={<Verify />} />
+                </Routes>
             </Main>
         </Page>
     );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Page, Main, Header, SvgIcon, Hr, Row } from "ui";
+import { Page, Main, Header, SvgIcon, Hr, Stack, Container } from "ui";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Login from "./login";
 import Verify from "./verify";
@@ -18,17 +18,23 @@ function Account() {
         >
             <Header className={styles.header}></Header>
             <Main className={styles.main}>
-                <Container maxWidth="xs" style={{ padding: "1rem" }}>
-                    <Row
+                <Container
+                    maxWidth="xs"
+                    className={styles.gapOnSmallScreen}
+                    style={{ padding: "2rem" }}
+                >
+                    <Stack
+                        className={styles.logoholder}
                         style={{
                             justifyContent: "center",
+                            gap: "0",
                         }}
                     >
                         <SvgIcon size={6}>
                             <LogoIcon />
                         </SvgIcon>
-                        <h1 style={{ margin: "1rem" }}>Natigh</h1>
-                    </Row>
+                        <h1>Natigh</h1>
+                    </Stack>
                     <Hr />
                     <Routes>
                         <Route

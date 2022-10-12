@@ -18,25 +18,27 @@ function Account() {
         >
             <Header className={styles.header}></Header>
             <Main className={styles.main}>
-                <Row
-                    style={{
-                        justifyContent: "center",
-                    }}
-                >
-                    <SvgIcon size={6}>
-                        <LogoIcon />
-                    </SvgIcon>
-                    <h1 style={{ margin: "1rem" }}>Natigh</h1>
-                </Row>
-                <Hr />
-                <Routes>
-                    <Route
-                        path="/"
-                        element={<Navigate to={`/account/login`} replace />}
-                    />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/verify" element={<Verify />} />
-                </Routes>
+                <Container maxWidth="xs" style={{ padding: "1rem" }}>
+                    <Row
+                        style={{
+                            justifyContent: "center",
+                        }}
+                    >
+                        <SvgIcon size={6}>
+                            <LogoIcon />
+                        </SvgIcon>
+                        <h1 style={{ margin: "1rem" }}>Natigh</h1>
+                    </Row>
+                    <Hr />
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={<Navigate to={`/account/login`} replace />}
+                        />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/verify" element={<Verify />} />
+                    </Routes>
+                </Container>
             </Main>
         </Page>
     );

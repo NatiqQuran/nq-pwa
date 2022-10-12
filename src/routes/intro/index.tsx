@@ -10,7 +10,7 @@ import {
     ListItem,
     ListItemButton,
     Page,
-    Gap,
+    Spacer,
     SvgIcon,
 } from "ui";
 import { useMedia } from "library";
@@ -43,7 +43,7 @@ function Intro() {
                     </SvgIcon>
                 </Button>
                 <h1>Natiq</h1>
-                <Gap />
+                <Spacer />
                 <Link to="/quran">
                     <Button>Quran</Button>
                 </Link>

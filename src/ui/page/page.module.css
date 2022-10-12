@@ -1,5 +1,7 @@
 .page {
     display: flex;
+    align-items: flex-end;
+    box-sizing: border-box;
     width: 100%;
     background: var(--backgroundColor);
     color: var(--onBackgroundColor);

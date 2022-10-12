@@ -1,3 +1,4 @@
 div.stack {
     display: flex;
+    box-sizing: border-box;
 }

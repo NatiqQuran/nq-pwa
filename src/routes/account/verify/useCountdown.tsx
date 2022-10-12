@@ -1,28 +1,36 @@
 import React, { useEffect, useState } from "react";
 
 function useCountdown(second: number) {
+    const [reseted, setReseted] = useState(false);
     const [time, setTime] = useState(second);
     const [isCountDownEnded, setIsCountDownEnded] = useState(false);
 
     useEffect(() => {
-        if (time <= 0) {
-            setIsCountDownEnded(true);
-            return;
-        }
+        const interval = setInterval(() => {
+            setTime((pervTime) => {
+                if (pervTime <= 0) {
+                    setIsCountDownEnded(true);
+                    clearInterval(interval);
 
-        const interval = setInterval(
-            () => setTime((pervTime) => pervTime - 1),
-            1000
-        );
+                    return 0;
+                } else {
+                    return pervTime - 1;
+                }
+            });
+        }, 1000);
+
+        setIsCountDownEnded(false);
 
         // Clear Interval after Component Unmounted
         return () => {
-            setIsCountDownEnded(false);
             clearInterval(interval);
         };
-    }, [time]);
+    }, [reseted]);
 
-    const resetTime = () => setTime(second);
+    const resetTime = () => {
+        setReseted(true);
+        setTime(second);
+    };
 
     return { time, resetTime, isCountDownEnded };
 }

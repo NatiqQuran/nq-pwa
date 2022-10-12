@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useFetch, useFormDataHandle } from "library";
-import { Button, Form, Countdown, Spacer, HistoryBack, Stack, Row } from "ui";
+import { Button, Form, Spacer, HistoryBack, Stack, Row } from "ui";
+import useCountDown from "./useCountdown";
 
 interface AccountVerifyCode {
     email?: string;
@@ -17,11 +18,9 @@ function Verify() {
             : (location.state as AccountVerifyCode).email,
     });
 
-    // if (data.email === "") {
-    //     navigate("/account/login", { replace: true });
-    // }
-
-    const [countDownEnded, setCountDownEnded] = useState<boolean>(false);
+    if (data.email === "") {
+        navigate("/account/login", { replace: true });
+    }
 
     const verifyFetch = useFetch("http://localhost:8080/account/verify/1", {
         method: "POST",
@@ -48,16 +47,16 @@ function Verify() {
             </Form>
 
             <Row style={{ width: "100%" }}>
-                <span>
-                    Remaining time:
-                    <Countdown
-                        seconds={10}
-                        onCountdownEnded={() => setCountDownEnded(true)}
-                    />
-                </span>
+                <span>Remaining time: {countDown.time}</span>
                 <Spacer />
-                {countDownEnded ? (
-                    <Button variant="text" onClick={resendFetch.send}>
+                {countDown.isCountDownEnded ? (
+                    <Button
+                        variant="text"
+                        onClick={() => {
+                            countDown.resetTime();
+                            resendFetch.send();
+                        }}
+                    >
                         Resend
                     </Button>
                 ) : null}

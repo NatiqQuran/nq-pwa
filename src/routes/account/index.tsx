@@ -8,14 +8,7 @@ import styles from "./accound.module.css";
 
 function Account() {
     return (
-        <Page
-            className={styles.page}
-            style={{
-                position: "fixed",
-                alignItems: "center",
-                minHeight: "100%",
-            }}
-        >
+        <Page className={styles.page}>
             <Header className={styles.header}></Header>
             <Main className={styles.main}>
                 <Container

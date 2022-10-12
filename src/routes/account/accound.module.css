@@ -1,8 +1,10 @@
+.page {
+    align-items: center;
+}
 .header {
     display: block;
     height: 17rem;
 }
-
 .main {
     max-width: 35rem;
     padding: 3rem 2rem;
@@ -18,7 +20,7 @@
 
 @media screen and (max-width: 900px) {
     .page {
-        position: fixed;
+        position: sticky;
         justify-content: center;
         min-height: 100%;
     }

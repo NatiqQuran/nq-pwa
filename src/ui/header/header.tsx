@@ -2,24 +2,11 @@ import React from "react";
 import { joinClassNames, joinStyles } from "library";
 import styles from "./header.module.css";
 
-interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
-    direction?: "column" | "column-reverse" | "row" | "row-reverse";
-    gap?: number;
-}
-
-function Header(props: HeaderProps) {
+function Header(props: React.HTMLAttributes<HTMLElement>) {
     const joinedClassNames = joinClassNames(styles.appBar, props.className!);
 
-    const joinedStyles = joinStyles(
-        props.direction
-            ? { flexDirection: props.direction }
-            : { flexDirection: "row" },
-        { gap: props.gap ? props.gap + "rem" : "1.5rem" },
-        props.style!
-    );
-
     return (
-        <header {...props} className={joinedClassNames} style={joinedStyles}>
+        <header {...props} className={joinedClassNames}>
             {props.children}
         </header>
     );

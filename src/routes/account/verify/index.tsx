@@ -18,6 +18,8 @@ function Verify() {
             : (location.state as AccountVerifyCode).email,
     });
 
+    const countDown = useCountDown(10);
+
     if (data.email === "") {
         navigate("/account/login", { replace: true });
     }

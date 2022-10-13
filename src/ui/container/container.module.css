@@ -1,4 +1,6 @@
 div.container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     margin: auto;
     box-sizing: border-box;

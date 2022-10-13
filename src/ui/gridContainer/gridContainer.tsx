@@ -14,7 +14,10 @@ interface GridContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 
 // Custom Button Element
 function GridContainer(props: GridContainerProps) {
-    const joinedClassNames = joinClassNames(styles.container, props.className!);
+    const joinedClassNames = joinClassNames(
+        styles.gridcontainer,
+        props.className!
+    );
     const joinedStyles = joinStyles(
         props.xl ? { gridTemplateColumns: " auto".repeat(props.xl) } : {},
         { columnGap: props.columnGap ? props.columnGap + "rem" : "1.5rem" },

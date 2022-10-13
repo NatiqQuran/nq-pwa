@@ -3,7 +3,13 @@ import { joinClassNames, joinStyles } from "library";
 import styles from "./svgIcon.module.css";
 
 interface SvgIconProps extends React.HTMLAttributes<HTMLElement> {
-    color?: "onBackground" | "onHeader";
+    color?:
+        | "onBackground"
+        | "onHeader"
+        | "onPrimaryColor"
+        | "onSecondaryColor"
+        | "onSurfaceColor"
+        | "onErrorColor";
     size?: number;
 }
 

@@ -25,3 +25,47 @@
     fill: none;
     stroke: var(--onHeaderColor);
 }
+
+.svg.onPrimaryColor line {
+    stroke: var(--onPrimaryColor);
+}
+.svg.onPrimaryColor circle {
+    fill: var(--onPrimaryColor);
+}
+.svg.onPrimaryColor circle[stroke-width] {
+    fill: none;
+    stroke: var(--onPrimaryColor);
+}
+
+.svg.onSecondaryColor line {
+    stroke: var(--onSecondaryColor);
+}
+.svg.onSecondaryColor circle {
+    fill: var(--onSecondaryColor);
+}
+.svg.onSecondaryColor circle[stroke-width] {
+    fill: none;
+    stroke: var(--onSecondaryColor);
+}
+
+.svg.onSurfaceColor line {
+    stroke: var(--onSurfaceColor);
+}
+.svg.onSurfaceColor circle {
+    fill: var(--onSurfaceColor);
+}
+.svg.onSurfaceColor circle[stroke-width] {
+    fill: none;
+    stroke: var(--onSurfaceColor);
+}
+
+.svg.onErrorColor line {
+    stroke: var(--onErrorColor);
+}
+.svg.onErrorColor circle {
+    fill: var(--onErrorColor);
+}
+.svg.onErrorColor circle[stroke-width] {
+    fill: none;
+    stroke: var(--onErrorColor);
+}

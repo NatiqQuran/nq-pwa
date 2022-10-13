@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useFetch, useFormDataHandle } from "library";
-import { Button, Form, Gap, HistoryBack, Stack, Row } from "ui";
+import { Button, Form, Spacer, HistoryBack, Stack, Row } from "ui";
 import useCountDown from "./useCountdown";
 
 interface AccountVerifyCode {
@@ -50,7 +50,7 @@ function Verify() {
 
             <Row style={{ width: "100%" }}>
                 <span>Remaining time: {countDown.time}</span>
-                <Gap />
+                <Spacer />
                 {countDown.isCountDownEnded ? (
                     <Button
                         variant="text"

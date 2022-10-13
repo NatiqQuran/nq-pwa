@@ -1,0 +1,41 @@
+.page {
+    align-items: center;
+}
+.header {
+    display: block;
+    height: 17rem;
+}
+.main {
+    max-width: 35rem;
+    padding: 3rem 2rem;
+    margin-top: -8rem;
+    border-radius: 2rem;
+    background: var(--surfaceColor);
+    box-shadow: var(--secondaryColor) 0 0 1rem;
+}
+.logoholder {
+    align-items: center;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 900px) {
+    .page {
+        position: sticky;
+        justify-content: center;
+        min-height: 100%;
+    }
+    .header {
+        display: none;
+    }
+    .main {
+        margin-top: initial;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .logoholder {
+        flex-direction: column;
+    }
+    .gapOnSmallScreen {
+        gap: 2rem;
+    }
+}

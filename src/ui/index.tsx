@@ -11,7 +11,7 @@ import ListItem from "./listItem/listItem";
 import ListItemButton from "./listItemButton/listItemButton";
 import Main from "./main/main";
 import Page from "./page/page";
-import Gap from "./gap/gap";
+import Spacer from "./spacer/spacer";
 import Hr from "./hr/hr";
 import Form from "./form/form";
 import SvgIcon from "./svgIcon/svgIcon";
@@ -33,7 +33,7 @@ export {
     ListItemButton,
     Main,
     Page,
-    Gap,
+    Spacer,
     Hr,
     Form,
     SvgIcon,

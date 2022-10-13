@@ -4,7 +4,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Login from "./login";
 import Verify from "./verify";
 import { ReactComponent as LogoIcon } from "../../assets/svg/logo.svg";
-import styles from "./accound.module.css";
+import styles from "./account.module.css";
 
 function Account() {
     return (

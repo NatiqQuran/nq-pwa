@@ -1,4 +1,4 @@
-.appBar {
+.header {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -13,6 +13,6 @@
     user-select: none;
 }
 
-.appBar button {
+.header button {
     color: var(--onHeaderColor);
 }

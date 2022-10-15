@@ -1,17 +1,17 @@
 .page {
-    align-items: center;
+    position: absolute;
+    min-height: 100%;
 }
 .header {
     display: block;
     height: 17rem;
 }
 .main {
-    max-width: 35rem;
-    padding: 3rem 2rem;
+    align-items: center;
     margin-top: -8rem;
-    border-radius: 2rem;
-    background: var(--surfaceColor);
-    box-shadow: var(--secondaryColor) 0 0 1rem;
+}
+.card {
+    max-width: 30rem;
 }
 .logoholder {
     align-items: center;
@@ -20,9 +20,7 @@
 
 @media screen and (max-width: 900px) {
     .page {
-        position: sticky;
         justify-content: center;
-        min-height: 100%;
     }
     .header {
         display: none;
@@ -32,10 +30,12 @@
         border-radius: 0;
         box-shadow: none;
     }
+    .card {
+        gap: 2rem;
+        background: none;
+        box-shadow: none;
+    }
     .logoholder {
         flex-direction: column;
-    }
-    .gapOnSmallScreen {
-        gap: 2rem;
     }
 }

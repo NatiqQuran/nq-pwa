@@ -1,6 +1,0 @@
-RewriteEngine On
-# Don't rewrite files
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule ^ - [L]
-# Rewrite everything else to index.html
-RewriteRule ^ index.html [L]

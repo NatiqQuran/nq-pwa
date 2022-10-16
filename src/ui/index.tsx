@@ -18,6 +18,7 @@ import SvgIcon from "./svgIcon/svgIcon";
 import HistoryBack from "./historyBack/historyBack";
 import Row from "./row/row";
 import Footer from "./footer/footer";
+import Card from "./card/card";
 
 export {
     Container,
@@ -40,4 +41,5 @@ export {
     HistoryBack,
     Row,
     Footer,
+    Card,
 };

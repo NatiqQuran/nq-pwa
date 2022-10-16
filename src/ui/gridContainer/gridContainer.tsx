@@ -19,7 +19,7 @@ function GridContainer(props: GridContainerProps) {
         props.className!
     );
     const joinedStyles = joinStyles(
-        props.xl ? { gridTemplateColumns: " auto".repeat(props.xl) } : {},
+        props.xl ? { gridTemplateColumns: " 1fr".repeat(props.xl) } : {},
         { columnGap: props.columnGap ? props.columnGap + "rem" : "1.5rem" },
         { rowGap: props.rowGap ? props.rowGap + "rem" : "1.5rem" },
         props.style!

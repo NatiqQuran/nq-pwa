@@ -1,18 +1,118 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState, useTransition } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useFetch, useMedia } from "library";
+import {
+    Navigation,
+    ClickAwayListener,
+    List,
+    ListItem,
+    ListItemButton,
+    Header,
+    Button,
+    SvgIcon,
+    Main,
+    Page,
+    Spacer,
+    Container,
+    Card,
+    Stack,
+} from "ui";
+import { ReactComponent as HumburgerIcon } from "../../assets/svg/humburgerIcon.svg";
+import { ReactComponent as SearchIcon } from "../../assets/svg/searchIcon.svg";
+
+const NavigationList = () => (
+    <List>
+        <ListItem>
+            <ListItemButton>Contact Us</ListItemButton>
+        </ListItem>
+        <ListItem>
+            <ListItemButton>About Natiq</ListItemButton>
+        </ListItem>
+    </List>
+);
+
+interface Verse {
+    verse: number;
+    text: string;
+}
+
+interface Surah {
+    id: number;
+    name: string;
+    period: string;
+    verses: Verse[];
+}
 
 function Quran() {
-  return (
-    <div>
-      <h1>Quran</h1>
-      <Link to="/">
-        <button>Go to Intro</button>
-      </Link>
-      <Link to="/pwa">
-        <button>Go to PWA</button>
-      </Link>
-    </div>
-  );
+    const [navOpen, setNavOpen] = useState<boolean>(false);
+    const matches = useMedia("(max-width: 1000px)");
+    const toggleNavOpen = () => setNavOpen((value) => !value);
+    const { id } = useParams();
+    const surahFetch = useFetch<Surah>(
+        process.env.REACT_APP_API_URL + `/quran/${id}`,
+        {
+            method: "GET",
+        }
+    );
+
+    useEffect(() => {
+        surahFetch.send();
+    }, []);
+
+    return (
+        <Page>
+            <Header>
+                <Button onClick={toggleNavOpen} variant="outlined">
+                    <SvgIcon color="onHeader">
+                        <HumburgerIcon />
+                    </SvgIcon>
+                </Button>
+                <h1>Quran</h1>
+                <Spacer />
+                <Link to="/search">
+                    <Button>
+                        <SvgIcon color="onHeader">
+                            <SearchIcon />
+                        </SvgIcon>
+                    </Button>
+                </Link>
+            </Header>
+
+            <Main navOpen={navOpen}>
+                {!surahFetch.isResponseBodyReady ? (
+                    "loading..."
+                ) : (
+                    <Container
+                        maxWidth="md"
+                        dir="rtl"
+                        style={{ padding: "5px" }}
+                    >
+                        <h1>{surahFetch.responseBody.name}</h1>
+
+                        <Stack>
+                            {surahFetch.responseBody.verses.map((verse) => (
+                                <Card>
+                                    {verse.verse}. {verse.text}
+                                </Card>
+                            ))}
+                        </Stack>
+                    </Container>
+                )}
+            </Main>
+
+            {matches ? (
+                <ClickAwayListener onClickAway={() => setNavOpen(false)}>
+                    <Navigation open={navOpen}>
+                        <NavigationList />
+                    </Navigation>
+                </ClickAwayListener>
+            ) : (
+                <Navigation open={navOpen}>
+                    <NavigationList />
+                </Navigation>
+            )}
+        </Page>
+    );
 }
 
 export default Quran;

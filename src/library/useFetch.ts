@@ -16,11 +16,11 @@ function useFetch<ResponseType = object>(url: string, init: RequestInit) {
 
     const send = () => {
         setLoading(true);
+        setIsResponseBodyReady(false);
 
         fetch(url, requestInit)
             .then((response) => setResponse(response))
             .catch((error) => setError(error))
-            .finally(() => setLoading(false));
     };
 
     useEffect(() => {
@@ -31,8 +31,10 @@ function useFetch<ResponseType = object>(url: string, init: RequestInit) {
             .catch(() =>
                 response.text().then((string) => setResponseBody(string as ResponseType))
             )
-            .finally(() =>
-                setIsResponseBodyReady(true)
+            .finally(() => {
+                setIsResponseBodyReady(true);
+                setLoading(false)
+            }
             );
     }, [response]);
 

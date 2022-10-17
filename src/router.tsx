@@ -32,7 +32,7 @@ function Router() {
                         )
                     }
                 />
-                <Route path="/quran" element={<Quran />} />
+                <Route path="/quran/:id" element={<Quran />} />
                 <Route path="/account/*" element={<Account />} />
                 <Route path="/search" element={<Search />} />
             </Routes>

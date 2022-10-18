@@ -1,71 +1,30 @@
-.svg svg {
+.svg svg,
+.svg svg path {
     display: block;
     width: 100%;
     height: 100%;
 }
 
-.svg.onBackground line {
-    stroke: var(--onBackgroundColor);
-}
-.svg.onBackground circle {
+.svg.onBackground {
     fill: var(--onBackgroundColor);
 }
-.svg.onBackground circle[stroke-width] {
-    fill: none;
-    stroke: var(--onBackgroundColor);
-}
 
-.svg.onHeader line {
-    stroke: var(--onHeaderColor);
-}
-.svg.onHeader circle {
+.svg.onHeader {
     fill: var(--onHeaderColor);
 }
-.svg.onHeader circle[stroke-width] {
-    fill: none;
-    stroke: var(--onHeaderColor);
-}
 
-.svg.onPrimaryColor line {
-    stroke: var(--onPrimaryColor);
-}
-.svg.onPrimaryColor circle {
+.svg.onPrimaryColor {
     fill: var(--onPrimaryColor);
 }
-.svg.onPrimaryColor circle[stroke-width] {
-    fill: none;
-    stroke: var(--onPrimaryColor);
-}
 
-.svg.onSecondaryColor line {
-    stroke: var(--onSecondaryColor);
-}
-.svg.onSecondaryColor circle {
+.svg.onSecondaryColor {
     fill: var(--onSecondaryColor);
 }
-.svg.onSecondaryColor circle[stroke-width] {
-    fill: none;
-    stroke: var(--onSecondaryColor);
-}
 
-.svg.onSurfaceColor line {
-    stroke: var(--onSurfaceColor);
-}
-.svg.onSurfaceColor circle {
+.svg.onSurfaceColor {
     fill: var(--onSurfaceColor);
 }
-.svg.onSurfaceColor circle[stroke-width] {
-    fill: none;
-    stroke: var(--onSurfaceColor);
-}
 
-.svg.onErrorColor line {
-    stroke: var(--onErrorColor);
-}
-.svg.onErrorColor circle {
+.svg.onErrorColor {
     fill: var(--onErrorColor);
-}
-.svg.onErrorColor circle[stroke-width] {
-    fill: none;
-    stroke: var(--onErrorColor);
 }

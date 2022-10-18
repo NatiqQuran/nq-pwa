@@ -3,7 +3,7 @@ import { Page, Main, Header, SvgIcon, Hr, Stack, Container, Card } from "ui";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Login from "./login";
 import Verify from "./verify";
-import { ReactComponent as LogoIcon } from "../../assets/svg/logo.svg";
+import { ReactComponent as LogoIcon } from "../../assets/svg/logoicon.svg";
 import styles from "./account.module.css";
 
 function Account() {

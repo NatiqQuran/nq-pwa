@@ -14,8 +14,8 @@ import {
     SvgIcon,
 } from "ui";
 import { useMedia } from "library";
-import { ReactComponent as HumburgerIcon } from "../../assets/svg/humburgerIcon.svg";
-import { ReactComponent as SearchIcon } from "../../assets/svg/searchIcon.svg";
+import { ReactComponent as HumburgerIcon } from "../../assets/svg/menu.svg";
+import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
 
 const NavigationList = () => (
     <List>
@@ -37,11 +37,11 @@ function Intro() {
     return (
         <Page>
             <Header>
-                <Button onClick={toggleNavOpen} variant="outlined">
-                    <SvgIcon color="onHeader">
-                        <HumburgerIcon />
-                    </SvgIcon>
-                </Button>
+                <Button
+                    icon={<HumburgerIcon />}
+                    onClick={toggleNavOpen}
+                    variant="outlined"
+                ></Button>
                 <h1>Natiq</h1>
                 <Spacer />
                 <Link to="/quran">
@@ -54,19 +54,11 @@ function Intro() {
                     <Button>login</Button>
                 </Link>
                 <Link to="/search">
-                    <Button>
-                        <SvgIcon color="onHeader">
-                            <SearchIcon />
-                        </SvgIcon>
-                    </Button>
+                    <Button icon={<SearchIcon />} />
                 </Link>
             </Header>
 
-            <Main navOpen={navOpen} style={{ background: "red" }}>
-                <div>
-                    <h1>Hello World</h1>
-                </div>
-            </Main>
+            <Main navOpen={navOpen}></Main>
 
             {matches ? (
                 <ClickAwayListener onClickAway={() => setNavOpen(false)}>

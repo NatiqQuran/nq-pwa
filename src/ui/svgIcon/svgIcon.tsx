@@ -14,7 +14,7 @@ interface SvgIconProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 function SvgIcon(props: SvgIconProps) {
-    const colorStyle = props.color ? styles[props.color] : styles.onBackground;
+    const colorStyle = props.color ? styles[props.color] : "";
 
     const joinedClassNames = joinClassNames(
         styles.svg,
@@ -25,7 +25,7 @@ function SvgIcon(props: SvgIconProps) {
     const joinedStyles = joinStyles(
         props.size
             ? { width: props.size + "rem", height: props.size + "rem" }
-            : { width: "1.6rem", height: "1.6rem" },
+            : { width: "2.4rem", height: "2.4rem" },
         props.style!
     );
 

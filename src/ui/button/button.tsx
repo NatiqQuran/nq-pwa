@@ -1,22 +1,24 @@
 import React from "react";
 import { joinClassNames } from "library";
 import styles from "./button.module.css";
+import SvgIcon from "ui/svgIcon/svgIcon";
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-    variant?: "text" | "outlined" | "filled";
+    variant?: "text" | "outlined" | "filled" | "tonal" | "elevated";
+    icon?: JSX.Element;
 }
 
 function Button(props: ButtonProps) {
-    const variantStyle = props.variant ? styles[props.variant] : styles.text;
-
     const joinedClassNames = joinClassNames(
         styles.button,
-        variantStyle,
+        props.variant ? styles[props.variant] : "",
+        props.icon && !props.children ? styles.iconButton : "",
         props.className!
     );
 
     return (
         <button {...props} className={joinedClassNames}>
+            {props.icon ? <SvgIcon>{props.icon}</SvgIcon> : null}
             {props.children}
         </button>
     );

@@ -3,24 +3,11 @@ import { joinClassNames, joinStyles } from "library";
 import styles from "./svgIcon.module.css";
 
 interface SvgIconProps extends React.HTMLAttributes<HTMLElement> {
-    color?:
-        | "onBackground"
-        | "onHeader"
-        | "onPrimaryColor"
-        | "onSecondaryColor"
-        | "onSurfaceColor"
-        | "onErrorColor";
     size?: number;
 }
 
 function SvgIcon(props: SvgIconProps) {
-    const colorStyle = props.color ? styles[props.color] : "";
-
-    const joinedClassNames = joinClassNames(
-        styles.svg,
-        colorStyle,
-        props.className!
-    );
+    const joinedClassNames = joinClassNames(styles.svg, props.className!);
 
     const joinedStyles = joinStyles(
         props.size

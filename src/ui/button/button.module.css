@@ -11,8 +11,8 @@
     border-radius: 2rem;
     font-size: 1.4rem;
     background: none;
-    color: var(--onBackgroundColor);
-    fill: var(--onBackgroundColor);
+    color: inherit;
+    fill: inherit;
     user-select: none;
     cursor: pointer;
     box-sizing: border-box;

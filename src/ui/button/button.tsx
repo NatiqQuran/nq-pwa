@@ -11,7 +11,7 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 function Button(props: ButtonProps) {
     const joinedClassNames = joinClassNames(
         styles.button,
-        props.variant ? styles[props.variant] : "",
+        props.variant ? styles[props.variant] : styles.text,
         props.icon && !props.children ? styles.iconButton : "",
         props.className!
     );

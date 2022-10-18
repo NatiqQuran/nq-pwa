@@ -14,6 +14,10 @@ img {
     max-height: 100%;
 }
 
+a {
+    color: inherit;
+}
+
 h1,
 h2,
 h3,
@@ -41,21 +45,4 @@ h4 {
 h5 {
     line-height: 2.4rem;
     font-size: 1.5rem;
-}
-a {
-    color: var(--primaryColor);
-    text-decoration: underline;
-}
-a:hover,
-a:active {
-    cursor: pointer;
-    color: var(--secondaryColor);
-}
-code {
-    display: block;
-    padding: 1rem;
-    margin: 0.5rem 0;
-    border-radius: 0.5rem;
-    font-size: 1.6rem;
-    background: #7d7d7d7d;
 }

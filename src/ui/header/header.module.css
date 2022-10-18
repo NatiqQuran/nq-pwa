@@ -13,8 +13,3 @@
     fill: var(--onHeaderColor);
     user-select: none;
 }
-
-.header button {
-    color: var(--onHeaderColor);
-    fill: var(--onHeaderColor);
-}

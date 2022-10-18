@@ -1,30 +1,5 @@
-.svg svg,
-.svg svg path {
+.svg svg {
     display: block;
     width: 100%;
     height: 100%;
-}
-
-.svg.onBackground {
-    fill: var(--onBackgroundColor);
-}
-
-.svg.onHeader {
-    fill: var(--onHeaderColor);
-}
-
-.svg.onPrimaryColor {
-    fill: var(--onPrimaryColor);
-}
-
-.svg.onSecondaryColor {
-    fill: var(--onSecondaryColor);
-}
-
-.svg.onSurfaceColor {
-    fill: var(--onSurfaceColor);
-}
-
-.svg.onErrorColor {
-    fill: var(--onErrorColor);
 }

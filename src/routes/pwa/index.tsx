@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Header, Container, Button, Page, Main, SvgIcon } from "ui";
-import { ReactComponent as Logo } from "../../assets/svg/logo.svg";
+import { ReactComponent as Logo } from "../../assets/svg/logoicon.svg";
 import styles from "./pwa.module.css";
 
 const pwaIntroPagePassed = () => {
@@ -39,9 +39,11 @@ function Pwa() {
                     <h1 style={{ lineHeight: "5rem", fontSize: "3rem" }}>
                         الْقُرآنُ النّاطِق
                     </h1>
-                    <Button className={styles.getStartButton}>
-                        Get start now!
-                    </Button>
+                    <Link to="/quran">
+                        <Button className={styles.getStartButton}>
+                            Get start now!
+                        </Button>
+                    </Link>
                     <span>
                         <a target="blank" href="https://nategh.info">
                             Privacy policy

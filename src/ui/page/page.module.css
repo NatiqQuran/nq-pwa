@@ -6,4 +6,5 @@
     width: 100%;
     background: var(--backgroundColor);
     color: var(--onBackgroundColor);
+    fill: var(--onBackgroundColor);
 }

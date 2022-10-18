@@ -1,6 +1,7 @@
 .card {
     width: 100%;
     padding: 3rem;
+    box-sizing: border-box;
     border-radius: 2rem;
     background: var(--surfaceColor);
     box-shadow: var(--secondaryColor) 0px 2px 8px 0px;

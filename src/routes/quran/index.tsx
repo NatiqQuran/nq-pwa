@@ -17,8 +17,8 @@ import {
     Card,
     Stack,
 } from "ui";
-import { ReactComponent as HumburgerIcon } from "../../assets/svg/humburgerIcon.svg";
-import { ReactComponent as SearchIcon } from "../../assets/svg/searchIcon.svg";
+import { ReactComponent as Menu } from "../../assets/svg/menu.svg";
+import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
 
 const NavigationList = () => (
     <List>
@@ -62,19 +62,15 @@ function Quran() {
     return (
         <Page>
             <Header>
-                <Button onClick={toggleNavOpen} variant="outlined">
-                    <SvgIcon color="onHeader">
-                        <HumburgerIcon />
-                    </SvgIcon>
-                </Button>
+                <Button
+                    icon={<Menu />}
+                    onClick={toggleNavOpen}
+                    variant="outlined"
+                />
                 <h1>Quran</h1>
                 <Spacer />
                 <Link to="/search">
-                    <Button>
-                        <SvgIcon color="onHeader">
-                            <SearchIcon />
-                        </SvgIcon>
-                    </Button>
+                    <Button icon={<SearchIcon />} />
                 </Link>
             </Header>
 

@@ -1,47 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import {
-    Header,
-    Main,
-    Navigation,
-    ClickAwayListener,
-    Button,
-    List,
-    ListItem,
-    ListItemButton,
-    Page,
-    Spacer,
-    SvgIcon,
-} from "ui";
-import { useMedia } from "library";
-import { ReactComponent as HumburgerIcon } from "../../assets/svg/menu.svg";
-import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
-
-const NavigationList = () => (
-    <List>
-        <ListItem>
-            <ListItemButton>Contact Us</ListItemButton>
-        </ListItem>
-        <ListItem>
-            <ListItemButton>About Natiq</ListItemButton>
-        </ListItem>
-    </List>
-);
+import { Header, Main, Button, Page, Spacer } from "ui";
 
 function Intro() {
-    const [navOpen, setNavOpen] = useState<boolean>(false);
-    const matches = useMedia("(max-width: 1000px)");
-
-    const toggleNavOpen = () => setNavOpen((value) => !value);
-
     return (
         <Page>
             <Header>
-                <Button
-                    icon={<HumburgerIcon />}
-                    onClick={toggleNavOpen}
-                    variant="outlined"
-                ></Button>
                 <h1>Natiq</h1>
                 <Spacer />
                 <Link to="/quran">
@@ -53,24 +17,13 @@ function Intro() {
                 <Link to="/account/login">
                     <Button>login</Button>
                 </Link>
-                <Link to="/search">
-                    <Button icon={<SearchIcon />} />
-                </Link>
             </Header>
 
-            <Main navOpen={navOpen}></Main>
-
-            {matches ? (
-                <ClickAwayListener onClickAway={() => setNavOpen(false)}>
-                    <Navigation open={navOpen}>
-                        <NavigationList />
-                    </Navigation>
-                </ClickAwayListener>
-            ) : (
-                <Navigation open={navOpen}>
-                    <NavigationList />
-                </Navigation>
-            )}
+            <Main style={{ background: "red" }}>
+                <div>
+                    <h1>Hello World</h1>
+                </div>
+            </Main>
         </Page>
     );
 }

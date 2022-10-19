@@ -1,5 +1,5 @@
 import React from "react";
-import { Page, Main, Header, SvgIcon, Hr, Stack, Container, Card } from "ui";
+import { Page, Main, AppBar, SvgIcon, Hr, Stack, Container, Card } from "ui";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Login from "./login";
 import Verify from "./verify";
@@ -9,7 +9,7 @@ import styles from "./account.module.css";
 function Account() {
     return (
         <Page className={styles.page}>
-            <Header className={styles.header}></Header>
+            <AppBar className={styles.header}></AppBar>
             <Main className={styles.main}>
                 <Card className={styles.card}>
                     <Stack

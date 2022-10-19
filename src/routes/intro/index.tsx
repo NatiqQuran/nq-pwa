@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Header, Main, Button, Page, Spacer } from "ui";
+import { AppBar, Main, Button, Page, Spacer, Stack } from "ui";
 
 function Intro() {
     return (
         <Page>
-            <Header>
+            <AppBar>
                 <h1>Natiq</h1>
                 <Spacer />
                 <Link to="/quran">
@@ -17,9 +17,9 @@ function Intro() {
                 <Link to="/account/login">
                     <Button>login</Button>
                 </Link>
-            </Header>
+            </AppBar>
 
-            <Main style={{ background: "red" }}>
+            <Main>
                 <div>
                     <h1>Hello World</h1>
                 </div>

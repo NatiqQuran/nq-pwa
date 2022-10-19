@@ -3,13 +3,8 @@
     justify-content: center;
     align-items: center;
     width: fit-content;
-    height: 4rem;
     line-height: 3rem;
-    padding: 0 1.6rem;
-    gap: 0.8rem;
     border: none;
-    border-radius: 2rem;
-    font-size: 1.4rem;
     background: none;
     color: inherit;
     fill: inherit;
@@ -17,13 +12,34 @@
     cursor: pointer;
     box-sizing: border-box;
 }
-.button.iconButton {
-    width: 4rem;
+.small {
+    min-width: 3rem;
+    height: 3rem;
+    padding: 0 1.2rem;
+    gap: 0.4rem;
+    border-radius: 1.5rem;
+    font-size: 1.2rem;
+}
+.medium {
+    min-width: 4rem;
+    height: 4rem;
+    padding: 0 1.8rem;
+    gap: 0.8rem;
+    border-radius: 2rem;
+    font-size: 1.6rem;
+}
+.large {
+    min-width: 5rem;
+    height: 5rem;
+    padding: 0 2.6rem;
+    gap: 1.1rem;
+    border-radius: 2.5rem;
+    font-size: 1.8rem;
+}
+.iconButton {
     padding: 0;
 }
-a:link {
-    text-decoration: none;
-}
+
 @media (pointer: fine) {
     .button:hover {
         cursor: pointer;
@@ -37,15 +53,15 @@ a:link {
     border: 0.1rem solid var(--errorColor);
 }
 
-.button.outlined {
-    border: 0.1rem solid #7d7d7d60;
+.outlined {
+    border: 0.1rem solid #7d7d7d70;
 }
-.button.filled {
+.filled {
     background: var(--onBackgroundColor);
     color: var(--onPrimaryColor);
     fill: var(--onPrimaryColor);
 }
-.button.tonal {
+.tonal {
     background: var(--onHeaderColor);
     color: var(--onSurfaceColor);
     fill: var(--onSurfaceColor);

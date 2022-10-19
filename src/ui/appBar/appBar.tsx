@@ -1,8 +1,8 @@
 import React from "react";
 import { joinClassNames, joinStyles } from "library";
-import styles from "./header.module.css";
+import styles from "./appBar.module.css";
 
-function Header(props: React.HTMLAttributes<HTMLElement>) {
+function AppBar(props: React.HTMLAttributes<HTMLElement>) {
     const joinedClassNames = joinClassNames(styles.header, props.className!);
 
     return (
@@ -12,4 +12,4 @@ function Header(props: React.HTMLAttributes<HTMLElement>) {
     );
 }
 
-export default Header;
+export default AppBar;

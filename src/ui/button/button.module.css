@@ -17,13 +17,11 @@
     cursor: pointer;
     box-sizing: border-box;
 }
-.button.iconButton {
+.iconButton {
     width: 4rem;
     padding: 0;
 }
-a:link {
-    text-decoration: none;
-}
+
 @media (pointer: fine) {
     .button:hover {
         cursor: pointer;
@@ -37,15 +35,15 @@ a:link {
     border: 0.1rem solid var(--errorColor);
 }
 
-.button.outlined {
+.outlined {
     border: 0.1rem solid #7d7d7d60;
 }
-.button.filled {
+.filled {
     background: var(--onBackgroundColor);
     color: var(--onPrimaryColor);
     fill: var(--onPrimaryColor);
 }
-.button.tonal {
+.tonal {
     background: var(--onHeaderColor);
     color: var(--onSurfaceColor);
     fill: var(--onSurfaceColor);

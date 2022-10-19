@@ -4,7 +4,7 @@ import {
     Main,
     Container,
     Hr,
-    Header,
+    AppBar,
     Button,
     GridContainer,
     GridItem,
@@ -54,7 +54,7 @@ const SuraLists: Array<SuraItems> = [
 function Search() {
     return (
         <Page>
-            <Header>
+            <AppBar>
                 <input
                     style={{ background: "#7d7d7d15" }}
                     type="Search"
@@ -63,7 +63,7 @@ function Search() {
                 <HistoryBack>
                     <Button>Cancel</Button>
                 </HistoryBack>
-            </Header>
+            </AppBar>
             <Main>
                 <Container maxWidth="md">
                     <h2>All: Sura Page Juz Hizb</h2>

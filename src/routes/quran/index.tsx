@@ -7,7 +7,7 @@ import {
     List,
     ListItem,
     ListItemButton,
-    Header,
+    AppBar,
     Button,
     SvgIcon,
     Main,
@@ -61,7 +61,7 @@ function Quran() {
 
     return (
         <Page>
-            <Header>
+            <AppBar>
                 <Button
                     icon={<Menu />}
                     onClick={toggleNavOpen}
@@ -72,7 +72,7 @@ function Quran() {
                 <Link to="/search">
                     <Button icon={<SearchIcon />} />
                 </Link>
-            </Header>
+            </AppBar>
 
             <Main navOpen={navOpen}>
                 {!surahFetch.isResponseBodyReady ? (

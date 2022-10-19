@@ -1,4 +1,4 @@
-import Header from "./header/header";
+import AppBar from "./appBar/appBar";
 import Button from "./button/button";
 import Container from "./container/container";
 import GridContainer from "./gridContainer/gridContainer";
@@ -27,7 +27,7 @@ export {
     Stack,
     Navigation,
     ClickAwayListener,
-    Header,
+    AppBar,
     Button,
     List,
     ListItem,

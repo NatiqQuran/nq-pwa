@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Header, Main, Button, Page, Spacer } from "ui";
+import { AppBar, Main, Button, Page, Spacer, Stack } from "ui";
 import { ReactComponent as Menu } from "../../assets/svg/menu.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
 
 function Intro() {
     return (
         <Page>
-            <Header>
+            <AppBar>
                 <Button icon={<Menu />} />
                 <h1>Natiq</h1>
                 <Spacer />
@@ -21,12 +21,11 @@ function Intro() {
                     <Button>login</Button>
                 </Link>
                 <Button icon={<SearchIcon />} />
-            </Header>
+            </AppBar>
 
-            <Main style={{ background: "red" }}>
+            <Main>
                 <div>
                     <h1>Hello World</h1>
-                    <Button icon={<SearchIcon />} />
                 </div>
             </Main>
         </Page>

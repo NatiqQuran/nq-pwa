@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Header, Container, Button, Page, Main, SvgIcon } from "ui";
+import { AppBar, Container, Button, Page, Main, SvgIcon } from "ui";
 import { ReactComponent as Logo } from "../../assets/svg/logoicon.svg";
 import styles from "./pwa.module.css";
 
@@ -11,13 +11,13 @@ const pwaIntroPagePassed = () => {
 function Pwa() {
     return (
         <Page>
-            <Header>
+            <AppBar>
                 <Link to="/">
                     <Button variant="outlined" onClick={pwaIntroPagePassed}>
                         Intro
                     </Button>
                 </Link>
-            </Header>
+            </AppBar>
             <Main
                 style={{
                     position: "fixed",

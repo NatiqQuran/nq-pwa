@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { AppBar, Main, Button, Page, Spacer } from "ui";
+import { AppBar, Main, Button, Page, Spacer, Stack } from "ui";
+import { ReactComponent as Menu } from "../../assets/svg/menu.svg";
+import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
 
 function Intro() {
     return (
@@ -18,6 +20,7 @@ function Intro() {
                 <Link to="/account/login">
                     <Button>login</Button>
                 </Link>
+                <Button icon={<SearchIcon />} />
             </AppBar>
 
             <Main>

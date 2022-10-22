@@ -5,13 +5,21 @@
     height: calc(100% - 5.1rem);
     line-height: 3.2rem;
     transition: right 0.3s, left 0.3s;
-    border-inline-end: 0.1rem solid #7d7d7d40;
+    border-inline-end: 0.2rem solid #7d7d7d40;
     background: var(--backgroundColor);
     left: -24rem;
+}
+[dir="rtl"] .navigation {
+    left: initial;
+    right: -24rem;
 }
 
 .navigation.open {
     left: 0;
+}
+[dir="rtl"] .navigation.open {
+    left: initial;
+    right: 0;
 }
 
 @media screen and (max-width: 1000px) {

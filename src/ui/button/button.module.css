@@ -1,8 +1,6 @@
 .button {
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: fit-content;
     line-height: 3rem;
     border: none;
     background: none;
@@ -17,27 +15,42 @@
     height: 3rem;
     padding: 0 1.2rem;
     gap: 0.4rem;
-    border-radius: 1.5rem;
     font-size: 1.2rem;
+    --border-radius: 1.5rem;
 }
 .medium {
     min-width: 4rem;
     height: 4rem;
     padding: 0 1.8rem;
     gap: 0.8rem;
-    border-radius: 2rem;
     font-size: 1.6rem;
+    --border-radius: 2rem;
 }
 .large {
     min-width: 5rem;
     height: 5rem;
     padding: 0 2.6rem;
     gap: 1.1rem;
-    border-radius: 2.5rem;
     font-size: 1.8rem;
+    --border-radius: 2.5rem;
 }
+
 .iconButton {
     padding: 0;
+    justify-content: center;
+}
+
+.none {
+    border-radius: 0;
+}
+.semi {
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+[dir="rtl"] .semi {
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+.rounded {
+    border-radius: var(--border-radius);
 }
 
 @media (pointer: fine) {

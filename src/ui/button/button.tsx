@@ -6,6 +6,7 @@ import SvgIcon from "ui/svgIcon/svgIcon";
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
     variant?: "text" | "outlined" | "filled" | "tonal" | "elevated";
     size?: "small" | "medium" | "large";
+    borderStyle?: "none" | "semi" | "rounded";
     icon?: JSX.Element;
 }
 
@@ -26,6 +27,7 @@ function Button(props: ButtonProps) {
         styles.button,
         props.variant ? styles[props.variant] : styles.text,
         props.size ? styles[props.size] : styles.medium,
+        props.borderStyle ? styles[props.borderStyle] : styles.rounded,
         props.icon && !props.children ? styles.iconButton : "",
         props.className!
     );

@@ -1,4 +1,15 @@
 .list {
+    display: flex;
     list-style-type: none;
     padding: 0;
+}
+
+.row {
+    flex-direction: row;
+    gap: 1.5rem;
+}
+.column {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
 }

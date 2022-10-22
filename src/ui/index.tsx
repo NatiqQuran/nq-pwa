@@ -8,7 +8,6 @@ import Navigation from "./navigation/navigation";
 import ClickAwayListener from "./clickAwayListener/clickAwayListener";
 import List from "./list/list";
 import ListItem from "./listItem/listItem";
-import ListItemButton from "./listItemButton/listItemButton";
 import Main from "./main/main";
 import Page from "./page/page";
 import Spacer from "./spacer/spacer";
@@ -31,7 +30,6 @@ export {
     Button,
     List,
     ListItem,
-    ListItemButton,
     Main,
     Page,
     Spacer,

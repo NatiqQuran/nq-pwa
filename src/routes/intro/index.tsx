@@ -65,8 +65,8 @@ function Intro() {
             <AppBar>
                 <Button
                     icon={<Menu />}
-                    onClick={toggleNavOpen}
                     variant="tonal"
+                    onClick={toggleNavOpen}
                 />
                 <h1>Natiq</h1>
                 <Spacer />
@@ -81,10 +81,16 @@ function Intro() {
                 </Link>
             </AppBar>
 
-            <Main navOpen={navOpen}>
-                <div>
-                    <h1>Hello World</h1>
-                </div>
+            <Main
+                navOpen={navOpen}
+                style={{
+                    alignItems: "center",
+                    position: "fixed",
+                    top: "6rem",
+                    height: "calc(100% - 6rem)",
+                }}
+            >
+                <h1>hello world!</h1>
             </Main>
 
             {matches ? (

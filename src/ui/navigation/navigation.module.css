@@ -1,29 +1,62 @@
 .navigation {
     position: fixed;
+    max-width: 100%;
+    line-height: 3.2rem;
+    transition: transform 0.3s;
+    background: var(--backgroundColor);
+}
+.auto,
+.left {
+    top: 5.1rem;
+    left: 0;
+    transform: translate(-100%, 0);
+    width: 21.9rem;
+    height: calc(100% - 5.1rem);
+    border-inline-end: 0.2rem solid #7d7d7d40;
+}
+.auto.open,
+.left.open {
+    transform: translate(0, 0);
+}
+[dir="rtl"] .auto,
+.right {
+    right: 0;
+    transform: translate(100%, 0);
     top: 5.1rem;
     width: 21.9rem;
     height: calc(100% - 5.1rem);
-    line-height: 3.2rem;
-    transition: right 0.3s, left 0.3s;
     border-inline-end: 0.2rem solid #7d7d7d40;
-    background: var(--backgroundColor);
-    left: -24rem;
 }
-[dir="rtl"] .navigation {
-    left: initial;
-    right: -24rem;
+[dir="rtl"] .auto.open,
+.right.open {
+    transform: translate(0, 0);
 }
 
-.navigation.open {
-    left: 0;
+.top {
+    top: 0;
+    transform: translate(0, -100%);
+    width: 100%;
+    height: auto;
+    border-bottom: 0.2rem solid #7d7d7d40;
 }
-[dir="rtl"] .navigation.open {
-    left: initial;
-    right: 0;
+.top.open {
+    transform: translate(0, 0);
+}
+.bottom {
+    bottom: 0;
+    transform: translate(0, 100%);
+    width: 100%;
+    height: auto;
+    border-top: 0.2rem solid #7d7d7d40;
+}
+.bottom.open {
+    transform: translate(0, 0);
 }
 
 @media screen and (max-width: 1000px) {
-    .navigation {
+    .auto,
+    .left,
+    .right {
         top: 0;
         height: 100%;
     }

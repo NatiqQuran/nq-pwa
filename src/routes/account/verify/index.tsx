@@ -66,7 +66,7 @@ function Verify() {
             <Button
                 variant="filled"
                 onClick={verifyFetch.send}
-                style={{ width: "100%" }}
+                style={{ width: "100%", justifyContent: "center" }}
             >
                 Verify code
             </Button>

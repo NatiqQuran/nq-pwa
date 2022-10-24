@@ -36,7 +36,10 @@ function Login() {
 
             <Form onSubmit={fetch.send} onChange={formDataHandler.handle}>
                 <input name="email" type="email" placeholder="email" />
-                <Button variant="filled" style={{ width: "100%" }}>
+                <Button
+                    variant="filled"
+                    style={{ width: "100%", justifyContent: "center" }}
+                >
                     Get verify code
                 </Button>
             </Form>

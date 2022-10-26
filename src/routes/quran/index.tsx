@@ -18,17 +18,7 @@ import {
 } from "ui";
 import { ReactComponent as Menu } from "../../assets/svg/menu.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
-
-const NavigationList = () => (
-    <List>
-        <ListItem>
-            <Button>Contact Us</Button>
-        </ListItem>
-        <ListItem>
-            <Button>About Natiq</Button>
-        </ListItem>
-    </List>
-);
+import NavigationList from "./navigationList";
 
 interface Verse {
     verse: number;

@@ -32,6 +32,10 @@ function Router() {
                         )
                     }
                 />
+                <Route
+                    path="/quran"
+                    element={<Navigate replace to="/quran/1" />}
+                />
                 <Route path="/quran/:id" element={<Quran />} />
                 <Route path="/account/*" element={<Account />} />
                 <Route path="/search" element={<Search />} />

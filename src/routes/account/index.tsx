@@ -1,5 +1,4 @@
-import React from "react";
-import { Page, Main, AppBar, SvgIcon, Hr, Stack, Container, Card } from "ui";
+import { Page, Main, AppBar, SvgIcon, Hr, Stack, Card } from "@yakad/ui";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Login from "./login";
 import Verify from "./verify";

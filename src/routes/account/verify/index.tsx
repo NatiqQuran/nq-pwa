@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useFetch, useFormDataHandle } from "library";
-import { Button, Form, Spacer, HistoryBack, Stack, Row } from "ui";
+import { useFetch, useFormDataHandle } from "@yakad/lib";
+import { Button, Form, Spacer, HistoryBack, Stack, Row } from "@yakad/ui";
 import useCountDown from "./useCountdown";
 
 interface AccountVerifyCode {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, HistoryBack, Stack } from "ui";
-import { useFetch, useFormDataHandle } from "library";
+import { Button, Form, HistoryBack, Stack } from "@yakad/ui";
+import { useFetch, useFormDataHandle } from "@yakad/lib";
 
 interface AccountSendCode {
     email?: string;

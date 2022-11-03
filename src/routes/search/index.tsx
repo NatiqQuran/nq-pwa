@@ -1,4 +1,3 @@
-import React from "react";
 import {
     Page,
     Main,
@@ -9,7 +8,7 @@ import {
     GridContainer,
     GridItem,
     HistoryBack,
-} from "ui";
+} from "@yakad/ui";
 
 interface SuraItems {
     title: string;

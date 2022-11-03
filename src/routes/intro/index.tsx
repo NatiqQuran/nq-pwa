@@ -1,20 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useFetch, useMedia } from "library";
 import { Link } from "react-router-dom";
-import {
-    AppBar,
-    Main,
-    Button,
-    Page,
-    Spacer,
-    Stack,
-    ListItem,
-    List,
-    ClickAwayListener,
-    Navigation,
-    SvgIcon,
-} from "ui";
-import { ReactComponent as Menu } from "../../assets/svg/menu.svg";
+import { AppBar, Main, Button, Page, Spacer } from "@yakad/ui";
 
 function Intro() {
     return (

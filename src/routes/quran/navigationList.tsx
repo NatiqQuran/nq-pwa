@@ -1,5 +1,5 @@
 import React from "react";
-import { List, ListItem, Button, Spacer, Row } from "ui";
+import { List, ListItem, Button, Spacer, Row } from "@yakad/ui";
 
 function NavigationList() {
     const [collapsedListRsitation, setcollapsedListRsitation] = React.useState(

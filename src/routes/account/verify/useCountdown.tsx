@@ -7,7 +7,7 @@ function useCountdown(second: number) {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setTime((pervTime) => {
+            setTime(pervTime => {
                 if (pervTime <= 0) {
                     setIsCountDownEnded(true);
                     clearInterval(interval);

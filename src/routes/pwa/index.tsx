@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { AppBar, Container, Button, Page, Main, SvgIcon } from "ui";
+import { AppBar, Container, Button, Page, Main, SvgIcon } from "@yakad/ui";
 import { ReactComponent as Logo } from "../../assets/svg/logoicon.svg";
 import styles from "./pwa.module.css";
 

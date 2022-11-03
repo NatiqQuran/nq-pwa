@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useFetch, useMedia } from "library";
+import { useFetch, useMedia } from "@yakad/lib";
 import {
     Navigation,
     ClickAwayListener,
-    List,
-    ListItem,
     AppBar,
     Button,
-    SvgIcon,
     Main,
     Page,
     Spacer,
     Container,
     Card,
     Stack,
-} from "ui";
+} from "@yakad/ui";
 import { ReactComponent as Menu } from "../../assets/svg/menu.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
 import NavigationList from "./navigationList";

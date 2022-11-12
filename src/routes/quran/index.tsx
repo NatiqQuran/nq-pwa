@@ -35,7 +35,7 @@ function Quran() {
     const toggleNavOpen = () => setNavOpen(value => !value);
     const { id } = useParams();
     const surahFetch = useFetch<Surah>(
-        process.env.REACT_APP_API_URL + `/quran/${id}`,
+        process.env.REACT_APP_API_URL + `/quran?from=${id}&to=${id}`,
         {
             method: "GET",
         }

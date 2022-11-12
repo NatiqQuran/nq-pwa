@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-
+/src/ui
 # production
 /build
 

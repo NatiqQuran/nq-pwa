@@ -16,33 +16,25 @@ import {
     Footer,
     Navigation,
     ClickAwayListener,
-    Row,
-    Hr,
+    List,
+    ListItem,
 } from "../../ui";
 import styles from "./intro.module.css";
 import { ReactComponent as Menu } from "../../assets/svg/menu.svg";
 import { ReactComponent as LogoIcon } from "../../assets/svg/logoicon.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
 
-interface navListItem {
-    name: string;
-    path: string;
-}
-
-const navList: Array<navListItem> = [
-    {
-        name: "Quran",
-        path: "/quran",
-    },
-
-    {
-        name: "Blog",
-        path: "/",
-    },
-    {
-        name: "Panel",
-        path: "/",
-    },
+const navListItems: Array<React.ReactElement> = [
+    <ListItem>
+        <Link to="quran">
+            <Button style={{ width: "100%" }}>Quran</Button>
+        </Link>
+    </ListItem>,
+    <ListItem>
+        <a href="https://blog.natiq.net" target="_blank">
+            <Button style={{ width: "100%" }}>Blog</Button>
+        </a>
+    </ListItem>,
 ];
 
 function Intro() {
@@ -57,14 +49,15 @@ function Intro() {
                     icon={<Menu />}
                     onClick={toggleNavOpen}
                 />
-                <h1>Natiq</h1>
-                <Row className={styles.appbar}>
-                    {navList.map(item => (
-                        <Link to={item.path}>
-                            <Button>{item.name}</Button>
-                        </Link>
-                    ))}
-                </Row>
+                <SvgIcon size={5}>
+                    <LogoIcon></LogoIcon>
+                </SvgIcon>
+                <h1 style={{ fontWeight: "bold", marginInlineEnd: "2rem" }}>
+                    Natiq Quran
+                </h1>
+                <List className={styles.appbar}>
+                    {navListItems.map(item => item)}
+                </List>
                 <Spacer />
                 <Link to="/search">
                     <Button variant="outlined" icon={<SearchIcon />}>
@@ -72,62 +65,8 @@ function Intro() {
                     </Button>
                 </Link>
             </AppBar>
-
-            <Main style={{ background: "#7d7d7d7d" }}>
-                <Container maxWidth="lg">
-                    <GridContainer className={styles.grid}>
-                        <GridItem md={12} xl={6}>
-                            <SvgIcon>
-                                <LogoIcon />
-                            </SvgIcon>
-                        </GridItem>
-                        <GridItem
-                            md={12}
-                            xl={6}
-                            style={{
-                                alignItems: "center",
-                                display: "flex",
-                                paddingRight: "3rem",
-                            }}
-                        >
-                            <Stack style={{ alignItems: "center" }}>
-                                <span style={{ display: "flex" }}>
-                                    <h1
-                                        style={{
-                                            fontSize: "7rem",
-                                            color: "#aa8a59",
-                                        }}
-                                    >
-                                        النّاطِق
-                                    </h1>
-                                    <h1
-                                        style={{
-                                            fontSize: "7rem",
-                                        }}
-                                    >
-                                        الْقُرآنُ
-                                    </h1>{" "}
-                                </span>
-                                <p
-                                    style={{
-                                        textAlign: "justify",
-                                        textAlignLast: "center",
-                                        fontSize: "1.6rem",
-                                        lineHeight: "2rem",
-                                    }}
-                                >
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Eaque, ducimus? Voluptates
-                                    aliquam cumque harum expedita assumenda.
-                                    Iste delectus neque ipsum ratione, facilis,
-                                    mollitia voluptates ipsa quam reiciendis
-                                    quis eius! Reiciendis?
-                                </p>
-                                <Button variant="filled">GET START</Button>
-                            </Stack>
-                        </GridItem>
-                    </GridContainer>
-                </Container>
+            <Main className={styles.main} style={{ padding: "5rem 0" }}>
+                <GetStart />
             </Main>
             <Footer
                 style={{
@@ -143,28 +82,72 @@ function Intro() {
                         <Button variant="link">Gihub</Button>
                     </a>
                     <Button variant="link">API</Button>
+                    <a href="https://panel.natiq.net" target="_blank">
+                        <Button style={{ width: "100%" }}>Panel</Button>
+                    </a>
                 </Container>
             </Footer>
-            {matches ? (
-                <ClickAwayListener onClickAway={() => setNavOpen(false)}>
-                    <Navigation anchor="top" open={navOpen}>
-                        {navList.map(item => (
-                            <Link to={item.path}>
-                                <Button>{item.name}</Button>
-                            </Link>
-                        ))}
-                    </Navigation>
-                </ClickAwayListener>
-            ) : (
+            <ClickAwayListener onClickAway={() => setNavOpen(false)}>
                 <Navigation anchor="top" open={navOpen}>
-                    {navList.map(item => (
-                        <Link to={item.path}>
-                            <Button>{item.name}</Button>
-                        </Link>
-                    ))}
+                    <List direction="column" style={{ padding: "0 2rem" }}>
+                        {navListItems.map(item => item)}
+                    </List>
                 </Navigation>
-            )}
+            </ClickAwayListener>
         </Page>
+    );
+}
+
+function GetStart() {
+    return (
+        <Container maxWidth="lg">
+            <GridContainer className={styles.grid}>
+                <GridItem md={12} xl={5}>
+                    <SvgIcon style={{ maxWidth: "40rem", margin: "auto" }}>
+                        <LogoIcon />
+                    </SvgIcon>
+                </GridItem>
+                <GridItem
+                    md={12}
+                    xl={7}
+                    style={{
+                        alignItems: "center",
+                        display: "flex",
+                        paddingRight: "3rem",
+                    }}
+                >
+                    <Stack style={{ width: "100%", alignItems: "center" }}>
+                        <span style={{ display: "flex" }}>
+                            <h1
+                                style={{
+                                    fontSize: "7rem",
+                                    fontFamily: "Hafs",
+                                }}
+                            >
+                                <span>الْقُرآنُ </span>
+                                <span style={{ color: "#aa8a59" }}>
+                                    النّاطِق
+                                </span>
+                            </h1>
+                        </span>
+                        <p
+                            style={{
+                                textAlign: "justify",
+                                textAlignLast: "center",
+                                fontSize: "1.6rem",
+                                lineHeight: "2rem",
+                            }}
+                        >
+                            Quran Nategh, Recitation, Word by Word, Translate &
+                            Tafsir. Based on research.
+                        </p>
+                        <Button variant="filled" size="large">
+                            GET START
+                        </Button>
+                    </Stack>
+                </GridItem>
+            </GridContainer>
+        </Container>
     );
 }
 

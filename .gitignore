@@ -7,10 +7,9 @@
 
 # testing
 /coverage
-/src/ui
 # production
 /build
-
+/src/ui
 # misc
 .DS_Store
 .env.local

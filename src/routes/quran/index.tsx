@@ -47,12 +47,8 @@ function Quran() {
 
     return (
         <Page>
-            <AppBar>
-                <Button
-                    icon={<Menu />}
-                    onClick={toggleNavOpen}
-                    variant="outlined"
-                />
+            <AppBar style={{ gap: "0" }}>
+                <Button icon={<Menu />} onClick={toggleNavOpen} />
                 <h1>Quran</h1>
                 <Spacer />
                 <Link to="/search">

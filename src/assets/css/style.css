@@ -1,3 +1,11 @@
+@font-face {
+    font-family: "Hafs";
+    src: local("Hafs"),
+        url(../Fonts/a565b17e58e287300f1cd79645ae1770.woff) format("woff"),
+        url(../Fonts/a565b17e58e287300f1cd79645ae1770.ttf) format("ttf"),
+        url(../Fonts/a565b17e58e287300f1cd79645ae1770.woff2) format("woff2");
+}
+
 html {
     font-size: 62.5%;
     font-family: Tahoma;
@@ -28,22 +36,17 @@ h5 {
     font-weight: normal;
 }
 h1 {
-    line-height: 4rem;
     font-size: 2rem;
 }
 h2 {
-    line-height: 4rem;
     font-size: 1.9rem;
 }
 h3 {
-    line-height: 3.2rem;
     font-size: 1.8rem;
 }
 h4 {
-    line-height: 3.2rem;
     font-size: 1.6rem;
 }
 h5 {
-    line-height: 2.4rem;
     font-size: 1.5rem;
 }

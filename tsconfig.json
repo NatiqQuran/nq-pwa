@@ -17,10 +17,8 @@
         "noEmit": true,
         "jsx": "react-jsx",
         "paths": {
-            "library": ["library"],
             "components": ["components"],
-            "routes": ["routes"],
-            "ui": ["ui"]
+            "routes": ["routes"]
         }
     },
     "include": ["src"]

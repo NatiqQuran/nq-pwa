@@ -18,7 +18,7 @@ import {
     ClickAwayListener,
     List,
     ListItem,
-} from "../../ui";
+} from "@yakad/ui";
 import styles from "./intro.module.css";
 import { ReactComponent as Menu } from "../../assets/svg/menu.svg";
 import { ReactComponent as LogoIcon } from "../../assets/svg/logoicon.svg";

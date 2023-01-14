@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { useFetch, useMedia } from "@yakad/lib";
 import {
     Navigation,
-    ClickAwayListener,
     AppBar,
     Button,
     Main,
@@ -79,11 +78,9 @@ function Quran() {
             </Main>
 
             {matches ? (
-                <ClickAwayListener onClickAway={() => setNavOpen(false)}>
-                    <Navigation open={navOpen}>
-                        <NavigationList />
-                    </Navigation>
-                </ClickAwayListener>
+                <Navigation open={navOpen}>
+                    <NavigationList />
+                </Navigation>
             ) : (
                 <Navigation open={navOpen}>
                     <NavigationList />

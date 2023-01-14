@@ -7,6 +7,7 @@ import {
     Main,
     Page,
     Spacer,
+    Button,
     Container,
     GridContainer,
     GridItem,
@@ -16,7 +17,6 @@ import {
     Navigation,
     List,
     ListItem,
-    Button,
 } from "@yakad/ui";
 import styles from "./intro.module.css";
 import { ReactComponent as LogoIcon } from "../../assets/svg/logoicon.svg";

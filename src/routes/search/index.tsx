@@ -8,6 +8,7 @@ import {
     GridContainer,
     GridItem,
 } from "@yakad/ui";
+import { HistoryBack } from "components";
 
 interface SuraItems {
     title: string;
@@ -58,7 +59,9 @@ function Search() {
                     type="Search"
                     placeholder="Search Sura, Phrase or numbers(Sura:Aya, Page, Juz, Hizb)"
                 />
-                <Button>Cancel</Button>
+                <HistoryBack>
+                    <Button>Cancel</Button>
+                </HistoryBack>
             </AppBar>
             <Main>
                 <Container maxWidth="md">

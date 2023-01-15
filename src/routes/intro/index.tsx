@@ -137,9 +137,11 @@ function GetStart() {
                             Quran Nategh, Recitation, Word by Word, Translate &
                             Tafsir. Based on research.
                         </p>
-                        <Button variant="filled" size="large">
-                            GET START
-                        </Button>
+                        <Link to="./PWA">
+                            <Button variant="filled" size="large">
+                                GET START
+                            </Button>
+                        </Link>
                     </Stack>
                 </GridItem>
             </GridContainer>

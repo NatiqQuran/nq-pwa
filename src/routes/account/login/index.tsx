@@ -39,15 +39,7 @@ function Login() {
                     type="email"
                     placeholder="Email"
                     variant="standard"
-                />
-                <InputField
-                    type="email"
-                    placeholder="Email"
-                    variant="outlined"
-                />
-                <InputField type="email" placeholder="Email" variant="filled" />
-                <InputField type="text" placeholder="Email" disabled />
-                <CodeField length={7} />
+                ></InputField>
 
                 <Button
                     variant="filled"
@@ -57,7 +49,13 @@ function Login() {
                 </Button>
             </Form>
 
-            <Button>Cancel</Button>
+            <Button
+                onClick={() => {
+                    navigate(-1);
+                }}
+            >
+                Cancel
+            </Button>
         </Stack>
     );
 }

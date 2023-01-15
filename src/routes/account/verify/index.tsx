@@ -70,7 +70,13 @@ function Verify() {
             >
                 Verify code
             </Button>
-            <Button>Get back</Button>
+            <Button
+                onClick={() => {
+                    navigate(-1);
+                }}
+            >
+                Get back
+            </Button>
         </Stack>
     );
 }

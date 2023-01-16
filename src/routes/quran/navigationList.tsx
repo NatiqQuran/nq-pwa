@@ -54,7 +54,8 @@ function NavigationList() {
                 >
                     <ListItem>
                         <Row>
-                            Surah:
+                            <h3>Surah:</h3>
+
                             <Spacer />
                             <select>
                                 <option value="1">1 - </option>
@@ -66,7 +67,7 @@ function NavigationList() {
                     </ListItem>
                     <ListItem>
                         <Row>
-                            Verse:
+                            <h3>Verse:</h3>
                             <Spacer />
                             <select name="verse">
                                 <option value="1">1</option>
@@ -85,7 +86,7 @@ function NavigationList() {
                     </ListItem>
                     <ListItem>
                         <Row>
-                            Juz:
+                            <h3> Juz:</h3>
                             <Spacer />
                             <select name="">
                                 <option value="1">1</option>
@@ -104,8 +105,7 @@ function NavigationList() {
                     </ListItem>
                     <ListItem>
                         <Row>
-                            {" "}
-                            Page:
+                            <h3>Page:</h3>
                             <Spacer />
                             <select name="">
                                 <option value="1">1</option>
@@ -140,7 +140,7 @@ function NavigationList() {
                 >
                     <ListItem>
                         <Row>
-                            Gari:
+                            <h3> Gari:</h3>
                             <Spacer />
                             <select>
                                 <option value="1">Al-Afasy</option>
@@ -149,7 +149,7 @@ function NavigationList() {
                     </ListItem>
                     <ListItem>
                         <Row>
-                            Play:
+                            <h3>Play:</h3>
                             <Spacer />
                             <select>
                                 <option value="1">Countinues</option>
@@ -158,7 +158,7 @@ function NavigationList() {
                     </ListItem>
                     <ListItem>
                         <Row>
-                            Delay:
+                            <h3>Delay:</h3>
                             <Spacer />
                             <select>
                                 <option value="1">1 sec</option>
@@ -167,7 +167,7 @@ function NavigationList() {
                     </ListItem>
                     <ListItem>
                         <Row>
-                            Repeat:
+                            <h3>Repeat:</h3>
                             <Spacer />
                             <select>
                                 <option value="1">1 time</option>
@@ -192,21 +192,21 @@ function NavigationList() {
                 >
                     <ListItem>
                         <Row>
-                            Show:
+                            <h3>Show:</h3>
                             <Spacer />
                             <input type="checkbox" name="showArabic" />
                         </Row>
                     </ListItem>
                     <ListItem>
                         <Row>
-                            Tajweed:
+                            <h3>Tajweed:</h3>
                             <Spacer />
                             <input type="checkbox" name="showArabic" />
                         </Row>
                     </ListItem>
                     <ListItem>
                         <Row>
-                            Font:
+                            <h3>Font:</h3>
                             <Spacer />
                             <select name="">
                                 <option value="">Hafs</option>
@@ -215,7 +215,7 @@ function NavigationList() {
                     </ListItem>
                     <ListItem>
                         <Row>
-                            Test:
+                            <h3> Test:</h3>
                             <Spacer />
                             <select name="">
                                 <option value="">Uthmani</option>
@@ -240,14 +240,14 @@ function NavigationList() {
                 >
                     <ListItem>
                         <Row>
-                            Show:
+                            <h3>Show:</h3>
                             <Spacer />
                             <input type="checkbox" name="showArabic" />
                         </Row>
                     </ListItem>
                     <ListItem>
                         <Row>
-                            Language:
+                            <h3>Language:</h3>
                             <Spacer />
                             <select name="">
                                 <option value="">Arabic</option>
@@ -275,14 +275,14 @@ function NavigationList() {
                 >
                     <ListItem>
                         <Row>
-                            Show:
+                            <h3>Show:</h3>
                             <Spacer />
                             <input type="checkbox" name="showArabic" />
                         </Row>
                     </ListItem>
                     <ListItem>
                         <Row>
-                            Play:
+                            <h3>Play:</h3>
                             <Spacer />
                             <input type="checkbox" name="showArabic" />
                         </Row>
@@ -305,7 +305,7 @@ function NavigationList() {
                 >
                     <ListItem>
                         <Row>
-                            Show:
+                            <h3>Show:</h3>
                             <Spacer />
                             <input type="checkbox" name="showArabic" />
                         </Row>

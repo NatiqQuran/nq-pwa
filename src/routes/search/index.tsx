@@ -7,8 +7,8 @@ import {
     Button,
     GridContainer,
     GridItem,
-    HistoryBack,
 } from "@yakad/ui";
+import { useNavigate } from "react-router-dom";
 
 interface SuraItems {
     title: string;
@@ -51,23 +51,28 @@ const SuraLists: Array<SuraItems> = [
 ];
 
 function Search() {
+    const navigate = useNavigate();
     return (
         <Page>
             <AppBar>
                 <input
-                    style={{ background: "#7d7d7d15" }}
+                    style={{ background: "#7d7d7d15", width: "100%" }}
                     type="Search"
                     placeholder="Search Sura, Phrase or numbers(Sura:Aya, Page, Juz, Hizb)"
                 />
-                <HistoryBack>
-                    <Button>Cancel</Button>
-                </HistoryBack>
+                <Button
+                    onClick={() => {
+                        navigate(-1);
+                    }}
+                >
+                    Cancel
+                </Button>
             </AppBar>
             <Main>
                 <Container maxWidth="md">
                     <h2>All: Sura Page Juz Hizb</h2>
                     <Hr />
-                    <GridContainer sm={1} xl={10}>
+                    <GridContainer>
                         <GridItem
                             xl={2}
                             style={{ height: "5rem", background: "red" }}

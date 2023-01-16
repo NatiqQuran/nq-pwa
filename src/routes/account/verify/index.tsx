@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useFetch, useFormDataHandle } from "@yakad/lib";
-import { Button, Form, Spacer, HistoryBack, Stack, Row } from "@yakad/ui";
+import { Button, Form, Spacer, Stack, Row } from "@yakad/ui";
 import useCountDown from "./useCountdown";
 
 interface AccountVerifyCode {
@@ -70,9 +70,13 @@ function Verify() {
             >
                 Verify code
             </Button>
-            <HistoryBack>
-                <Button>Get back</Button>
-            </HistoryBack>
+            <Button
+                onClick={() => {
+                    navigate(-1);
+                }}
+            >
+                Get back
+            </Button>
         </Stack>
     );
 }

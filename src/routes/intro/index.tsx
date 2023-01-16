@@ -5,9 +5,9 @@ import { useFetch, useMedia } from "@yakad/lib";
 import {
     AppBar,
     Main,
-    Button,
     Page,
     Spacer,
+    Button,
     Container,
     GridContainer,
     GridItem,
@@ -15,12 +15,10 @@ import {
     Stack,
     Footer,
     Navigation,
-    ClickAwayListener,
     List,
     ListItem,
 } from "@yakad/ui";
 import styles from "./intro.module.css";
-import { ReactComponent as Menu } from "../../assets/svg/menu.svg";
 import { ReactComponent as LogoIcon } from "../../assets/svg/logoicon.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
 
@@ -41,16 +39,12 @@ function Intro() {
     const [navOpen, setNavOpen] = useState<boolean>(false);
     const matches = useMedia("(max-width: 1000px)");
     const toggleNavOpen = () => setNavOpen(value => !value);
+
     return (
         <Page>
             <AppBar>
-                <Button
-                    className={styles.navbar}
-                    icon={<Menu />}
-                    onClick={toggleNavOpen}
-                />
                 <SvgIcon size={5}>
-                    <LogoIcon></LogoIcon>
+                    <LogoIcon />
                 </SvgIcon>
                 <h1 style={{ fontWeight: "bold", marginInlineEnd: "2rem" }}>
                     Natiq Quran
@@ -73,27 +67,29 @@ function Intro() {
                     padding: "2rem",
                 }}
             >
-                <Container maxWidth="lg" style={{ alignItems: "center" }}>
+                <Container
+                    maxWidth="lg"
+                    style={{
+                        alignItems: "center",
+                        flexDirection: "row",
+                        flexWrap: "wrap",
+                    }}
+                >
                     <SvgIcon size={7}>
                         <LogoIcon />
                     </SvgIcon>
                     <Spacer />
-                    <a href="https://github.com/NatiqQuran" target="_blank">
-                        <Button variant="link">Gihub</Button>
-                    </a>
                     <Button variant="link">API</Button>
                     <a href="https://panel.natiq.net" target="_blank">
-                        <Button style={{ width: "100%" }}>Panel</Button>
+                        <Button variant="link">Panel</Button>
                     </a>
                 </Container>
             </Footer>
-            <ClickAwayListener onClickAway={() => setNavOpen(false)}>
-                <Navigation anchor="top" open={navOpen}>
-                    <List direction="column" style={{ padding: "0 2rem" }}>
-                        {navListItems.map(item => item)}
-                    </List>
-                </Navigation>
-            </ClickAwayListener>
+            <Navigation anchor="top" open={navOpen}>
+                <List direction="column" style={{ padding: "0 2rem" }}>
+                    {navListItems.map(item => item)}
+                </List>
+            </Navigation>
         </Page>
     );
 }
@@ -141,9 +137,11 @@ function GetStart() {
                             Quran Nategh, Recitation, Word by Word, Translate &
                             Tafsir. Based on research.
                         </p>
-                        <Button variant="filled" size="large">
-                            GET START
-                        </Button>
+                        <Link to="./PWA">
+                            <Button variant="filled" size="large">
+                                GET START
+                            </Button>
+                        </Link>
                     </Stack>
                 </GridItem>
             </GridContainer>

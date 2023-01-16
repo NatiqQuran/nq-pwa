@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, HistoryBack, Stack } from "@yakad/ui";
+import { Button, Form, Stack, InputField, CodeField } from "@yakad/ui";
 import { useFetch, useFormDataHandle } from "@yakad/lib";
 
 interface AccountSendCode {
@@ -35,7 +35,12 @@ function Login() {
             </div>
 
             <Form onSubmit={fetch.send} onChange={formDataHandler.handle}>
-                <input name="email" type="email" placeholder="email" />
+                <InputField
+                    type="email"
+                    placeholder="Email"
+                    variant="standard"
+                ></InputField>
+
                 <Button
                     variant="filled"
                     style={{ width: "100%", justifyContent: "center" }}
@@ -44,9 +49,13 @@ function Login() {
                 </Button>
             </Form>
 
-            <HistoryBack>
-                <Button>Cancel</Button>
-            </HistoryBack>
+            <Button
+                onClick={() => {
+                    navigate(-1);
+                }}
+            >
+                Cancel
+            </Button>
         </Stack>
     );
 }

@@ -9,7 +9,6 @@
 /coverage
 # production
 /build
-/src/ui
 # misc
 .DS_Store
 .env.local

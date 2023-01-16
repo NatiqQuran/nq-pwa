@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
+import { Theme } from "@yakad/ui";
 import Router from "./router";
 import "./assets/css/style.css";
-import "./assets/css/color.css";
 import "./assets/css/form.css";
 import "./assets/css/scrollbar.css";
 
@@ -13,7 +13,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <Router />
+        <Theme>
+            <Router />
+        </Theme>
     </React.StrictMode>
 );
 

@@ -1,6 +1,3 @@
-.navbar {
-    display: none;
-}
 @media screen and (max-width: 900px) {
     .appbar {
         display: none;

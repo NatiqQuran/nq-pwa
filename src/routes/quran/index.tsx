@@ -15,17 +15,20 @@ import {
 import { ReactComponent as Menu } from "../../assets/svg/menu.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
 import NavigationList from "./navigationList";
+import InputField from "inputField /inputField";
 
 interface Verse {
-    verse: number;
-    text: string;
+    number: number;
+    content: {
+        text: string;
+    };
 }
 
 interface Surah {
     id: number;
     name: string;
     period: string;
-    verses: Verse[];
+    ayahs: Verse[];
 }
 
 function Quran() {
@@ -33,8 +36,9 @@ function Quran() {
     const matches = useMedia("(max-width: 1000px)");
     const toggleNavOpen = () => setNavOpen(value => !value);
     const { id } = useParams();
-    const surahFetch = useFetch<Surah>(
-        process.env.REACT_APP_API_URL + `/quran?from=${id}&to=${id}`,
+    const surahFetch = useFetch<Surah[]>(
+        process.env.REACT_APP_API_URL +
+            `/quran?from=${id}&limit=${id}&mushaf=hafs&format=ayah`,
         {
             method: "GET",
         }
@@ -64,14 +68,27 @@ function Quran() {
                         dir="rtl"
                         style={{ padding: "5px" }}
                     >
-                        <h1>{surahFetch.responseBody.name}</h1>
+                        <h1 style={{ textAlign: "center", fontFamily: "hafs" }}>
+                            {" "}
+                            {surahFetch.responseBody[0].name}
+                        </h1>
 
                         <Stack>
-                            {surahFetch.responseBody.verses.map(verse => (
-                                <Card>
-                                    {verse.verse}. {verse.text}
-                                </Card>
-                            ))}
+                            <Card
+                                style={{
+                                    fontSize: "2rem",
+                                    lineHeight: "4rem",
+                                    fontFamily: "hafs",
+                                    textAlign: "justify",
+                                }}
+                            >
+                                {surahFetch.responseBody[0].ayahs.map(ayah => (
+                                    <span>
+                                        {ayah.content.text}{" "}
+                                        <span>[[{ayah.number}]] </span>
+                                    </span>
+                                ))}
+                            </Card>
                         </Stack>
                     </Container>
                 )}

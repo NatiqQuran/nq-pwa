@@ -21,6 +21,7 @@ import {
 import styles from "./intro.module.css";
 import { ReactComponent as LogoIcon } from "../../assets/svg/logoicon.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
+import Checkbox from "chekbox/chekBox";
 
 const navListItems: Array<React.ReactElement> = [
     <ListItem>

@@ -11,9 +11,16 @@ import {
     Container,
     Card,
     Stack,
+    GridContainer,
+    GridItem,
+    Row,
+    Hr,
+    SvgIcon,
 } from "@yakad/ui";
 import { ReactComponent as Menu } from "../../assets/svg/menu.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
+import { ReactComponent as Madineh } from "../../assets/svg/madineh - filled.svg";
+
 import NavigationList from "./navigationList";
 import InputField from "inputField /inputField";
 
@@ -74,59 +81,79 @@ function Quran() {
                 {!surahFetch.isResponseBodyReady ? (
                     "loading..."
                 ) : (
-                    <Container
-                        maxWidth="md"
-                        dir="rtl"
-                        style={{ padding: "5px" }}
-                    >
-                        <span
-                            style={{
-                                textAlign: "center",
-                                fontFamily: "hafs",
-                                fontSize: "3rem",
-                            }}
-                        >
-                            <h4>
-                                {surahFetch.responseBody.name}
-                                {surahFetch.responseBody.id}
-                            </h4>
-                            <h2>
-                                {surahFetch.responseBody.bismillah_status ===
-                                "in_ayah"
-                                    ? `${
-                                          surahFetch.responseBody.ayahs[0]
-                                              .content.text
-                                      }${toArabic(
-                                          surahFetch.responseBody.ayahs[0]
-                                              .number
-                                      )}`
-                                    : surahFetch.responseBody
-                                          .bismillah_status === "true"
-                                    ? `${surahFetch.responseBody.bismillah_text}`
-                                    : ""}
-                            </h2>
-                        </span>
-
-                        <Stack>
-                            <Card
+                    <GridContainer>
+                        <GridItem xl={12}>
+                            <Container
+                                maxWidth="sm"
                                 style={{
-                                    fontSize: "2.4rem",
-                                    lineHeight: "4rem",
-                                    fontFamily: "hafs",
-                                    textAlign: "justify",
+                                    justifyContent: "center",
+                                    padding: "2rem",
                                 }}
                             >
-                                {surahFetch.responseBody.bismillah_status ===
-                                "in_ayah"
-                                    ? surahFetch.responseBody.ayahs
-                                          .slice(1)
-                                          .map(ayah => <Ayah ayah={ayah} />)
-                                    : surahFetch.responseBody.ayahs.map(
-                                          ayah => <Ayah ayah={ayah} />
-                                      )}
-                            </Card>
-                        </Stack>
-                    </Container>
+                                <Stack
+                                    style={{
+                                        fontFamily: "hafs",
+                                        fontSize: "3rem",
+                                        width: "100%",
+                                        gap: "0",
+                                    }}
+                                >
+                                    <Row>
+                                        <span style={{ fontSize: "2rem" }}>
+                                            Number:
+                                            {surahFetch.responseBody.id}
+                                        </span>
+                                        <Spacer />
+                                        <h3>{surahFetch.responseBody.name}</h3>
+                                    </Row>
+                                    <h3 style={{ textAlign: "center" }}>
+                                        {surahFetch.responseBody
+                                            .bismillah_status === "in_ayah"
+                                            ? `${
+                                                  surahFetch.responseBody
+                                                      .ayahs[0].content.text
+                                              }${toArabic(
+                                                  surahFetch.responseBody
+                                                      .ayahs[0].number
+                                              )}`
+                                            : surahFetch.responseBody
+                                                  .bismillah_status === "true"
+                                            ? `${surahFetch.responseBody.bismillah_text}`
+                                            : ""}
+                                    </h3>
+                                </Stack>
+                            </Container>
+                        </GridItem>
+                        <GridItem xl={12}>
+                            <Container
+                                maxWidth="md"
+                                dir="rtl"
+                                style={{ padding: "0.5rem" }}
+                            >
+                                <Stack>
+                                    <span
+                                        style={{
+                                            fontSize: "2.5rem",
+                                            lineHeight: "5rem",
+                                            fontFamily: "hafs",
+                                            textAlign: "justify",
+                                        }}
+                                    >
+                                        {surahFetch.responseBody
+                                            .bismillah_status === "in_ayah"
+                                            ? surahFetch.responseBody.ayahs
+                                                  .slice(1)
+                                                  .map(ayah => (
+                                                      <Ayah ayah={ayah} />
+                                                  ))
+                                            : surahFetch.responseBody.ayahs.map(
+                                                  ayah => <Ayah ayah={ayah} />
+                                              )}
+                                    </span>
+                                </Stack>
+                            </Container>
+                        </GridItem>
+                    </GridContainer>
                 )}
             </Main>
 

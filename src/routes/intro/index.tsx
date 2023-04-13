@@ -42,7 +42,7 @@ function Intro() {
     const toggleNavOpen = () => setNavOpen(value => !value);
 
     return (
-        <Page>
+        <Page style={{ minHeight: "100vh" }}>
             <AppBar>
                 <SvgIcon size={5}>
                     <LogoIcon />

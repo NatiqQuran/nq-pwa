@@ -22,7 +22,7 @@ import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
 import { ReactComponent as Madineh } from "../../assets/svg/madineh - filled.svg";
 
 import NavigationList from "./navigationList";
-import InputField from "inputField /inputField";
+import InputField from "inputField/inputField";
 
 interface Verse {
     number: number;
@@ -109,17 +109,16 @@ function Quran() {
                                     <h3 style={{ textAlign: "center" }}>
                                         {surahFetch.responseBody
                                             .bismillah_status === "in_ayah"
-                                            ? `${
-                                                  surahFetch.responseBody
-                                                      .ayahs[0].content.text
-                                              }${toArabic(
-                                                  surahFetch.responseBody
-                                                      .ayahs[0].number
-                                              )}`
+                                            ? `${surahFetch.responseBody
+                                                .ayahs[0].content.text
+                                            }${toArabic(
+                                                surahFetch.responseBody
+                                                    .ayahs[0].number
+                                            )}`
                                             : surahFetch.responseBody
-                                                  .bismillah_status === "true"
-                                            ? `${surahFetch.responseBody.bismillah_text}`
-                                            : ""}
+                                                .bismillah_status === "true"
+                                                ? `${surahFetch.responseBody.bismillah_text}`
+                                                : ""}
                                     </h3>
                                 </Stack>
                             </Container>
@@ -142,13 +141,13 @@ function Quran() {
                                         {surahFetch.responseBody
                                             .bismillah_status === "in_ayah"
                                             ? surahFetch.responseBody.ayahs
-                                                  .slice(1)
-                                                  .map(ayah => (
-                                                      <Ayah ayah={ayah} />
-                                                  ))
+                                                .slice(1)
+                                                .map(ayah => (
+                                                    <Ayah ayah={ayah} />
+                                                ))
                                             : surahFetch.responseBody.ayahs.map(
-                                                  ayah => <Ayah ayah={ayah} />
-                                              )}
+                                                ayah => <Ayah ayah={ayah} />
+                                            )}
                                     </span>
                                 </Stack>
                             </Container>

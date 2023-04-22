@@ -73,7 +73,7 @@ function Intro() {
 function GetStart() {
     return (
         <Container maxWidth="lg">
-            <GridContainer className={styles.grid}>
+            <GridContainer className={styles.grid} style={{ rowGap: "8rem" }}>
                 <GridItem md={12} xl={5} style={{
                     alignItems: "center"
                 }}>
@@ -95,6 +95,11 @@ function GetStart() {
                             </span>
                         </h1>
                     </div>
+                    <Link to="./quran/1" style={{ display: "block", margin: "auto", width: "18rem" }}>
+                        <Button variant="filled" size="large" style={{ margin: "auto" }}>
+                            GET START
+                        </Button>
+                    </Link>
                 </GridItem>
                 <GridItem
                     md={12}
@@ -105,24 +110,7 @@ function GetStart() {
                         padding: "0 2rem",
                     }}
                 >
-                    <Stack style={{ width: "100%", alignItems: "center" }}>
-                        <IntroSurah />
-                        <p
-                            style={{
-                                textAlign: "justify",
-                                textAlignLast: "center",
-                                fontSize: "1.6rem",
-                                lineHeight: "2rem",
-                            }}
-                        >
-                            In the name of Allah, the beneficent the compassionate
-                        </p>
-                        <Link to="./quran/1">
-                            <Button variant="filled" size="large">
-                                GET START
-                            </Button>
-                        </Link>
-                    </Stack>
+                    <IntroSurah />
                 </GridItem>
             </GridContainer>
         </Container>

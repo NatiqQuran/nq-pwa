@@ -63,9 +63,9 @@ function IntroSurah() {
     }, []);
 
     return (
-        <div>
+        <div style={{ width: "100%", alignItems: "center" }}>
             {!surahFetch.isResponseBodyReady ? (
-                "loading..."
+                <div style={{ fontSize: "2rem", margin: "auto", textAlign: "center" }}>loading...</div>
             ) :
                 (
                     <Stack style={{ width: "100%", alignItems: "center" }}>

@@ -83,10 +83,17 @@ function IntroSurah() {
                     textAlign: "justify",
                     textAlignLast: "center",
                     fontSize: "1.6rem",
-                    lineHeight: "2rem",
+                    lineHeight: "2.8rem",
                 }}
             >
-                In the name of Allah, the beneficent the compassionate
+                In the name of Allah, the Entirely Merciful, the Especially Merciful [1]
+                <br />
+                [All] praise is [due] to Allah, Lord of the worlds [2]
+                The Entirely Merciful, the Especially Merciful [3]
+                Sovereign of the Day of Recompense [4]
+                It is You we worship and You we ask for help [5]
+                Guide us to the straight path [6]
+                The path of those upon whom You have bestowed favor, not of those who have evoked [Your] anger or of those who are astray [7]
             </p>
             <audio src={fatihah} controls />
         </Stack>

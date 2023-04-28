@@ -6,17 +6,3 @@
         display: flex;
     }
 }
-
-.page {
-    min-height: 100vh;
-    border-bottom: 1px solid #cbd5e0c0;
-    background-color: #e5e5f7;
-    background-image: radial-gradient(#444cf72c 0.8px, #e5e5f7 0.5px);
-    background-size: 10px 10px;
-    box-shadow: inset 0px -11px 16px -10px #7d7d7d90; 
-}
-@media (prefers-color-scheme: dark) {
-    .page {
-        background-image: radial-gradient(#000455 0.8px, #303030 0.5px);
-    }
-}

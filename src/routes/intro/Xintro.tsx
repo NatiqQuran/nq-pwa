@@ -1,4 +1,5 @@
 import React from "react";
+import { joinClassNames, joinStyles } from "@yakad/lib";
 import {
     Container,
     GridContainer,
@@ -13,8 +14,15 @@ interface XintroProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 function Xintro(props: XintroProps) {
+    const joinedClassNames = joinClassNames(styles.introArea, props.className!);
+
+    const joinedStyles = joinStyles(
+        { padding: "3rem 0" },
+        props.style!
+    );
+
     return (
-        <Container maxWidth="lg" {...props} className={styles.introArea} style={{ padding: "3rem 0" }}>
+        <Container maxWidth="lg" {...props} className={joinedClassNames} style={joinedStyles}>
             {/* remove class and choose background */}
             <GridContainer style={{ rowGap: "8rem" }}>
                 <GridItem md={12} xl={5}>

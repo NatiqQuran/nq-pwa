@@ -89,7 +89,7 @@ function Intro() {
                         </Button>
                     </Link>
                     <p style={{ fontSize: "1.4rem" }}>or</p>
-                    <Link to="./quran/1" style={{ fontSize: "1.6rem" }}>
+                    <Link to="https://blog.natiq.net" target="_blank" style={{ fontSize: "1.6rem" }}>
                         Learn More!
                     </Link>
                 </Xintro>

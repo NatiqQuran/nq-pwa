@@ -18,10 +18,10 @@ import {
     List,
     ListItem,
 } from "@yakad/ui";
-import styles from "./intro.module.css";
 import { ReactComponent as LogoIcon } from "../../assets/svg/logoicon.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
-import IntroSurah from "./introSurah";
+import Xintro from "./Xintro";
+import styles from "./intro.module.css";
 
 const navListItems: Array<React.ReactElement> = [
     <ListItem>
@@ -42,7 +42,7 @@ function Intro() {
     const toggleNavOpen = () => setNavOpen(value => !value);
 
     return (
-        <Page className={styles.page}>
+        <Page>
             <AppBar style={{ gap: "1rem" }}>
                 <SvgIcon size={5}>
                     <LogoIcon />
@@ -58,8 +58,41 @@ function Intro() {
                     </Button>
                 </Link>
             </AppBar>
-            <Main style={{ padding: "5rem 0" }}>
-                <GetStart />
+            <Main>
+                <Xintro logo={<LogoIcon />} >
+                    <h1
+                        style={{
+                            fontFamily: "Hafs",
+                            textAlign: "center"
+                        }}
+                    >
+                        <span style={{
+                            fontSize: "7rem"
+                        }}>الْقُرآنُ </span>
+                        <span style={{ fontSize: "7.7rem", color: "#aa8a59" }}>
+                            النّاطِق
+                        </span>
+                    </h1>
+                    <p
+                        style={{
+                            fontSize: "1.8rem",
+                            textAlign: "center",
+                        }}
+                    >
+                        Natiq Quran, Multi mushaf easy to use quran app.
+                        <br />
+                        research and translate based.
+                    </p>
+                    <Link to="./quran/1">
+                        <Button variant="filled" size="medium" style={{ margin: "auto" }}>
+                            GET START
+                        </Button>
+                    </Link>
+                    <p style={{ fontSize: "1.4rem" }}>or</p>
+                    <Link to="./quran/1" style={{ fontSize: "1.6rem" }}>
+                        Learn More!
+                    </Link>
+                </Xintro>
             </Main>
             <Navigation anchor="top" open={navOpen}>
                 <List direction="column" style={{ padding: "0 2rem" }}>
@@ -67,53 +100,6 @@ function Intro() {
                 </List>
             </Navigation>
         </Page>
-    );
-}
-
-function GetStart() {
-    return (
-        <Container maxWidth="lg">
-            <GridContainer className={styles.grid} style={{ rowGap: "8rem" }}>
-                <GridItem md={12} xl={5} style={{
-                    alignItems: "center"
-                }}>
-                    <SvgIcon style={{ maxWidth: "40rem", margin: "auto" }}>
-                        <LogoIcon />
-                    </SvgIcon>
-                    <div>
-                        <h1
-                            style={{
-                                fontFamily: "Hafs",
-                                textAlign: "center"
-                            }}
-                        >
-                            <span style={{
-                                fontSize: "7rem"
-                            }}>الْقُرآنُ </span>
-                            <span style={{ fontSize: "7.7rem", color: "#aa8a59" }}>
-                                النّاطِق
-                            </span>
-                        </h1>
-                    </div>
-                    <Link to="./quran/1" style={{ display: "block", margin: "auto", width: "18rem" }}>
-                        <Button variant="filled" size="large" style={{ margin: "auto" }}>
-                            GET START
-                        </Button>
-                    </Link>
-                </GridItem>
-                <GridItem
-                    md={12}
-                    xl={7}
-                    style={{
-                        alignItems: "center",
-                        display: "flex",
-                        padding: "0 2rem",
-                    }}
-                >
-                    <IntroSurah />
-                </GridItem>
-            </GridContainer>
-        </Container>
     );
 }
 

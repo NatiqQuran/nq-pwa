@@ -30,7 +30,7 @@ const navListItems: Array<React.ReactElement> = [
         </Link>
     </ListItem>,
     <ListItem>
-        <a href="https://blog.natiq.net" target="_blank">
+        <a href="https://blog.natiq.net/about" target="_blank">
             <Button style={{ width: "100%" }}>About</Button>
         </a>
     </ListItem>,

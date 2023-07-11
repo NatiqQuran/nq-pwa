@@ -118,7 +118,7 @@ function Search() {
                                                   <Spacer />
                                                   <Stack style={{ gap: "0" }}>
                                                       <Row>
-                                                          <h1>{item.name}</h1>
+                                                          <h1>{item.name} </h1>
                                                           {/* {item.image === 1 ? (
                                                               <img
                                                                   src={Madineh}

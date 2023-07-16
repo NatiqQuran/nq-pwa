@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
-import Theme from "./theme/theme";
+import { Theme } from "@yakad/ui";
 import Router from "./router";
 import "./assets/css/style.css";
 import "./assets/css/form.css";
@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <Theme mode="light" color="growth" zoom={120}>
+        <Theme>
             <Router />
         </Theme>
     </React.StrictMode>

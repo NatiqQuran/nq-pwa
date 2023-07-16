@@ -18,9 +18,9 @@ import {
     List,
     ListItem,
 } from "@yakad/ui";
+import { Xbackground, Xgetstart } from "@yakad/x";
 import { ReactComponent as LogoIcon } from "../../assets/svg/logoicon.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
-import Xintro from "./Xintro";
 import styles from "./intro.module.css";
 
 const navListItems: Array<React.ReactElement> = [
@@ -39,7 +39,7 @@ const navListItems: Array<React.ReactElement> = [
 function Intro() {
     const [navOpen, setNavOpen] = useState<boolean>(false);
     const matches = useMedia("(max-width: 1000px)");
-    const toggleNavOpen = () => setNavOpen(value => !value);
+    const toggleNavOpen = () => setNavOpen((value) => !value);
 
     return (
         <Page>
@@ -47,9 +47,18 @@ function Intro() {
                 <SvgIcon size={5}>
                     <LogoIcon />
                 </SvgIcon>
-                <h1 style={{ fontFamily: "arial", fontSize: "2.4rem", fontWeight: "normal", letterSpacing: "0.1rem" }}>Natiq</h1>
+                <h1
+                    style={{
+                        fontFamily: "arial",
+                        fontSize: "2.4rem",
+                        fontWeight: "normal",
+                        letterSpacing: "0.1rem",
+                    }}
+                >
+                    Natiq
+                </h1>
                 <List className={styles.appbar}>
-                    {navListItems.map(item => item)}
+                    {navListItems.map((item) => item)}
                 </List>
                 <Spacer />
                 <Link to="/search">
@@ -59,44 +68,60 @@ function Intro() {
                 </Link>
             </AppBar>
             <Main>
-                <Xintro logo={<LogoIcon />} >
-                    <h1
-                        style={{
-                            fontFamily: "Hafs",
-                            textAlign: "center"
-                        }}
-                    >
-                        <span style={{
-                            fontSize: "7rem"
-                        }}>الْقُرآنُ </span>
-                        <span style={{ fontSize: "7.7rem", color: "#aa8a59" }}>
-                            النّاطِق
-                        </span>
-                    </h1>
-                    <p
-                        style={{
-                            fontSize: "1.8rem",
-                            textAlign: "center",
-                        }}
-                    >
-                        Natiq Quran, Multi mushaf easy to use quran app.
-                        <br />
-                        research and translate based.
-                    </p>
-                    <Link to="./quran/1">
-                        <Button variant="filled" size="medium" style={{ margin: "auto" }}>
-                            GET START
-                        </Button>
-                    </Link>
-                    <p style={{ fontSize: "1.4rem" }}>or</p>
-                    <Link to="https://blog.natiq.net" target="_blank" style={{ fontSize: "1.6rem" }}>
-                        Learn More!
-                    </Link>
-                </Xintro>
+                <Xbackground variant="dotted">
+                    <Xgetstart logo={<LogoIcon />}>
+                        <h1
+                            style={{
+                                fontFamily: "Hafs",
+                                textAlign: "center",
+                            }}
+                        >
+                            <span
+                                style={{
+                                    fontSize: "7rem",
+                                }}
+                            >
+                                الْقُرآنُ{" "}
+                            </span>
+                            <span
+                                style={{ fontSize: "7.7rem", color: "#aa8a59" }}
+                            >
+                                النّاطِق
+                            </span>
+                        </h1>
+                        <p
+                            style={{
+                                fontSize: "1.8rem",
+                                textAlign: "center",
+                            }}
+                        >
+                            Natiq Quran, Multi mushaf easy to use quran app.
+                            <br />
+                            research and translate based.
+                        </p>
+                        <Link to="./quran/1">
+                            <Button
+                                variant="filled"
+                                size="medium"
+                                style={{ margin: "auto" }}
+                            >
+                                GET START
+                            </Button>
+                        </Link>
+                        <p style={{ fontSize: "1.4rem" }}>or</p>
+                        <Link
+                            to="https://blog.natiq.net"
+                            target="_blank"
+                            style={{ fontSize: "1.6rem" }}
+                        >
+                            Learn More!
+                        </Link>
+                    </Xgetstart>
+                </Xbackground>
             </Main>
             <Navigation anchor="top" open={navOpen}>
                 <List direction="column" style={{ padding: "0 2rem" }}>
-                    {navListItems.map(item => item)}
+                    {navListItems.map((item) => item)}
                 </List>
             </Navigation>
         </Page>

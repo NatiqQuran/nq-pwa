@@ -42,8 +42,6 @@ function Pwa() {
                     <Link to="/quran">
                         <Button className={styles.getStartButton}>
                             Get start now!
-                            Get start now!
-                            Get start now!
                         </Button>
                     </Link>
                     <span>

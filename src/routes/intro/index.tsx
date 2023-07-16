@@ -62,7 +62,7 @@ function Intro() {
                 </List>
                 <Spacer />
                 <Link to="/search">
-                    <Button variant="filled" icon={<SearchIcon />}>
+                    <Button variant="outlined" icon={<SearchIcon />}>
                         Search
                     </Button>
                 </Link>

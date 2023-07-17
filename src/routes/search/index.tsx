@@ -21,8 +21,10 @@ import Makkah from "../../assets/svg/makkah - filled.svg";
 
 interface SuraItems {
     name: string;
-    id: string;
-    period: string;
+    uuid: string;
+    number: number;
+    period: string | null;
+    number_of_ayahs: number;
 }
 
 // const SuraLists: Array<SuraItems> = [
@@ -111,14 +113,14 @@ function Search() {
                         {fetch.isResponseBodyReady
                             ? fetch.responseBody.map((item, _index) => (
                                   <GridItem xl={4}  xs={12}>
-                                      <Link to={`/quran/${item.id}`}>
+                                      <Link to={`/quran/${item.uuid}`}>
                                           <Card>
                                               <Row>
-                                                  <h1>{item.id}</h1>
+                                                  <h1>{item.number}</h1>
                                                   <Spacer />
                                                   <Stack style={{ gap: "0" }}>
                                                       <Row>
-                                                          <h1>{item.name}</h1>
+                                                          <h1>{item.name} </h1>
                                                           {/* {item.image === 1 ? (
                                                               <img
                                                                   src={Madineh}

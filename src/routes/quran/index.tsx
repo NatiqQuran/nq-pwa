@@ -32,10 +32,12 @@ interface Verse {
 }
 
 interface Surah {
-    id: number;
-    name: string;
-    period: string;
-    bismillah_status: "in_ayah" | "true" | "false";
+    surah_uuid: string;
+    surah_name: string;
+    surah_period: string | null;
+    surah_number: number;
+
+    bismillah_status: "first_ayah" | "true" | "false";
     bismillah_text: string | null;
 
     ayahs: Verse[];
@@ -44,7 +46,7 @@ interface Surah {
 const Ayah = (props: { ayah: Verse }) => (
     <span>
         {props.ayah.content.text}
-        <span> {toArabic(props.ayah.number)} </span>
+        <span> ﴿{toArabic(props.ayah.number)}﴾ </span>
     </span>
 );
 
@@ -101,25 +103,26 @@ function Quran() {
                                     <Row>
                                         <span style={{ fontSize: "2rem" }}>
                                             Number:
-                                            {surahFetch.responseBody.id}
+                                            {surahFetch.responseBody.surah_number}
                                         </span>
                                         <Spacer />
-                                        <h3>{surahFetch.responseBody.name}</h3>
+                                        <h3>{surahFetch.responseBody.surah_name}</h3>
                                     </Row>
-                                    <h3 style={{ textAlign: "center" }}>
+                                    <h3 style={{ textAlign: "center", direction: "rtl" }}>
                                         {surahFetch.responseBody
-                                            .bismillah_status === "in_ayah"
+                                            .bismillah_status === "first_ayah"
                                             ? `${surahFetch.responseBody
                                                 .ayahs[0].content.text
-                                            }${toArabic(
-                                                surahFetch.responseBody
-                                                    .ayahs[0].number
-                                            )}`
+                                            } ﴿${
+                                                toArabic(surahFetch.responseBody
+                                                    .ayahs[0].number)
+                                            }﴾`
                                             : surahFetch.responseBody
                                                 .bismillah_status === "true"
                                                 ? `${surahFetch.responseBody.bismillah_text}`
                                                 : ""}
                                     </h3>
+                                    
                                 </Stack>
                             </Container>
                         </GridItem>
@@ -139,7 +142,7 @@ function Quran() {
                                         }}
                                     >
                                         {surahFetch.responseBody
-                                            .bismillah_status === "in_ayah"
+                                            .bismillah_status === "first_ayah"
                                             ? surahFetch.responseBody.ayahs
                                                 .slice(1)
                                                 .map(ayah => (

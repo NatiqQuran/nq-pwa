@@ -99,7 +99,7 @@ function Intro() {
                             <br />
                             research and translate based.
                         </p>
-                        <Link to="./quran/1">
+                        <Link to="/search">
                             <Button
                                 variant="filled"
                                 size="medium"

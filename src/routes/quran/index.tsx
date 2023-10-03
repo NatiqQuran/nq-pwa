@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useFetch, useMedia } from "@yakad/lib";
 import {
@@ -9,20 +9,16 @@ import {
     Page,
     Spacer,
     Container,
-    Card,
     Stack,
     GridContainer,
     GridItem,
     Row,
-    Hr,
-    SvgIcon,
 } from "@yakad/ui";
 import { ReactComponent as Menu } from "../../assets/svg/menu.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
 import { ReactComponent as Madineh } from "../../assets/svg/madineh - filled.svg";
 
 import NavigationList from "./navigationList";
-import InputField from "inputField/inputField";
 
 interface Verse {
     number: number;
@@ -55,7 +51,7 @@ const toArabic = (input: any) => input.toLocaleString("ar-EG");
 function Quran() {
     const [navOpen, setNavOpen] = useState<boolean>(false);
     const matches = useMedia("(max-width: 1000px)");
-    const toggleNavOpen = () => setNavOpen(value => !value);
+    const toggleNavOpen = () => setNavOpen((value) => !value);
     const { id } = useParams();
     const surahFetch = useFetch<Surah>(
         process.env.REACT_APP_API_URL + `/surah/${id}?mushaf=hafs`,
@@ -103,26 +99,36 @@ function Quran() {
                                     <Row>
                                         <span style={{ fontSize: "2rem" }}>
                                             Number:
-                                            {surahFetch.responseBody.surah_number}
+                                            {
+                                                surahFetch.responseBody
+                                                    .surah_number
+                                            }
                                         </span>
                                         <Spacer />
-                                        <h3>{surahFetch.responseBody.surah_name}</h3>
+                                        <h3>
+                                            {surahFetch.responseBody.surah_name}
+                                        </h3>
                                     </Row>
-                                    <h3 style={{ textAlign: "center", direction: "rtl" }}>
+                                    <h3
+                                        style={{
+                                            textAlign: "center",
+                                            direction: "rtl",
+                                        }}
+                                    >
                                         {surahFetch.responseBody
                                             .bismillah_status === "first_ayah"
-                                            ? `${surahFetch.responseBody
-                                                .ayahs[0].content.text
-                                            } ﴿${
-                                                toArabic(surahFetch.responseBody
-                                                    .ayahs[0].number)
-                                            }﴾`
+                                            ? `${
+                                                  surahFetch.responseBody
+                                                      .ayahs[0].content.text
+                                              } ﴿${toArabic(
+                                                  surahFetch.responseBody
+                                                      .ayahs[0].number
+                                              )}﴾`
                                             : surahFetch.responseBody
-                                                .bismillah_status === "true"
-                                                ? `${surahFetch.responseBody.bismillah_text}`
-                                                : ""}
+                                                  .bismillah_status === "true"
+                                            ? `${surahFetch.responseBody.bismillah_text}`
+                                            : ""}
                                     </h3>
-                                    
                                 </Stack>
                             </Container>
                         </GridItem>
@@ -144,13 +150,13 @@ function Quran() {
                                         {surahFetch.responseBody
                                             .bismillah_status === "first_ayah"
                                             ? surahFetch.responseBody.ayahs
-                                                .slice(1)
-                                                .map(ayah => (
-                                                    <Ayah ayah={ayah} />
-                                                ))
+                                                  .slice(1)
+                                                  .map((ayah) => (
+                                                      <Ayah ayah={ayah} />
+                                                  ))
                                             : surahFetch.responseBody.ayahs.map(
-                                                ayah => <Ayah ayah={ayah} />
-                                            )}
+                                                  (ayah) => <Ayah ayah={ayah} />
+                                              )}
                                     </span>
                                 </Stack>
                             </Container>

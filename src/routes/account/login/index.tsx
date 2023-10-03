@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Stack, InputField, CodeField } from "@yakad/ui";
+import { Button, Form, Stack, InputField } from "@yakad/ui";
 import { useFetch, useFormDataHandle } from "@yakad/lib";
 
 interface AccountSendCode {

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { useFetch, useMedia } from "@yakad/lib";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMedia } from "@yakad/lib";
 
 import {
     AppBar,
@@ -8,12 +8,7 @@ import {
     Page,
     Spacer,
     Button,
-    Container,
-    GridContainer,
-    GridItem,
     SvgIcon,
-    Stack,
-    Footer,
     Navigation,
     List,
     ListItem,

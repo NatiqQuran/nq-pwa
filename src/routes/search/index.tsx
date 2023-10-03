@@ -112,7 +112,7 @@ function Search() {
                     <GridContainer>
                         {fetch.isResponseBodyReady
                             ? fetch.responseBody.map((item, _index) => (
-                                  <GridItem xl={4}  xs={12}>
+                                  <GridItem xl={4} xs={12}>
                                       <Link to={`/quran/${item.uuid}`}>
                                           <Card>
                                               <Row>

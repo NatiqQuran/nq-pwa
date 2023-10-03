@@ -1,18 +1,18 @@
 import { useFetch } from "@yakad/lib";
 import {
-    Page,
-    Main,
-    Container,
-    Hr,
-    AppBar,
-    Button,
-    GridContainer,
-    GridItem,
-    Card,
-    Row,
-    Spacer,
-    Stack,
-    SvgIcon,
+  Page,
+  Main,
+  Container,
+  Hr,
+  AppBar,
+  Button,
+  GridContainer,
+  GridItem,
+  Card,
+  Row,
+  Spacer,
+  Stack,
+  SvgIcon,
 } from "@yakad/ui";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -20,11 +20,11 @@ import Madineh from "../../assets/svg/madineh - filled.svg";
 import Makkah from "../../assets/svg/makkah - filled.svg";
 
 interface SuraItems {
-    name: string;
-    uuid: string;
-    number: number;
-    period: string | null;
-    number_of_ayahs: number;
+  name: string;
+  uuid: string;
+  number: number;
+  period: string | null;
+  number_of_ayahs: number;
 }
 
 // const SuraLists: Array<SuraItems> = [
@@ -74,54 +74,54 @@ interface SuraItems {
 // ];
 
 function Search() {
-    const navigate = useNavigate();
-    const fetch = useFetch<SuraItems[]>(
-        `${process.env.REACT_APP_API_URL}/surah?mushaf=hafs`,
-        {
-            method: "GET",
-        }
-    );
+  const navigate = useNavigate();
+  const fetch = useFetch<SuraItems[]>(
+    `${process.env.REACT_APP_API_URL}/surah?mushaf=hafs`,
+    {
+      method: "GET",
+    }
+  );
 
-    useEffect(() => {
-        fetch.send();
-    }, []);
+  useEffect(() => {
+    fetch.send();
+  }, []);
 
-    return (
-        <Page>
-            <AppBar>
-                <input
-                    style={{
-                        background: "#7d7d7d15",
-                        width: "100%",
-                        color: "inherit",
-                    }}
-                    type="Search"
-                    placeholder="Search Sura, Phrase or numbers(Sura:Aya, Page, Juz, Hizb)"
-                />
-                <Button
-                    onClick={() => {
-                        navigate(-1);
-                    }}
-                >
-                    Cancel
-                </Button>
-            </AppBar>
-            <Main>
-                <Container maxWidth="md">
-                    <Hr />
-                    <GridContainer>
-                        {fetch.isResponseBodyReady
-                            ? fetch.responseBody.map((item, _index) => (
-                                  <GridItem xl={4}  xs={12}>
-                                      <Link to={`/quran/${item.uuid}`}>
-                                          <Card>
-                                              <Row>
-                                                  <h1>{item.number}</h1>
-                                                  <Spacer />
-                                                  <Stack style={{ gap: "0" }}>
-                                                      <Row>
-                                                          <h1>{item.name} </h1>
-                                                          {/* {item.image === 1 ? (
+  return (
+    <Page>
+      <AppBar>
+        <input
+          style={{
+            background: "#7d7d7d15",
+            width: "100%",
+            color: "inherit",
+          }}
+          type="Search"
+          placeholder="Search Sura, Phrase or numbers(Sura:Aya, Page, Juz, Hizb)"
+        />
+        <Button
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          Cancel
+        </Button>
+      </AppBar>
+      <Main>
+        <Container maxWidth="md">
+          <Hr />
+          <GridContainer>
+            {fetch.isResponseBodyReady
+              ? fetch.responseBody.map((item, _index) => (
+                  <GridItem xl={4} xs={12}>
+                    <Link to={`/quran/${item.uuid}`}>
+                      <Card>
+                        <Row>
+                          <h1>{item.number}</h1>
+                          <Spacer />
+                          <Stack style={{ gap: "0" }}>
+                            <Row>
+                              <h1>{item.name} </h1>
+                              {/* {item.image === 1 ? (
                                                               <img
                                                                   src={Madineh}
                                                               />
@@ -130,21 +130,21 @@ function Search() {
                                                                   src={Makkah}
                                                               />
                                                           )} */}
-                                                      </Row>
-                                                      {/* <h2>{item.p}</h2> */}
-                                                      <span>{item.period}</span>
-                                                  </Stack>
-                                              </Row>
-                                          </Card>
-                                      </Link>
-                                  </GridItem>
-                              ))
-                            : "Loading"}
-                    </GridContainer>
-                </Container>
-            </Main>
-        </Page>
-    );
+                            </Row>
+                            {/* <h2>{item.p}</h2> */}
+                            <span>{item.period}</span>
+                          </Stack>
+                        </Row>
+                      </Card>
+                    </Link>
+                  </GridItem>
+                ))
+              : "Loading"}
+          </GridContainer>
+        </Container>
+      </Main>
+    </Page>
+  );
 }
 
 export default Search;

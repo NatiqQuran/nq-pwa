@@ -90,7 +90,7 @@ function Intro() {
             >
               Natiq Quran, Multi mushaf easy to use quran app.
               <br />
-              research and translate based.
+              Under development.
             </p>
             <Link to="/search">
               <Button variant="filled" size="medium" style={{ margin: "auto" }}>

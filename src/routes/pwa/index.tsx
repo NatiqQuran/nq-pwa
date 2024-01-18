@@ -50,10 +50,6 @@ function Pwa() {
             <a target="blank" href="https://blog.natiq.net">
               Learn more
             </a>
-            <br />
-            <a target="blank" href="https://natiq.net">
-              NextJS version
-            </a>
           </span>
         </Container>
       </Main>

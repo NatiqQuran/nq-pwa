@@ -43,12 +43,16 @@ function Pwa() {
             <Button className={styles.getStartButton}>Get start now!</Button>
           </Link>
           <span>
-            <a target="blank" href="https://nategh.info">
+            <a target="blank" href="https://blog.natiq.net">
               Privacy policy
             </a>{" "}
             .{" "}
-            <a target="blank" href="https://nategh.info">
+            <a target="blank" href="https://blog.natiq.net">
               Learn more
+            </a>
+            <br />
+            <a target="blank" href="https://natiq.net">
+              NextJS version
             </a>
           </span>
         </Container>

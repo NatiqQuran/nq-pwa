@@ -1,41 +1,41 @@
 .page {
-  position: absolute;
-  min-height: 100%;
+    position: absolute;
+    min-height: 100%;
 }
 .header {
-  display: block;
-  height: 17rem;
+    display: block;
+    height: 17rem;
 }
 .main {
-  align-items: center;
-  margin-top: -8rem;
+    align-items: center;
+    margin-top: -8rem;
 }
 .card {
-  max-width: 35rem;
+    max-width: 35rem;
 }
 .logoholder {
-  align-items: center;
-  flex-direction: row;
+    align-items: center;
+    flex-direction: row;
 }
 
 @media screen and (max-width: 900px) {
-  .page {
-    justify-content: center;
-  }
-  .header {
-    display: none;
-  }
-  .main {
-    margin-top: initial;
-    border-radius: 0;
-    box-shadow: none;
-  }
-  .card {
-    gap: 2rem;
-    background: none;
-    box-shadow: none;
-  }
-  .logoholder {
-    flex-direction: column;
-  }
+    .page {
+        justify-content: center;
+    }
+    .header {
+        display: none;
+    }
+    .main {
+        margin-top: initial;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .card {
+        gap: 2rem;
+        background: none;
+        box-shadow: none;
+    }
+    .logoholder {
+        flex-direction: column;
+    }
 }

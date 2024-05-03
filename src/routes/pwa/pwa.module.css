@@ -1,17 +1,17 @@
 .getStartButton {
-  height: 6rem;
-  line-height: 4rem;
-  padding: 0 2rem;
-  margin: 2rem 0;
-  border-radius: 3.5rem;
-  font-size: 1.8rem;
-  background: linear-gradient(
-    45deg,
-    var(--primaryContainerColor),
-    var(--primaryColor),
-    var(--primaryContainerColor)
-  );
-  background-size: 400% 400%;
-  color: var(--onPrimaryColor);
-  box-shadow: 0 0 1rem #00000090;
+    height: 6rem;
+    line-height: 4rem;
+    padding: 0 2rem;
+    margin: 2rem 0;
+    border-radius: 3.5rem;
+    font-size: 1.8rem;
+    background: linear-gradient(
+        45deg,
+        var(--primaryContainerColor),
+        var(--primaryColor),
+        var(--primaryContainerColor)
+    );
+    background-size: 400% 400%;
+    color: var(--onPrimaryColor);
+    box-shadow: 0 0 1rem #00000090;
 }

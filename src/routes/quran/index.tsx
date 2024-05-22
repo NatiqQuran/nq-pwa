@@ -31,7 +31,8 @@ interface Surah {
     surah_period: string | null;
     surah_number: number;
 
-    bismillah_status: "first_ayah" | "true" | "false";
+    bismillah_status: boolean;
+    bismillah_as_first_ayah: boolean;
     bismillah_text: string | null;
 
     ayahs: Verse[];
@@ -114,18 +115,17 @@ function Quran() {
                                         }}
                                     >
                                         {surahFetch.responseBody
-                                            .bismillah_status === "first_ayah"
-                                            ? `${
-                                                  surahFetch.responseBody
-                                                      .ayahs[0].content.text
-                                              } ﴿${toArabic(
-                                                  surahFetch.responseBody
-                                                      .ayahs[0].number
-                                              )}﴾`
+                                            .bismillah_as_first_ayah
+                                            ? `${surahFetch.responseBody
+                                                .ayahs[0].content.text
+                                            } ﴿${toArabic(
+                                                surahFetch.responseBody
+                                                    .ayahs[0].number
+                                            )}﴾`
                                             : surahFetch.responseBody
-                                                  .bismillah_status === "true"
-                                            ? `${surahFetch.responseBody.bismillah_text}`
-                                            : ""}
+                                                .bismillah_status
+                                                ? `${surahFetch.responseBody.bismillah_text}`
+                                                : ""}
                                     </h3>
                                 </Stack>
                             </Container>
@@ -146,15 +146,15 @@ function Quran() {
                                         }}
                                     >
                                         {surahFetch.responseBody
-                                            .bismillah_status === "first_ayah"
+                                            .bismillah_as_first_ayah
                                             ? surahFetch.responseBody.ayahs
-                                                  .slice(1)
-                                                  .map((ayah) => (
-                                                      <Ayah ayah={ayah} />
-                                                  ))
+                                                .slice(1)
+                                                .map((ayah) => (
+                                                    <Ayah ayah={ayah} />
+                                                ))
                                             : surahFetch.responseBody.ayahs.map(
-                                                  (ayah) => <Ayah ayah={ayah} />
-                                              )}
+                                                (ayah) => <Ayah ayah={ayah} />
+                                            )}
                                     </span>
                                 </Stack>
                             </Container>

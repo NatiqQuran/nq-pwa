@@ -12,6 +12,7 @@ import {
     Row,
     Spacer,
     Stack,
+    Loading,
 } from "@yakad/ui";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -107,38 +108,60 @@ function Search() {
             </AppBar>
             <Main>
                 <Container maxWidth="md">
+                    <h2 style={{ fontSize: "4rem" }}>Surahs List</h2>
                     <Hr />
                     <GridContainer>
-                        {fetch.isResponseBodyReady
-                            ? fetch.responseBody.map((item, _index) => (
-                                  <GridItem xl={4} xs={12}>
-                                      <Link to={`/quran/${item.uuid}`}>
-                                          <Card>
-                                              <Row>
-                                                  <h1>{item.number}</h1>
-                                                  <Spacer />
-                                                  <Stack style={{ gap: "0" }}>
-                                                      <Row>
-                                                          <h1>{item.name} </h1>
-                                                          {/* {item.image === 1 ? (
-                                                              <img
-                                                                  src={Madineh}
-                                                              />
-                                                          ) : (
-                                                              <img
-                                                                  src={Makkah}
-                                                              />
-                                                          )} */}
-                                                      </Row>
-                                                      {/* <h2>{item.p}</h2> */}
-                                                      <span>{item.period}</span>
-                                                  </Stack>
-                                              </Row>
-                                          </Card>
-                                      </Link>
-                                  </GridItem>
-                              ))
-                            : "Loading"}
+                        {fetch.isResponseBodyReady ? (
+                            fetch.responseBody.map((item, _index) => (
+                                <GridItem xl={4} md={6} xs={12}>
+                                    <Link to={`/quran/${item.uuid}`}>
+                                        <Card>
+                                            <Row>
+                                                <span
+                                                    style={{
+                                                        fontFamily:
+                                                            "sans-serif",
+                                                        fontSize: "2rem",
+                                                        fontWeight: "bold",
+                                                    }}
+                                                >
+                                                    {item.number}
+                                                </span>
+                                                <Spacer />
+                                                <Stack style={{ gap: "0" }}>
+                                                    <Row>
+                                                        <span
+                                                            style={{
+                                                                fontFamily:
+                                                                    "hafs",
+                                                                fontSize:
+                                                                    "2.5rem",
+                                                                fontWeight:
+                                                                    "bold",
+                                                            }}
+                                                        >
+                                                            {item.name}
+                                                        </span>
+                                                        {item.period ===
+                                                        "madani" ? (
+                                                            <img
+                                                                src={Madineh}
+                                                            />
+                                                        ) : (
+                                                            <img src={Makkah} />
+                                                        )}
+                                                    </Row>
+                                                    {/* <h2>{item.p}</h2> */}
+                                                    <span>{item.period}</span>
+                                                </Stack>
+                                            </Row>
+                                        </Card>
+                                    </Link>
+                                </GridItem>
+                            ))
+                        ) : (
+                            <Loading size="large" style={{ margin: "auto" }} />
+                        )}
                     </GridContainer>
                 </Container>
             </Main>

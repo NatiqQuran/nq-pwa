@@ -16,6 +16,7 @@ import {
 import { ReactComponent as Madineh } from "../../assets/svg/madineh - filled.svg";
 
 import NavigationList from "./navigationList";
+import Symbol from "@yakad/symbols";
 
 interface Verse {
     number: number;
@@ -65,11 +66,11 @@ function Quran() {
     return (
         <Page style={{ minHeight: "100vh" }}>
             <AppBar style={{ gap: "0" }}>
-                <Button icon="menu" onClick={toggleNavOpen} />
+                <Button icon={<Symbol icon="menu" />} onClick={toggleNavOpen} />
                 <h1>Quran</h1>
                 <Spacer />
                 <Link to="/search">
-                    <Button icon="search" />
+                    <Button icon={<Symbol icon="search" />} />
                 </Link>
             </AppBar>
 
@@ -79,13 +80,13 @@ function Quran() {
                 ) : (
                     <>
                         <Container
+                            align="center"
                             maxWidth="sm"
                             style={{
-                                justifyContent: "center",
                                 padding: "2rem",
                             }}
                         >
-                            <Stack>
+                            <Stack style={{ width: "100%" }}>
                                 <Row>
                                     <span
                                         style={{

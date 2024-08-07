@@ -13,10 +13,11 @@ import {
     List,
     ListItem,
 } from "@yakad/ui";
-import { Xbackground, Xgetstart } from "@yakad/x";
+import { Xbackground, XgetStart } from "@yakad/x";
 import { ReactComponent as LogoIcon } from "../../assets/svg/logoicon.svg";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
 import styles from "./intro.module.css";
+import Symbol from "@yakad/symbols";
 
 const navListItems: Array<React.ReactElement> = [
     <ListItem>
@@ -57,14 +58,14 @@ function Intro() {
                 </List>
                 <Spacer />
                 <Link to="/search">
-                    <Button variant="outlined" icon="search">
+                    <Button variant="outlined" icon={<Symbol icon="search" />}>
                         Search
                     </Button>
                 </Link>
             </AppBar>
             <Main>
                 <Xbackground variant="dotted">
-                    <Xgetstart logo={<LogoIcon />}>
+                    <XgetStart logo={<LogoIcon />}>
                         <h1
                             style={{
                                 fontFamily: "Hafs",
@@ -111,7 +112,7 @@ function Intro() {
                         >
                             Learn More!
                         </Link>
-                    </Xgetstart>
+                    </XgetStart>
                 </Xbackground>
             </Main>
             <Navigation anchor="top" open={navOpen}>

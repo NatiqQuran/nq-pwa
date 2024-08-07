@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useFetch, useFormDataHandle } from "@yakad/lib";
-import { Button, Form, Spacer, Stack, Row } from "@yakad/ui";
+import { Button, Spacer, Stack, Row } from "@yakad/ui";
 import useCountDown from "./useCountdown";
 
 interface AccountVerifyCode {
@@ -44,9 +44,9 @@ function Verify() {
                 </span>
             </div>
 
-            <Form onChange={formDataHandler.handle} onSubmit={verifyFetch.send}>
+            <form onChange={formDataHandler.handle} onSubmit={verifyFetch.send}>
                 <input name="code" type="number" placeholder="code" />
-            </Form>
+            </form>
 
             <Row style={{ width: "100%" }}>
                 <span>Remaining time: {countDown.time}</span>

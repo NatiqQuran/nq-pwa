@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Stack, InputField } from "@yakad/ui";
+import { Button, Stack, InputField } from "@yakad/ui";
 import { useFetch, useFormDataHandle } from "@yakad/lib";
 
 interface AccountSendCode {
@@ -34,12 +34,8 @@ function Login() {
                 <h4>{fetch.loading ? "Loading" : ""}</h4>
             </div>
 
-            <Form onSubmit={fetch.send} onChange={formDataHandler.handle}>
-                <InputField
-                    type="email"
-                    placeholder="Email"
-                    variant="standard"
-                ></InputField>
+            <form onSubmit={fetch.send} onChange={formDataHandler.handle}>
+                <InputField type="email" placeholder="Email" />
 
                 <Button
                     variant="filled"
@@ -47,7 +43,7 @@ function Login() {
                 >
                     Get verify code
                 </Button>
-            </Form>
+            </form>
 
             <Button
                 onClick={() => {

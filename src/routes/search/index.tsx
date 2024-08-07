@@ -117,11 +117,31 @@ function Search() {
                                     <Link to={`/quran/${item.uuid}`}>
                                         <Card>
                                             <Row>
-                                                <h1>{item.number}</h1>
+                                                <span
+                                                    style={{
+                                                        fontFamily:
+                                                            "sans-serif",
+                                                        fontSize: "2rem",
+                                                        fontWeight: "bold",
+                                                    }}
+                                                >
+                                                    {item.number}
+                                                </span>
                                                 <Spacer />
                                                 <Stack style={{ gap: "0" }}>
                                                     <Row>
-                                                        <h1>{item.name} </h1>
+                                                        <span
+                                                            style={{
+                                                                fontFamily:
+                                                                    "hafs",
+                                                                fontSize:
+                                                                    "2.5rem",
+                                                                fontWeight:
+                                                                    "bold",
+                                                            }}
+                                                        >
+                                                            {item.name}
+                                                        </span>
                                                         {item.period ===
                                                         "madani" ? (
                                                             <img

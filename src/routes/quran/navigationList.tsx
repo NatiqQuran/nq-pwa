@@ -1,15 +1,13 @@
 import React from "react";
 import { List, ListItem, Button, Spacer, Row } from "@yakad/ui";
 
-function NavigationList() {
+export default function NavigationList() {
     const [collapsedListRsitation, setcollapsedListRsitation] =
         React.useState(true);
     const [collapsedListArabicText, setcollapsedListArabicText] =
         React.useState(true);
-    const [collapsedListByWord, setcollapsedListByWord] = React.useState(true);
     const [collapsedListTraslation, setcollapsedListTraslation] =
         React.useState(true);
-    const [collapsedListTafsir, setcollapsedListTafsir] = React.useState(true);
     const [collapsedListQuran, setcollapsedListQuran] = React.useState(true);
 
     const handleClickQuran = () => {
@@ -21,14 +19,8 @@ function NavigationList() {
     const handleClickArabicText = () => {
         setcollapsedListArabicText(!collapsedListArabicText);
     };
-    const handleClickByWord = () => {
-        setcollapsedListByWord(!collapsedListByWord);
-    };
     const handleClickTraslation = () => {
         setcollapsedListTraslation(!collapsedListTraslation);
-    };
-    const handleClickTafsir = () => {
-        setcollapsedListTafsir(!collapsedListTafsir);
     };
 
     return (
@@ -45,15 +37,14 @@ function NavigationList() {
                 <List
                     collapsed={collapsedListQuran}
                     direction="column"
-                    style={{ padding: "0 2rem" }}
+                    style={{ paddingInlineStart: "2rem" }}
                 >
                     <ListItem>
-                        <Row>
-                            <h3>Surah:</h3>
-
+                        <Row style={{ height: "3.2rem" }}>
+                            <span>Surah:</span>
                             <Spacer />
                             <select>
-                                <option value="1">1 - </option>
+                                <option value="1">1 - الفاتحه</option>
                                 <option value="2">2 - </option>
                                 <option value="3">3 - </option>
                                 <option value="4">4 - </option>
@@ -61,48 +52,10 @@ function NavigationList() {
                         </Row>
                     </ListItem>
                     <ListItem>
-                        <Row>
-                            <h3>Verse:</h3>
+                        <Row style={{ height: "3.2rem" }}>
+                            <span>Verse:</span>
                             <Spacer />
                             <select name="verse">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                            </select>
-                        </Row>
-                    </ListItem>
-                    <ListItem>
-                        <Row>
-                            <h3> Juz:</h3>
-                            <Spacer />
-                            <select name="">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                            </select>
-                        </Row>
-                    </ListItem>
-                    <ListItem>
-                        <Row>
-                            <h3>Page:</h3>
-                            <Spacer />
-                            <select name="">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -131,11 +84,11 @@ function NavigationList() {
                 <List
                     collapsed={collapsedListRsitation}
                     direction="column"
-                    style={{ padding: "0 2rem" }}
+                    style={{ paddingInlineStart: "2rem" }}
                 >
                     <ListItem>
-                        <Row>
-                            <h3> Gari:</h3>
+                        <Row style={{ height: "3.2rem" }}>
+                            <span> Gari:</span>
                             <Spacer />
                             <select>
                                 <option value="1">Al-Afasy</option>
@@ -143,8 +96,8 @@ function NavigationList() {
                         </Row>
                     </ListItem>
                     <ListItem>
-                        <Row>
-                            <h3>Play:</h3>
+                        <Row style={{ height: "3.2rem" }}>
+                            <span>Play:</span>
                             <Spacer />
                             <select>
                                 <option value="1">Countinues</option>
@@ -152,8 +105,8 @@ function NavigationList() {
                         </Row>
                     </ListItem>
                     <ListItem>
-                        <Row>
-                            <h3>Delay:</h3>
+                        <Row style={{ height: "3.2rem" }}>
+                            <span>Delay:</span>
                             <Spacer />
                             <select>
                                 <option value="1">1 sec</option>
@@ -161,8 +114,8 @@ function NavigationList() {
                         </Row>
                     </ListItem>
                     <ListItem>
-                        <Row>
-                            <h3>Repeat:</h3>
+                        <Row style={{ height: "3.2rem" }}>
+                            <span>Repeat:</span>
                             <Spacer />
                             <select>
                                 <option value="1">1 time</option>
@@ -183,25 +136,25 @@ function NavigationList() {
                 <List
                     collapsed={collapsedListArabicText}
                     direction="column"
-                    style={{ padding: "0 2rem" }}
+                    style={{ paddingInlineStart: "2rem" }}
                 >
                     <ListItem>
-                        <Row>
-                            <h3>Show:</h3>
+                        <Row style={{ height: "3.2rem" }}>
+                            <span>Show:</span>
                             <Spacer />
                             <input type="checkbox" name="showArabic" />
                         </Row>
                     </ListItem>
                     <ListItem>
-                        <Row>
-                            <h3>Tajweed:</h3>
+                        <Row style={{ height: "3.2rem" }}>
+                            <span>Tajweed:</span>
                             <Spacer />
                             <input type="checkbox" name="showArabic" />
                         </Row>
                     </ListItem>
                     <ListItem>
-                        <Row>
-                            <h3>Font:</h3>
+                        <Row style={{ height: "3.2rem" }}>
+                            <span>Font:</span>
                             <Spacer />
                             <select name="">
                                 <option value="">Hafs</option>
@@ -209,46 +162,11 @@ function NavigationList() {
                         </Row>
                     </ListItem>
                     <ListItem>
-                        <Row>
-                            <h3> Test:</h3>
+                        <Row style={{ height: "3.2rem" }}>
+                            <span> Test:</span>
                             <Spacer />
                             <select name="">
                                 <option value="">Uthmani</option>
-                            </select>
-                        </Row>
-                    </ListItem>
-                </List>
-            </ListItem>
-
-            <ListItem>
-                <Button
-                    size="medium"
-                    borderStyle="semi"
-                    onClick={handleClickByWord}
-                >
-                    By Word
-                </Button>
-                <List
-                    collapsed={collapsedListByWord}
-                    direction="column"
-                    style={{ padding: "0 2rem" }}
-                >
-                    <ListItem>
-                        <Row>
-                            <h3>Show:</h3>
-                            <Spacer />
-                            <input type="checkbox" name="showArabic" />
-                        </Row>
-                    </ListItem>
-                    <ListItem>
-                        <Row>
-                            <h3>Language:</h3>
-                            <Spacer />
-                            <select name="">
-                                <option value="">Arabic</option>
-                                <option value="">English</option>
-                                <option value="">Persian</option>
-                                <option value="">Turkish</option>
                             </select>
                         </Row>
                     </ListItem>
@@ -266,41 +184,18 @@ function NavigationList() {
                 <List
                     collapsed={collapsedListTraslation}
                     direction="column"
-                    style={{ padding: "0 2rem" }}
+                    style={{ paddingInlineStart: "2rem" }}
                 >
                     <ListItem>
-                        <Row>
-                            <h3>Show:</h3>
+                        <Row style={{ height: "3.2rem" }}>
+                            <span>Show:</span>
                             <Spacer />
                             <input type="checkbox" name="showArabic" />
                         </Row>
                     </ListItem>
                     <ListItem>
-                        <Row>
-                            <h3>Play:</h3>
-                            <Spacer />
-                            <input type="checkbox" name="showArabic" />
-                        </Row>
-                    </ListItem>
-                </List>
-            </ListItem>
-
-            <ListItem>
-                <Button
-                    size="medium"
-                    borderStyle="semi"
-                    onClick={handleClickTafsir}
-                >
-                    Tafsir
-                </Button>
-                <List
-                    collapsed={collapsedListTafsir}
-                    direction="column"
-                    style={{ padding: "0 2rem" }}
-                >
-                    <ListItem>
-                        <Row>
-                            <h3>Show:</h3>
+                        <Row style={{ height: "3.2rem" }}>
+                            <span>Play:</span>
                             <Spacer />
                             <input type="checkbox" name="showArabic" />
                         </Row>
@@ -310,5 +205,3 @@ function NavigationList() {
         </List>
     );
 }
-
-export default NavigationList;

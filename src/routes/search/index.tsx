@@ -13,17 +13,18 @@ import {
     Spacer,
     Stack,
     Loading,
+    SvgIcon,
 } from "@yakad/ui";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Madineh from "../../assets/svg/madineh - filled.svg";
-import Makkah from "../../assets/svg/makkah - filled.svg";
+import { ReactComponent as Madineh } from "../../assets/svg/madineh - filled.svg";
+import { ReactComponent as Makkah } from "../../assets/svg/makkah - filled.svg";
 
 interface SuraItems {
     name: string;
     uuid: string;
     number: number;
-    period: string | null;
+    period: "makki" | "madani" | null;
     number_of_ayahs: number;
 }
 
@@ -72,6 +73,11 @@ interface SuraItems {
 //         image: 1,
 //     },
 // ];
+
+const SurahPeriodIcon = (props: { period: "makki" | "madani" | null }) =>
+    props.period ? (
+        <SvgIcon>{props.period === "makki" ? <Makkah /> : <Madineh />}</SvgIcon>
+    ) : null;
 
 function Search() {
     const navigate = useNavigate();
@@ -142,17 +148,10 @@ function Search() {
                                                         >
                                                             {item.name}
                                                         </span>
-                                                        {item.period ===
-                                                        "madani" ? (
-                                                            <img
-                                                                src={Madineh}
-                                                            />
-                                                        ) : (
-                                                            <img src={Makkah} />
-                                                        )}
+                                                        <SurahPeriodIcon
+                                                            period={item.period}
+                                                        />
                                                     </Row>
-                                                    {/* <h2>{item.p}</h2> */}
-                                                    <span>{item.period}</span>
                                                 </Stack>
                                             </Row>
                                         </Card>

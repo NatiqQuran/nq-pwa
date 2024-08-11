@@ -1,37 +1,25 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useFetch } from "@yakad/lib";
-import { Button, Card, Container, Loading } from "@yakad/ui";
+import { Button, Loading } from "@yakad/ui";
 
 import NavigationList from "./navigationList";
 import Symbol from "@yakad/symbols";
 import { Xpanel } from "@yakad/x";
 
 import SurahHeader from "./surahHeader";
+import SurahText from "./text";
+import { SurahProps } from "./text";
 
-interface Verse {
-    number: number;
-    content: {
-        text: string;
-    };
-}
-
-export interface Surah {
-    surah_uuid: string;
-    surah_name: string;
-    surah_period: "makki" | "madani" | null;
-    surah_number: number;
-
-    bismillah_status: boolean;
-    bismillah_as_first_ayah: boolean;
-    bismillah_text: string | null;
-
-    ayahs: Verse[];
+export interface QuranConfigProps {
+    translationView: boolean;
 }
 
 export default function Quran() {
+    const config: QuranConfigProps = { translationView: true };
+
     const { id } = useParams();
-    const surahFetch = useFetch<Surah>(
+    const surahFetch = useFetch<SurahProps>(
         process.env.REACT_APP_API_URL + `/surah/${id}?mushaf=hafs`,
         {
             method: "GET",
@@ -63,40 +51,16 @@ export default function Quran() {
                 <Loading size="large" />
             ) : (
                 <>
-                    <SurahHeader surahData={surahFetch.responseBody} />
-                    <Surah surahData={surahFetch.responseBody} />
+                    <SurahHeader
+                        config={config}
+                        surahData={surahFetch.responseBody}
+                    />
+                    <SurahText
+                        config={config}
+                        surahData={surahFetch.responseBody}
+                    />
                 </>
             )}
         </Xpanel>
-    );
-}
-
-function Surah(props: { surahData: Surah }) {
-    return (
-        <Container maxWidth="md" dir="rtl" style={{ padding: "0.5rem" }}>
-            <span
-                style={{
-                    fontSize: "3.5rem",
-                    fontFamily: "hafs",
-                    textAlign: "justify",
-                }}
-            >
-                {props.surahData.bismillah_as_first_ayah
-                    ? props.surahData.ayahs
-                          .slice(1)
-                          .map((ayah) => <Ayah ayah={ayah} />)
-                    : props.surahData.ayahs.map((ayah) => <Ayah ayah={ayah} />)}
-            </span>
-        </Container>
-    );
-}
-
-const toArabic = (input: any) => input.toLocaleString("ar-EG");
-function Ayah(props: { ayah: Verse }) {
-    return (
-        <span>
-            {props.ayah.content.text}
-            <span> ﴿{toArabic(props.ayah.number)}﴾ </span>
-        </span>
     );
 }

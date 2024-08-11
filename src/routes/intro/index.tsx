@@ -21,7 +21,7 @@ import Symbol from "@yakad/symbols";
 
 const navListItems: Array<React.ReactElement> = [
     <ListItem>
-        <Link to="quran">
+        <Link to="search">
             <Button style={{ width: "100%" }}>Quran</Button>
         </Link>
     </ListItem>,
@@ -32,14 +32,13 @@ const navListItems: Array<React.ReactElement> = [
     </ListItem>,
 ];
 
-function Intro() {
+export default function Intro() {
     const [navOpen, setNavOpen] = useState<boolean>(false);
     const matches = useMedia("(max-width: 1000px)");
-    const toggleNavOpen = () => setNavOpen((value) => !value);
 
     return (
         <Page>
-            <AppBar style={{ gap: "1rem" }}>
+            <AppBar>
                 <SvgIcon size={5}>
                     <LogoIcon />
                 </SvgIcon>
@@ -66,52 +65,7 @@ function Intro() {
             <Main>
                 <Xbackground variant="dotted">
                     <XgetStart logo={<LogoIcon />}>
-                        <h1
-                            style={{
-                                fontFamily: "Hafs",
-                                textAlign: "center",
-                            }}
-                        >
-                            <span
-                                style={{
-                                    fontSize: "7rem",
-                                }}
-                            >
-                                الْقُرآنُ{" "}
-                            </span>
-                            <span
-                                style={{ fontSize: "7.7rem", color: "#aa8a59" }}
-                            >
-                                النّاطِق
-                            </span>
-                        </h1>
-                        <p
-                            style={{
-                                fontSize: "1.8rem",
-                                textAlign: "center",
-                            }}
-                        >
-                            Natiq Quran, Multi mushaf easy to use quran app.
-                            <br />
-                            Under development.
-                        </p>
-                        <Link to="/search">
-                            <Button
-                                variant="filled"
-                                size="medium"
-                                style={{ margin: "auto" }}
-                            >
-                                GET START
-                            </Button>
-                        </Link>
-                        <p style={{ fontSize: "1.4rem" }}>or</p>
-                        <Link
-                            to="https://blog.natiq.net"
-                            target="_blank"
-                            style={{ fontSize: "1.6rem" }}
-                        >
-                            Learn More!
-                        </Link>
+                        <IntroDialogBox />
                     </XgetStart>
                 </Xbackground>
             </Main>
@@ -124,4 +78,55 @@ function Intro() {
     );
 }
 
-export default Intro;
+export function IntroDialogBox() {
+    return (
+        <>
+            <h1
+                style={{
+                    fontFamily: "Hafs",
+                    textAlign: "center",
+                    margin: "0",
+                }}
+            >
+                <span
+                    style={{
+                        fontSize: "7rem",
+                    }}
+                >
+                    الْقُرآنُ{" "}
+                </span>
+                <span style={{ fontSize: "7.7rem", color: "#aa8a59" }}>
+                    النّاطِق
+                </span>
+            </h1>
+            <p
+                style={{
+                    fontSize: "1.8rem",
+                    textAlign: "center",
+                }}
+            >
+                Natiq Quran, Easy to use quran app.
+            </p>
+            <Link to="/search">
+                <Button
+                    variant="filled"
+                    size="medium"
+                    style={{ margin: "auto" }}
+                >
+                    GET START
+                </Button>
+            </Link>
+            <br />
+            <p style={{ color: "#7d7d7d" }}>Suitable for all ages.</p>
+            <span>
+                <a target="blank" href="https://blog.natiq.net/privacy-policy">
+                    Privacy policy
+                </a>
+                <span> . </span>
+                <a target="blank" href="https://blog.natiq.net">
+                    Learn more
+                </a>
+            </span>
+        </>
+    );
+}

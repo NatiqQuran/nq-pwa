@@ -1,20 +1,44 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { AppBar, Container, Button, Page, Main, SvgIcon } from "@yakad/ui";
+import { Link, Navigate } from "react-router-dom";
+import {
+    AppBar,
+    Container,
+    Button,
+    Page,
+    Main,
+    SvgIcon,
+    Spacer,
+} from "@yakad/ui";
 import { ReactComponent as Logo } from "../../assets/svg/logoicon.svg";
-import styles from "./pwa.module.css";
+import { IntroDialogBox } from "routes/intro";
+import Symbol from "@yakad/symbols";
 
 const pwaIntroPagePassed = () => {
     localStorage.setItem("pwaIntroPassed", "true");
 };
 
-function Pwa() {
+export default function Pwa() {
     return (
         <Page>
+            {/* <Navigate replace to="/" /> */}
             <AppBar>
-                <Link to="/">
-                    <Button variant="outlined" onClick={pwaIntroPagePassed}>
-                        Intro
+                <SvgIcon size={5}>
+                    <Logo />
+                </SvgIcon>
+                <h1
+                    style={{
+                        fontFamily: "arial",
+                        fontSize: "2.4rem",
+                        fontWeight: "normal",
+                        letterSpacing: "0.1rem",
+                    }}
+                >
+                    Natiq
+                </h1>
+                <Spacer />
+                <Link to="/search">
+                    <Button variant="outlined" icon={<Symbol icon="search" />}>
+                        Search
                     </Button>
                 </Link>
             </AppBar>
@@ -36,27 +60,9 @@ function Pwa() {
                     <SvgIcon size={15}>
                         <Logo />
                     </SvgIcon>
-                    <h1 style={{ lineHeight: "5rem", fontSize: "3rem" }}>
-                        الْقُرآنُ النّاطِق
-                    </h1>
-                    <Link to="/quran">
-                        <Button className={styles.getStartButton}>
-                            Get start now!
-                        </Button>
-                    </Link>
-                    <span>
-                        <a target="blank" href="https://blog.natiq.net">
-                            Privacy policy
-                        </a>{" "}
-                        .{" "}
-                        <a target="blank" href="https://blog.natiq.net">
-                            Learn more
-                        </a>
-                    </span>
+                    <IntroDialogBox />
                 </Container>
             </Main>
         </Page>
     );
 }
-
-export default Pwa;

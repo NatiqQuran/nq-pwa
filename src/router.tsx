@@ -1,3 +1,4 @@
+import NotFound from "404";
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Pwa, Intro, Quran, Account, Search } from "routes";
@@ -39,6 +40,7 @@ function Router() {
                 <Route path="/quran/:id" element={<Quran />} />
                 <Route path="/account/*" element={<Account />} />
                 <Route path="/search" element={<Search />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     );

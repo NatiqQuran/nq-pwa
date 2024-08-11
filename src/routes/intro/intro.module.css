@@ -1,8 +1,0 @@
-@media screen and (max-width: 900px) {
-    .appbar {
-        display: none;
-    }
-    .navbar {
-        display: flex;
-    }
-}

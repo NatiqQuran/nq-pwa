@@ -99,6 +99,8 @@ function Search() {
                     style={{
                         background: "#7d7d7d15",
                         width: "100%",
+                        height: "4rem",
+                        padding: "0 2rem",
                         color: "inherit",
                     }}
                     type="Search"
@@ -114,8 +116,10 @@ function Search() {
             </AppBar>
             <Main>
                 <Container maxWidth="md">
-                    <h2 style={{ fontSize: "4rem" }}>Surahs List</h2>
-                    <Hr />
+                    <h2 style={{ margin: "1rem", fontSize: "4rem" }}>
+                        Surahs List
+                    </h2>
+                    <Hr marginTopBottom={2} />
                     <GridContainer>
                         {fetch.isResponseBodyReady ? (
                             fetch.responseBody.map((item, _index) => (

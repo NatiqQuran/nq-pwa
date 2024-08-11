@@ -23,12 +23,16 @@ import Symbol from "@yakad/symbols";
 const navListItems: Array<React.ReactElement> = [
     <ListItem>
         <Link to="search">
-            <Button style={{ width: "100%" }}>Quran</Button>
+            <Button variant="link" style={{ width: "100%" }}>
+                Quran
+            </Button>
         </Link>
     </ListItem>,
     <ListItem>
-        <a href="https://blog.natiq.net/about" target="_blank">
-            <Button style={{ width: "100%" }}>About</Button>
+        <a href="https://blog.natiq.net" target="_blank">
+            <Button variant="link" style={{ width: "100%" }}>
+                Blog
+            </Button>
         </a>
     </ListItem>,
 ];
@@ -80,12 +84,15 @@ export default function Intro() {
                 <a target="blank" href="https://blog.natiq.net/privacy-policy">
                     <Button variant="link">Privacy Policy</Button>
                 </a>
-                <a target="blank" href="https://blog.natiq.net/terms-of-use">
-                    <Button variant="link">Terms of Use</Button>
-                </a>
                 <Spacer />
-                <a href="https://blog.natiq.net" target="_blank">
-                    <Button variant="link">Blog</Button>
+                <a href="https://blog.natiq.net/vision" target="_blank">
+                    <Button variant="link">Vision</Button>
+                </a>
+                <a href="https://blog.natiq.net/team" target="_blank">
+                    <Button variant="link">Team</Button>
+                </a>
+                <a href="https://blog.natiq.net/sponsor" target="_blank">
+                    <Button variant="link">Sponsor</Button>
                 </a>
                 <a href="https://blog.natiq.net/about" target="_blank">
                     <Button variant="link">About</Button>
@@ -144,8 +151,12 @@ export function IntroDialogBox() {
             <br />
             <p style={{ color: "#7d7d7d" }}>Suitable for all ages.</p>
             <span>
+                <a target="blank" href="https://blog.natiq.net/privacy-policy">
+                    Privacy Policy
+                </a>
+                <span> . </span>
                 <a target="blank" href="https://blog.natiq.net">
-                    Learn more
+                    Read more
                 </a>
             </span>
         </>

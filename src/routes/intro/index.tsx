@@ -39,7 +39,6 @@ const navListItems: Array<React.ReactElement> = [
 
 export default function Intro() {
     const [navOpen, setNavOpen] = useState<boolean>(false);
-    const matches = useMedia("(max-width: 1000px)");
 
     return (
         <Page>

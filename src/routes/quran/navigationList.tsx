@@ -1,27 +1,18 @@
 import React from "react";
 import { List, ListItem, Button, Spacer, Row } from "@yakad/ui";
 
-export default function NavigationList() {
-    const [collapsedListRsitation, setcollapsedListRsitation] =
-        React.useState(true);
-    const [collapsedListArabicText, setcollapsedListArabicText] =
-        React.useState(true);
-    const [collapsedListTraslation, setcollapsedListTraslation] =
-        React.useState(true);
-    const [collapsedListQuran, setcollapsedListQuran] = React.useState(true);
+interface CollapseList {
+    [n: number]: boolean;
+}
 
-    const handleClickQuran = () => {
-        setcollapsedListQuran(!collapsedListQuran);
-    };
-    const handleClickRsitation = () => {
-        setcollapsedListRsitation(!collapsedListRsitation);
-    };
-    const handleClickArabicText = () => {
-        setcollapsedListArabicText(!collapsedListArabicText);
-    };
-    const handleClickTraslation = () => {
-        setcollapsedListTraslation(!collapsedListTraslation);
-    };
+export default function NavigationList() {
+    const [collapsedList, setcollapsedList] = React.useState<CollapseList>({});
+
+    const handleClickcollapseList = (index: number) =>
+        setcollapsedList((object) => ({
+            ...object,
+            [index]: object[index] ? !object[index] : true,
+        }));
 
     return (
         <List direction="column">
@@ -29,13 +20,13 @@ export default function NavigationList() {
                 <Button
                     size="medium"
                     borderStyle="semi"
-                    onClick={handleClickQuran}
+                    onClick={() => handleClickcollapseList(0)}
                 >
                     Quran
                     <Spacer />
                 </Button>
                 <List
-                    collapsed={collapsedListQuran}
+                    collapsed={!collapsedList[0]}
                     direction="column"
                     style={{ paddingInlineStart: "2rem" }}
                 >
@@ -77,12 +68,12 @@ export default function NavigationList() {
                 <Button
                     size="medium"
                     borderStyle="semi"
-                    onClick={handleClickRsitation}
+                    onClick={() => handleClickcollapseList(1)}
                 >
                     Rsitation
                 </Button>
                 <List
-                    collapsed={collapsedListRsitation}
+                    collapsed={!collapsedList[1]}
                     direction="column"
                     style={{ paddingInlineStart: "2rem" }}
                 >
@@ -129,12 +120,12 @@ export default function NavigationList() {
                 <Button
                     size="medium"
                     borderStyle="semi"
-                    onClick={handleClickArabicText}
+                    onClick={() => handleClickcollapseList(2)}
                 >
                     Arabic Text
                 </Button>
                 <List
-                    collapsed={collapsedListArabicText}
+                    collapsed={!collapsedList[2]}
                     direction="column"
                     style={{ paddingInlineStart: "2rem" }}
                 >
@@ -177,12 +168,12 @@ export default function NavigationList() {
                 <Button
                     size="medium"
                     borderStyle="semi"
-                    onClick={handleClickTraslation}
+                    onClick={() => handleClickcollapseList(3)}
                 >
                     Translation
                 </Button>
                 <List
-                    collapsed={collapsedListTraslation}
+                    collapsed={!collapsedList[3]}
                     direction="column"
                     style={{ paddingInlineStart: "2rem" }}
                 >

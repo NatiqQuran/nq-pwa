@@ -23,7 +23,7 @@ export default function SurahHeader(props: {
                 padding: "2rem",
             }}
         >
-            <Stack style={{ width: "100%" }}>
+            <Stack style={{ width: "100%", marginBottom: "2rem" }}>
                 <Row>
                     <span
                         style={{

@@ -4,6 +4,8 @@ import { QuranConfigProps } from ".";
 
 interface Verse {
     number: number;
+    uuid: string;
+    sajdeh: null | "vajib" | "mustahab";
     content: {
         text: string;
     };
@@ -75,10 +77,23 @@ function AyahText(props: { ayah: Verse }) {
             style={{
                 fontFamily: "hafs",
                 fontSize: "3.5rem",
-                lineHeight: "6rem",
+                lineHeight: "7rem",
             }}
         >
             {props.ayah.content.text}
+            {props.ayah.sajdeh === "vajib" ? (
+                <span
+                    title="Vajib Sajdah"
+                    style={{ cursor: "help", fontWeight: "bold" }}
+                >
+                    ۩
+                </span>
+            ) : null}
+            {props.ayah.sajdeh === "mustahab" ? (
+                <span title="Mustahab Sajdah" style={{ cursor: "help" }}>
+                    ۩
+                </span>
+            ) : null}
             <span> ﴿{toArabic(props.ayah.number)}﴾ </span>
         </span>
     );

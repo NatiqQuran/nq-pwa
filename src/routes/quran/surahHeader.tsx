@@ -1,19 +1,14 @@
-import { Spacer, Container, Stack, Row, SvgIcon } from "@yakad/ui";
+import { Spacer, Container, Stack, Row } from "@yakad/ui";
 import { SurahProps } from "./text";
-import { ReactComponent as Madineh } from "../../assets/svg/madineh - filled.svg";
-import { ReactComponent as Makkah } from "../../assets/svg/makkah - filled.svg";
 import { QuranConfigProps } from ".";
+import { SurahPeriodIcon } from "../../components/SurahPeriodIcon";
 
 const toArabic = (input: any) => input.toLocaleString("ar-EG");
-
-const SurahPeriodIcon = (props: { period: "makki" | "madani" | null }) =>
-    props.period ? (
-        <SvgIcon>{props.period === "makki" ? <Makkah /> : <Madineh />}</SvgIcon>
-    ) : null;
 
 export default function SurahHeader(props: {
     config: QuranConfigProps;
     surahData: SurahProps;
+    bismilaaaahTranslation: string;
 }) {
     return (
         <Container
@@ -23,7 +18,7 @@ export default function SurahHeader(props: {
                 padding: "2rem",
             }}
         >
-            <Stack style={{ width: "100%" }}>
+            <Stack style={{ width: "100%", marginBottom: "2rem" }}>
                 <Row>
                     <span
                         style={{
@@ -57,7 +52,7 @@ export default function SurahHeader(props: {
                                 margin: "0",
                             }}
                         >
-                            {props.surahData.ayahs[0].content.text}
+                            {props.surahData.ayahs[0].text}
                             {" ﴿"}
                             {toArabic(props.surahData.ayahs[0].number)}
                             {"﴾"}
@@ -70,7 +65,7 @@ export default function SurahHeader(props: {
                                     opacity: "0.8",
                                 }}
                             >
-                                {"Translation here"}
+                                {props.bismilaaaahTranslation}
                                 {" (" + props.surahData.ayahs[0].number + ")"}
                             </h4>
                         ) : null}
@@ -97,7 +92,7 @@ export default function SurahHeader(props: {
                                     opacity: "0.8",
                                 }}
                             >
-                                {"Translation here"}
+                                {props.bismilaaaahTranslation}
                             </h4>
                         ) : null}
                     </>

@@ -1,11 +1,15 @@
 import React from "react";
-import { List, ListItem, Button, Spacer, Row } from "@yakad/ui";
+import { List, ListItem, Button, Spacer, Row, Chekbox, Hr } from "@yakad/ui";
+import { QuranConfigProps } from ".";
 
 interface CollapseList {
     [n: number]: boolean;
 }
 
-export default function NavigationList() {
+export default function NavigationList(props: {
+    config: QuranConfigProps;
+    setConfig: any;
+}) {
     const [collapsedList, setcollapsedList] = React.useState<CollapseList>({});
 
     const handleClickcollapseList = (index: number) =>
@@ -181,14 +185,16 @@ export default function NavigationList() {
                         <Row style={{ height: "3.2rem" }}>
                             <span>Show:</span>
                             <Spacer />
-                            <input type="checkbox" name="showArabic" />
-                        </Row>
-                    </ListItem>
-                    <ListItem>
-                        <Row style={{ height: "3.2rem" }}>
-                            <span>Play:</span>
-                            <Spacer />
-                            <input type="checkbox" name="showArabic" />
+                            <input
+                                type="checkbox"
+                                name="translationView"
+                                defaultChecked={props.config.translationView}
+                                onChange={(e) =>
+                                    props.setConfig({
+                                        translationView: e.target.checked,
+                                    })
+                                }
+                            />
                         </Row>
                     </ListItem>
                 </List>

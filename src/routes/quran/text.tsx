@@ -8,7 +8,6 @@ interface Verse {
     sajdeh: null | "vajib" | "mustahab";
     text: string;
 }
-
 export interface SurahProps {
     surah_uuid: string;
     surah_name: string;
@@ -22,12 +21,29 @@ export interface SurahProps {
     ayahs: Verse[];
 }
 
+interface TranslationTextProps {
+    number: number;
+    surah_number: number;
+    text: string;
+    text_uuid: string;
+    uuid: string;
+}
+export interface TranslationProps {
+    language: string;
+    mushaf_uuid: string;
+    release_date: string | null;
+    source: string;
+    status: string;
+    translator_account_uuid: string;
+    ayahs: TranslationTextProps[];
+}
+
 const toArabic = (string: any) => string.toLocaleString("ar-EG");
 
 export default function SurahText(props: {
     config: QuranConfigProps;
     surahData: SurahProps;
-    translationData: any;
+    translationData: TranslationProps;
 }) {
     return (
         <Container
@@ -40,11 +56,17 @@ export default function SurahText(props: {
             <div style={{ width: "100%" }}>
                 {props.surahData.ayahs
                     .slice(props.surahData.bismillah_as_first_ayah ? 1 : 0)
-                    .map((ayah) =>
+                    .map((ayah, index) =>
                         props.config.translationView ? (
                             <AyahBox>
                                 <AyahText ayah={ayah} />
-                                <AyahTranslation ayah={ayah} />
+                                <AyahTranslation
+                                    translationText={
+                                        props.translationData.ayahs[
+                                            ayah.number - 1
+                                        ]
+                                    }
+                                />
                             </AyahBox>
                         ) : (
                             <AyahText ayah={ayah} />
@@ -98,19 +120,21 @@ function AyahText(props: { ayah: Verse }) {
     );
 }
 
-function AyahTranslation(props: { ayah: Verse }) {
+function AyahTranslation(props: { translationText: TranslationTextProps }) {
     return (
         <span
             style={{
+                direction: "ltr",
                 fontFamily: "sans-serif",
                 fontSize: "1.8rem",
                 lineHeight: "3rem",
                 textAlign: "justify",
+                textAlignLast: "right",
                 opacity: "0.8",
             }}
         >
-            <span>Translation here</span>
-            <span> ({props.ayah.number})</span>
+            <span>{props.translationText.text}</span>
+            <span> ({props.translationText.number})</span>
         </span>
     );
 }

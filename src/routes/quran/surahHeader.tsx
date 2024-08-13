@@ -65,7 +65,7 @@ export default function SurahHeader(props: {
                                     opacity: "0.8",
                                 }}
                             >
-                                {"Translation here"}
+                                {props.bismilaaaahTranslation}
                                 {" (" + props.surahData.ayahs[0].number + ")"}
                             </h4>
                         ) : null}
@@ -92,7 +92,7 @@ export default function SurahHeader(props: {
                                     opacity: "0.8",
                                 }}
                             >
-                                {"Translation here"}
+                                {props.bismilaaaahTranslation}
                             </h4>
                         ) : null}
                     </>

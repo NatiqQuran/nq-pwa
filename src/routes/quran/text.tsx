@@ -6,9 +6,7 @@ interface Verse {
     number: number;
     uuid: string;
     sajdeh: null | "vajib" | "mustahab";
-    content: {
-        text: string;
-    };
+    text: string;
 }
 
 export interface SurahProps {
@@ -29,6 +27,7 @@ const toArabic = (string: any) => string.toLocaleString("ar-EG");
 export default function SurahText(props: {
     config: QuranConfigProps;
     surahData: SurahProps;
+    translationData: any;
 }) {
     return (
         <Container
@@ -80,7 +79,7 @@ function AyahText(props: { ayah: Verse }) {
                 lineHeight: "7rem",
             }}
         >
-            {props.ayah.content.text}
+            {props.ayah.text}
             {props.ayah.sajdeh === "vajib" ? (
                 <span
                     title="Vajib Sajdah"

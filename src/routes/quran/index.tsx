@@ -26,8 +26,17 @@ export default function Quran() {
         }
     );
 
+    const translationFetch = useFetch<SurahProps>(
+        process.env.REACT_APP_API_URL +
+            `/translation/4345d724-7bed-4b88-9264-c93048b8fc2f?surah_uuid=${id}`,
+        {
+            method: "GET",
+        }
+    );
+
     useEffect(() => {
         surahFetch.send();
+        translationFetch.send();
     }, []);
 
     const appbarName = surahFetch.isResponseBodyReady
@@ -54,10 +63,12 @@ export default function Quran() {
                     <SurahHeader
                         config={config}
                         surahData={surahFetch.responseBody}
+                        bismilaaaahTranslation="tewst"
                     />
                     <SurahText
                         config={config}
                         surahData={surahFetch.responseBody}
+                        translationData={translationFetch.responseBody}
                     />
                 </>
             )}

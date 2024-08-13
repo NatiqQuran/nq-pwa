@@ -13,12 +13,10 @@ import {
     Spacer,
     Stack,
     Loading,
-    SvgIcon,
 } from "@yakad/ui";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ReactComponent as Madineh } from "../../assets/svg/madineh - filled.svg";
-import { ReactComponent as Makkah } from "../../assets/svg/makkah - filled.svg";
+import { SurahPeriodIcon } from "components/SurahPeriodIcon";
 
 interface SuraItems {
     name: string;
@@ -28,58 +26,7 @@ interface SuraItems {
     number_of_ayahs: number;
 }
 
-// const SuraLists: Array<SuraItems> = [
-//     {
-//         title: "الْفَاتِحَه",
-//         description: "The Opener",
-//         p: "Al-Fatihah",
-//         url: "/quran/1",
-//         image: 1,
-//     },
-//     {
-//         title: "البَقَرَة",
-//         description: "The Cow",
-//         p: "Al-Baqarah",
-//         url: "/quran/2",
-//         image: 1,
-//     },
-//     {
-//         title: "آل عِمرَان",
-//         description: "Family of Imran",
-//         p: "Ali 'Imran",
-//         url: "/quran/3",
-//         image: 0,
-//     },
-//     {
-//         title: "النِّسَاء",
-//         description: "The Women",
-//         p: "An-Nisa",
-//         url: "/quran/4",
-//         image: 1,
-//     },
-//     {
-//         title: "المَائدة",
-//         description: "The Table Spread",
-//         p: "Al-Ma'idah",
-//         url: "/quran/5",
-//         image: 1,
-//     },
-
-//     {
-//         title: "الاٴنعَام",
-//         description: "The Cattle",
-//         p: "Al-An'am",
-//         url: "/quran/6",
-//         image: 1,
-//     },
-// ];
-
-const SurahPeriodIcon = (props: { period: "makki" | "madani" | null }) =>
-    props.period ? (
-        <SvgIcon>{props.period === "makki" ? <Makkah /> : <Madineh />}</SvgIcon>
-    ) : null;
-
-function Search() {
+export default function Search() {
     const navigate = useNavigate();
     const fetch = useFetch<SuraItems[]>(
         `${process.env.REACT_APP_API_URL}/surah?mushaf=hafs`,
@@ -171,5 +118,3 @@ function Search() {
         </Page>
     );
 }
-
-export default Search;

@@ -56,7 +56,7 @@ export default function SurahText(props: {
             <div style={{ width: "100%" }}>
                 {props.surahData.ayahs
                     .slice(props.surahData.bismillah_as_first_ayah ? 1 : 0)
-                    .map((ayah, index) =>
+                    .map((ayah) =>
                         props.config.translationView ? (
                             <AyahBox>
                                 <AyahText ayah={ayah} />

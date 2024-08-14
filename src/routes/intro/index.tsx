@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useMedia } from "@yakad/lib";
 
 import {
-    AppBar,
     Main,
     Page,
+    AppBar,
     Spacer,
     Button,
     SvgIcon,
@@ -15,6 +14,8 @@ import {
     DisplayOnScreen,
     ClickAwayListener,
     Footer,
+    Row,
+    Container,
 } from "@yakad/ui";
 import { Xbackground, XgetStart } from "@yakad/x";
 import { ReactComponent as LogoIcon } from "../../assets/svg/logoicon.svg";
@@ -43,34 +44,39 @@ export default function Intro() {
     return (
         <Page>
             <AppBar>
-                <DisplayOnScreen smallerOrEqualTo="md">
-                    <Button
-                        icon={<Symbol icon="menu" />}
-                        onClick={() => setNavOpen(true)}
-                    />
-                </DisplayOnScreen>
-                <SvgIcon size={5}>
-                    <LogoIcon />
-                </SvgIcon>
-                <h1
-                    style={{
-                        fontFamily: "arial",
-                        fontSize: "2.4rem",
-                        fontWeight: "normal",
-                        letterSpacing: "0.1rem",
-                    }}
-                >
-                    Natiq
-                </h1>
-                <DisplayOnScreen largerThan="md">
-                    <List>{navListItems.map((item) => item)}</List>
-                </DisplayOnScreen>
-                <Spacer />
-                <Link to="/search">
-                    <Button variant="outlined" icon={<Symbol icon="search" />}>
-                        Search
-                    </Button>
-                </Link>
+                <Container maxWidth="xl">
+                    <DisplayOnScreen smallerOrEqualTo="md">
+                        <Button
+                            icon={<Symbol icon="menu" />}
+                            onClick={() => setNavOpen(true)}
+                        />
+                    </DisplayOnScreen>
+                    <SvgIcon size={5}>
+                        <LogoIcon />
+                    </SvgIcon>
+                    <h1
+                        style={{
+                            fontFamily: "arial",
+                            fontSize: "2.4rem",
+                            fontWeight: "normal",
+                            letterSpacing: "0.1rem",
+                        }}
+                    >
+                        Natiq
+                    </h1>
+                    <DisplayOnScreen largerThan="md">
+                        <List>{navListItems.map((item) => item)}</List>
+                    </DisplayOnScreen>
+                    <Spacer />
+                    <Link to="/search">
+                        <Button
+                            variant="outlined"
+                            icon={<Symbol icon="search" />}
+                        >
+                            Search
+                        </Button>
+                    </Link>
+                </Container>
             </AppBar>
             <Main>
                 <Xbackground variant="dotted">
@@ -80,22 +86,27 @@ export default function Intro() {
                 </Xbackground>
             </Main>
             <Footer>
-                <a target="blank" href="https://blog.natiq.net/privacy-policy">
-                    <Button variant="link">Privacy Policy</Button>
-                </a>
-                <Spacer />
-                <a href="https://blog.natiq.net/vision" target="_blank">
-                    <Button variant="link">Vision</Button>
-                </a>
-                <a href="https://blog.natiq.net/team" target="_blank">
-                    <Button variant="link">Team</Button>
-                </a>
-                <a href="https://blog.natiq.net/sponsor" target="_blank">
-                    <Button variant="link">Sponsor</Button>
-                </a>
-                <a href="https://blog.natiq.net/about" target="_blank">
-                    <Button variant="link">About</Button>
-                </a>
+                <Container maxWidth="xl">
+                    <a
+                        target="blank"
+                        href="https://blog.natiq.net/privacy-policy"
+                    >
+                        <Button variant="link">Privacy Policy</Button>
+                    </a>
+                    <Spacer />
+                    <a href="https://blog.natiq.net/vision" target="_blank">
+                        <Button variant="link">Vision</Button>
+                    </a>
+                    <a href="https://blog.natiq.net/team" target="_blank">
+                        <Button variant="link">Team</Button>
+                    </a>
+                    <a href="https://blog.natiq.net/sponsor" target="_blank">
+                        <Button variant="link">Sponsor</Button>
+                    </a>
+                    <a href="https://blog.natiq.net/about" target="_blank">
+                        <Button variant="link">About</Button>
+                    </a>
+                </Container>
             </Footer>
             <ClickAwayListener onClickAway={() => setNavOpen(false)}>
                 <Navigation anchor="top" open={navOpen}>

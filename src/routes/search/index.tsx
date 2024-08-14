@@ -45,14 +45,15 @@ export default function Search() {
                 <input
                     style={{
                         background: "#7d7d7d15",
-                        width: "100%",
+                        width: "calc(100% - 12rem)",
                         height: "4rem",
                         padding: "0 2rem",
                         color: "inherit",
                     }}
                     type="Search"
-                    placeholder="Search Sura, Phrase or numbers(Sura:Aya, Page, Juz, Hizb)"
+                    placeholder="Search Sura by Name or Number"
                 />
+                <Spacer />
                 <Button
                     onClick={() => {
                         navigate(-1);
@@ -62,8 +63,8 @@ export default function Search() {
                 </Button>
             </AppBar>
             <Main>
-                <Container maxWidth="md">
-                    <h2 style={{ margin: "1rem", fontSize: "4rem" }}>
+                <Container maxWidth="md" style={{ marginBottom: "2rem" }}>
+                    <h2 style={{ marginBottom: "0", fontSize: "4rem" }}>
                         Surahs List
                     </h2>
                     <Hr marginTopBottom={2} />

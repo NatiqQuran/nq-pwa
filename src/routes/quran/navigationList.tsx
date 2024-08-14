@@ -1,9 +1,27 @@
-import React from "react";
-import { List, ListItem, Button, Spacer, Row, Chekbox, Hr } from "@yakad/ui";
+import React, { useEffect } from "react";
+import {
+    List,
+    ListItem,
+    Button,
+    Spacer,
+    Row,
+    Loading,
+    Chekbox,
+    Hr,
+} from "@yakad/ui";
 import { QuranConfigProps } from ".";
+import { useFetch } from "@yakad/lib";
 
 interface CollapseList {
     [n: number]: boolean;
+}
+
+interface TranslationInList {
+    uuid: string;
+    language: string;
+    release_date: string | null;
+    source: string;
+    approved: boolean;
 }
 
 export default function NavigationList(props: {
@@ -17,6 +35,17 @@ export default function NavigationList(props: {
             ...object,
             [index]: object[index] ? !object[index] : true,
         }));
+
+    const translationListFetch = useFetch<TranslationInList[]>(
+        process.env.REACT_APP_API_URL + `/translation?mushaf=hafs`,
+        {
+            method: "GET",
+        }
+    );
+
+    useEffect(() => {
+        translationListFetch.send();
+    }, []);
 
     return (
         <List direction="column">
@@ -191,10 +220,43 @@ export default function NavigationList(props: {
                                 defaultChecked={props.config.translationView}
                                 onChange={(e) =>
                                     props.setConfig({
+                                        ...props.config,
                                         translationView: e.target.checked,
                                     })
                                 }
                             />
+                        </Row>
+                        <Row>
+                            <span>Translator:</span>
+                            <Spacer />
+                            {translationListFetch.isResponseBodyReady ? (
+                                <select
+                                    name="translation"
+                                    defaultValue={
+                                        props.config.translatorUUID
+                                            ? props.config.translatorUUID
+                                            : undefined
+                                    }
+                                    onChange={(e) =>
+                                        props.setConfig({
+                                            ...props.config,
+                                            translatorUUID: e.target.value,
+                                        })
+                                    }
+                                >
+                                    {translationListFetch.responseBody.map(
+                                        (translation) => (
+                                            <option value={translation.uuid}>
+                                                {translation.source +
+                                                    " " +
+                                                    translation.language}
+                                            </option>
+                                        )
+                                    )}
+                                </select>
+                            ) : (
+                                <Loading />
+                            )}
                         </Row>
                     </ListItem>
                 </List>

@@ -13,11 +13,13 @@ import { SurahProps } from "./text";
 
 export interface QuranConfigProps {
     translationView: boolean;
+    translatorUUID: string | undefined;
 }
 
 export default function Quran() {
     const [config, setConfig] = React.useState<QuranConfigProps>({
         translationView: true,
+        translatorUUID: undefined,
     });
     const setConfigFromChild = (data: QuranConfigProps) => {
         setConfig(data);
@@ -33,7 +35,11 @@ export default function Quran() {
 
     const translationFetch = useFetch<TranslationProps>(
         process.env.REACT_APP_API_URL +
-            `/translation/b2ac38a8-c123-4f02-a558-508d414a0e54?surah_uuid=${id}`,
+            `/translation/${
+                config.translatorUUID
+                    ? config.translatorUUID
+                    : "b2ac38a8-c123-4f02-a558-508d414a0e54"
+            }?surah_uuid=${id}`,
         {
             method: "GET",
         }
@@ -42,13 +48,10 @@ export default function Quran() {
     useEffect(() => {
         surahFetch.send();
         translationFetch.send();
-    }, []);
+    }, [config.translatorUUID]);
 
     const appbarName = surahFetch.isResponseBodyReady
-        ? "Quran " +
-          surahFetch.responseBody.surah_number +
-          ":" +
-          surahFetch.responseBody.surah_name
+        ? "Quran " + surahFetch.responseBody.surah_number + ":"
         : "Quran";
 
     return (

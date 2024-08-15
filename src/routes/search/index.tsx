@@ -68,9 +68,9 @@ export default function Search() {
                         Surahs List
                     </h2>
                     <Hr marginTopBottom={2} />
-                    <GridContainer>
-                        {fetch.isResponseBodyReady ? (
-                            fetch.responseBody.map((item, _index) => (
+                    {fetch.isResponseBodyReady ? (
+                        <GridContainer>
+                            {fetch.responseBody.map((item, _index) => (
                                 <GridItem xl={4} md={6} xs={12}>
                                     <Link to={`/quran/${item.uuid}`}>
                                         <Card>
@@ -109,11 +109,11 @@ export default function Search() {
                                         </Card>
                                     </Link>
                                 </GridItem>
-                            ))
-                        ) : (
-                            <Loading size="large" style={{ margin: "auto" }} />
-                        )}
-                    </GridContainer>
+                            ))}
+                        </GridContainer>
+                    ) : (
+                        <Loading size="large" />
+                    )}
                 </Container>
             </Main>
         </Page>

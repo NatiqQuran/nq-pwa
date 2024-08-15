@@ -14,7 +14,7 @@ import { SurahProps } from "./text";
 export interface QuranConfigProps {
     surahUUID: string;
     translationView: boolean;
-    translatorUUID: string | undefined;
+    translationUUID: string | undefined;
 }
 
 export default function Quran() {
@@ -24,15 +24,14 @@ export default function Quran() {
     const [config, setConfig] = React.useState<QuranConfigProps>({
         surahUUID: id as string,
         translationView: true,
-        translatorUUID: undefined,
+        translationUUID: undefined,
     });
     const setConfigFromChild = (data: QuranConfigProps) => {
         setConfig(data);
     };
 
     const surahFetch = useFetch<SurahProps>(
-        process.env.REACT_APP_API_URL +
-            `/surah/${config.surahUUID}?mushaf=hafs`,
+        process.env.REACT_APP_API_URL + `/surah/${config.surahUUID}`,
         {
             method: "GET",
         }
@@ -40,19 +39,18 @@ export default function Quran() {
     const translationFetch = useFetch<TranslationProps>(
         process.env.REACT_APP_API_URL +
             `/translation/${
-                config.translatorUUID
-                    ? config.translatorUUID
+                config.translationUUID
+                    ? config.translationUUID
                     : "5f859558-fdb2-49db-afa4-6a0286932121"
-            }?surah_uuid=${id}`,
+            }?surah_uuid=${config.surahUUID}`,
         {
             method: "GET",
         }
     );
 
     useEffect(() => {
-        surahFetch.send();
         translationFetch.send();
-    }, [config.translatorUUID]);
+    }, [config.translationUUID]);
 
     useEffect(() => {
         navigate("/quran/" + config.surahUUID);
@@ -80,7 +78,9 @@ export default function Quran() {
             }
         >
             {surahFetch.isResponseBodyReady &&
-            translationFetch.isResponseBodyReady ? (
+            translationFetch.isResponseBodyReady &&
+            !surahFetch.error &&
+            !translationFetch.error ? (
                 <>
                     <SurahHeader
                         config={config}
@@ -94,7 +94,7 @@ export default function Quran() {
                     />
                 </>
             ) : (
-                <Loading size="large" variant="scaleOut" />
+                <Loading size="extraLarge" variant="scaleOut" />
             )}
         </Xpanel>
     );

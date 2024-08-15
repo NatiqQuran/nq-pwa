@@ -245,17 +245,16 @@ export default function NavigationList(props: {
                             {translationListFetch.isResponseBodyReady ? (
                                 <Select
                                     variant="filled"
-                                    name="translation"
                                     placeholder="Translator"
                                     defaultValue={
-                                        props.config.translatorUUID
-                                            ? props.config.translatorUUID
+                                        props.config.translationUUID
+                                            ? props.config.translationUUID
                                             : undefined
                                     }
                                     onChange={(e) =>
                                         props.setConfig({
                                             ...props.config,
-                                            translatorUUID: e.target.value,
+                                            translationUUID: e.target.value,
                                         })
                                     }
                                 >

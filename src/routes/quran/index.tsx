@@ -94,7 +94,7 @@ export default function Quran() {
                     />
                 </>
             ) : (
-                <Loading size="large" variant="scaleOut" />
+                <Loading size="extraLarge" variant="scaleOut" />
             )}
         </Xpanel>
     );

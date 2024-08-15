@@ -8,6 +8,8 @@ import {
     Loading,
     Chekbox,
     Hr,
+    Select,
+    Stack,
 } from "@yakad/ui";
 import { QuranConfigProps } from ".";
 import { useFetch } from "@yakad/lib";
@@ -23,6 +25,13 @@ interface TranslationInList {
     source: string;
     approved: boolean;
 }
+interface SurahListProps {
+    name: string;
+    uuid: string;
+    number: number;
+    period: "makki" | "madani" | null;
+    number_of_ayahs: number;
+}
 
 export default function NavigationList(props: {
     config: QuranConfigProps;
@@ -36,6 +45,12 @@ export default function NavigationList(props: {
             [index]: object[index] ? !object[index] : true,
         }));
 
+    const surahListFetch = useFetch<SurahListProps[]>(
+        `${process.env.REACT_APP_API_URL}/surah?mushaf=hafs`,
+        {
+            method: "GET",
+        }
+    );
     const translationListFetch = useFetch<TranslationInList[]>(
         process.env.REACT_APP_API_URL + `/translation?mushaf=hafs`,
         {
@@ -44,6 +59,7 @@ export default function NavigationList(props: {
     );
 
     useEffect(() => {
+        surahListFetch.send();
         translationListFetch.send();
     }, []);
 
@@ -59,45 +75,42 @@ export default function NavigationList(props: {
                     <Spacer />
                 </Button>
                 <List
-                    collapsed={!collapsedList[0]}
+                    collapsed={collapsedList[0]}
                     direction="column"
                     style={{ paddingInlineStart: "2rem" }}
                 >
                     <ListItem>
-                        <Row style={{ height: "3.2rem" }}>
-                            <span>Surah:</span>
-                            <Spacer />
-                            <select>
-                                <option value="1">1 - الفاتحه</option>
-                                <option value="2">2 - </option>
-                                <option value="3">3 - </option>
-                                <option value="4">4 - </option>
-                            </select>
-                        </Row>
-                    </ListItem>
-                    <ListItem>
-                        <Row style={{ height: "3.2rem" }}>
-                            <span>Verse:</span>
-                            <Spacer />
-                            <select name="verse">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                            </select>
-                        </Row>
+                        {surahListFetch.isResponseBodyReady ? (
+                            <Select
+                                variant="filled"
+                                name="surahUUID"
+                                placeholder="Surah"
+                                defaultValue={
+                                    props.config.surahUUID
+                                        ? props.config.surahUUID
+                                        : undefined
+                                }
+                                onChange={(e) =>
+                                    props.setConfig({
+                                        ...props.config,
+                                        surahUUID: e.target.value,
+                                    })
+                                }
+                            >
+                                {surahListFetch.responseBody.map((surah) => (
+                                    <option value={surah.uuid}>
+                                        {surah.number + " - " + surah.name}
+                                    </option>
+                                ))}
+                            </Select>
+                        ) : (
+                            <Loading />
+                        )}
                     </ListItem>
                 </List>
             </ListItem>
 
-            <ListItem>
+            <ListItem style={{ display: "none" }}>
                 <Button
                     size="medium"
                     borderStyle="semi"
@@ -106,7 +119,7 @@ export default function NavigationList(props: {
                     Rsitation
                 </Button>
                 <List
-                    collapsed={!collapsedList[1]}
+                    collapsed={collapsedList[1]}
                     direction="column"
                     style={{ paddingInlineStart: "2rem" }}
                 >
@@ -149,7 +162,7 @@ export default function NavigationList(props: {
                 </List>
             </ListItem>
 
-            <ListItem>
+            <ListItem style={{ display: "none" }}>
                 <Button
                     size="medium"
                     borderStyle="semi"
@@ -158,7 +171,7 @@ export default function NavigationList(props: {
                     Arabic Text
                 </Button>
                 <List
-                    collapsed={!collapsedList[2]}
+                    collapsed={collapsedList[2]}
                     direction="column"
                     style={{ paddingInlineStart: "2rem" }}
                 >
@@ -206,32 +219,34 @@ export default function NavigationList(props: {
                     Translation
                 </Button>
                 <List
-                    collapsed={!collapsedList[3]}
+                    collapsed={collapsedList[3]}
                     direction="column"
                     style={{ paddingInlineStart: "2rem" }}
                 >
                     <ListItem>
-                        <Row style={{ height: "3.2rem" }}>
-                            <span>Show:</span>
-                            <Spacer />
-                            <input
-                                type="checkbox"
-                                name="translationView"
-                                defaultChecked={props.config.translationView}
-                                onChange={(e) =>
-                                    props.setConfig({
-                                        ...props.config,
-                                        translationView: e.target.checked,
-                                    })
-                                }
-                            />
-                        </Row>
-                        <Row>
-                            <span>Translator:</span>
-                            <Spacer />
+                        <Stack>
+                            <Row style={{ height: "3.2rem" }}>
+                                <span>Show:</span>
+                                <Spacer />
+                                <input
+                                    type="checkbox"
+                                    name="translationView"
+                                    defaultChecked={
+                                        props.config.translationView
+                                    }
+                                    onChange={(e) =>
+                                        props.setConfig({
+                                            ...props.config,
+                                            translationView: e.target.checked,
+                                        })
+                                    }
+                                />
+                            </Row>
                             {translationListFetch.isResponseBodyReady ? (
-                                <select
+                                <Select
+                                    variant="filled"
                                     name="translation"
+                                    placeholder="Translator"
                                     defaultValue={
                                         props.config.translatorUUID
                                             ? props.config.translatorUUID
@@ -253,11 +268,11 @@ export default function NavigationList(props: {
                                             </option>
                                         )
                                     )}
-                                </select>
+                                </Select>
                             ) : (
                                 <Loading />
                             )}
-                        </Row>
+                        </Stack>
                     </ListItem>
                 </List>
             </ListItem>

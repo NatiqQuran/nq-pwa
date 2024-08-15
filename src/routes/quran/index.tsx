@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useFetch } from "@yakad/lib";
 import { Button, Loading } from "@yakad/ui";
 
@@ -12,12 +12,17 @@ import SurahText, { TranslationProps } from "./text";
 import { SurahProps } from "./text";
 
 export interface QuranConfigProps {
+    surahUUID: string;
     translationView: boolean;
     translatorUUID: string | undefined;
 }
 
 export default function Quran() {
+    const { id } = useParams();
+    const navigate = useNavigate();
+
     const [config, setConfig] = React.useState<QuranConfigProps>({
+        surahUUID: id as string,
         translationView: true,
         translatorUUID: undefined,
     });
@@ -25,14 +30,13 @@ export default function Quran() {
         setConfig(data);
     };
 
-    const { id } = useParams();
     const surahFetch = useFetch<SurahProps>(
-        process.env.REACT_APP_API_URL + `/surah/${id}?mushaf=hafs`,
+        process.env.REACT_APP_API_URL +
+            `/surah/${config.surahUUID}?mushaf=hafs`,
         {
             method: "GET",
         }
     );
-
     const translationFetch = useFetch<TranslationProps>(
         process.env.REACT_APP_API_URL +
             `/translation/${
@@ -49,6 +53,12 @@ export default function Quran() {
         surahFetch.send();
         translationFetch.send();
     }, [config.translatorUUID]);
+
+    useEffect(() => {
+        navigate("/quran/" + config.surahUUID);
+        surahFetch.send();
+        translationFetch.send();
+    }, [config.surahUUID]);
 
     const appbarName = surahFetch.isResponseBodyReady
         ? "Quran " + surahFetch.responseBody.surah_number + ":"
@@ -84,7 +94,7 @@ export default function Quran() {
                     />
                 </>
             ) : (
-                <Loading size="large" />
+                <Loading size="large" variant="scaleOut" />
             )}
         </Xpanel>
     );

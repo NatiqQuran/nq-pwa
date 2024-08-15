@@ -42,7 +42,7 @@ export default function Quran() {
             `/translation/${
                 config.translatorUUID
                     ? config.translatorUUID
-                    : "b2ac38a8-c123-4f02-a558-508d414a0e54"
+                    : "5f859558-fdb2-49db-afa4-6a0286932121"
             }?surah_uuid=${id}`,
         {
             method: "GET",

@@ -7,7 +7,7 @@
         "@types/node": "16.18.104",
         "@types/react": "18.3.3",
         "@types/react-dom": "18.3.0",
-        "@yakad/lib": "1.0.1",
+        "@yakad/lib": "1.0.8",
         "@yakad/ui": "1.2.187-beta",
         "@yakad/x": "1.0.106-beta",
         "@yakad/symbols": "1.0.7",

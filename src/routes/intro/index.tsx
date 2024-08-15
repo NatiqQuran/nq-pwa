@@ -73,7 +73,9 @@ export default function Intro() {
                             variant="outlined"
                             icon={<Symbol icon="search" />}
                         >
-                            Search
+                            <DisplayOnScreen largerThan="xs">
+                                Search
+                            </DisplayOnScreen>
                         </Button>
                     </Link>
                 </Container>

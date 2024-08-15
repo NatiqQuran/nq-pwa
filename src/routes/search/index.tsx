@@ -1,4 +1,5 @@
 import { useFetch } from "@yakad/lib";
+import { useEffect } from "react";
 import {
     Page,
     Main,
@@ -14,7 +15,6 @@ import {
     Stack,
     Loading,
 } from "@yakad/ui";
-import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SurahPeriodIcon } from "components/SurahPeriodIcon";
 

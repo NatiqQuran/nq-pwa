@@ -1,49 +1,20 @@
 import React from "react";
 import { Container, Stack } from "@yakad/ui";
+import {
+    SurahViewProps,
+    AyahInsideSurahViewProps,
+    TranslationViewProps,
+    AyahInsideTranslationViewProps,
+} from "assets/ts/interface";
+
 import { QuranConfigProps } from ".";
-
-interface Verse {
-    number: number;
-    uuid: string;
-    sajdeh: null | "vajib" | "mustahab";
-    text: string;
-}
-export interface SurahProps {
-    surah_uuid: string;
-    surah_name: string;
-    surah_period: "makki" | "madani" | null;
-    surah_number: number;
-
-    bismillah_status: boolean;
-    bismillah_as_first_ayah: boolean;
-    bismillah_text: string | null;
-
-    ayahs: Verse[];
-}
-
-interface TranslationTextProps {
-    number: number;
-    surah_number: number;
-    text: string;
-    text_uuid: string;
-    uuid: string;
-}
-export interface TranslationProps {
-    language: string;
-    mushaf_uuid: string;
-    release_date: string | null;
-    source: string;
-    status: string;
-    translator_account_uuid: string;
-    ayahs: TranslationTextProps[];
-}
 
 const toArabic = (string: any) => string.toLocaleString("ar-EG");
 
 export default function SurahText(props: {
     config: QuranConfigProps;
-    surahData: SurahProps;
-    translationData: TranslationProps;
+    surahData: SurahViewProps;
+    translationData: TranslationViewProps;
 }) {
     return (
         <Container
@@ -92,7 +63,7 @@ function AyahBox(props: React.HTMLAttributes<HTMLDivElement>) {
     );
 }
 
-function AyahText(props: { ayah: Verse }) {
+function AyahText(props: { ayah: AyahInsideSurahViewProps }) {
     return (
         <span
             style={{
@@ -120,7 +91,9 @@ function AyahText(props: { ayah: Verse }) {
     );
 }
 
-function AyahTranslation(props: { translationText: TranslationTextProps }) {
+function AyahTranslation(props: {
+    translationText: AyahInsideTranslationViewProps;
+}) {
     return (
         <span
             style={{

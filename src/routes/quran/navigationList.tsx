@@ -6,31 +6,16 @@ import {
     Spacer,
     Row,
     Loading,
-    Chekbox,
-    Hr,
     Select,
     Stack,
 } from "@yakad/ui";
 import { QuranConfigProps } from ".";
 import { useFetch } from "@yakad/lib";
+import { getLangNameFromCode } from "../../assets/ts/langCode";
+import { SurahInListProps, TranslationInListProps } from "assets/ts/interface";
 
 interface CollapseList {
     [n: number]: boolean;
-}
-
-interface TranslationInList {
-    uuid: string;
-    language: string;
-    release_date: string | null;
-    source: string;
-    approved: boolean;
-}
-interface SurahListProps {
-    name: string;
-    uuid: string;
-    number: number;
-    period: "makki" | "madani" | null;
-    number_of_ayahs: number;
 }
 
 export default function NavigationList(props: {
@@ -45,13 +30,13 @@ export default function NavigationList(props: {
             [index]: object[index] ? !object[index] : true,
         }));
 
-    const surahListFetch = useFetch<SurahListProps[]>(
+    const surahListFetch = useFetch<SurahInListProps[]>(
         `${process.env.REACT_APP_API_URL}/surah?mushaf=hafs`,
         {
             method: "GET",
         }
     );
-    const translationListFetch = useFetch<TranslationInList[]>(
+    const translationListFetch = useFetch<TranslationInListProps[]>(
         process.env.REACT_APP_API_URL + `/translation?mushaf=hafs`,
         {
             method: "GET",
@@ -104,7 +89,7 @@ export default function NavigationList(props: {
                                 ))}
                             </Select>
                         ) : (
-                            <Loading />
+                            <Loading variant="dots" />
                         )}
                     </ListItem>
                 </List>
@@ -261,15 +246,18 @@ export default function NavigationList(props: {
                                     {translationListFetch.responseBody.map(
                                         (translation) => (
                                             <option value={translation.uuid}>
-                                                {translation.source +
-                                                    " " +
-                                                    translation.language}
+                                                {getLangNameFromCode(
+                                                    translation.language
+                                                ) +
+                                                    " - " +
+                                                    translation.translator
+                                                        .username}
                                             </option>
                                         )
                                     )}
                                 </Select>
                             ) : (
-                                <Loading />
+                                <Loading variant="dots" />
                             )}
                         </Stack>
                     </ListItem>

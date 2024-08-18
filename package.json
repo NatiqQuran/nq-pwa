@@ -8,7 +8,7 @@
         "@types/react": "18.3.3",
         "@types/react-dom": "18.3.0",
         "@yakad/lib": "1.0.8",
-        "@yakad/ui": "1.2.188-beta",
+        "@yakad/ui": "1.2.190-beta",
         "@yakad/x": "1.0.106-beta",
         "@yakad/symbols": "1.0.7",
         "react": "18.3.1",

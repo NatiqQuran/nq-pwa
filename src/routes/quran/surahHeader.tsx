@@ -1,14 +1,14 @@
 import { Spacer, Container, Stack, Row } from "@yakad/ui";
-import { SurahProps } from "./text";
 import { QuranConfigProps } from ".";
 import { SurahPeriodIcon } from "../../components/SurahPeriodIcon";
+import { SurahViewProps } from "assets/ts/interface";
 
 const toArabic = (input: any) => input.toLocaleString("ar-EG");
 
 export default function SurahHeader(props: {
     config: QuranConfigProps;
-    surahData: SurahProps;
-    bismilaaaahTranslation: string;
+    surahData: SurahViewProps;
+    bismillahTranslation: string;
 }) {
     return (
         <Container
@@ -65,7 +65,7 @@ export default function SurahHeader(props: {
                                     opacity: "0.8",
                                 }}
                             >
-                                {props.bismilaaaahTranslation}
+                                {props.bismillahTranslation}
                                 {" (" + props.surahData.ayahs[0].number + ")"}
                             </h4>
                         ) : null}
@@ -92,7 +92,7 @@ export default function SurahHeader(props: {
                                     opacity: "0.8",
                                 }}
                             >
-                                {props.bismilaaaahTranslation}
+                                {props.bismillahTranslation}
                             </h4>
                         ) : null}
                     </>

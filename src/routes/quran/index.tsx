@@ -1,15 +1,11 @@
-import React, { useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { useFetch } from "@yakad/lib";
-import { Button, Loading } from "@yakad/ui";
+import React from "react";
+import { Link, useParams } from "react-router-dom";
+import { Button } from "@yakad/ui";
+import { Xpanel } from "@yakad/x";
+import Symbol from "@yakad/symbols";
 
 import NavigationList from "./navigationList";
-import Symbol from "@yakad/symbols";
-import { Xpanel } from "@yakad/x";
-
-import SurahHeader from "./surahHeader";
-import SurahText, { TranslationProps } from "./text";
-import { SurahProps } from "./text";
+import Quran from "./quran";
 
 export interface QuranConfigProps {
     surahUUID: string;
@@ -17,9 +13,8 @@ export interface QuranConfigProps {
     translationUUID: string | undefined;
 }
 
-export default function Quran() {
+export default function QuranPage() {
     const { id } = useParams();
-    const navigate = useNavigate();
 
     const [config, setConfig] = React.useState<QuranConfigProps>({
         surahUUID: id as string,
@@ -30,41 +25,9 @@ export default function Quran() {
         setConfig(data);
     };
 
-    const surahFetch = useFetch<SurahProps>(
-        process.env.REACT_APP_API_URL + `/surah/${config.surahUUID}`,
-        {
-            method: "GET",
-        }
-    );
-    const translationFetch = useFetch<TranslationProps>(
-        process.env.REACT_APP_API_URL +
-            `/translation/${
-                config.translationUUID
-                    ? config.translationUUID
-                    : "5f859558-fdb2-49db-afa4-6a0286932121"
-            }?surah_uuid=${config.surahUUID}`,
-        {
-            method: "GET",
-        }
-    );
-
-    useEffect(() => {
-        translationFetch.send();
-    }, [config.translationUUID]);
-
-    useEffect(() => {
-        navigate("/quran/" + config.surahUUID);
-        surahFetch.send();
-        translationFetch.send();
-    }, [config.surahUUID]);
-
-    const appbarName = surahFetch.isResponseBodyReady
-        ? "Quran " + surahFetch.responseBody.surah_number + ":"
-        : "Quran";
-
     return (
         <Xpanel
-            name={appbarName}
+            name="Quran"
             navigationChildren={
                 <NavigationList
                     config={config}
@@ -77,25 +40,7 @@ export default function Quran() {
                 </Link>
             }
         >
-            {surahFetch.isResponseBodyReady &&
-            translationFetch.isResponseBodyReady &&
-            !surahFetch.error &&
-            !translationFetch.error ? (
-                <>
-                    <SurahHeader
-                        config={config}
-                        surahData={surahFetch.responseBody}
-                        bismilaaaahTranslation="tewst"
-                    />
-                    <SurahText
-                        config={config}
-                        surahData={surahFetch.responseBody}
-                        translationData={translationFetch.responseBody}
-                    />
-                </>
-            ) : (
-                <Loading size="extraLarge" variant="scaleOut" />
-            )}
+            <Quran config={config} />
         </Xpanel>
     );
 }

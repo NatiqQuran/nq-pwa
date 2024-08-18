@@ -89,7 +89,7 @@ export default function NavigationList(props: {
                                 ))}
                             </Select>
                         ) : (
-                            <Loading />
+                            <Loading variant="dots" />
                         )}
                     </ListItem>
                 </List>
@@ -257,7 +257,7 @@ export default function NavigationList(props: {
                                     )}
                                 </Select>
                             ) : (
-                                <Loading />
+                                <Loading variant="dots" />
                             )}
                         </Stack>
                     </ListItem>

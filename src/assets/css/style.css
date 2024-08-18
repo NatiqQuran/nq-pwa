@@ -1,7 +1,7 @@
 @font-face {
     font-family: "Hafs";
-    src: local("Hafs"), url("../fonts/hafs.woff") format("woff"),
-        url("../fonts/hafs.woff2") format("woff2");
+    src: local("Hafs"), url("../font/hafs.woff") format("woff"),
+        url("../font/hafs.woff2") format("woff2");
 }
 
 html {

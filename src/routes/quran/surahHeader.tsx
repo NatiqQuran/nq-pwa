@@ -1,13 +1,13 @@
 import { Spacer, Container, Stack, Row } from "@yakad/ui";
-import { SurahProps } from "./text";
 import { QuranConfigProps } from ".";
 import { SurahPeriodIcon } from "../../components/SurahPeriodIcon";
+import { SurahViewProps } from "assets/ts/interface";
 
 const toArabic = (input: any) => input.toLocaleString("ar-EG");
 
 export default function SurahHeader(props: {
     config: QuranConfigProps;
-    surahData: SurahProps;
+    surahData: SurahViewProps;
     bismillahTranslation: string;
 }) {
     return (

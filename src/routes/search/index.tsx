@@ -1,5 +1,6 @@
-import { useFetch } from "@yakad/lib";
 import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useFetch } from "@yakad/lib";
 import {
     Page,
     Main,
@@ -15,20 +16,12 @@ import {
     Stack,
     Loading,
 } from "@yakad/ui";
-import { Link, useNavigate } from "react-router-dom";
 import { SurahPeriodIcon } from "components/SurahPeriodIcon";
-
-interface SuraItems {
-    name: string;
-    uuid: string;
-    number: number;
-    period: "makki" | "madani" | null;
-    number_of_ayahs: number;
-}
+import { SurahInListProps } from "assets/ts/interface";
 
 export default function Search() {
     const navigate = useNavigate();
-    const fetch = useFetch<SuraItems[]>(
+    const fetch = useFetch<SurahInListProps[]>(
         `${process.env.REACT_APP_API_URL}/surah?mushaf=hafs`,
         {
             method: "GET",

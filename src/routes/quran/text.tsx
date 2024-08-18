@@ -1,56 +1,20 @@
 import React from "react";
 import { Container, Stack } from "@yakad/ui";
+import {
+    SurahViewProps,
+    AyahInsideSurahViewProps,
+    TranslationViewProps,
+    AyahInsideTranslationViewProps,
+} from "assets/ts/interface";
+
 import { QuranConfigProps } from ".";
-
-interface Verse {
-    number: number;
-    uuid: string;
-    sajdeh: null | "vajib" | "mustahab";
-    text: string;
-}
-export interface SurahProps {
-    surah_uuid: string;
-    surah_name: string;
-    surah_period: "makki" | "madani" | null;
-    surah_number: number;
-
-    bismillah_status: boolean;
-    bismillah_as_first_ayah: boolean;
-    bismillah_text: string | null;
-
-    ayahs: Verse[];
-}
-
-interface TranslatorProps {
-    account_uuid: string;
-    username: string;
-    first_name: string | null;
-    last_name: string | null;
-}
-interface TranslationAyahProps {
-    uuid: string;
-    text_uuid: string;
-    number: number;
-    surah_number: number;
-    text: string;
-}
-export interface TranslationProps {
-    mushaf_uuid: string;
-    language: string;
-    release_date: string | null;
-    source: string;
-    status: string;
-    bismillah_text: string;
-    translator: TranslatorProps;
-    ayahs: TranslationAyahProps[];
-}
 
 const toArabic = (string: any) => string.toLocaleString("ar-EG");
 
 export default function SurahText(props: {
     config: QuranConfigProps;
-    surahData: SurahProps;
-    translationData: TranslationProps;
+    surahData: SurahViewProps;
+    translationData: TranslationViewProps;
 }) {
     return (
         <Container
@@ -99,7 +63,7 @@ function AyahBox(props: React.HTMLAttributes<HTMLDivElement>) {
     );
 }
 
-function AyahText(props: { ayah: Verse }) {
+function AyahText(props: { ayah: AyahInsideSurahViewProps }) {
     return (
         <span
             style={{
@@ -127,7 +91,9 @@ function AyahText(props: { ayah: Verse }) {
     );
 }
 
-function AyahTranslation(props: { translationText: TranslationAyahProps }) {
+function AyahTranslation(props: {
+    translationText: AyahInsideTranslationViewProps;
+}) {
     return (
         <span
             style={{

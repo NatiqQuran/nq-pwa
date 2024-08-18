@@ -6,41 +6,16 @@ import {
     Spacer,
     Row,
     Loading,
-    Chekbox,
-    Hr,
     Select,
     Stack,
 } from "@yakad/ui";
 import { QuranConfigProps } from ".";
 import { useFetch } from "@yakad/lib";
-import langCodeList from "../../assets/json/langCodeList.json";
+import { getLangNameFromCode } from "../../assets/ts/langCode";
+import { SurahInListProps, TranslationInListProps } from "assets/ts/interface";
 
 interface CollapseList {
     [n: number]: boolean;
-}
-
-interface TranslatorProps {
-    account_uuid: string;
-    username: string;
-    first_name: string | null;
-    last_name: string | null;
-}
-interface TranslationInList {
-    uuid: string;
-    language: "en";
-    // TO DO type is chert
-    release_date: string | null;
-    source: string;
-    approved: boolean;
-    bismillah_text: string;
-    translator: TranslatorProps;
-}
-interface SurahListProps {
-    name: string;
-    uuid: string;
-    number: number;
-    period: "makki" | "madani" | null;
-    number_of_ayahs: number;
 }
 
 export default function NavigationList(props: {
@@ -55,13 +30,13 @@ export default function NavigationList(props: {
             [index]: object[index] ? !object[index] : true,
         }));
 
-    const surahListFetch = useFetch<SurahListProps[]>(
+    const surahListFetch = useFetch<SurahInListProps[]>(
         `${process.env.REACT_APP_API_URL}/surah?mushaf=hafs`,
         {
             method: "GET",
         }
     );
-    const translationListFetch = useFetch<TranslationInList[]>(
+    const translationListFetch = useFetch<TranslationInListProps[]>(
         process.env.REACT_APP_API_URL + `/translation?mushaf=hafs`,
         {
             method: "GET",
@@ -271,9 +246,9 @@ export default function NavigationList(props: {
                                     {translationListFetch.responseBody.map(
                                         (translation) => (
                                             <option value={translation.uuid}>
-                                                {langCodeList[
+                                                {getLangNameFromCode(
                                                     translation.language
-                                                ] +
+                                                ) +
                                                     " - " +
                                                     translation.translator
                                                         .username}

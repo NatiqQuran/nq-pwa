@@ -21,21 +21,28 @@ export interface SurahProps {
     ayahs: Verse[];
 }
 
-interface TranslationTextProps {
+interface TranslatorProps {
+    account_uuid: string;
+    username: string;
+    first_name: string | null;
+    last_name: string | null;
+}
+interface TranslationAyahProps {
+    uuid: string;
+    text_uuid: string;
     number: number;
     surah_number: number;
     text: string;
-    text_uuid: string;
-    uuid: string;
 }
 export interface TranslationProps {
-    language: string;
     mushaf_uuid: string;
+    language: string;
     release_date: string | null;
     source: string;
     status: string;
-    translator_account_uuid: string;
-    ayahs: TranslationTextProps[];
+    bismillah_text: string;
+    translator: TranslatorProps;
+    ayahs: TranslationAyahProps[];
 }
 
 const toArabic = (string: any) => string.toLocaleString("ar-EG");
@@ -120,7 +127,7 @@ function AyahText(props: { ayah: Verse }) {
     );
 }
 
-function AyahTranslation(props: { translationText: TranslationTextProps }) {
+function AyahTranslation(props: { translationText: TranslationAyahProps }) {
     return (
         <span
             style={{

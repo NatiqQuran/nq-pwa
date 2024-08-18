@@ -13,17 +13,27 @@ import {
 } from "@yakad/ui";
 import { QuranConfigProps } from ".";
 import { useFetch } from "@yakad/lib";
+import langCodeList from "../../assets/json/langCodeList.json";
 
 interface CollapseList {
     [n: number]: boolean;
 }
 
+interface TranslatorProps {
+    account_uuid: string;
+    username: string;
+    first_name: string | null;
+    last_name: string | null;
+}
 interface TranslationInList {
     uuid: string;
-    language: string;
+    language: "en";
+    // TO DO type is chert
     release_date: string | null;
     source: string;
     approved: boolean;
+    bismillah_text: string;
+    translator: TranslatorProps;
 }
 interface SurahListProps {
     name: string;
@@ -261,9 +271,12 @@ export default function NavigationList(props: {
                                     {translationListFetch.responseBody.map(
                                         (translation) => (
                                             <option value={translation.uuid}>
-                                                {translation.source +
-                                                    " " +
-                                                    translation.language}
+                                                {langCodeList[
+                                                    translation.language
+                                                ] +
+                                                    " - " +
+                                                    translation.translator
+                                                        .username}
                                             </option>
                                         )
                                     )}

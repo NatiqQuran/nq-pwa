@@ -85,7 +85,9 @@ export default function Quran() {
                     <SurahHeader
                         config={config}
                         surahData={surahFetch.responseBody}
-                        bismilaaaahTranslation="tewst"
+                        bismillahTranslation={
+                            translationFetch.responseBody.bismillah_text
+                        }
                     />
                     <SurahText
                         config={config}

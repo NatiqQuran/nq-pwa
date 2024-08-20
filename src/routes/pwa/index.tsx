@@ -1,5 +1,4 @@
-import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
     AppBar,
     Container,
@@ -9,9 +8,10 @@ import {
     SvgIcon,
     Spacer,
 } from "@yakad/ui";
-import { ReactComponent as Logo } from "../../assets/svg/logoicon.svg";
-import { IntroDialogBox } from "routes/intro";
 import Symbol from "@yakad/symbols";
+
+import { ReactComponent as Logo } from "../../assets/svg/logoicon.svg";
+import { IntroGetStartBox } from "routes/intro";
 
 const pwaIntroPagePassed = () => {
     localStorage.setItem("pwaIntroPassed", "true");
@@ -20,7 +20,6 @@ const pwaIntroPagePassed = () => {
 export default function Pwa() {
     return (
         <Page>
-            {/* <Navigate replace to="/" /> */}
             <AppBar>
                 <SvgIcon size={5}>
                     <Logo />
@@ -60,7 +59,7 @@ export default function Pwa() {
                     <SvgIcon size={15}>
                         <Logo />
                     </SvgIcon>
-                    <IntroDialogBox />
+                    <IntroGetStartBox />
                 </Container>
             </Main>
         </Page>

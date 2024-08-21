@@ -10,7 +10,7 @@
         "@yakad/lib": "1.0.8",
         "@yakad/ui": "1.2.190-beta",
         "@yakad/x": "1.0.106-beta",
-        "@yakad/symbols": "1.0.7",
+        "@yakad/symbols": "1.0.8",
         "react": "18.3.1",
         "react-dom": "18.3.1",
         "react-scripts": "5.0.1",

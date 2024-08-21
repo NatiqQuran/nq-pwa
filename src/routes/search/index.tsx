@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFetch } from "@yakad/lib";
 import {
@@ -20,15 +20,52 @@ import { SurahPeriodIcon } from "components/SurahPeriodIcon";
 import { SurahInListProps } from "assets/ts/interface";
 
 export default function Search() {
+    const surahList = useFetch<SurahInListProps[]>(
+        `${process.env.REACT_APP_API_URL}/surah?mushaf=hafs`,
+        {
+            method: "GET",
+        }
+    );
+
+    useEffect(() => {
+        surahList.send();
+    }, []);
+    useEffect(() => {
+        if (surahList.isResponseBodyReady) filterBySearchHandler("");
+    }, [surahList.isResponseBodyReady]);
+
+    const [searchInput, setSearchInput] = useState<string>("");
+    const [filteredResults, setFilteredResults] = useState<
+        Array<SurahInListProps>
+    >([]);
+
+    const filterBySearchHandler = (searchValue: string) => {
+        setSearchInput(searchValue);
+        const filteredData =
+            searchValue !== ""
+                ? surahList.responseBody.filter((surah) => {
+                      return Object.values(surah)
+                          .join("")
+                          .toLowerCase()
+                          .includes(searchValue.toLowerCase());
+                  })
+                : surahList.responseBody;
+        setFilteredResults(filteredData);
+    };
+
     return (
         <Page>
-            <SearchAppBar />
-            <SearchMain />
+            <SearchAppBar onSearch={filterBySearchHandler} />
+            <SearchMain
+                searchInput={searchInput}
+                loading={!surahList.isResponseBodyReady || !filteredResults}
+                surahList={filteredResults}
+            />
         </Page>
     );
 }
 
-function SearchAppBar() {
+function SearchAppBar(props: { onSearch: any }) {
     const navigate = useNavigate();
 
     return (
@@ -43,6 +80,7 @@ function SearchAppBar() {
                 }}
                 type="Search"
                 placeholder="Search Sura by Name or Number"
+                onChange={(e) => props.onSearch(e.target.value)}
             />
             <Spacer />
             <Button
@@ -56,18 +94,11 @@ function SearchAppBar() {
     );
 }
 
-function SearchMain() {
-    const surahList = useFetch<SurahInListProps[]>(
-        `${process.env.REACT_APP_API_URL}/surah?mushaf=hafs`,
-        {
-            method: "GET",
-        }
-    );
-
-    useEffect(() => {
-        surahList.send();
-    }, []);
-
+function SearchMain(props: {
+    searchInput: string;
+    loading: boolean;
+    surahList: SurahInListProps[];
+}) {
     return (
         <Main>
             <Container maxWidth="md" style={{ marginBottom: "2rem" }}>
@@ -75,16 +106,23 @@ function SearchMain() {
                     Surahs List
                 </h2>
                 <Hr marginTopBottom={2} />
-                {surahList.isResponseBodyReady ? (
+                {props.loading ? (
+                    <Loading size="large" />
+                ) : props.surahList.length == 0 ? (
+                    <div style={{ margin: "10%" }}>
+                        <h3 style={{ textAlign: "center" }}>
+                            Searching: {props.searchInput}
+                        </h3>
+                        <h2 style={{ textAlign: "center" }}>Not Found</h2>
+                    </div>
+                ) : (
                     <GridContainer>
-                        {surahList.responseBody.map((surah) => (
+                        {props.surahList.map((surah) => (
                             <GridItem xl={4} md={6} xs={12}>
                                 <SurahLinkBox surah={surah} />
                             </GridItem>
                         ))}
                     </GridContainer>
-                ) : (
-                    <Loading size="large" />
                 )}
             </Container>
         </Main>

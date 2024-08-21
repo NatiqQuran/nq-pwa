@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useFetch } from "@yakad/lib";
 import {
     List,
     ListItem,
@@ -9,8 +10,8 @@ import {
     Select,
     Stack,
 } from "@yakad/ui";
+
 import { QuranConfigProps } from ".";
-import { useFetch } from "@yakad/lib";
 import { getLangNameFromCode } from "../../assets/ts/langCode";
 import { SurahInListProps, TranslationInListProps } from "assets/ts/interface";
 

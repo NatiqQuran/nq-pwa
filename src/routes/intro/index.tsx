@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import {
     Main,
     Page,
@@ -14,102 +13,82 @@ import {
     DisplayOnScreen,
     ClickAwayListener,
     Footer,
-    Row,
-    Container,
 } from "@yakad/ui";
 import { Xbackground, XgetStart } from "@yakad/x";
-import { ReactComponent as LogoIcon } from "../../assets/svg/logoicon.svg";
 import Symbol from "@yakad/symbols";
 
-const navListItems: Array<React.ReactElement> = [
-    <ListItem>
-        <Link to="search">
-            <Button variant="link" style={{ width: "100%" }}>
-                Quran
-            </Button>
-        </Link>
-    </ListItem>,
-    <ListItem>
-        <a href="https://blog.natiq.net" target="_blank">
-            <Button variant="link" style={{ width: "100%" }}>
-                Blog
-            </Button>
-        </a>
-    </ListItem>,
-];
+import { ReactComponent as LogoIcon } from "../../assets/svg/logoicon.svg";
 
 export default function Intro() {
-    const [navOpen, setNavOpen] = useState<boolean>(false);
-
     return (
         <Page>
-            <AppBar>
-                <Container maxWidth="xl">
-                    <DisplayOnScreen smallerOrEqualTo="md">
-                        <Button
-                            icon={<Symbol icon="menu" />}
-                            onClick={() => setNavOpen(true)}
-                        />
-                    </DisplayOnScreen>
-                    <SvgIcon size={5}>
-                        <LogoIcon />
-                    </SvgIcon>
-                    <h1
-                        style={{
-                            fontFamily: "arial",
-                            fontSize: "2.4rem",
-                            fontWeight: "normal",
-                            letterSpacing: "0.1rem",
-                        }}
-                    >
-                        Natiq
-                    </h1>
-                    <DisplayOnScreen largerThan="md">
-                        <List>{navListItems.map((item) => item)}</List>
-                    </DisplayOnScreen>
-                    <Spacer />
-                    <Link to="/search">
-                        <Button
-                            variant="outlined"
-                            icon={<Symbol icon="search" />}
-                        >
-                            <DisplayOnScreen largerThan="xs">
-                                Search
-                            </DisplayOnScreen>
-                        </Button>
-                    </Link>
-                </Container>
-            </AppBar>
+            <IntroAppBar />
             <Main>
                 <Xbackground variant="dotted">
                     <XgetStart logo={<LogoIcon />}>
-                        <IntroDialogBox />
+                        <IntroGetStartBox />
                     </XgetStart>
                 </Xbackground>
             </Main>
-            <Footer>
-                <Container maxWidth="xl">
-                    <a
-                        target="blank"
-                        href="https://blog.natiq.net/privacy-policy"
-                    >
-                        <Button variant="link">Privacy Policy</Button>
-                    </a>
-                    <Spacer />
-                    <a href="https://blog.natiq.net/vision" target="_blank">
-                        <Button variant="link">Vision</Button>
-                    </a>
-                    <a href="https://blog.natiq.net/team" target="_blank">
-                        <Button variant="link">Team</Button>
-                    </a>
-                    <a href="https://blog.natiq.net/sponsor" target="_blank">
-                        <Button variant="link">Sponsor</Button>
-                    </a>
-                    <a href="https://blog.natiq.net/about" target="_blank">
-                        <Button variant="link">About</Button>
-                    </a>
-                </Container>
-            </Footer>
+            <IntroFooter />
+        </Page>
+    );
+}
+
+function IntroAppBar() {
+    const [navOpen, setNavOpen] = useState<boolean>(false);
+
+    const navListItems: Array<React.ReactElement> = [
+        <ListItem>
+            <Link to="search">
+                <Button variant="link" style={{ width: "100%" }}>
+                    Quran
+                </Button>
+            </Link>
+        </ListItem>,
+        <ListItem>
+            <a href="https://blog.natiq.net" target="_blank">
+                <Button variant="link" style={{ width: "100%" }}>
+                    Blog
+                </Button>
+            </a>
+        </ListItem>,
+    ];
+
+    return (
+        <>
+            <AppBar>
+                <DisplayOnScreen smallerOrEqualTo="md">
+                    <Button
+                        icon={<Symbol icon="menu" />}
+                        onClick={() => setNavOpen(true)}
+                    />
+                </DisplayOnScreen>
+                <SvgIcon size={5}>
+                    <LogoIcon />
+                </SvgIcon>
+                <h1
+                    style={{
+                        fontFamily: "arial",
+                        fontSize: "2.4rem",
+                        fontWeight: "normal",
+                        letterSpacing: "0.1rem",
+                    }}
+                >
+                    Natiq
+                </h1>
+                <DisplayOnScreen largerThan="md">
+                    <List>{navListItems.map((item) => item)}</List>
+                </DisplayOnScreen>
+                <Spacer />
+                <Link to="/search">
+                    <Button variant="outlined" icon={<Symbol icon="search" />}>
+                        <DisplayOnScreen largerThan="xs">
+                            Search
+                        </DisplayOnScreen>
+                    </Button>
+                </Link>
+            </AppBar>
             <ClickAwayListener onClickAway={() => setNavOpen(false)}>
                 <Navigation anchor="top" open={navOpen}>
                     <List direction="column" style={{ padding: "0 2rem" }}>
@@ -117,11 +96,11 @@ export default function Intro() {
                     </List>
                 </Navigation>
             </ClickAwayListener>
-        </Page>
+        </>
     );
 }
 
-export function IntroDialogBox() {
+export function IntroGetStartBox() {
     return (
         <>
             <h1
@@ -172,5 +151,28 @@ export function IntroDialogBox() {
                 </a>
             </span>
         </>
+    );
+}
+
+function IntroFooter() {
+    return (
+        <Footer>
+            <a target="blank" href="https://blog.natiq.net/privacy-policy">
+                <Button variant="link">Privacy Policy</Button>
+            </a>
+            <Spacer />
+            <a href="https://blog.natiq.net/vision" target="_blank">
+                <Button variant="link">Vision</Button>
+            </a>
+            <a href="https://blog.natiq.net/team" target="_blank">
+                <Button variant="link">Team</Button>
+            </a>
+            <a href="https://blog.natiq.net/sponsor" target="_blank">
+                <Button variant="link">Sponsor</Button>
+            </a>
+            <a href="https://blog.natiq.net/about" target="_blank">
+                <Button variant="link">About</Button>
+            </a>
+        </Footer>
     );
 }

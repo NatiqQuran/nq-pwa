@@ -1,7 +1,6 @@
-import NotFound from "404";
-import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Pwa, Intro, Quran, Search } from "routes";
+import NotFound from "404";
 
 const isPwaIntroPagePassed = (): boolean => {
     return localStorage.getItem("pwaIntroPassed") === "true";
@@ -18,7 +17,7 @@ const isLocalhost = Boolean(
         )
 );
 
-function Router() {
+export default function Router() {
     return (
         <BrowserRouter>
             <Routes>
@@ -44,5 +43,3 @@ function Router() {
         </BrowserRouter>
     );
 }
-
-export default Router;

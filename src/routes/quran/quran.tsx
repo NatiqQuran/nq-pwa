@@ -22,7 +22,7 @@ export default function Quran(props: { config: QuranConfigProps }) {
             `/translation/${
                 props.config.translationUUID
                     ? props.config.translationUUID
-                    : "5f859558-fdb2-49db-afa4-6a0286932121"
+                    : "byLang/en"
             }?surah_uuid=${props.config.surahUUID}`,
         {
             method: "GET",

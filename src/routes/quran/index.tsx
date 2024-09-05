@@ -33,7 +33,7 @@ export default function QuranPage() {
             : {
                   surahUUID: id as string,
                   translationView: true,
-                  translationUUID: "c3d978e7-91b9-4c08-acd0-fae592c8475b",
+                  translationUUID: undefined,
               }
     );
     const setConfigFromChild = (data: QuranConfigProps) => {

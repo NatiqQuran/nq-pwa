@@ -19,24 +19,19 @@ export default function Quran(props: { config: QuranConfigProps }) {
     );
     const translationFetch = useFetch<TranslationViewProps>(
         process.env.REACT_APP_API_URL +
-            `/translation/${
-                props.config.translationUUID
-                    ? props.config.translationUUID
-                    : "byLang/en"
-            }?surah_uuid=${props.config.surahUUID}`,
+            `/translation/${props.config.translationUUID}?surah_uuid=${props.config.surahUUID}`,
         {
             method: "GET",
         }
     );
 
     react.useEffect(() => {
-        translationFetch.send();
-    }, [props.config.translationUUID]);
+        if (props.config.translationUUID) translationFetch.send();
+    }, [props.config.surahUUID, props.config.translationUUID]);
 
     react.useEffect(() => {
         navigate("/quran/" + props.config.surahUUID);
         surahFetch.send();
-        translationFetch.send();
     }, [props.config.surahUUID]);
 
     return (

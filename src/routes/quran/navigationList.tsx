@@ -19,13 +19,23 @@ interface CollapseList {
     [n: number]: boolean;
 }
 
+function selectDefaultTranslationUUIDFromList(
+    translationList: TranslationInListProps[]
+): string {
+    const language = "en";
+    const defaultTranslation = translationList.find(
+        (translation) => translation.language === language
+    );
+    return defaultTranslation ? defaultTranslation.uuid : "No Translation Find";
+}
+
 export default function NavigationList(props: {
     config: QuranConfigProps;
     setConfig: any;
 }) {
     const [collapsedList, setcollapsedList] = React.useState<CollapseList>({});
 
-    const handleClickcollapseList = (index: number) =>
+    const handleClickCollapseList = (index: number) =>
         setcollapsedList((object) => ({
             ...object,
             [index]: object[index] ? !object[index] : true,
@@ -49,13 +59,25 @@ export default function NavigationList(props: {
         translationListFetch.send();
     }, []);
 
+    //Set a Translation as Default if no one selected before
+    useEffect(() => {
+        if (translationListFetch.isResponseBodyReady)
+            if (props.config.translationUUID === undefined)
+                props.setConfig({
+                    ...props.config,
+                    translationUUID: selectDefaultTranslationUUIDFromList(
+                        translationListFetch.responseBody
+                    ),
+                });
+    }, [translationListFetch.isResponseBodyReady]);
+
     return (
         <List direction="column">
             <ListItem>
                 <Button
                     size="medium"
                     borderStyle="semi"
-                    onClick={() => handleClickcollapseList(0)}
+                    onClick={() => handleClickCollapseList(0)}
                 >
                     Quran
                     <Spacer />
@@ -85,7 +107,9 @@ export default function NavigationList(props: {
                             >
                                 {surahListFetch.responseBody.map((surah) => (
                                     <option value={surah.uuid}>
-                                        {surah.number + " - " + surah.name}
+                                        {surah.number +
+                                            " - " +
+                                            surah.name[0].arabic}
                                     </option>
                                 ))}
                             </Select>
@@ -100,7 +124,7 @@ export default function NavigationList(props: {
                 <Button
                     size="medium"
                     borderStyle="semi"
-                    onClick={() => handleClickcollapseList(1)}
+                    onClick={() => handleClickCollapseList(1)}
                 >
                     Rsitation
                 </Button>
@@ -152,7 +176,7 @@ export default function NavigationList(props: {
                 <Button
                     size="medium"
                     borderStyle="semi"
-                    onClick={() => handleClickcollapseList(2)}
+                    onClick={() => handleClickCollapseList(2)}
                 >
                     Arabic Text
                 </Button>
@@ -200,7 +224,7 @@ export default function NavigationList(props: {
                 <Button
                     size="medium"
                     borderStyle="semi"
-                    onClick={() => handleClickcollapseList(3)}
+                    onClick={() => handleClickCollapseList(3)}
                 >
                     Translation
                 </Button>

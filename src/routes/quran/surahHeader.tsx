@@ -27,7 +27,7 @@ export default function SurahHeader(props: {
                             fontSize: "2rem",
                         }}
                     >
-                        {"Surah: " + props.surahData.surah_number}
+                        {"Surah: " + props.surahData.number}
                     </span>
                     <Spacer />
                     <h3
@@ -36,9 +36,9 @@ export default function SurahHeader(props: {
                             fontSize: "3rem",
                         }}
                     >
-                        {props.surahData.surah_name}
+                        {props.surahData.name[0].arabic}
                     </h3>
-                    <SurahPeriodIcon period={props.surahData.surah_period} />
+                    <SurahPeriodIcon period={props.surahData.period} />
                 </Row>
                 {props.surahData.bismillah_as_first_ayah ? (
                     <>

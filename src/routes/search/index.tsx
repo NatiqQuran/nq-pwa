@@ -16,8 +16,37 @@ import {
     Stack,
     Loading,
 } from "@yakad/ui";
+
 import { SurahPeriodIcon } from "components/SurahPeriodIcon";
 import { SurahInListProps } from "assets/ts/interface";
+
+function digitsToEnglish(str: string): string {
+    // Detect all Persian/Arabic Digit in range of their Unicode with a global RegEx character set
+    // Remove the Unicode base(2) range that not match
+    return str.replace(
+        /[\u0660-\u0669\u06f0-\u06f9]/g,
+        (char: string): string => (char.charCodeAt(0) & 0xf).toString()
+    );
+}
+
+function filterSurahsByString(
+    surahList: SurahInListProps[],
+    searchValue: string
+): SurahInListProps[] {
+    return searchValue !== ""
+        ? surahList.filter((surah) => {
+              const newSurah = {
+                  number: surah.number,
+                  name: surah.name,
+                  period: surah.period,
+              };
+              return Object.values(newSurah)
+                  .join("")
+                  .toLowerCase()
+                  .includes(searchValue.toLowerCase());
+          })
+        : surahList;
+}
 
 export default function Search() {
     const surahList = useFetch<SurahInListProps[]>(
@@ -31,7 +60,11 @@ export default function Search() {
         surahList.send();
     }, []);
     useEffect(() => {
-        if (surahList.isResponseBodyReady) filterBySearchHandler("");
+        if (surahList.isResponseBodyReady) {
+            setFilteredResults(
+                filterSurahsByString(surahList.responseBody, "")
+            );
+        }
     }, [surahList.isResponseBodyReady]);
 
     const [searchInput, setSearchInput] = useState<string>("");
@@ -41,15 +74,10 @@ export default function Search() {
 
     const filterBySearchHandler = (searchValue: string) => {
         setSearchInput(searchValue);
-        const filteredData =
-            searchValue !== ""
-                ? surahList.responseBody.filter((surah) => {
-                      return Object.values(surah)
-                          .join("")
-                          .toLowerCase()
-                          .includes(searchValue.toLowerCase());
-                  })
-                : surahList.responseBody;
+        const filteredData = filterSurahsByString(
+            surahList.responseBody,
+            digitsToEnglish(searchValue)
+        );
         setFilteredResults(filteredData);
     };
 
@@ -108,8 +136,8 @@ function SearchMain(props: {
                 <Hr marginTopBottom={2} />
                 {props.loading ? (
                     <Loading size="large" />
-                ) : props.surahList.length == 0 ? (
-                    <div style={{ margin: "10%" }}>
+                ) : props.surahList.length === 0 ? (
+                    <div style={{ margin: "auto" }}>
                         <h3 style={{ textAlign: "center" }}>
                             Searching: {props.searchInput}
                         </h3>
@@ -153,7 +181,7 @@ function SurahLinkBox(props: { surah: SurahInListProps }) {
                                     fontWeight: "bold",
                                 }}
                             >
-                                {props.surah.name}
+                                {props.surah.name[0].arabic}
                             </span>
                             <SurahPeriodIcon period={props.surah.period} />
                         </Row>

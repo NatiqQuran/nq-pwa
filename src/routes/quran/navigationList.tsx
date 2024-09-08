@@ -61,7 +61,7 @@ export default function NavigationList(props: {
 
     //Set a Translation as Default if no one selected before
     useEffect(() => {
-        if (translationListFetch.isResponseBodyReady)
+        if (translationListFetch.isResponseBodyReady) {
             if (props.config.translationUUID === undefined)
                 props.setConfig({
                     ...props.config,
@@ -69,6 +69,7 @@ export default function NavigationList(props: {
                         translationListFetch.responseBody
                     ),
                 });
+        }
     }, [translationListFetch.isResponseBodyReady]);
 
     return (
@@ -252,7 +253,8 @@ export default function NavigationList(props: {
                                     }
                                 />
                             </Row>
-                            {translationListFetch.isResponseBodyReady ? (
+                            {translationListFetch.isResponseBodyReady &&
+                            props.config.translationUUID ? (
                                 <Select
                                     variant="filled"
                                     placeholder="Translator"

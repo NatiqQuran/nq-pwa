@@ -55,7 +55,7 @@ export default function Quran(props: { config: QuranConfigProps }) {
                     />
                 </>
             ) : (
-                <Loading size="extraLarge" variant="scaleOut" />
+                <Loading size="extraLarge" variant="dots" />
             )}
         </>
     );

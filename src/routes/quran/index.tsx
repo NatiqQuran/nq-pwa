@@ -6,6 +6,7 @@ import Symbol from "@yakad/symbols";
 
 import NavigationList from "./navigationList";
 import Quran from "./quran";
+import { defaultConfigData } from "./config";
 
 export interface QuranConfigProps {
     surahUUID: string;
@@ -16,29 +17,9 @@ export interface QuranConfigProps {
 export default function QuranPage() {
     const { id } = useParams();
 
-    const configFromLocalStorageString: string | null =
-        localStorage.getItem("config");
-    const configFromLocalStorage: QuranConfigProps =
-        configFromLocalStorageString
-            ? JSON.parse(configFromLocalStorageString)
-            : false;
-
     const [config, setConfig] = React.useState<QuranConfigProps>(
-        configFromLocalStorage
-            ? {
-                  surahUUID: id as string,
-                  translationView: configFromLocalStorage.translationView,
-                  translationUUID: configFromLocalStorage.translationUUID,
-              }
-            : {
-                  surahUUID: id as string,
-                  translationView: true,
-                  translationUUID: undefined,
-              }
+        defaultConfigData(id)
     );
-    const setConfigFromChild = (data: QuranConfigProps) => {
-        setConfig(data);
-    };
     useEffect(() => {
         localStorage.setItem("config", JSON.stringify(config));
     }, [config]);
@@ -47,10 +28,7 @@ export default function QuranPage() {
         <Xpanel
             name="Quran"
             navigationChildren={
-                <NavigationList
-                    config={config}
-                    setConfig={setConfigFromChild}
-                />
+                <NavigationList config={config} setConfig={setConfig} />
             }
             appbarChildren={
                 <Link to="/search">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { SurahInListProps } from "@ntq/sdk/type";
 import { useFetch } from "@yakad/lib";
 import {
     Page,
@@ -18,7 +19,6 @@ import {
 } from "@yakad/ui";
 
 import { SurahPeriodIcon } from "components/SurahPeriodIcon";
-import { SurahInListProps } from "assets/ts/interface";
 
 function digitsToEnglish(str: string): string {
     // Detect all Persian/Arabic Digit in range of their Unicode with a global RegEx character set

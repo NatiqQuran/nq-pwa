@@ -1,11 +1,11 @@
 import React from "react";
-import { Container, Stack } from "@yakad/ui";
 import {
     SurahViewProps,
     AyahInsideSurahViewProps,
     TranslationViewProps,
     AyahInsideTranslationViewProps,
-} from "assets/ts/interface";
+} from "@ntq/sdk/type";
+import { Container, Stack } from "@yakad/ui";
 
 import { QuranConfigProps } from ".";
 

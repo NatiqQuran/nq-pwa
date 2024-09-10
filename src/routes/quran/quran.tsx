@@ -1,8 +1,8 @@
 import react from "react";
 import { useNavigate } from "react-router-dom";
+import { SurahViewProps, TranslationViewProps } from "@ntq/sdk/type";
 import { useFetch } from "@yakad/lib";
 import { Loading } from "@yakad/ui";
-import { SurahViewProps, TranslationViewProps } from "assets/ts/interface";
 
 import { QuranConfigProps } from ".";
 import SurahHeader from "./surahHeader";

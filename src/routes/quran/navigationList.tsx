@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { getLangNameFromCode } from "@ntq/sdk";
+import { SurahInListProps, TranslationInListProps } from "@ntq/sdk/type";
 import { useFetch } from "@yakad/lib";
 import {
     List,
@@ -11,8 +13,6 @@ import {
     Stack,
 } from "@yakad/ui";
 
-import { getLangNameFromCode } from "../../assets/ts/langCode";
-import { SurahInListProps, TranslationInListProps } from "assets/ts/interface";
 import { QuranConfigProps } from ".";
 import { selectDefaultTranslationUUIDFromList } from "./config";
 

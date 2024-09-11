@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getSurahList } from "@ntq/sdk";
 import { SurahInListProps } from "@ntq/sdk/type";
-import { useFetch } from "@yakad/lib";
 import {
     Page,
     Main,
@@ -49,45 +49,37 @@ function filterSurahsByString(
 }
 
 export default function Search() {
-    const surahList = useFetch<SurahInListProps[]>(
-        `${process.env.REACT_APP_API_URL}/surah?mushaf=hafs`,
-        {
-            method: "GET",
-        }
+    const [surahList, setSurahList] = useState<Array<SurahInListProps> | null>(
+        null
     );
-
-    useEffect(() => {
-        surahList.send();
-    }, []);
-    useEffect(() => {
-        if (surahList.isResponseBodyReady) {
-            setFilteredResults(
-                filterSurahsByString(surahList.responseBody, "")
-            );
-        }
-    }, [surahList.isResponseBodyReady]);
-
-    const [searchInput, setSearchInput] = useState<string>("");
-    const [filteredResults, setFilteredResults] = useState<
+    const [filteredSurahList, setFilteredSurahList] = useState<
         Array<SurahInListProps>
     >([]);
+    const [searchInput, setSearchInput] = useState<string>("");
 
-    const filterBySearchHandler = (searchValue: string) => {
+    useEffect(() => {
+        getSurahList({ mushaf: "hafs" }).then((response) => {
+            setSurahList(response.data);
+            setFilteredSurahList(
+                filterSurahsByString(response.data, searchInput)
+            );
+        });
+    }, []);
+
+    const filterBySearchInputHandler = (searchValue: string) => {
         setSearchInput(searchValue);
-        const filteredData = filterSurahsByString(
-            surahList.responseBody,
-            digitsToEnglish(searchValue)
-        );
-        setFilteredResults(filteredData);
+        if (surahList)
+            setFilteredSurahList(
+                filterSurahsByString(surahList, digitsToEnglish(searchValue))
+            );
     };
 
     return (
         <Page>
-            <SearchAppBar onSearch={filterBySearchHandler} />
+            <SearchAppBar onSearch={filterBySearchInputHandler} />
             <SearchMain
-                searchInput={searchInput}
-                loading={!surahList.isResponseBodyReady || !filteredResults}
-                surahList={filteredResults}
+                loading={!surahList || !filteredSurahList}
+                surahList={filteredSurahList}
             />
         </Page>
     );
@@ -123,7 +115,6 @@ function SearchAppBar(props: { onSearch: any }) {
 }
 
 function SearchMain(props: {
-    searchInput: string;
     loading: boolean;
     surahList: SurahInListProps[];
 }) {
@@ -138,10 +129,9 @@ function SearchMain(props: {
                     <Loading size="large" />
                 ) : props.surahList.length === 0 ? (
                     <div style={{ margin: "auto" }}>
-                        <h3 style={{ textAlign: "center" }}>
-                            Searching: {props.searchInput}
-                        </h3>
-                        <h2 style={{ textAlign: "center" }}>Not Found</h2>
+                        <h2 style={{ textAlign: "center" }}>
+                            No Search Result
+                        </h2>
                     </div>
                 ) : (
                     <GridContainer>

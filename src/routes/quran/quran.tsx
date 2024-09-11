@@ -1,7 +1,7 @@
-import react from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getSurah, getTranslation } from "@ntq/sdk";
 import { SurahViewProps, TranslationViewProps } from "@ntq/sdk/type";
-import { useFetch } from "@yakad/lib";
 import { Loading } from "@yakad/ui";
 
 import { QuranConfigProps } from ".";
@@ -11,51 +11,45 @@ import SurahText from "./text";
 export default function Quran(props: { config: QuranConfigProps }) {
     const navigate = useNavigate();
 
-    const surahFetch = useFetch<SurahViewProps>(
-        process.env.REACT_APP_API_URL + `/surah/${props.config.surahUUID}`,
-        {
-            method: "GET",
-        }
-    );
-    const translationFetch = useFetch<TranslationViewProps>(
-        process.env.REACT_APP_API_URL +
-            `/translation/${props.config.translationUUID}?surah_uuid=${props.config.surahUUID}`,
-        {
-            method: "GET",
-        }
+    const [surah, setSurah] = useState<SurahViewProps | null>(null);
+    const [translation, setTranslation] = useState<TranslationViewProps | null>(
+        null
     );
 
-    react.useEffect(() => {
-        if (props.config.translationUUID) translationFetch.send();
+    useEffect(() => {
+        if (props.config.translationUUID)
+            getTranslation(props.config.translationUUID, {
+                surah_uuid: props.config.surahUUID,
+            }).then((response) => {
+                setTranslation(response.data);
+            });
     }, [props.config.surahUUID, props.config.translationUUID]);
 
-    react.useEffect(() => {
+    useEffect(() => {
         navigate("/quran/" + props.config.surahUUID);
-        surahFetch.send();
+        setSurah(null);
+        getSurah(props.config.surahUUID).then((response) => {
+            setSurah(response.data);
+        });
     }, [props.config.surahUUID]);
 
     return (
         <>
-            {surahFetch.isResponseBodyReady &&
-            translationFetch.isResponseBodyReady &&
-            !surahFetch.error &&
-            !translationFetch.error ? (
+            {surah && translation ? (
                 <>
                     <SurahHeader
                         config={props.config}
-                        surahData={surahFetch.responseBody}
-                        bismillahTranslation={
-                            translationFetch.responseBody.bismillah_text
-                        }
+                        surahData={surah}
+                        bismillahTranslation={translation.bismillah_text}
                     />
                     <SurahText
                         config={props.config}
-                        surahData={surahFetch.responseBody}
-                        translationData={translationFetch.responseBody}
+                        surahData={surah}
+                        translationData={translation}
                     />
                 </>
             ) : (
-                <Loading size="extraLarge" variant="dots" />
+                <Loading size="large" variant="dots" />
             )}
         </>
     );

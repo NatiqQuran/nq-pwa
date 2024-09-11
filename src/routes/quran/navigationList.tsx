@@ -4,7 +4,7 @@ import {
     getLangNameFromCode,
     getTranslationList,
 } from "@ntq/sdk";
-import { SurahInListProps, TranslationInListProps } from "@ntq/sdk/type";
+import { SurahListProps, TranslationListProps } from "@ntq/sdk/type";
 import {
     List,
     ListItem,
@@ -96,9 +96,7 @@ function NavListItemsQuran(props: {
     config: QuranConfigProps;
     setConfig: any;
 }) {
-    const [surahList, setSurahList] = useState<Array<SurahInListProps> | null>(
-        null
-    );
+    const [surahList, setSurahList] = useState<SurahListProps | null>(null);
 
     useEffect(() => {
         getSurahList({ mushaf: "hafs" }).then((response) => {
@@ -172,7 +170,7 @@ function NavListItemsTranslation(props: {
     setConfig: any;
 }) {
     const [translationList, setTranslationList] =
-        useState<Array<TranslationInListProps> | null>(null);
+        useState<TranslationListProps | null>(null);
 
     useEffect(() => {
         getTranslationList({ mushaf: "hafs" }).then((response) => {

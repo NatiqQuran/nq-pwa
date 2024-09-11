@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getSurah, getTranslation } from "@ntq/sdk";
-import { SurahViewProps, TranslationViewProps } from "@ntq/sdk/type";
+import { SurahViewProps, TranslationViewProps } from "@ntq/sdk/types";
 import { Loading } from "@yakad/ui";
 
 import { QuranConfigProps } from ".";

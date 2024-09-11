@@ -1,5 +1,5 @@
 import React from "react";
-import { SurahViewProps, TranslationViewProps } from "@ntq/sdk/type";
+import { SurahViewProps, TranslationViewProps } from "@ntq/sdk/types";
 import { Container, Stack } from "@yakad/ui";
 
 import { QuranConfigProps } from ".";

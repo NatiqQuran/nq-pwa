@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getSurahList } from "@ntq/sdk";
-import { SurahListProps } from "@ntq/sdk/type";
+import { SurahListProps } from "@ntq/sdk/types";
 import {
     Page,
     Main,

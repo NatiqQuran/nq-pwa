@@ -1,4 +1,4 @@
-import { TranslationListProps } from "@ntq/sdk/type";
+import { TranslationListProps } from "@ntq/sdk/types";
 import { QuranConfigProps } from ".";
 
 export function defaultConfigData(id: string | undefined): QuranConfigProps {

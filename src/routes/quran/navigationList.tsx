@@ -4,7 +4,7 @@ import {
     getLangNameFromCode,
     getTranslationList,
 } from "@ntq/sdk";
-import { SurahListProps, TranslationListProps } from "@ntq/sdk/type";
+import { SurahListProps, TranslationListProps } from "@ntq/sdk/types";
 import {
     List,
     ListItem,

@@ -1,5 +1,10 @@
-import React, { useEffect } from "react";
-import { useFetch } from "@yakad/lib";
+import React, { useEffect, useState } from "react";
+import {
+    getSurahList,
+    getLangNameFromCode,
+    getTranslationList,
+} from "@ntq/sdk";
+import { SurahListProps, TranslationListProps } from "@ntq/sdk/types";
 import {
     List,
     ListItem,
@@ -11,8 +16,6 @@ import {
     Stack,
 } from "@yakad/ui";
 
-import { getLangNameFromCode } from "../../assets/ts/langCode";
-import { SurahInListProps, TranslationInListProps } from "assets/ts/interface";
 import { QuranConfigProps } from ".";
 import { selectDefaultTranslationUUIDFromList } from "./config";
 
@@ -93,20 +96,17 @@ function NavListItemsQuran(props: {
     config: QuranConfigProps;
     setConfig: any;
 }) {
-    const surahListFetch = useFetch<SurahInListProps[]>(
-        `${process.env.REACT_APP_API_URL}/surah?mushaf=hafs`,
-        {
-            method: "GET",
-        }
-    );
+    const [surahList, setSurahList] = useState<SurahListProps | null>(null);
 
     useEffect(() => {
-        surahListFetch.send();
+        getSurahList({ mushaf: "hafs" }).then((response) => {
+            setSurahList(response.data);
+        });
     }, []);
 
     return (
         <ListItem>
-            {surahListFetch.isResponseBodyReady ? (
+            {surahList ? (
                 <Select
                     variant="filled"
                     name="surahUUID"
@@ -123,7 +123,7 @@ function NavListItemsQuran(props: {
                         })
                     }
                 >
-                    {surahListFetch.responseBody.map((surah) => (
+                    {surahList.map((surah) => (
                         <option value={surah.uuid}>
                             {surah.number + " - " + surah.name[0].arabic}
                         </option>
@@ -169,29 +169,26 @@ function NavListItemsTranslation(props: {
     config: QuranConfigProps;
     setConfig: any;
 }) {
-    const translationListFetch = useFetch<TranslationInListProps[]>(
-        process.env.REACT_APP_API_URL + `/translation?mushaf=hafs`,
-        {
-            method: "GET",
-        }
-    );
+    const [translationList, setTranslationList] =
+        useState<TranslationListProps | null>(null);
 
     useEffect(() => {
-        translationListFetch.send();
+        getTranslationList({ mushaf: "hafs" }).then((response) => {
+            setTranslationList(response.data);
+        });
     }, []);
 
     //Set a Translation as Default if no one selected before
     useEffect(() => {
-        if (translationListFetch.isResponseBodyReady) {
+        if (translationList) {
             if (props.config.translationUUID === undefined)
                 props.setConfig({
                     ...props.config,
-                    translationUUID: selectDefaultTranslationUUIDFromList(
-                        translationListFetch.responseBody
-                    ),
+                    translationUUID:
+                        selectDefaultTranslationUUIDFromList(translationList),
                 });
         }
-    }, [translationListFetch.isResponseBodyReady]);
+    }, [translationList]);
 
     return (
         <>
@@ -213,8 +210,7 @@ function NavListItemsTranslation(props: {
                 </Row>
             </ListItem>
             <ListItem>
-                {translationListFetch.isResponseBodyReady &&
-                props.config.translationUUID ? (
+                {translationList && props.config.translationUUID ? (
                     <Select
                         variant="filled"
                         placeholder="Translation"
@@ -230,15 +226,13 @@ function NavListItemsTranslation(props: {
                             })
                         }
                     >
-                        {translationListFetch.responseBody.map(
-                            (translation) => (
-                                <option value={translation.uuid}>
-                                    {getLangNameFromCode(translation.language) +
-                                        " - " +
-                                        translation.translator.username}
-                                </option>
-                            )
-                        )}
+                        {translationList.map((translation) => (
+                            <option value={translation.uuid}>
+                                {getLangNameFromCode(translation.language) +
+                                    " - " +
+                                    translation.translator.username}
+                            </option>
+                        ))}
                     </Select>
                 ) : (
                     <Loading variant="dots" />

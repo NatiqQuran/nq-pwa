@@ -1,11 +1,6 @@
 import React from "react";
+import { SurahViewProps, TranslationViewProps } from "@ntq/sdk/types";
 import { Container, Stack } from "@yakad/ui";
-import {
-    SurahViewProps,
-    AyahInsideSurahViewProps,
-    TranslationViewProps,
-    AyahInsideTranslationViewProps,
-} from "assets/ts/interface";
 
 import { QuranConfigProps } from ".";
 
@@ -63,7 +58,7 @@ function AyahBox(props: React.HTMLAttributes<HTMLDivElement>) {
     );
 }
 
-function AyahText(props: { ayah: AyahInsideSurahViewProps }) {
+function AyahText(props: { ayah: SurahViewProps["ayahs"][0] }) {
     return (
         <span
             style={{
@@ -92,7 +87,7 @@ function AyahText(props: { ayah: AyahInsideSurahViewProps }) {
 }
 
 function AyahTranslation(props: {
-    translationText: AyahInsideTranslationViewProps;
+    translationText: TranslationViewProps["ayahs"][0];
 }) {
     return (
         <span

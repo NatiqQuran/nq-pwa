@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useFetch } from "@yakad/lib";
+import { getSurahList } from "@ntq/sdk";
+import { SurahListProps } from "@ntq/sdk/types";
 import {
     Page,
     Main,
@@ -18,7 +19,6 @@ import {
 } from "@yakad/ui";
 
 import { SurahPeriodIcon } from "components/SurahPeriodIcon";
-import { SurahInListProps } from "assets/ts/interface";
 
 function digitsToEnglish(str: string): string {
     // Detect all Persian/Arabic Digit in range of their Unicode with a global RegEx character set
@@ -30,9 +30,9 @@ function digitsToEnglish(str: string): string {
 }
 
 function filterSurahsByString(
-    surahList: SurahInListProps[],
+    surahList: SurahListProps,
     searchValue: string
-): SurahInListProps[] {
+): SurahListProps {
     return searchValue !== ""
         ? surahList.filter((surah) => {
               const newSurah = {
@@ -49,45 +49,35 @@ function filterSurahsByString(
 }
 
 export default function Search() {
-    const surahList = useFetch<SurahInListProps[]>(
-        `${process.env.REACT_APP_API_URL}/surah?mushaf=hafs`,
-        {
-            method: "GET",
-        }
+    const [surahList, setSurahList] = useState<SurahListProps | null>(null);
+    const [filteredSurahList, setFilteredSurahList] = useState<SurahListProps>(
+        []
     );
-
-    useEffect(() => {
-        surahList.send();
-    }, []);
-    useEffect(() => {
-        if (surahList.isResponseBodyReady) {
-            setFilteredResults(
-                filterSurahsByString(surahList.responseBody, "")
-            );
-        }
-    }, [surahList.isResponseBodyReady]);
-
     const [searchInput, setSearchInput] = useState<string>("");
-    const [filteredResults, setFilteredResults] = useState<
-        Array<SurahInListProps>
-    >([]);
 
-    const filterBySearchHandler = (searchValue: string) => {
+    useEffect(() => {
+        getSurahList({ mushaf: "hafs" }).then((response) => {
+            setSurahList(response.data);
+            setFilteredSurahList(
+                filterSurahsByString(response.data, searchInput)
+            );
+        });
+    }, []);
+
+    const filterBySearchInputHandler = (searchValue: string) => {
         setSearchInput(searchValue);
-        const filteredData = filterSurahsByString(
-            surahList.responseBody,
-            digitsToEnglish(searchValue)
-        );
-        setFilteredResults(filteredData);
+        if (surahList)
+            setFilteredSurahList(
+                filterSurahsByString(surahList, digitsToEnglish(searchValue))
+            );
     };
 
     return (
         <Page>
-            <SearchAppBar onSearch={filterBySearchHandler} />
+            <SearchAppBar onSearch={filterBySearchInputHandler} />
             <SearchMain
-                searchInput={searchInput}
-                loading={!surahList.isResponseBodyReady || !filteredResults}
-                surahList={filteredResults}
+                loading={!surahList || !filteredSurahList}
+                surahList={filteredSurahList}
             />
         </Page>
     );
@@ -122,11 +112,7 @@ function SearchAppBar(props: { onSearch: any }) {
     );
 }
 
-function SearchMain(props: {
-    searchInput: string;
-    loading: boolean;
-    surahList: SurahInListProps[];
-}) {
+function SearchMain(props: { loading: boolean; surahList: SurahListProps }) {
     return (
         <Main>
             <Container maxWidth="md" style={{ marginBottom: "2rem" }}>
@@ -138,10 +124,9 @@ function SearchMain(props: {
                     <Loading size="large" />
                 ) : props.surahList.length === 0 ? (
                     <div style={{ margin: "auto" }}>
-                        <h3 style={{ textAlign: "center" }}>
-                            Searching: {props.searchInput}
-                        </h3>
-                        <h2 style={{ textAlign: "center" }}>Not Found</h2>
+                        <h2 style={{ textAlign: "center" }}>
+                            No Search Result
+                        </h2>
                     </div>
                 ) : (
                     <GridContainer>
@@ -157,7 +142,7 @@ function SearchMain(props: {
     );
 }
 
-function SurahLinkBox(props: { surah: SurahInListProps }) {
+function SurahLinkBox(props: { surah: SurahListProps[0] }) {
     return (
         <Link to={`/quran/${props.surah.uuid}`}>
             <Card>

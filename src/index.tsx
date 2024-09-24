@@ -2,18 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
-import { Theme } from "@yakad/ui";
-import Router from "./router";
-import "./assets/css/style.css";
+import App from "app";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
 );
 root.render(
     <React.StrictMode>
-        <Theme>
-            <Router />
-        </Theme>
+        <App />
     </React.StrictMode>
 );
 

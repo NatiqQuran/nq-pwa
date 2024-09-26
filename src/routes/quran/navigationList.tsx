@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
-    getSurahList,
+    ControllerSurah,
+    ControllerTranslation,
     getLangNameFromCode,
-    getTranslationList,
 } from "@ntq/sdk";
 import { SurahListProps, TranslationListProps } from "@ntq/sdk/types";
 import {
@@ -13,11 +13,11 @@ import {
     Row,
     Loading,
     Select,
-    Stack,
 } from "@yakad/ui";
 
 import { QuranConfigProps } from ".";
 import { selectDefaultTranslationUUIDFromList } from "./config";
+import { ConnectionContext } from "contexts";
 
 interface CollapseList {
     [n: number]: boolean;
@@ -97,12 +97,13 @@ function NavListItemsQuran(props: {
     setConfig: any;
 }) {
     const [surahList, setSurahList] = useState<SurahListProps | null>(null);
+    const conn = useContext(ConnectionContext);
 
     useEffect(() => {
-        getSurahList({ mushaf: "hafs" }).then((response) => {
-            setSurahList(response.data);
+        new ControllerSurah(conn!).list({ mushaf: "hafs" }).then((response) => {
+            setSurahList(response);
         });
-    }, []);
+    });
 
     return (
         <ListItem>
@@ -172,11 +173,14 @@ function NavListItemsTranslation(props: {
     const [translationList, setTranslationList] =
         useState<TranslationListProps | null>(null);
 
+
+    const conn = useContext(ConnectionContext);
+
     useEffect(() => {
-        getTranslationList({ mushaf: "hafs" }).then((response) => {
-            setTranslationList(response.data);
+        new ControllerTranslation(conn!).list({ mushaf: "hafs" }).then((response) => {
+            setTranslationList(response);
         });
-    }, []);
+    });
 
     //Set a Translation as Default if no one selected before
     useEffect(() => {

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getSurahList } from "@ntq/sdk";
+import { ControllerSurah } from "@ntq/sdk";
 import { SurahListProps } from "@ntq/sdk/types";
 import {
     Page,
@@ -19,6 +19,7 @@ import {
 } from "@yakad/ui";
 
 import { SurahPeriodIcon } from "components/SurahPeriodIcon";
+import { ConnectionContext } from "contexts";
 
 function digitsToEnglish(str: string): string {
     // Detect all Persian/Arabic Digit in range of their Unicode with a global RegEx character set
@@ -35,16 +36,16 @@ function filterSurahsByString(
 ): SurahListProps {
     return searchValue !== ""
         ? surahList.filter((surah) => {
-              const newSurah = {
-                  number: surah.number,
-                  name: surah.name,
-                  period: surah.period,
-              };
-              return Object.values(newSurah)
-                  .join("")
-                  .toLowerCase()
-                  .includes(searchValue.toLowerCase());
-          })
+            const newSurah = {
+                number: surah.number,
+                name: surah.name,
+                period: surah.period,
+            };
+            return Object.values(newSurah)
+                .join("")
+                .toLowerCase()
+                .includes(searchValue.toLowerCase());
+        })
         : surahList;
 }
 
@@ -53,16 +54,17 @@ export default function Search() {
     const [filteredSurahList, setFilteredSurahList] = useState<SurahListProps>(
         []
     );
+    const conn = useContext(ConnectionContext);
     const [searchInput, setSearchInput] = useState<string>("");
 
     useEffect(() => {
-        getSurahList({ mushaf: "hafs" }).then((response) => {
-            setSurahList(response.data);
+        new ControllerSurah(conn!).list({ mushaf: "hafs" }).then((response) => {
+            setSurahList(response);
             setFilteredSurahList(
-                filterSurahsByString(response.data, searchInput)
+                filterSurahsByString(response, searchInput)
             );
         });
-    }, []);
+    });
 
     const filterBySearchInputHandler = (searchValue: string) => {
         setSearchInput(searchValue);

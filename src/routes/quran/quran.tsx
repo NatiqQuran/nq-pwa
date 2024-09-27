@@ -43,7 +43,7 @@ export default function Quran(props: { config: QuranConfigProps }) {
                     <SurahHeader
                         config={props.config}
                         surahData={surah}
-                        bismillahTranslation={translation.bismillah_text}
+                        bismillahTranslation={translation.bismillah}
                     />
                     <SurahText
                         config={props.config}

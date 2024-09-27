@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getSurah, getTranslation } from "@ntq/sdk";
+import { ControllerSurah, ControllerTranslation } from "@ntq/sdk";
 import { SurahViewProps, TranslationViewProps } from "@ntq/sdk/types";
 import { Loading } from "@yakad/ui";
 
 import { QuranConfigProps } from ".";
 import SurahHeader from "./surahHeader";
 import SurahText from "./text";
+import { ConnectionContext } from "contexts";
 
 export default function Quran(props: { config: QuranConfigProps }) {
     const navigate = useNavigate();
@@ -16,20 +17,22 @@ export default function Quran(props: { config: QuranConfigProps }) {
         null
     );
 
+    const conn = useContext(ConnectionContext);
+
     useEffect(() => {
         if (props.config.translationUUID)
-            getTranslation(props.config.translationUUID, {
+            new ControllerTranslation(conn!).view(props.config.translationUUID, {
                 surah_uuid: props.config.surahUUID,
             }).then((response) => {
-                setTranslation(response.data);
+                setTranslation(response);
             });
     }, [props.config.surahUUID, props.config.translationUUID]);
 
     useEffect(() => {
         navigate("/quran/" + props.config.surahUUID);
         setSurah(null);
-        getSurah(props.config.surahUUID).then((response) => {
-            setSurah(response.data);
+        new ControllerSurah(conn!).view(props.config.surahUUID, {}).then((response) => {
+            setSurah(response);
         });
     }, [props.config.surahUUID]);
 
@@ -40,7 +43,7 @@ export default function Quran(props: { config: QuranConfigProps }) {
                     <SurahHeader
                         config={props.config}
                         surahData={surah}
-                        bismillahTranslation={translation.bismillah_text}
+                        bismillahTranslation={translation.bismillah}
                     />
                     <SurahText
                         config={props.config}

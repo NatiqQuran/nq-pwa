@@ -21,7 +21,7 @@ export default function Router() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Intro />} />
+                <Route index element={<Intro />} />
                 <Route
                     path="/pwa"
                     element={

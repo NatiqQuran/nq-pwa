@@ -68,7 +68,7 @@ function AyahText(props: { ayah: SurahViewProps["ayahs"][0] }) {
             }}
         >
             {props.ayah.text}
-            {props.ayah.sajdeh === "vajib" ? (
+            {props.ayah.sajdah === "vajib" ? (
                 <span
                     title="Vajib Sajdah"
                     style={{ cursor: "help", fontWeight: "bold" }}
@@ -76,7 +76,7 @@ function AyahText(props: { ayah: SurahViewProps["ayahs"][0] }) {
                     ۩
                 </span>
             ) : null}
-            {props.ayah.sajdeh === "mustahab" ? (
+            {props.ayah.sajdah === "mustahab" ? (
                 <span title="Mustahab Sajdah" style={{ cursor: "help" }}>
                     ۩
                 </span>

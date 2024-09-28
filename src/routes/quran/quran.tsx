@@ -21,19 +21,24 @@ export default function Quran(props: { config: QuranConfigProps }) {
 
     useEffect(() => {
         if (props.config.translationUUID)
-            new ControllerTranslation(conn!).view(props.config.translationUUID, {
-                surah_uuid: props.config.surahUUID,
-            }).then((response) => {
-                setTranslation(response);
-            });
+            new ControllerTranslation(conn!)
+                .view(props.config.translationUUID, {
+                    surah_uuid: props.config.surahUUID,
+                })
+                .then((response) => {
+                    setTranslation(response);
+                });
     }, [props.config.surahUUID, props.config.translationUUID]);
 
     useEffect(() => {
         navigate("/quran/" + props.config.surahUUID);
         setSurah(null);
-        new ControllerSurah(conn!).view(props.config.surahUUID, {}).then((response) => {
-            setSurah(response);
-        });
+        setTranslation(null);
+        new ControllerSurah(conn!)
+            .view(props.config.surahUUID, {})
+            .then((response) => {
+                setSurah(response);
+            });
     }, [props.config.surahUUID]);
 
     return (

@@ -36,7 +36,7 @@ export default function SurahHeader(props: {
                             fontSize: "3rem",
                         }}
                     >
-                        {props.surahData.name[0].arabic}
+                        {props.surahData.names[0].arabic}
                     </h3>
                     <SurahPeriodIcon period={props.surahData.period} />
                 </Row>

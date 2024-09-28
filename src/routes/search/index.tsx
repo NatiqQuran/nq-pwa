@@ -36,16 +36,16 @@ function filterSurahsByString(
 ): SurahListProps {
     return searchValue !== ""
         ? surahList.filter((surah) => {
-            const newSurah = {
-                number: surah.number,
-                name: surah.name,
-                period: surah.period,
-            };
-            return Object.values(newSurah)
-                .join("")
-                .toLowerCase()
-                .includes(searchValue.toLowerCase());
-        })
+              const newSurah = {
+                  number: surah.number,
+                  names: surah.names,
+                  period: surah.period,
+              };
+              return Object.values(newSurah)
+                  .join("")
+                  .toLowerCase()
+                  .includes(searchValue.toLowerCase());
+          })
         : surahList;
 }
 
@@ -60,9 +60,7 @@ export default function Search() {
     useEffect(() => {
         new ControllerSurah(conn!).list({ mushaf: "hafs" }).then((response) => {
             setSurahList(response);
-            setFilteredSurahList(
-                filterSurahsByString(response, searchInput)
-            );
+            setFilteredSurahList(filterSurahsByString(response, searchInput));
         });
     });
 
@@ -168,7 +166,7 @@ function SurahLinkBox(props: { surah: SurahListProps[0] }) {
                                     fontWeight: "bold",
                                 }}
                             >
-                                {props.surah.name[0].arabic}
+                                {props.surah.names[0].arabic}
                             </span>
                             <SurahPeriodIcon period={props.surah.period} />
                         </Row>

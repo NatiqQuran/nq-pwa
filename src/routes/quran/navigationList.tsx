@@ -103,7 +103,7 @@ function NavListItemsQuran(props: {
         new ControllerSurah(conn!).list({ mushaf: "hafs" }).then((response) => {
             setSurahList(response);
         });
-    });
+    }, []);
 
     return (
         <ListItem>
@@ -126,7 +126,7 @@ function NavListItemsQuran(props: {
                 >
                     {surahList.map((surah) => (
                         <option value={surah.uuid}>
-                            {surah.number + " - " + surah.name[0].arabic}
+                            {surah.number + " - " + surah.names[0].arabic}
                         </option>
                     ))}
                 </Select>
@@ -173,14 +173,15 @@ function NavListItemsTranslation(props: {
     const [translationList, setTranslationList] =
         useState<TranslationListProps | null>(null);
 
-
     const conn = useContext(ConnectionContext);
 
     useEffect(() => {
-        new ControllerTranslation(conn!).list({ mushaf: "hafs" }).then((response) => {
-            setTranslationList(response);
-        });
-    });
+        new ControllerTranslation(conn!)
+            .list({ mushaf: "hafs" })
+            .then((response) => {
+                setTranslationList(response);
+            });
+    }, []);
 
     //Set a Translation as Default if no one selected before
     useEffect(() => {

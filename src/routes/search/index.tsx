@@ -62,7 +62,7 @@ export default function Search() {
             setSurahList(response);
             setFilteredSurahList(filterSurahsByString(response, searchInput));
         });
-    });
+    }, []);
 
     const filterBySearchInputHandler = (searchValue: string) => {
         setSearchInput(searchValue);

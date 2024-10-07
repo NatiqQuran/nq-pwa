@@ -23,10 +23,12 @@ export default function Quran(props: { config: QuranConfigProps }) {
         if (props.config.translationUUID)
             new ControllerTranslation(conn!)
                 .view(props.config.translationUUID, {
-                    surah_uuid: props.config.surahUUID,
+                    params: {
+                        surah_uuid: props.config.surahUUID,
+                    },
                 })
                 .then((response) => {
-                    setTranslation(response);
+                    setTranslation(response.data);
                 });
     }, [props.config.surahUUID, props.config.translationUUID]);
 
@@ -37,7 +39,7 @@ export default function Quran(props: { config: QuranConfigProps }) {
         new ControllerSurah(conn!)
             .view(props.config.surahUUID, {})
             .then((response) => {
-                setSurah(response);
+                setSurah(response.data);
             });
     }, [props.config.surahUUID]);
 

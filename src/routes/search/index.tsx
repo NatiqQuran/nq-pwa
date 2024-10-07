@@ -58,14 +58,10 @@ export default function Search() {
     const [searchInput, setSearchInput] = useState<string>("");
 
     useEffect(() => {
-        new ControllerSurah(conn!)
-            .list({ params: { mushaf: "hafs" } })
-            .then((response) => {
-                setSurahList(response.data);
-                setFilteredSurahList(
-                    filterSurahsByString(response.data, searchInput)
-                );
-            });
+        new ControllerSurah(conn!).list({ mushaf: "hafs" }).then((response) => {
+            setSurahList(response);
+            setFilteredSurahList(filterSurahsByString(response, searchInput));
+        });
     }, []);
 
     const filterBySearchInputHandler = (searchValue: string) => {

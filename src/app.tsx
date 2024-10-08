@@ -1,15 +1,18 @@
 import { useState } from "react";
-import { Theme } from "@yakad/ui";
-import Router from "./router";
-import "./assets/css/style.css";
 import { Connection } from "@ntq/sdk";
-import { ConnectionContext } from "contexts";
+import { Theme } from "@yakad/ui";
 
+import Router from "./router";
+import { ConnectionContext } from "./contexts";
+import "./assets/css/style.css";
 
 export default function App() {
-    const [connection, _setConnection] = useState(new Connection([
-        new URL(process.env.API_URL || "https://api.natiq.net"),
-    ], ""));
+    const [connection, _setConnection] = useState(
+        new Connection(
+            [new URL(process.env.API_URL || "https://api.natiq.net")],
+            ""
+        )
+    );
 
     return (
         <Theme>

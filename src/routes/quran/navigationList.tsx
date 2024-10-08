@@ -100,9 +100,11 @@ function NavListItemsQuran(props: {
     const conn = useContext(ConnectionContext);
 
     useEffect(() => {
-        new ControllerSurah(conn!).list({ mushaf: "hafs" }).then((response) => {
-            setSurahList(response);
-        });
+        new ControllerSurah(conn!)
+            .list({ params: { mushaf: "hafs" } })
+            .then((response) => {
+                setSurahList(response.data);
+            });
     }, []);
 
     return (
@@ -177,9 +179,9 @@ function NavListItemsTranslation(props: {
 
     useEffect(() => {
         new ControllerTranslation(conn!)
-            .list({ mushaf: "hafs" })
+            .list({ params: { mushaf: "hafs" } })
             .then((response) => {
-                setTranslationList(response);
+                setTranslationList(response.data);
             });
     }, []);
 

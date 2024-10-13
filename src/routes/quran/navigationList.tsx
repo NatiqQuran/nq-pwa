@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
+    SurahListResponseData,
+    TranslationListResponseData,
     ControllerSurah,
     ControllerTranslation,
     getLangNameFromCode,
 } from "@ntq/sdk";
-import { SurahListProps, TranslationListProps } from "@ntq/sdk/types";
 import {
     List,
     ListItem,
@@ -96,14 +97,18 @@ function NavListItemsQuran(props: {
     config: QuranConfigProps;
     setConfig: any;
 }) {
-    const [surahList, setSurahList] = useState<SurahListProps | null>(null);
+    const [surahList, setSurahList] = useState<SurahListResponseData | null>(
+        null
+    );
     const conn = useContext(ConnectionContext);
 
     useEffect(() => {
-        new ControllerSurah(conn!).list({ mushaf: "hafs" }).then((response) => {
-            setSurahList(response);
-        });
-    }, []);
+        new ControllerSurah(conn!)
+            .list({ params: { mushaf: "hafs" } })
+            .then((response) => {
+                setSurahList(response.data);
+            });
+    }, []); // eslint-disable-line
 
     return (
         <ListItem>
@@ -171,17 +176,17 @@ function NavListItemsTranslation(props: {
     setConfig: any;
 }) {
     const [translationList, setTranslationList] =
-        useState<TranslationListProps | null>(null);
+        useState<TranslationListResponseData | null>(null);
 
     const conn = useContext(ConnectionContext);
 
     useEffect(() => {
         new ControllerTranslation(conn!)
-            .list({ mushaf: "hafs" })
+            .list({ params: { mushaf: "hafs" } })
             .then((response) => {
-                setTranslationList(response);
+                setTranslationList(response.data);
             });
-    }, []);
+    }, []); // eslint-disable-line
 
     //Set a Translation as Default if no one selected before
     useEffect(() => {

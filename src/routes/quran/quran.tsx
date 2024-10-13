@@ -1,7 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ControllerSurah, ControllerTranslation } from "@ntq/sdk";
-import { SurahViewProps, TranslationViewProps } from "@ntq/sdk/types";
+import {
+    SurahViewResponseData,
+    TranslationViewResponseData,
+    ControllerSurah,
+    ControllerTranslation,
+} from "@ntq/sdk";
 import { Loading } from "@yakad/ui";
 
 import { QuranConfigProps } from ".";
@@ -12,10 +16,9 @@ import { ConnectionContext } from "contexts";
 export default function Quran(props: { config: QuranConfigProps }) {
     const navigate = useNavigate();
 
-    const [surah, setSurah] = useState<SurahViewProps | null>(null);
-    const [translation, setTranslation] = useState<TranslationViewProps | null>(
-        null
-    );
+    const [surah, setSurah] = useState<SurahViewResponseData | null>(null);
+    const [translation, setTranslation] =
+        useState<TranslationViewResponseData | null>(null);
 
     const conn = useContext(ConnectionContext);
 

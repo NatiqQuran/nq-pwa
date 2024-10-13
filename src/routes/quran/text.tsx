@@ -1,5 +1,5 @@
 import React from "react";
-import { SurahViewProps, TranslationViewProps } from "@ntq/sdk/types";
+import { SurahViewResponseData, TranslationViewResponseData } from "@ntq/sdk";
 import { Container, Stack } from "@yakad/ui";
 
 import { QuranConfigProps } from ".";
@@ -8,8 +8,8 @@ const toArabic = (string: any) => string.toLocaleString("ar-EG");
 
 export default function SurahText(props: {
     config: QuranConfigProps;
-    surahData: SurahViewProps;
-    translationData: TranslationViewProps;
+    surahData: SurahViewResponseData;
+    translationData: TranslationViewResponseData;
 }) {
     return (
         <Container
@@ -58,7 +58,7 @@ function AyahBox(props: React.HTMLAttributes<HTMLDivElement>) {
     );
 }
 
-function AyahText(props: { ayah: SurahViewProps["ayahs"][0] }) {
+function AyahText(props: { ayah: SurahViewResponseData["ayahs"][0] }) {
     return (
         <span
             style={{
@@ -87,7 +87,7 @@ function AyahText(props: { ayah: SurahViewProps["ayahs"][0] }) {
 }
 
 function AyahTranslation(props: {
-    translationText: TranslationViewProps["ayahs"][0];
+    translationText: TranslationViewResponseData["ayahs"][0];
 }) {
     return (
         <span

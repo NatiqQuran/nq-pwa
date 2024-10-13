@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ControllerSurah } from "@ntq/sdk";
-import { SurahListProps } from "@ntq/sdk/types";
+import { SurahListResponseData, ControllerSurah } from "@ntq/sdk";
 import {
     Page,
     Main,
@@ -31,9 +30,9 @@ function digitsToEnglish(str: string): string {
 }
 
 function filterSurahsByString(
-    surahList: SurahListProps,
+    surahList: SurahListResponseData,
     searchValue: string
-): SurahListProps {
+): SurahListResponseData {
     return searchValue !== ""
         ? surahList.filter((surah) => {
               const newSurah = {
@@ -50,10 +49,11 @@ function filterSurahsByString(
 }
 
 export default function Search() {
-    const [surahList, setSurahList] = useState<SurahListProps | null>(null);
-    const [filteredSurahList, setFilteredSurahList] = useState<SurahListProps>(
-        []
+    const [surahList, setSurahList] = useState<SurahListResponseData | null>(
+        null
     );
+    const [filteredSurahList, setFilteredSurahList] =
+        useState<SurahListResponseData>([]);
     const conn = useContext(ConnectionContext);
     const [searchInput, setSearchInput] = useState<string>("");
 
@@ -116,7 +116,10 @@ function SearchAppBar(props: { onSearch: any }) {
     );
 }
 
-function SearchMain(props: { loading: boolean; surahList: SurahListProps }) {
+function SearchMain(props: {
+    loading: boolean;
+    surahList: SurahListResponseData;
+}) {
     return (
         <Main>
             <Container maxWidth="md" style={{ marginBottom: "2rem" }}>
@@ -146,7 +149,7 @@ function SearchMain(props: { loading: boolean; surahList: SurahListProps }) {
     );
 }
 
-function SurahLinkBox(props: { surah: SurahListProps[0] }) {
+function SurahLinkBox(props: { surah: SurahListResponseData[0] }) {
     return (
         <Link to={`/quran/${props.surah.uuid}`}>
             <Card>

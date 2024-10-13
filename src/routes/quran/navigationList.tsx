@@ -108,7 +108,7 @@ function NavListItemsQuran(props: {
             .then((response) => {
                 setSurahList(response.data);
             });
-    }, []);
+    }, []); // eslint-disable-line
 
     return (
         <ListItem>
@@ -186,7 +186,7 @@ function NavListItemsTranslation(props: {
             .then((response) => {
                 setTranslationList(response.data);
             });
-    }, []);
+    }, []); // eslint-disable-line
 
     //Set a Translation as Default if no one selected before
     useEffect(() => {

@@ -66,7 +66,7 @@ export default function Search() {
                     filterSurahsByString(response.data, searchInput)
                 );
             });
-    }, []);
+    }, []); // eslint-disable-line
 
     const filterBySearchInputHandler = (searchValue: string) => {
         setSearchInput(searchValue);

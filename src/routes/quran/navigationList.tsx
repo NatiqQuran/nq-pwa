@@ -46,15 +46,15 @@ export default function NavigationList(props: {
                 />
             ),
         },
-        {
-            name: "Arabic Text",
-            navListItems: (
-                <NavListItemsArabicText
-                    config={props.config}
-                    setConfig={props.setConfig}
-                />
-            ),
-        },
+        // {
+        //     name: "Arabic Text",
+        //     navListItems: (
+        //         <NavListItemsArabicText
+        //             config={props.config}
+        //             setConfig={props.setConfig}
+        //         />
+        //     ),
+        // },
         {
             name: "Translation",
             navListItems: (

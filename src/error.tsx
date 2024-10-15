@@ -16,7 +16,7 @@ export default function Error(props: { status?: number }) {
                     <SvgIcon size={14}>
                         <LogoIcon />
                     </SvgIcon>
-                    <h1>Some Error Accord: {params.status || props.status}</h1>
+                    <h1>Error Accord: {params.status || props.status}</h1>
                     <Link to="/">
                         <Button variant="outlined">Back to home</Button>
                     </Link>

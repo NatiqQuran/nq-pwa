@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Pwa, Intro, Quran, Search } from "routes";
-import NotFound from "404";
 import Error from "error";
 
 const isPwaIntroPagePassed = (): boolean => {
@@ -40,7 +39,7 @@ export default function Router() {
                 <Route path="/quran/:id" element={<Quran />} />
                 <Route path="/search" element={<Search />} />
                 <Route path="error/:status" element={<Error />} />
-                <Route path="*" element={<NotFound />} />
+                <Route path="*" element={<Error status={404} />} />
             </Routes>
         </BrowserRouter>
     );

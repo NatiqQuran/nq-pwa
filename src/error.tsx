@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Button, Container, Main, Page, SvgIcon } from "@yakad/ui";
 import { ReactComponent as LogoIcon } from "./assets/svg/logoicon.svg";
 
-export default function NotFound() {
+export default function Error(props: { status?: number }) {
+    const params = useParams();
+
     return (
         <Page>
             <Main>
@@ -14,7 +16,7 @@ export default function NotFound() {
                     <SvgIcon size={14}>
                         <LogoIcon />
                     </SvgIcon>
-                    <h1>404 Not Found</h1>
+                    <h1>Error Accord: {params.status || props.status}</h1>
                     <Link to="/">
                         <Button variant="outlined">Back to home</Button>
                     </Link>

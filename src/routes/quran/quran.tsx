@@ -23,6 +23,21 @@ export default function Quran(props: { config: QuranConfigProps }) {
     const conn = useContext(ConnectionContext);
 
     useEffect(() => {
+        navigate("/quran/" + props.config.surahUUID);
+        setSurah(null);
+        setTranslation(null);
+        new ControllerSurah(conn!)
+            .view(props.config.surahUUID, {})
+            .then((response) => {
+                setSurah(response.data);
+            })
+            .catch((error) => {
+                if (error.status == 404) localStorage.clear();
+                navigate("/error/" + error.status);
+            });
+    }, [props.config.surahUUID]);
+
+    useEffect(() => {
         if (props.config.translationUUID)
             new ControllerTranslation(conn!)
                 .view(props.config.translationUUID, {
@@ -32,19 +47,12 @@ export default function Quran(props: { config: QuranConfigProps }) {
                 })
                 .then((response) => {
                     setTranslation(response.data);
+                })
+                .catch((error) => {
+                    if (error.status == 404) localStorage.clear();
+                    navigate("/error/" + error.status);
                 });
     }, [props.config.surahUUID, props.config.translationUUID]);
-
-    useEffect(() => {
-        navigate("/quran/" + props.config.surahUUID);
-        setSurah(null);
-        setTranslation(null);
-        new ControllerSurah(conn!)
-            .view(props.config.surahUUID, {})
-            .then((response) => {
-                setSurah(response.data);
-            });
-    }, [props.config.surahUUID]);
 
     return (
         <>

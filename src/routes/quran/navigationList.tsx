@@ -73,7 +73,7 @@ export default function NavigationList(props: {
                     <Button
                         size="medium"
                         variant={collapsedList[index] ? "text" : "elevated"}
-                        borderStyle="semi"
+                        borderstyle="semi"
                         onClick={() => handleClickCollapseList(index)}
                     >
                         {item.name}

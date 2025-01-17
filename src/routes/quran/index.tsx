@@ -5,7 +5,7 @@ import { Xpanel } from "@yakad/x";
 import Symbol from "@yakad/symbols";
 
 import NavigationList from "./navigationList";
-import Quran from "./quran";
+import QuranView from "./quran";
 import { defaultConfigData } from "./config";
 
 export interface QuranConfigProps {
@@ -14,7 +14,7 @@ export interface QuranConfigProps {
     translationUUID: string | undefined;
 }
 
-export default function QuranPage() {
+export default function Quran() {
     const { id } = useParams();
 
     const [config, setConfig] = React.useState<QuranConfigProps>(
@@ -27,16 +27,16 @@ export default function QuranPage() {
     return (
         <Xpanel
             name="Quran"
-            navigationChildren={
+            navigationchildren={
                 <NavigationList config={config} setConfig={setConfig} />
             }
-            appbarChildren={
-                <Link to="/search">
+            appbarchildren={
+                <Link to="/">
                     <Button icon={<Symbol icon="search" />} />
                 </Link>
             }
         >
-            <Quran config={config} />
+            <QuranView config={config} />
         </Xpanel>
     );
 }

@@ -8,10 +8,9 @@ import "./assets/css/style.css";
 
 export default function App() {
     const [connection, _setConnection] = useState(
-        new Connection(
-            [new URL(process.env.API_URL || "https://api.natiq.net")],
-            ""
-        )
+        new Connection([
+            new URL(process.env.REACT_APP_API_URL || "https://api.natiq.net"),
+        ])
     );
 
     return (

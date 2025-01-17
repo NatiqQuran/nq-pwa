@@ -13,7 +13,7 @@ import SurahHeader from "./surahHeader";
 import SurahText from "./text";
 import { ConnectionContext } from "contexts";
 
-export default function Quran(props: { config: QuranConfigProps }) {
+export default function QuranView(props: { config: QuranConfigProps }) {
     const navigate = useNavigate();
 
     const [surah, setSurah] = useState<SurahViewResponseData | null>(null);

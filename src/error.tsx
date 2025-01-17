@@ -10,7 +10,7 @@ export default function Error(props: { status?: number }) {
             <Main>
                 <Container
                     align="center"
-                    maxWidth="sm"
+                    size="sm"
                     style={{ marginTop: "5rem", gap: "2rem" }}
                 >
                     <SvgIcon size={14}>

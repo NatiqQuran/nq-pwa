@@ -13,7 +13,7 @@ export default function SurahText(props: {
 }) {
     return (
         <Container
-            maxWidth="md"
+            size="md"
             dir="rtl"
             style={{
                 textAlign: "justify",

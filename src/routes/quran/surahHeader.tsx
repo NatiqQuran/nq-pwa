@@ -13,7 +13,7 @@ export default function SurahHeader(props: {
     return (
         <Container
             align="center"
-            maxWidth="sm"
+            size="sm"
             style={{
                 padding: "2rem",
             }}

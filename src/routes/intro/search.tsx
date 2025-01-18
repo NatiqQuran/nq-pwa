@@ -13,7 +13,8 @@ import {
     Loading,
 } from "@yakad/ui";
 
-import { SurahPeriodIcon } from "components/SurahPeriodIcon";
+import surahs from "assets/json/surahs.json";
+import { SurahPeriodIcon } from "components/surahPeriodIcon";
 import { ConnectionContext } from "contexts";
 
 function digitsToEnglish(str: string): string {
@@ -45,8 +46,8 @@ function filterSurahsByString(
 }
 
 export default function Search() {
-    const [surahList, setSurahList] = useState<SurahListResponseData | null>(
-        null
+    const [surahList, setSurahList] = useState<SurahListResponseData>(
+        surahs as SurahListResponseData
     );
     const [filteredSurahList, setFilteredSurahList] =
         useState<SurahListResponseData>([]);
@@ -59,10 +60,10 @@ export default function Search() {
             .then((response) => {
                 setSurahList(response.data);
                 setFilteredSurahList(
-                    filterSurahsByString(response.data, searchInput)
+                    filterSurahsByString(surahList, searchInput)
                 );
             });
-    }, []); // eslint-disable-line
+    }, [surahList, searchInput]);
 
     const filterBySearchInputHandler = (searchValue: string) => {
         setSearchInput(searchValue);

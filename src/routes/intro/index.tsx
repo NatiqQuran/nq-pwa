@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import { Main, Page, Spacer, Button, Footer, Row } from "@yakad/ui";
 import { Xbackground, XgetStart } from "@yakad/x";
 
-import { ReactComponent as LogoIcon } from "../../assets/svg/logoicon.svg";
+import { ReactComponent as LogoIcon } from "assets/svg/logoicon.svg";
 import { IntroAppBar } from "./appBar";
 import Search from "./search";
+import { LastReadingButton } from "components/lastReadingButton";
 
 export default function Intro() {
     return (
@@ -58,9 +59,7 @@ function IntroGetStartBox() {
                 <Button variant="outlined" disabled>
                     Random Surah
                 </Button>
-                <Button variant="outlined" disabled>
-                    Last reading
-                </Button>
+                <LastReadingButton />
             </Row>
             <p style={{ color: "#7d7d7d" }}>Suitable for all ages</p>
             <a target="blank" href="https://blog.natiq.net/privacy-policy">
@@ -72,18 +71,18 @@ function IntroGetStartBox() {
 
 const IntroFooter = () => (
     <Footer>
-        <a href="https://blog.natiq.net/privacy-policy" target="_blank">
+        <Link to="https://blog.natiq.net/privacy-policy" target="_blank">
             <Button variant="link">Privacy Policy</Button>
-        </a>
+        </Link>
         <Spacer />
-        <a href="https://blog.natiq.net" target="_blank">
+        <Link to="https://blog.natiq.net" target="_blank">
             <Button variant="link">Blog</Button>
-        </a>
-        <a href="https://blog.natiq.net/sponsor" target="_blank">
+        </Link>
+        <Link to="https://blog.natiq.net/sponsor" target="_blank">
             <Button variant="link">Sponsor</Button>
-        </a>
-        <a href="https://github.com/NatiqQuran/nq-offline" target="_blank">
+        </Link>
+        <Link to="https://github.com/NatiqQuran/nq-offline" target="_blank">
             <Button variant="link">GitHub</Button>
-        </a>
+        </Link>
     </Footer>
 );

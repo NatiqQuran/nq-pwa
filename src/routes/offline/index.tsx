@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Button, Page, Main, SvgIcon } from "@yakad/ui";
+import { Container, Button, Page, Main } from "@yakad/ui";
 import Symbol from "@yakad/symbols";
 
 import { PwaAppBar } from "routes/pwa";
@@ -29,7 +29,7 @@ export default function Offline() {
 
     useEffect(() => {
         if (!isLocalhost && isOnline) navigate("/next", { replace: true });
-    }, [isOnline]);
+    }, [isOnline, navigate]);
 
     return (
         <Page>
@@ -59,7 +59,7 @@ export default function Offline() {
                             Refresh
                         </Button>
                         <p>or</p>
-                        <Link to="/search">
+                        <Link to="/">
                             <Button
                                 variant="outlined"
                                 icon={<Symbol icon="download_for_offline" />}

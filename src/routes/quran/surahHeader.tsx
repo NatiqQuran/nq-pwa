@@ -1,6 +1,6 @@
 import { Spacer, Container, Stack, Row } from "@yakad/ui";
 import { QuranConfigProps } from ".";
-import { SurahPeriodIcon } from "../../components/SurahPeriodIcon";
+import { SurahPeriodIcon } from "components/surahPeriodIcon";
 import { SurahViewResponseData } from "@ntq/sdk";
 
 const toArabic = (input: any) => input.toLocaleString("ar-EG");

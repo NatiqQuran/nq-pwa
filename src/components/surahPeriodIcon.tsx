@@ -1,6 +1,6 @@
 import { SvgIcon } from "@yakad/ui";
-import { ReactComponent as Madineh } from "../assets/svg/madineh - filled.svg";
-import { ReactComponent as Makkah } from "../assets/svg/makkah - filled.svg";
+import { ReactComponent as Madineh } from "assets/svg/madineh - filled.svg";
+import { ReactComponent as Makkah } from "assets/svg/makkah - filled.svg";
 
 export const SurahPeriodIcon = (props: { period: "makki" | "madani" | null }) =>
     props.period ? (

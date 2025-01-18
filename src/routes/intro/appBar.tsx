@@ -1,17 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { AppBar, Spacer, Button, SvgIcon, DisplayOnScreen } from "@yakad/ui";
-import Symbol from "@yakad/symbols";
+import { AppBar, Spacer, SvgIcon } from "@yakad/ui";
 
-import { ReactComponent as LogoIcon } from "../../assets/svg/logoicon.svg";
+import { ReactComponent as LogoIcon } from "assets/svg/logoicon.svg";
+import { GoOnlineButton } from "components/goOnlineButton";
 
 export function IntroAppBar() {
-    const [online, setOnline] = useState<boolean>(navigator.onLine);
-    useEffect(() => {
-        ononline = () => setOnline(true);
-        onoffline = () => setOnline(false);
-    }, []);
-
     return (
         <AppBar positionsticky>
             <SvgIcon size={5}>
@@ -28,21 +20,7 @@ export function IntroAppBar() {
                 Natiq
             </h1>
             <Spacer />
-            {online ? (
-                <Link to="/next">
-                    <Button variant="filled" icon={<Symbol icon="start" />}>
-                        Go Online
-                    </Button>
-                </Link>
-            ) : (
-                <Button
-                    variant="elevated"
-                    icon={<Symbol icon="offline_bolt" />}
-                    disabled
-                >
-                    Offline
-                </Button>
-            )}
+            <GoOnlineButton />
         </AppBar>
     );
 }

@@ -13,7 +13,7 @@ import {
     Loading,
 } from "@yakad/ui";
 
-import { SurahPeriodIcon } from "components/SurahPeriodIcon";
+import { SurahPeriodIcon } from "components/surahPeriodIcon";
 import { ConnectionContext } from "contexts";
 
 function digitsToEnglish(str: string): string {
@@ -59,10 +59,10 @@ export default function Search() {
             .then((response) => {
                 setSurahList(response.data);
                 setFilteredSurahList(
-                    filterSurahsByString(response.data, searchInput)
+                    filterSurahsByString(surahList, searchInput)
                 );
             });
-    }, []); // eslint-disable-line
+    }, [surahList, searchInput]);
 
     const filterBySearchInputHandler = (searchValue: string) => {
         setSearchInput(searchValue);

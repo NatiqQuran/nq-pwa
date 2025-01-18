@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AppBar, Container, Button, Page, Main, SvgIcon } from "@yakad/ui";
 import Symbol from "@yakad/symbols";
 
-import { ReactComponent as Logo } from "../../assets/svg/logoicon.svg";
+import { ReactComponent as Logo } from "assets/svg/logoicon.svg";
 
 //Test mode in local host
 const isLocalhost = Boolean(
@@ -57,6 +57,11 @@ export default function Pwa() {
                             <li>Full access to web version feathers</li>
                         </ul>
                     </div>
+                    <h1>
+                        {isLocalhost ? "LocalHost" : "Server Host"}
+                        {" - "}
+                        {isPwaIntroPagePassed ? "passed" : "first visit"}
+                    </h1>
                     <div>
                         <Button
                             variant="filled"

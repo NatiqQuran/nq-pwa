@@ -13,7 +13,6 @@ import {
     Loading,
 } from "@yakad/ui";
 
-import surahs from "assets/json/surahs.json";
 import { SurahPeriodIcon } from "components/surahPeriodIcon";
 import { ConnectionContext } from "contexts";
 
@@ -46,8 +45,8 @@ function filterSurahsByString(
 }
 
 export default function Search() {
-    const [surahList, setSurahList] = useState<SurahListResponseData>(
-        surahs as SurahListResponseData
+    const [surahList, setSurahList] = useState<SurahListResponseData | null>(
+        null
     );
     const [filteredSurahList, setFilteredSurahList] =
         useState<SurahListResponseData>([]);

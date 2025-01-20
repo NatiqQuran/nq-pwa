@@ -1,17 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-    SurahViewResponseData,
-    TranslationViewResponseData,
-    ControllerSurah,
-    ControllerTranslation,
-} from "@ntq/sdk";
+import { SurahViewResponseData, TranslationViewResponseData } from "@ntq/sdk";
 import { Loading } from "@yakad/ui";
 
+import { controllerSurah, controllerTranslation } from "connection";
 import { QuranConfigProps } from ".";
 import SurahHeader from "./surahHeader";
 import SurahText from "./text";
-import { ConnectionContext } from "contexts";
 
 export default function QuranView(props: { config: QuranConfigProps }) {
     const navigate = useNavigate();
@@ -20,26 +15,24 @@ export default function QuranView(props: { config: QuranConfigProps }) {
     const [translation, setTranslation] =
         useState<TranslationViewResponseData | null>(null);
 
-    const conn = useContext(ConnectionContext);
-
     useEffect(() => {
         navigate("/quran/" + props.config.surahUUID);
         setSurah(null);
         setTranslation(null);
-        new ControllerSurah(conn!)
+        controllerSurah
             .view(props.config.surahUUID, {})
             .then((response) => {
                 setSurah(response.data);
             })
             .catch((error) => {
-                if (error.status == 404) localStorage.clear();
+                if (error.status === 404) localStorage.clear();
                 navigate("/error/" + error.status);
             });
-    }, [props.config.surahUUID]);
+    }, [props.config.surahUUID]); //eslint-disable-line
 
     useEffect(() => {
         if (props.config.translationUUID)
-            new ControllerTranslation(conn!)
+            controllerTranslation
                 .view(props.config.translationUUID, {
                     params: {
                         surah_uuid: props.config.surahUUID,
@@ -49,10 +42,10 @@ export default function QuranView(props: { config: QuranConfigProps }) {
                     setTranslation(response.data);
                 })
                 .catch((error) => {
-                    if (error.status == 404) localStorage.clear();
+                    if (error.status === 404) localStorage.clear();
                     navigate("/error/" + error.status);
                 });
-    }, [props.config.surahUUID, props.config.translationUUID]);
+    }, [props.config.surahUUID, props.config.translationUUID]); //eslint-disable-line
 
     return (
         <>

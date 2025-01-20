@@ -1,9 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     SurahListResponseData,
     TranslationListResponseData,
-    ControllerSurah,
-    ControllerTranslation,
     getLangNameFromCode,
 } from "@ntq/sdk";
 import {
@@ -18,7 +16,7 @@ import {
 
 import { QuranConfigProps } from ".";
 import { selectDefaultTranslationUUIDFromList } from "./config";
-import { ConnectionContext } from "contexts";
+import { controllerSurah, controllerTranslation } from "connection";
 
 interface CollapseList {
     [n: number]: boolean;
@@ -100,15 +98,14 @@ function NavListItemsQuran(props: {
     const [surahList, setSurahList] = useState<SurahListResponseData | null>(
         null
     );
-    const conn = useContext(ConnectionContext);
 
     useEffect(() => {
-        new ControllerSurah(conn!)
+        controllerSurah
             .list({ params: { mushaf: "hafs" } })
             .then((response) => {
                 setSurahList(response.data);
             });
-    }, []); // eslint-disable-line
+    }, []); //eslint-disable-line
 
     return (
         <ListItem>
@@ -178,10 +175,8 @@ function NavListItemsTranslation(props: {
     const [translationList, setTranslationList] =
         useState<TranslationListResponseData | null>(null);
 
-    const conn = useContext(ConnectionContext);
-
     useEffect(() => {
-        new ControllerTranslation(conn!)
+        controllerTranslation
             .list({ params: { mushaf: "hafs" } })
             .then((response) => {
                 setTranslationList(response.data);
@@ -198,7 +193,7 @@ function NavListItemsTranslation(props: {
                         selectDefaultTranslationUUIDFromList(translationList),
                 });
         }
-    }, [translationList]);
+    }, [translationList]); //eslint-disable-line
 
     return (
         <>

@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { SurahListResponseData, ControllerSurah } from "@ntq/sdk";
+import { SurahListResponseData } from "@ntq/sdk";
 import {
     Container,
     Hr,
@@ -13,8 +13,8 @@ import {
     Loading,
 } from "@yakad/ui";
 
+import { controllerSurah } from "connection";
 import { SurahPeriodIcon } from "components/surahPeriodIcon";
-import { ConnectionContext } from "contexts";
 
 function digitsToEnglish(str: string): string {
     // Detect all Persian/Arabic Digit in range of their Unicode with a global RegEx character set
@@ -50,11 +50,10 @@ export default function Search() {
     );
     const [filteredSurahList, setFilteredSurahList] =
         useState<SurahListResponseData>([]);
-    const conn = useContext(ConnectionContext);
     const [searchInput, setSearchInput] = useState<string>("");
 
     useEffect(() => {
-        new ControllerSurah(conn!)
+        controllerSurah
             .list({ params: { mushaf: "hafs" } })
             .then((response) => {
                 setSurahList(response.data);

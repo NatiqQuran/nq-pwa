@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SurahListResponseData } from "@ntq/sdk";
 import {
     Container,
-    Hr,
     GridContainer,
     GridItem,
     Card,
@@ -11,9 +10,10 @@ import {
     Spacer,
     Stack,
     Loading,
+    Hr,
 } from "@yakad/ui";
 
-import { controllerSurah } from "connection";
+import surahListJson from "assets/json/surahList.json";
 import { SurahPeriodIcon } from "components/surahPeriodIcon";
 
 function digitsToEnglish(str: string): string {
@@ -25,59 +25,65 @@ function digitsToEnglish(str: string): string {
     );
 }
 
+function searchAble(str: string): string {
+    return digitsToEnglish(
+        str
+            .toLowerCase()
+            .replace("ة", "ه")
+            .replace("ؤ", "و")
+            .replace("آ", "ا")
+            .replace("أ", "ا")
+            .replace("أ", "ا")
+            .replace("إ", "ا")
+            .replace("ي", "ی")
+            .replace("ئ", "ی")
+    );
+}
+
+function arrayOfObjectsToString(arrayOfObjects: object[]): string {
+    const arrayOfJoinedObjects: string[] = arrayOfObjects.map((obj) =>
+        Object.values(obj).join(" ")
+    ); //join objects values
+    return arrayOfJoinedObjects.join(" "); //join array items
+}
+
 function filterSurahsByString(
     surahList: SurahListResponseData,
     searchValue: string
 ): SurahListResponseData {
-    return searchValue !== ""
-        ? surahList.filter((surah) => {
-              const newSurah = {
-                  number: surah.number,
-                  names: surah.names,
-                  period: surah.period,
-              };
-              return Object.values(newSurah)
-                  .join("")
-                  .toLowerCase()
-                  .includes(searchValue.toLowerCase());
-          })
-        : surahList;
+    if (!searchValue) return surahList;
+
+    const searchAbleValue: string = searchAble(searchValue);
+
+    return surahList.filter((surah) => {
+        const newSurah = {
+            number: surah.number,
+            names: arrayOfObjectsToString(surah.names),
+            period: surah.period,
+        };
+        const searchableString: string = searchAble(
+            Object.values(newSurah).join(" ")
+        );
+
+        return searchableString.includes(searchAbleValue);
+    });
 }
 
 export default function Search() {
-    const [surahList, setSurahList] = useState<SurahListResponseData | null>(
-        null
-    );
-    const [filteredSurahList, setFilteredSurahList] =
-        useState<SurahListResponseData>([]);
-    const [searchInput, setSearchInput] = useState<string>("");
+    const surahList: SurahListResponseData =
+        surahListJson as SurahListResponseData;
 
-    useEffect(() => {
-        controllerSurah
-            .list({ params: { mushaf: "hafs" } })
-            .then((response) => {
-                setSurahList(response.data);
-                setFilteredSurahList(
-                    filterSurahsByString(response.data, searchInput)
-                );
-            });
-    }, [surahList, searchInput]);
+    const [filteredSurahList, setFilteredSurahList] =
+        useState<SurahListResponseData>(filterSurahsByString(surahList, ""));
 
     const filterBySearchInputHandler = (searchValue: string) => {
-        setSearchInput(searchValue);
-        if (surahList)
-            setFilteredSurahList(
-                filterSurahsByString(surahList, digitsToEnglish(searchValue))
-            );
+        setFilteredSurahList(filterSurahsByString(surahList, searchValue));
     };
 
     return (
         <>
             <SearchBar onSearch={filterBySearchInputHandler} />
-            <SearchMain
-                loading={!surahList || !filteredSurahList}
-                surahList={filteredSurahList}
-            />
+            <SearchMain loading={false} surahList={filteredSurahList} />
         </>
     );
 }
@@ -108,7 +114,7 @@ const SearchMain = (props: {
     loading: boolean;
     surahList: SurahListResponseData;
 }) => (
-    <Container size="md" style={{ marginBottom: "2rem" }}>
+    <Container size="md" style={{ marginBottom: "2rem", minHeight: "100vh" }}>
         <h2 style={{ marginBottom: "0", fontSize: "3.4rem" }}>Surahs List</h2>
         <Hr margintopbottom={2} />
         {props.loading ? (

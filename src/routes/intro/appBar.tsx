@@ -20,7 +20,7 @@ export function IntroAppBar() {
                 Natiq
             </h1>
             <Spacer />
-            {/* <GoOnlineButton />s */}
+            <GoOnlineButton />
         </AppBar>
     );
 }

@@ -12,7 +12,6 @@ import {
     Hr,
 } from "@yakad/ui";
 
-import surahListJson from "assets/json/surahList.json";
 import { SurahPeriodIcon } from "components/surahPeriodIcon";
 
 function digitsToEnglish(str: string): string {
@@ -69,15 +68,16 @@ function filterSurahsByString(
     });
 }
 
-export default function Search() {
-    const surahList: SurahListResponseData =
-        surahListJson as SurahListResponseData;
-
+export default function Search(props: { surahList: SurahListResponseData }) {
     const [filteredSurahList, setFilteredSurahList] =
-        useState<SurahListResponseData>(filterSurahsByString(surahList, ""));
+        useState<SurahListResponseData>(
+            filterSurahsByString(props.surahList, "")
+        );
 
     const filterBySearchInputHandler = (searchValue: string) => {
-        setFilteredSurahList(filterSurahsByString(surahList, searchValue));
+        setFilteredSurahList(
+            filterSurahsByString(props.surahList, searchValue)
+        );
     };
 
     return (

@@ -5,6 +5,7 @@ import Symbol from "@yakad/symbols";
 
 export function GoOnlineButton() {
     const [online, setOnline] = useState<boolean>(navigator.onLine);
+
     useEffect(() => {
         ononline = () => setOnline(true);
         onoffline = () => setOnline(false);
@@ -13,8 +14,12 @@ export function GoOnlineButton() {
     return (
         <>
             {online ? (
-                <Link to="/next">
-                    <Button variant="filled" icon={<Symbol icon="start" />}>
+                <Link to="https://natiq.net">
+                    <Button
+                        variant="elevated"
+                        icon={<Symbol icon="start" />}
+                        disabled
+                    >
                         Go Online
                     </Button>
                 </Link>

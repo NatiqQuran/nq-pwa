@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Button, Page, Main } from "@yakad/ui";
+import { Container, Button, Page, Main, AppBar, SvgIcon } from "@yakad/ui";
 import Symbol from "@yakad/symbols";
 
-import { PwaAppBar } from "routes/pwa";
-import { useEffect, useState } from "react";
+import { ReactComponent as Logo } from "assets/svg/logoicon.svg";
 
 //Test mode in local host
 const isLocalhost = Boolean(
@@ -33,7 +33,7 @@ export default function Offline() {
 
     return (
         <Page>
-            <PwaAppBar />
+            <OfflineAppBar />
             <Main>
                 <Container
                     size="sm"
@@ -41,7 +41,7 @@ export default function Offline() {
                     style={{
                         flexDirection: "column",
                         justifyContent: "space-evenly",
-                        minHeight: "100vh",
+                        minHeight: "calc(100vh - 6rem)",
                         paddingTop: "3rem",
                         paddingBottom: "3rem",
                     }}
@@ -73,3 +73,21 @@ export default function Offline() {
         </Page>
     );
 }
+
+const OfflineAppBar = () => (
+    <AppBar>
+        <SvgIcon size={5}>
+            <Logo />
+        </SvgIcon>
+        <h1
+            style={{
+                fontFamily: "arial",
+                fontSize: "2.4rem",
+                fontWeight: "normal",
+                letterSpacing: "0.1rem",
+            }}
+        >
+            Natiq
+        </h1>
+    </AppBar>
+);

@@ -1,5 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-import { AppBar, Container, Button, Page, Main, SvgIcon } from "@yakad/ui";
+import {
+    AppBar,
+    Container,
+    Button,
+    Page,
+    Main,
+    SvgIcon,
+    Spacer,
+} from "@yakad/ui";
 import Symbol from "@yakad/symbols";
 
 import { ReactComponent as Logo } from "assets/svg/logoicon.svg";
@@ -21,12 +29,17 @@ export default function Pwa() {
     const isPwaIntroPagePassed: boolean =
         localStorage.getItem("pwaIntroPassed") === "true";
 
-    if (!isLocalhost && isPwaIntroPagePassed)
-        navigate(navigator.onLine ? "/next" : "/offline", { replace: true });
+    const navigateTo = () => {
+        navigator.onLine
+            ? navigate("/next", { replace: true })
+            : navigate("/offline", { replace: true });
+    };
+
+    if (!isLocalhost && isPwaIntroPagePassed) navigateTo();
 
     const launch = () => {
         localStorage.setItem("pwaIntroPassed", "true");
-        navigate(navigator.onLine ? "/next" : "/offline", { replace: true });
+        navigateTo();
     };
 
     return (
@@ -57,11 +70,6 @@ export default function Pwa() {
                             <li>Full access to web version feathers</li>
                         </ul>
                     </div>
-                    <h1>
-                        {isLocalhost ? "LocalHost" : "Server Host"}
-                        {" - "}
-                        {isPwaIntroPagePassed ? "passed" : "first visit"}
-                    </h1>
                     <div>
                         <Button
                             variant="filled"
@@ -86,7 +94,7 @@ export default function Pwa() {
     );
 }
 
-export const PwaAppBar = () => (
+const PwaAppBar = () => (
     <AppBar>
         <SvgIcon size={5}>
             <Logo />
@@ -101,5 +109,14 @@ export const PwaAppBar = () => (
         >
             Natiq
         </h1>
+        <Spacer />
+        <Link to="/">
+            <Button
+                variant="outlined"
+                icon={<Symbol icon="download_for_offline" />}
+            >
+                Offline mode
+            </Button>
+        </Link>
     </AppBar>
 );

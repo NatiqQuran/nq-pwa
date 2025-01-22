@@ -9,11 +9,9 @@ import {
     Row,
     Spacer,
     Stack,
-    Loading,
     Hr,
 } from "@yakad/ui";
 
-import surahListJson from "assets/json/surahList.json";
 import { SurahPeriodIcon } from "components/surahPeriodIcon";
 
 function digitsToEnglish(str: string): string {
@@ -37,6 +35,7 @@ function searchAble(str: string): string {
             .replace("إ", "ا")
             .replace("ي", "ی")
             .replace("ئ", "ی")
+            .replace("ك", "ک")
     );
 }
 
@@ -69,21 +68,22 @@ function filterSurahsByString(
     });
 }
 
-export default function Search() {
-    const surahList: SurahListResponseData =
-        surahListJson as SurahListResponseData;
-
+export default function Search(props: { surahList: SurahListResponseData }) {
     const [filteredSurahList, setFilteredSurahList] =
-        useState<SurahListResponseData>(filterSurahsByString(surahList, ""));
+        useState<SurahListResponseData>(
+            filterSurahsByString(props.surahList, "")
+        );
 
     const filterBySearchInputHandler = (searchValue: string) => {
-        setFilteredSurahList(filterSurahsByString(surahList, searchValue));
+        setFilteredSurahList(
+            filterSurahsByString(props.surahList, searchValue)
+        );
     };
 
     return (
         <>
             <SearchBar onSearch={filterBySearchInputHandler} />
-            <SearchMain loading={false} surahList={filteredSurahList} />
+            <SearchMain surahList={filteredSurahList} />
         </>
     );
 }
@@ -110,19 +110,14 @@ const SearchBar = (props: { onSearch: any }) => (
     </Container>
 );
 
-const SearchMain = (props: {
-    loading: boolean;
-    surahList: SurahListResponseData;
-}) => (
-    <Container size="md" style={{ marginBottom: "2rem", minHeight: "100vh" }}>
+const SearchMain = (props: { surahList: SurahListResponseData }) => (
+    <Container size="md" style={{ marginBottom: "2rem", minHeight: "90vh" }}>
         <h2 style={{ marginBottom: "0", fontSize: "3.4rem" }}>Surahs List</h2>
         <Hr margintopbottom={2} />
-        {props.loading ? (
-            <Loading size="large" />
-        ) : props.surahList.length === 0 ? (
-            <div style={{ margin: "auto" }}>
-                <h2 style={{ textAlign: "center" }}>No Search Result</h2>
-            </div>
+        {props.surahList.length === 0 ? (
+            <h2 style={{ margin: "2rem auto", textAlign: "center" }}>
+                No Search Result
+            </h2>
         ) : (
             <GridContainer>
                 {props.surahList.map((surah) => (

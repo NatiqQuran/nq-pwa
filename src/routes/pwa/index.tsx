@@ -11,6 +11,7 @@ import {
 import Symbol from "@yakad/symbols";
 
 import { ReactComponent as Logo } from "assets/svg/logoicon.svg";
+import { useEffect } from "react";
 
 //Test mode in local host
 const isLocalhost = Boolean(
@@ -35,7 +36,11 @@ export default function Pwa() {
             : navigate("/offline", { replace: true });
     };
 
-    if (!isLocalhost && isPwaIntroPagePassed) navigateTo();
+    useEffect(() => {
+        if (isPwaIntroPagePassed)
+            if (!isLocalhost || window.confirm("Confirm navigate."))
+                navigateTo();
+    }, []); //eslint-disable-line
 
     const launch = () => {
         localStorage.setItem("pwaIntroPassed", "true");

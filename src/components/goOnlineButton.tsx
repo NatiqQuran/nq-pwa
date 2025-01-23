@@ -14,12 +14,8 @@ export function GoOnlineButton() {
     return (
         <>
             {online ? (
-                <Link to="https://natiq.net">
-                    <Button
-                        variant="elevated"
-                        icon={<Symbol icon="start" />}
-                        disabled
-                    >
+                <Link to="https://natiq.net" target="_blank">
+                    <Button variant="filled" icon={<Symbol icon="start" />}>
                         Go Online
                     </Button>
                 </Link>

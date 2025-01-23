@@ -4,23 +4,22 @@ import { Button } from "@yakad/ui";
 
 interface RandomSurahButtonProps {
     surahList: SurahListResponseData;
+    surahNumber: number;
 }
 
-export function RandomSurahButton(props: RandomSurahButtonProps) {
+export function GoToSurahButton(props: RandomSurahButtonProps) {
     const navigate = useNavigate();
-
-    const surahLength: number = props.surahList.length;
-
-    const randomNumber: number = Math.floor(Math.random() * surahLength);
 
     return (
         <Button
             variant="outlined"
             onClick={() => {
-                navigate("/quran/" + props.surahList[randomNumber].uuid);
+                navigate(
+                    "/quran/" + props.surahList[props.surahNumber - 1].uuid
+                );
             }}
         >
-            Random Surah
+            {props.surahList[props.surahNumber - 1].names[0].arabic}
         </Button>
     );
 }

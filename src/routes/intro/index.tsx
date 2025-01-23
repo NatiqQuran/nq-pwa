@@ -6,9 +6,8 @@ import { Xbackground, XgetStart } from "@yakad/x";
 import surahListJson from "assets/json/surahList.json";
 import { ReactComponent as LogoIcon } from "assets/svg/logoicon.svg";
 import { LastReadingButton } from "components/lastReadingButton";
-import { RandomSurahButton } from "components/randomSurahButton";
 import { IntroAppBar } from "./appBar";
-import Search from "./search";
+import Search, { JumpToSearchBarButton } from "./search";
 
 export default function Intro() {
     const surahList: SurahListResponseData =
@@ -20,7 +19,7 @@ export default function Intro() {
             <Main>
                 <Xbackground variant="dotted">
                     <XgetStart logo={<LogoIcon />}>
-                        <IntroGetStartBox surahList={surahList} />
+                        <IntroGetStartBox />
                     </XgetStart>
                 </Xbackground>
                 <Search surahList={surahList} />
@@ -30,48 +29,46 @@ export default function Intro() {
     );
 }
 
-function IntroGetStartBox(props: { surahList: SurahListResponseData }) {
-    return (
-        <>
-            <h1
+const IntroGetStartBox = () => (
+    <>
+        <h1
+            style={{
+                fontFamily: "Hafs",
+                textAlign: "center",
+                margin: "0",
+            }}
+        >
+            <span
                 style={{
-                    fontFamily: "Hafs",
-                    textAlign: "center",
-                    margin: "0",
+                    fontSize: "7rem",
                 }}
             >
-                <span
-                    style={{
-                        fontSize: "7rem",
-                    }}
-                >
-                    الْقُرآنُ{" "}
-                </span>
-                <span style={{ fontSize: "7.7rem", color: "#aa8a59" }}>
-                    النّاطِق
-                </span>
-            </h1>
-            <h2 style={{ margin: "1rem" }}>Natiq Offline</h2>
-            <p
-                style={{
-                    fontSize: "1.7rem",
-                    textAlign: "center",
-                    marginBottom: "2rem",
-                }}
-            >
-                Read Quran in Natiq offline mode.
-            </p>
-            <Row align="center">
-                <RandomSurahButton surahList={props.surahList} />
-                <LastReadingButton />
-            </Row>
-            <p style={{ color: "#7d7d7d" }}>Suitable for all ages</p>
-            <a target="blank" href="https://blog.natiq.net/privacy-policy">
-                Privacy Policy
-            </a>
-        </>
-    );
-}
+                الْقُرآنُ{" "}
+            </span>
+            <span style={{ fontSize: "7.7rem", color: "#aa8a59" }}>
+                النّاطِق
+            </span>
+        </h1>
+        <h2 style={{ margin: "1rem" }}>Natiq Offline</h2>
+        <p
+            style={{
+                fontSize: "1.7rem",
+                textAlign: "center",
+                marginBottom: "2rem",
+            }}
+        >
+            Read Quran in Natiq offline mode.
+        </p>
+        <Row align="center">
+            <JumpToSearchBarButton />
+            <LastReadingButton />
+        </Row>
+        <p style={{ color: "#7d7d7d" }}>Suitable for all ages</p>
+        <a target="blank" href="https://blog.natiq.net/privacy-policy">
+            Privacy Policy
+        </a>
+    </>
+);
 
 const IntroFooter = () => (
     <Footer>

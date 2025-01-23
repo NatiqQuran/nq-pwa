@@ -5,7 +5,7 @@ import { GoOnlineButton } from "components/goOnlineButton";
 
 export function IntroAppBar() {
     return (
-        <AppBar positionsticky>
+        <AppBar>
             <SvgIcon size={5}>
                 <LogoIcon />
             </SvgIcon>

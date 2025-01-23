@@ -26,7 +26,7 @@ function scrollTo(id: string): void {
 }
 export const JumpToSearchBarButton = () => (
     <Button
-        variant="outlined"
+        variant="filledtonal"
         onClick={() => {
             document.getElementById("searchInput")!.focus();
             scrollTo("searchContainer");
@@ -97,7 +97,10 @@ export default function Search(props: { surahList: SurahListResponseData }) {
             filterSurahsByString(props.surahList, "")
         );
 
+    const [isSearching, setIsSearching] = useState<boolean>(false);
+
     const filterBySearchInputHandler = (searchValue: string) => {
+        setIsSearching(searchValue ? true : false);
         setFilteredSurahList(
             filterSurahsByString(props.surahList, searchValue)
         );
@@ -106,7 +109,7 @@ export default function Search(props: { surahList: SurahListResponseData }) {
     return (
         <Container size="md" id="searchContainer" style={{ marginTop: "2rem" }}>
             <SearchBar onSearch={filterBySearchInputHandler} />
-            <RelatedSurahs surahList={props.surahList} />
+            {!isSearching && <RelatedSurahs surahList={props.surahList} />}
             <SearchResault surahList={filteredSurahList} />
         </Container>
     );
@@ -118,38 +121,48 @@ const SearchBar = (props: { onSearch: any }) => (
         style={{
             position: "sticky",
             top: "0",
+            zIndex: "1",
         }}
     >
-        <input
-            id="searchInput"
+        <div
             style={{
-                boxSizing: "border-box",
                 width: "100%",
-                height: "6rem",
-                padding: "3rem",
-                margin: "2rem 0",
-                border: "0.1rem solid #7d7d7d7d",
-                boxShadow: "0 0 0.4rem #7d7d7d7d",
-                borderRadius: "3rem",
-                fontSize: "1.6rem",
-                backgroundColor: "#222222f0",
-                color: "inherit",
+                backgroundColor: "rgb(var(--surfaceColor, 254 247 255))",
+                borderRadius: "0 0 3rem 3rem",
             }}
-            type="Search"
-            placeholder="Search Surah by Name or Number"
-            onClick={() => {
-                scrollTo("searchBar");
-            }}
-            onChange={(e) => {
-                scrollTo("searchContainer");
-                props.onSearch(e.target.value);
-            }}
-        />
+        >
+            <input
+                id="searchInput"
+                style={{
+                    boxSizing: "border-box",
+                    width: "100%",
+                    height: "6rem",
+                    padding: "3rem",
+                    margin: "2rem 0 0",
+                    border: "0.1rem solid #7d7d7d7d",
+                    boxShadow: "0 0 0.4rem #7d7d7d7d",
+                    borderRadius: "3rem",
+                    fontSize: "1.6rem",
+                    backgroundColor:
+                        "rgb(var(--surfaceContainerColor, 243 237 247))",
+                    color: "inherit",
+                }}
+                type="Search"
+                placeholder="Search Surah by Name or Number"
+                onClick={() => {
+                    scrollTo("searchBar");
+                }}
+                onChange={(e) => {
+                    scrollTo("searchContainer");
+                    props.onSearch(e.target.value);
+                }}
+            />
+        </div>
     </Row>
 );
 
 const RelatedSurahs = (props: { surahList: SurahListResponseData }) => (
-    <Row style={{ flexWrap: "wrap" }}>
+    <Row style={{ flexWrap: "wrap", marginTop: "2rem" }}>
         <RandomSurahButton surahList={props.surahList} />
         <GoToSurahButton surahList={props.surahList} surahNumber={55} />
         <GoToSurahButton surahList={props.surahList} surahNumber={36} />
@@ -161,7 +174,7 @@ const SearchResault = (props: { surahList: SurahListResponseData }) => (
     <div
         style={{
             width: "100%",
-            minHeight: "calc(100vh - 17rem)",
+            minHeight: "calc(100vh - 16rem)",
             marginBottom: "2rem",
         }}
     >

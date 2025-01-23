@@ -15,7 +15,7 @@ export function LastReadingButton() {
 
     return (
         <Button
-            variant="outlined"
+            variant="filledtonal"
             disabled={!configFromLocalStorage}
             onClick={() => {
                 navigate("/quran/" + configFromLocalStorage.surahUUID);

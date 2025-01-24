@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { SurahListResponseData } from "@ntq/sdk";
 import {
@@ -10,32 +10,11 @@ import {
     Spacer,
     Stack,
     Hr,
-    Button,
 } from "@yakad/ui";
-import Symbol from "@yakad/symbols";
 
 import { SurahPeriodIcon } from "components/surahPeriodIcon";
 import { RandomSurahButton } from "components/randomSurahButton";
 import { GoToSurahButton } from "components/goToSurahButton";
-
-function scrollTo(id: string): void {
-    document.getElementById(id)!.scrollIntoView({
-        block: "start",
-        behavior: "smooth",
-    });
-}
-export const JumpToSearchBarButton = () => (
-    <Button
-        variant="filledtonal"
-        onClick={() => {
-            document.getElementById("searchInput")!.focus();
-            scrollTo("searchContainer");
-        }}
-        icon={<Symbol icon="search" />}
-    >
-        Search
-    </Button>
-);
 
 function digitsToEnglish(str: string): string {
     // Detect all Persian/Arabic Digit in range of their Unicode with a global RegEx character set
@@ -107,7 +86,7 @@ export default function Search(props: { surahList: SurahListResponseData }) {
     };
 
     return (
-        <Container size="md" id="searchContainer" style={{ marginTop: "2rem" }}>
+        <Container size="md" style={{ marginTop: "2rem" }}>
             <SearchBar onSearch={filterBySearchInputHandler} />
             {!isSearching && <RelatedSurahs surahList={props.surahList} />}
             <SearchResault surahList={filteredSurahList} />
@@ -115,51 +94,63 @@ export default function Search(props: { surahList: SurahListResponseData }) {
     );
 }
 
-const SearchBar = (props: { onSearch: any }) => (
-    <Row
-        id="searchBar"
-        style={{
-            position: "sticky",
-            top: "0",
-            zIndex: "1",
-        }}
-    >
-        <div
+interface SearchBarProps {
+    onSearch: (query: string) => void;
+}
+const SearchBar = (props: SearchBarProps) => {
+    const searchBarRef = useRef<HTMLInputElement>(null);
+
+    const scrollToSearchBar = () => {
+        searchBarRef.current?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
+    };
+
+    return (
+        <Row
+            ref={searchBarRef}
             style={{
-                width: "100%",
-                backgroundColor: "rgb(var(--surfaceColor, 254 247 255))",
-                borderRadius: "0 0 3rem 3rem",
+                position: "sticky",
+                top: "0",
+                zIndex: "1",
             }}
         >
-            <input
-                id="searchInput"
+            <div
                 style={{
-                    boxSizing: "border-box",
                     width: "100%",
-                    height: "6rem",
-                    padding: "3rem",
-                    margin: "2rem 0 0",
-                    border: "0.1rem solid #7d7d7d7d",
-                    boxShadow: "0 0 0.4rem #7d7d7d7d",
-                    borderRadius: "3rem",
-                    fontSize: "1.6rem",
-                    backgroundColor:
-                        "rgb(var(--surfaceContainerColor, 243 237 247))",
-                    color: "inherit",
+                    backgroundColor: "rgb(var(--surfaceColor, 254 247 255))",
+                    borderRadius: "0 0 3rem 3rem",
                 }}
-                type="Search"
-                placeholder="Search Surah by Name or Number"
-                onClick={() => {
-                    scrollTo("searchBar");
-                }}
-                onChange={(e) => {
-                    scrollTo("searchContainer");
-                    props.onSearch(e.target.value);
-                }}
-            />
-        </div>
-    </Row>
-);
+            >
+                <input
+                    id="searchField"
+                    style={{
+                        boxSizing: "border-box",
+                        width: "100%",
+                        height: "6rem",
+                        padding: "3rem",
+                        margin: "2rem 0 0",
+                        border: "0.1rem solid #7d7d7d7d",
+                        boxShadow: "0 0 0.4rem #7d7d7d7d",
+                        borderRadius: "3rem",
+                        fontSize: "1.6rem",
+                        backgroundColor:
+                            "rgb(var(--surfaceContainerColor, 243 237 247))",
+                        color: "inherit",
+                    }}
+                    type="Search"
+                    placeholder="Search Surah by Name or Number"
+                    onClick={scrollToSearchBar}
+                    onChange={(e) => {
+                        scrollToSearchBar();
+                        props.onSearch(e.target.value);
+                    }}
+                />
+            </div>
+        </Row>
+    );
+};
 
 const RelatedSurahs = (props: { surahList: SurahListResponseData }) => (
     <Row style={{ flexWrap: "wrap", marginTop: "2rem" }}>

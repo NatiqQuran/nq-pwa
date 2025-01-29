@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { SurahListResponseData } from "@ntq/sdk";
+import { SurahListResponseItem, SurahListResponseData } from "@ntq/sdk";
 import {
     Container,
     GridContainer,
@@ -10,32 +10,11 @@ import {
     Spacer,
     Stack,
     Hr,
-    Button,
 } from "@yakad/ui";
-import Symbol from "@yakad/symbols";
 
 import { SurahPeriodIcon } from "components/surahPeriodIcon";
 import { RandomSurahButton } from "components/randomSurahButton";
 import { GoToSurahButton } from "components/goToSurahButton";
-
-function scrollTo(id: string): void {
-    document.getElementById(id)!.scrollIntoView({
-        block: "start",
-        behavior: "smooth",
-    });
-}
-export const JumpToSearchBarButton = () => (
-    <Button
-        variant="outlined"
-        onClick={() => {
-            document.getElementById("searchInput")!.focus();
-            scrollTo("searchContainer");
-        }}
-        icon={<Symbol icon="search" />}
-    >
-        Search
-    </Button>
-);
 
 function digitsToEnglish(str: string): string {
     // Detect all Persian/Arabic Digit in range of their Unicode with a global RegEx character set
@@ -70,7 +49,7 @@ function arrayOfObjectsToString(arrayOfObjects: object[]): string {
 }
 
 function filterSurahsByString(
-    surahList: SurahListResponseData,
+    surahList: SurahListResponseItem[],
     searchValue: string
 ): SurahListResponseData {
     if (!searchValue) return surahList;
@@ -97,76 +76,102 @@ export default function Search(props: { surahList: SurahListResponseData }) {
             filterSurahsByString(props.surahList, "")
         );
 
+    const [isSearching, setIsSearching] = useState<boolean>(false);
+
     const filterBySearchInputHandler = (searchValue: string) => {
+        setIsSearching(searchValue ? true : false);
         setFilteredSurahList(
             filterSurahsByString(props.surahList, searchValue)
         );
     };
 
     return (
-        <Container size="md" id="searchContainer" style={{ marginTop: "2rem" }}>
+        <Container size="md" style={{ marginTop: "2rem" }}>
             <SearchBar onSearch={filterBySearchInputHandler} />
-            <RelatedSurahs surahList={props.surahList} />
+            {!isSearching && <RelatedSurahs surahList={props.surahList} />}
             <SearchResault surahList={filteredSurahList} />
         </Container>
     );
 }
 
-const SearchBar = (props: { onSearch: any }) => (
-    <Row
-        id="searchBar"
-        style={{
-            position: "sticky",
-            top: "0",
-        }}
-    >
-        <input
-            id="searchInput"
+interface SearchBarProps {
+    onSearch: (query: string) => void;
+}
+const SearchBar = (props: SearchBarProps) => {
+    const searchBarRef = useRef<HTMLInputElement>(null);
+
+    const scrollToSearchBar = () => {
+        searchBarRef.current?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
+    };
+
+    return (
+        <Row
+            ref={searchBarRef}
             style={{
-                boxSizing: "border-box",
-                width: "100%",
-                height: "6rem",
-                padding: "3rem",
-                margin: "2rem 0",
-                border: "0.1rem solid #7d7d7d7d",
-                boxShadow: "0 0 0.4rem #7d7d7d7d",
-                borderRadius: "3rem",
-                fontSize: "1.6rem",
-                backgroundColor: "#222222f0",
-                color: "inherit",
+                position: "sticky",
+                top: "0",
+                zIndex: "1",
             }}
-            type="Search"
-            placeholder="Search Surah by Name or Number"
-            onClick={() => {
-                scrollTo("searchBar");
-            }}
-            onChange={(e) => {
-                scrollTo("searchContainer");
-                props.onSearch(e.target.value);
-            }}
-        />
-    </Row>
-);
+        >
+            <div
+                style={{
+                    width: "100%",
+                    backgroundColor: "rgb(var(--surfaceColor, 254 247 255))",
+                    borderRadius: "0 0 3rem 3rem",
+                }}
+            >
+                <input
+                    id="searchField"
+                    style={{
+                        boxSizing: "border-box",
+                        width: "100%",
+                        height: "6rem",
+                        padding: "3rem",
+                        margin: "2rem 0 0",
+                        border: "0.1rem solid #7d7d7d7d",
+                        boxShadow: "0 0 0.4rem #7d7d7d7d",
+                        borderRadius: "3rem",
+                        fontSize: "1.6rem",
+                        backgroundColor:
+                            "rgb(var(--surfaceContainerColor, 243 237 247))",
+                        color: "inherit",
+                    }}
+                    type="Search"
+                    placeholder="Search Surah by Name or Number"
+                    onClick={scrollToSearchBar}
+                    onChange={(e) => {
+                        scrollToSearchBar();
+                        props.onSearch(e.target.value);
+                    }}
+                />
+            </div>
+        </Row>
+    );
+};
 
 const RelatedSurahs = (props: { surahList: SurahListResponseData }) => (
-    <Row style={{ flexWrap: "wrap" }}>
+    <Row style={{ marginTop: "2rem" }} overflow="scroll">
         <RandomSurahButton surahList={props.surahList} />
         <GoToSurahButton surahList={props.surahList} surahNumber={55} />
         <GoToSurahButton surahList={props.surahList} surahNumber={36} />
         <GoToSurahButton surahList={props.surahList} surahNumber={48} />
+        <GoToSurahButton surahList={props.surahList} surahNumber={89} />
     </Row>
 );
 
-const SearchResault = (props: { surahList: SurahListResponseData }) => (
+const SearchResault = (props: { surahList: SurahListResponseItem[] }) => (
     <div
         style={{
             width: "100%",
-            minHeight: "calc(100vh - 17rem)",
+            minHeight: "calc(100vh - 16rem)",
             marginBottom: "2rem",
         }}
     >
         <h2 style={{ marginBottom: "0", fontSize: "3.4rem" }}>Surahs List</h2>
-        <Hr margintopbottom={2} />
+        <Hr marginx={2} />
         {props.surahList.length === 0 ? (
             <h2 style={{ margin: "5rem auto", textAlign: "center" }}>
                 No Search Result

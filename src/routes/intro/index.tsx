@@ -1,20 +1,21 @@
 import { Link } from "react-router-dom";
 import { SurahListResponseData } from "@ntq/sdk";
-import { Main, Page, Spacer, Button, Footer, Row } from "@yakad/ui";
+import { Main, Screen, Spacer, Button, Footer, Row } from "@yakad/ui";
 import { Xbackground, XgetStart } from "@yakad/x";
 
 import surahListJson from "assets/json/surahList.json";
 import { ReactComponent as LogoIcon } from "assets/svg/logoicon.svg";
 import { LastReadingButton } from "components/lastReadingButton";
 import { IntroAppBar } from "./appBar";
-import Search, { JumpToSearchBarButton } from "./search";
+import Search from "./search";
+import JumpToSearchFieldButton from "components/jumpToSearchFieldButton";
 
 export default function Intro() {
     const surahList: SurahListResponseData =
         surahListJson as SurahListResponseData;
 
     return (
-        <Page>
+        <Screen>
             <IntroAppBar />
             <Main>
                 <Xbackground variant="dotted">
@@ -25,7 +26,7 @@ export default function Intro() {
                 <Search surahList={surahList} />
             </Main>
             <IntroFooter />
-        </Page>
+        </Screen>
     );
 }
 
@@ -60,7 +61,7 @@ const IntroGetStartBox = () => (
             Read Quran in Natiq offline mode.
         </p>
         <Row align="center">
-            <JumpToSearchBarButton />
+            <JumpToSearchFieldButton />
             <LastReadingButton />
         </Row>
         <p style={{ color: "#7d7d7d" }}>Suitable for all ages</p>

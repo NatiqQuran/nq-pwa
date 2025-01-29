@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
-    SurahListResponseData,
-    TranslationListResponseData,
+    SurahListResponseItem,
+    TranslationListResponseItem,
     getLangNameFromCode,
 } from "@ntq/sdk";
 import {
@@ -12,6 +12,7 @@ import {
     Row,
     Loading,
     Select,
+    CheckBox,
 } from "@yakad/ui";
 
 import { QuranConfigProps } from ".";
@@ -80,7 +81,7 @@ export default function NavigationList(props: {
                     <List
                         collapsed={collapsedList[index]}
                         direction="column"
-                        style={{ marginInlineStart: "2rem" }}
+                        style={{ marginTop: "1rem", marginInlineStart: "2rem" }}
                     >
                         {item.navListItems}
                         <div style={{ height: "2rem" }} />
@@ -95,7 +96,7 @@ function NavListItemsQuran(props: {
     config: QuranConfigProps;
     setConfig: any;
 }) {
-    const [surahList, setSurahList] = useState<SurahListResponseData | null>(
+    const [surahList, setSurahList] = useState<SurahListResponseItem[] | null>(
         null
     );
 
@@ -172,8 +173,9 @@ function NavListItemsTranslation(props: {
     config: QuranConfigProps;
     setConfig: any;
 }) {
-    const [translationList, setTranslationList] =
-        useState<TranslationListResponseData | null>(null);
+    const [translationList, setTranslationList] = useState<
+        TranslationListResponseItem[] | null
+    >(null);
 
     useEffect(() => {
         controllerTranslation
@@ -198,21 +200,17 @@ function NavListItemsTranslation(props: {
     return (
         <>
             <ListItem>
-                <Row style={{ height: "3.2rem" }}>
-                    <span>Show:</span>
-                    <Spacer />
-                    <input
-                        type="checkbox"
-                        name="translationView"
-                        defaultChecked={props.config.translationView}
-                        onChange={(e) =>
-                            props.setConfig({
-                                ...props.config,
-                                translationView: e.target.checked,
-                            })
-                        }
-                    />
-                </Row>
+                <CheckBox
+                    label="Show:"
+                    name="translationView"
+                    defaultChecked={props.config.translationView}
+                    onChange={(e) =>
+                        props.setConfig({
+                            ...props.config,
+                            translationView: e.target.checked,
+                        })
+                    }
+                />
             </ListItem>
             <ListItem>
                 {translationList && props.config.translationUUID ? (

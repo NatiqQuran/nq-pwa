@@ -3,7 +3,7 @@ import {
     AppBar,
     Container,
     Button,
-    Page,
+    Screen,
     Main,
     SvgIcon,
     Spacer,
@@ -48,7 +48,7 @@ export default function Pwa() {
     };
 
     return (
-        <Page>
+        <Screen>
             <PwaAppBar />
             <Main>
                 <Container
@@ -95,7 +95,7 @@ export default function Pwa() {
                     </div>
                 </Container>
             </Main>
-        </Page>
+        </Screen>
     );
 }
 

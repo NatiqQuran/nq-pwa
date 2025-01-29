@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { SurahListResponseData } from "@ntq/sdk";
-import { Main, Page, Spacer, Button, Footer, Row } from "@yakad/ui";
+import { Main, Screen, Spacer, Button, Footer, Row } from "@yakad/ui";
 import { Xbackground, XgetStart } from "@yakad/x";
 
 import surahListJson from "assets/json/surahList.json";
@@ -15,7 +15,7 @@ export default function Intro() {
         surahListJson as SurahListResponseData;
 
     return (
-        <Page>
+        <Screen>
             <IntroAppBar />
             <Main>
                 <Xbackground variant="dotted">
@@ -26,7 +26,7 @@ export default function Intro() {
                 <Search surahList={surahList} />
             </Main>
             <IntroFooter />
-        </Page>
+        </Screen>
     );
 }
 

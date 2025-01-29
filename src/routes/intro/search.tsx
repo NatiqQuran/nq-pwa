@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { SurahListResponseData } from "@ntq/sdk";
+import { SurahListResponseItem, SurahListResponseData } from "@ntq/sdk";
 import {
     Container,
     GridContainer,
@@ -49,7 +49,7 @@ function arrayOfObjectsToString(arrayOfObjects: object[]): string {
 }
 
 function filterSurahsByString(
-    surahList: SurahListResponseData,
+    surahList: SurahListResponseItem[],
     searchValue: string
 ): SurahListResponseData {
     if (!searchValue) return surahList;
@@ -153,15 +153,16 @@ const SearchBar = (props: SearchBarProps) => {
 };
 
 const RelatedSurahs = (props: { surahList: SurahListResponseData }) => (
-    <Row style={{ flexWrap: "wrap", marginTop: "2rem" }}>
+    <Row style={{ marginTop: "2rem" }} overflow="scroll">
         <RandomSurahButton surahList={props.surahList} />
         <GoToSurahButton surahList={props.surahList} surahNumber={55} />
         <GoToSurahButton surahList={props.surahList} surahNumber={36} />
         <GoToSurahButton surahList={props.surahList} surahNumber={48} />
+        <GoToSurahButton surahList={props.surahList} surahNumber={89} />
     </Row>
 );
 
-const SearchResault = (props: { surahList: SurahListResponseData }) => (
+const SearchResault = (props: { surahList: SurahListResponseItem[] }) => (
     <div
         style={{
             width: "100%",
@@ -170,7 +171,7 @@ const SearchResault = (props: { surahList: SurahListResponseData }) => (
         }}
     >
         <h2 style={{ marginBottom: "0", fontSize: "3.4rem" }}>Surahs List</h2>
-        <Hr margintopbottom={2} />
+        <Hr marginx={2} />
         {props.surahList.length === 0 ? (
             <h2 style={{ margin: "5rem auto", textAlign: "center" }}>
                 No Search Result

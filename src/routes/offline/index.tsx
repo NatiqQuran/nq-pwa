@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Button, Page, Main, AppBar, SvgIcon } from "@yakad/ui";
+import { Container, Button, Screen, Main, AppBar, SvgIcon } from "@yakad/ui";
 import Symbol from "@yakad/symbols";
 
 import { ReactComponent as Logo } from "assets/svg/logoicon.svg";
@@ -32,7 +32,7 @@ export default function Offline() {
     }, [isOnline, navigate]);
 
     return (
-        <Page>
+        <Screen>
             <OfflineAppBar />
             <Main>
                 <Container
@@ -70,7 +70,7 @@ export default function Offline() {
                     </div>
                 </Container>
             </Main>
-        </Page>
+        </Screen>
     );
 }
 

@@ -3,12 +3,20 @@ import { Link } from "react-router-dom";
 import { Button } from "@yakad/ui";
 import Symbol from "@yakad/symbols";
 
-export function GoOnlineButton() {
+const GoOnlineButton = () => {
     const [online, setOnline] = useState<boolean>(navigator.onLine);
 
     useEffect(() => {
-        ononline = () => setOnline(true);
-        onoffline = () => setOnline(false);
+        const handleOnline = () => setOnline(true);
+        const handleOffline = () => setOnline(false);
+
+        window.addEventListener("online", handleOnline);
+        window.addEventListener("offline", handleOffline);
+
+        return () => {
+            window.removeEventListener("online", handleOnline);
+            window.removeEventListener("offline", handleOffline);
+        };
     }, []);
 
     return (
@@ -30,4 +38,6 @@ export function GoOnlineButton() {
             )}
         </>
     );
-}
+};
+
+export default GoOnlineButton;

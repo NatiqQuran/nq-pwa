@@ -3,14 +3,14 @@ import { SurahListResponseData } from "@ntq/sdk";
 import { Main, Screen, Spacer, Button, Footer, Row } from "@yakad/ui";
 import { Xbackground, XgetStart } from "@yakad/x";
 
+import Search from "./search";
+import IntroAppBar from "./appBar";
 import surahListJson from "assets/json/surahList.json";
 import { ReactComponent as LogoIcon } from "assets/svg/logoicon.svg";
-import { LastReadingButton } from "components/lastReadingButton";
-import { IntroAppBar } from "./appBar";
-import Search from "./search";
 import JumpToSearchFieldButton from "components/jumpToSearchFieldButton";
+import LastReadingButton from "components/lastReadingButton";
 
-export default function Intro() {
+const Intro = () => {
     const surahList: SurahListResponseData =
         surahListJson as SurahListResponseData;
 
@@ -28,7 +28,7 @@ export default function Intro() {
             <IntroFooter />
         </Screen>
     );
-}
+};
 
 const IntroGetStartBox = () => (
     <>
@@ -88,3 +88,5 @@ const IntroFooter = () => (
         </Link>
     </Footer>
 );
+
+export default Intro;

@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Button, Screen, Main, AppBar, SvgIcon } from "@yakad/ui";
+import {
+    Container,
+    Button,
+    Screen,
+    Main,
+    AppBar,
+    SvgIcon,
+    Stack,
+} from "@yakad/ui";
 import Symbol from "@yakad/symbols";
 
+import { isLocalhost } from "utils/isLocalhost";
 import { ReactComponent as Logo } from "assets/svg/logoicon.svg";
-
-//Test mode in local host
-const isLocalhost = Boolean(
-    window.location.hostname === "localhost" ||
-        // [::1] is the IPv6 localhost address.
-        window.location.hostname === "[::1]" ||
-        // 127.0.0.0/8 are considered localhost for IPv4.
-        window.location.hostname.match(
-            /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-        )
-);
 
 export default function Offline() {
     const refresh = () => window.location.reload();
@@ -46,11 +44,11 @@ export default function Offline() {
                         paddingBottom: "3rem",
                     }}
                 >
-                    <div>
+                    <Stack align="center">
                         <Symbol size={12} icon="offline_bolt" />
                         <h2>You are offline</h2>
-                    </div>
-                    <div>
+                    </Stack>
+                    <Stack align="center">
                         <Button
                             variant="filled"
                             icon={<Symbol icon="refresh" />}
@@ -58,7 +56,7 @@ export default function Offline() {
                         >
                             Refresh
                         </Button>
-                        <p>or</p>
+                        <p style={{ margin: 0 }}>or</p>
                         <Link to="/">
                             <Button
                                 variant="outlined"
@@ -67,7 +65,7 @@ export default function Offline() {
                                 Use offline mode
                             </Button>
                         </Link>
-                    </div>
+                    </Stack>
                 </Container>
             </Main>
         </Screen>

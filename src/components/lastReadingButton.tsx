@@ -3,25 +3,30 @@ import { Button } from "@yakad/ui";
 
 import { QuranConfigProps } from "routes/quran";
 
-export function LastReadingButton() {
+const LastReadingButton = () => {
     const navigate = useNavigate();
 
-    const configFromLocalStorageString: string | null =
-        localStorage.getItem("config");
-    const configFromLocalStorage: QuranConfigProps =
+    const configFromLocalStorageString = localStorage.getItem("config");
+    const configFromLocalStorage: QuranConfigProps | null =
         configFromLocalStorageString
             ? JSON.parse(configFromLocalStorageString)
-            : false;
+            : null;
+
+    const handleClick = () => {
+        if (configFromLocalStorage) {
+            navigate("/quran/" + configFromLocalStorage.surahUUID);
+        }
+    };
 
     return (
         <Button
             variant="filledtonal"
-            disabled={!configFromLocalStorage}
-            onClick={() => {
-                navigate("/quran/" + configFromLocalStorage.surahUUID);
-            }}
+            disabled={!Boolean(configFromLocalStorage)}
+            onClick={handleClick}
         >
             Last reading
         </Button>
     );
-}
+};
+
+export default LastReadingButton;

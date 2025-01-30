@@ -23,11 +23,11 @@ interface CollapseList {
     [n: number]: boolean;
 }
 
-export default function NavigationList(props: {
+const NavigationList = (props: {
     config: QuranConfigProps;
     setConfig: any;
-}) {
-    const [collapsedList, setcollapsedList] = React.useState<CollapseList>({});
+}) => {
+    const [collapsedList, setcollapsedList] = useState<CollapseList>({});
 
     const handleClickCollapseList = (index: number) =>
         setcollapsedList((object) => ({
@@ -68,7 +68,7 @@ export default function NavigationList(props: {
     return (
         <List direction="column">
             {listObjects.map((item, index) => (
-                <ListItem>
+                <ListItem key={index}>
                     <Button
                         size="medium"
                         variant={collapsedList[index] ? "text" : "elevated"}
@@ -90,12 +90,12 @@ export default function NavigationList(props: {
             ))}
         </List>
     );
-}
+};
 
-function NavListItemsQuran(props: {
+const NavListItemsQuran = (props: {
     config: QuranConfigProps;
     setConfig: any;
-}) {
+}) => {
     const [surahList, setSurahList] = useState<SurahListResponseItem[] | null>(
         null
     );
@@ -128,7 +128,7 @@ function NavListItemsQuran(props: {
                     }
                 >
                     {surahList.map((surah) => (
-                        <option value={surah.uuid}>
+                        <option key={surah.uuid} value={surah.uuid}>
                             {surah.number + " - " + surah.names[0].arabic}
                         </option>
                     ))}
@@ -138,41 +138,39 @@ function NavListItemsQuran(props: {
             )}
         </ListItem>
     );
-}
+};
 
-function NavListItemsArabicText(props: {
+const NavListItemsArabicText = (props: {
     config: QuranConfigProps;
     setConfig: any;
-}) {
-    return (
-        <>
-            <ListItem>
-                <Row style={{ height: "3.2rem" }}>
-                    <span>Show:</span>
-                    <Spacer />
-                    <input type="checkbox" name="showArabic" />
-                </Row>
-            </ListItem>
-            <ListItem>
-                <Row style={{ height: "3.2rem" }}>
-                    <span>Tajweed:</span>
-                    <Spacer />
-                    <input type="checkbox" name="showArabic" />
-                </Row>
-            </ListItem>
-            <ListItem>
-                <Select variant="filled" placeholder="Font:" disabled>
-                    <option value="1">FontName</option>
-                </Select>
-            </ListItem>
-        </>
-    );
-}
+}) => (
+    <>
+        <ListItem>
+            <Row style={{ height: "3.2rem" }}>
+                <span>Show:</span>
+                <Spacer />
+                <input type="checkbox" name="showArabic" />
+            </Row>
+        </ListItem>
+        <ListItem>
+            <Row style={{ height: "3.2rem" }}>
+                <span>Tajweed:</span>
+                <Spacer />
+                <input type="checkbox" name="showArabic" />
+            </Row>
+        </ListItem>
+        <ListItem>
+            <Select variant="filled" placeholder="Font:" disabled>
+                <option value="1">FontName</option>
+            </Select>
+        </ListItem>
+    </>
+);
 
-function NavListItemsTranslation(props: {
+const NavListItemsTranslation = (props: {
     config: QuranConfigProps;
     setConfig: any;
-}) {
+}) => {
     const [translationList, setTranslationList] = useState<
         TranslationListResponseItem[] | null
     >(null);
@@ -230,7 +228,10 @@ function NavListItemsTranslation(props: {
                         }
                     >
                         {translationList.map((translation) => (
-                            <option value={translation.uuid}>
+                            <option
+                                key={translation.uuid}
+                                value={translation.uuid}
+                            >
                                 {getLangNameFromCode(translation.language) +
                                     " - " +
                                     translation.translator.username}
@@ -243,4 +244,6 @@ function NavListItemsTranslation(props: {
             </ListItem>
         </>
     );
-}
+};
+
+export default NavigationList;

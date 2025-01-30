@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
     AppBar,
@@ -7,22 +8,12 @@ import {
     Main,
     SvgIcon,
     Spacer,
+    Stack,
 } from "@yakad/ui";
 import Symbol from "@yakad/symbols";
 
+import { isLocalhost } from "utils/isLocalhost";
 import { ReactComponent as Logo } from "assets/svg/logoicon.svg";
-import { useEffect } from "react";
-
-//Test mode in local host
-const isLocalhost = Boolean(
-    window.location.hostname === "localhost" ||
-        // [::1] is the IPv6 localhost address.
-        window.location.hostname === "[::1]" ||
-        // 127.0.0.0/8 are considered localhost for IPv4.
-        window.location.hostname.match(
-            /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-        )
-);
 
 export default function Pwa() {
     const navigate = useNavigate();
@@ -62,7 +53,7 @@ export default function Pwa() {
                         paddingBottom: "3rem",
                     }}
                 >
-                    <div>
+                    <Stack align="center" style={{ gap: 0 }}>
                         <SvgIcon size={15}>
                             <Logo />
                         </SvgIcon>
@@ -74,8 +65,8 @@ export default function Pwa() {
                             <li>Keep a Quran text in your system</li>
                             <li>Full access to web version feathers</li>
                         </ul>
-                    </div>
-                    <div>
+                    </Stack>
+                    <Stack align="center" style={{ gap: 0 }}>
                         <Button
                             variant="filled"
                             icon={<Symbol icon="start" />}
@@ -92,7 +83,7 @@ export default function Pwa() {
                                 Read more
                             </Button>
                         </Link>
-                    </div>
+                    </Stack>
                 </Container>
             </Main>
         </Screen>

@@ -7,19 +7,18 @@ interface RandomSurahButtonProps {
     surahNumber: number;
 }
 
-export function GoToSurahButton(props: RandomSurahButtonProps) {
+const GoToSurahButton = (props: RandomSurahButtonProps) => {
     const navigate = useNavigate();
 
+    const handleClick = () => {
+        navigate("/quran/" + props.surahList[props.surahNumber - 1].uuid);
+    };
+
     return (
-        <Button
-            variant="outlined"
-            onClick={() => {
-                navigate(
-                    "/quran/" + props.surahList[props.surahNumber - 1].uuid
-                );
-            }}
-        >
+        <Button variant="outlined" onClick={handleClick}>
             {props.surahList[props.surahNumber - 1].names[0].arabic}
         </Button>
     );
-}
+};
+
+export default GoToSurahButton;

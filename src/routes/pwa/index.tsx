@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
     AppBar,
@@ -11,19 +12,8 @@ import {
 } from "@yakad/ui";
 import Symbol from "@yakad/symbols";
 
+import { isLocalhost } from "utils/isLocalhost";
 import { ReactComponent as Logo } from "assets/svg/logoicon.svg";
-import { useEffect } from "react";
-
-//Test mode in local host
-const isLocalhost = Boolean(
-    window.location.hostname === "localhost" ||
-        // [::1] is the IPv6 localhost address.
-        window.location.hostname === "[::1]" ||
-        // 127.0.0.0/8 are considered localhost for IPv4.
-        window.location.hostname.match(
-            /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-        )
-);
 
 export default function Pwa() {
     const navigate = useNavigate();

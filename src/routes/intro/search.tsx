@@ -13,9 +13,9 @@ import {
     Hr,
 } from "@yakad/ui";
 
-import { SurahPeriodIcon } from "components/surahPeriodIcon";
-import { RandomSurahButton } from "components/randomSurahButton";
-import { GoToSurahButton } from "components/goToSurahButton";
+import RandomSurahButton from "components/randomSurahButton";
+import GoToSurahButton from "components/goToSurahButton";
+import SurahPeriodIcon from "components/surahPeriodIcon";
 
 const Search = (props: { surahList: SurahListResponseData }) => {
     const [filteredSurahList, setFilteredSurahList] =

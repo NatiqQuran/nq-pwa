@@ -8,7 +8,7 @@ import { QuranConfigProps } from ".";
 import SurahHeader from "./surahHeader";
 import SurahText from "./text";
 
-export default function QuranView(props: { config: QuranConfigProps }) {
+const QuranView = (props: { config: QuranConfigProps }) => {
     const navigate = useNavigate();
 
     const [surah, setSurah] = useState<SurahViewResponseData | null>(null);
@@ -67,4 +67,6 @@ export default function QuranView(props: { config: QuranConfigProps }) {
             )}
         </>
     );
-}
+};
+
+export default QuranView;

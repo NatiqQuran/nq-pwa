@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@yakad/ui";
 import Symbol from "@yakad/symbols";
 
-export const GoOnlineButton = () => {
+const GoOnlineButton = () => {
     const [online, setOnline] = useState<boolean>(navigator.onLine);
 
     useEffect(() => {
@@ -39,3 +39,5 @@ export const GoOnlineButton = () => {
         </>
     );
 };
+
+export default GoOnlineButton;

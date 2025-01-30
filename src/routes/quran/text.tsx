@@ -16,6 +16,7 @@ interface SurahTextProps {
     surahData: SurahViewResponseData;
     translationData: TranslationViewResponseData;
 }
+
 const SurahText = ({ config, surahData, translationData }: SurahTextProps) => (
     <Container
         size="md"
@@ -29,7 +30,7 @@ const SurahText = ({ config, surahData, translationData }: SurahTextProps) => (
             .slice(surahData.bismillah_as_first_ayah ? 1 : 0)
             .map((ayah: SurahViewResponseAyah) =>
                 config.translationView ? (
-                    <AyahBox>
+                    <AyahBox key={ayah.number}>
                         <AyahText ayah={ayah} />
                         <AyahTranslation
                             translationText={
@@ -38,7 +39,7 @@ const SurahText = ({ config, surahData, translationData }: SurahTextProps) => (
                         />
                     </AyahBox>
                 ) : (
-                    <AyahText ayah={ayah} />
+                    <AyahText key={ayah.number} ayah={ayah} />
                 )
             )}
     </Container>
@@ -47,6 +48,7 @@ const SurahText = ({ config, surahData, translationData }: SurahTextProps) => (
 interface AyahBoxProps {
     children?: React.ReactNode;
 }
+
 const AyahBox = ({ children }: AyahBoxProps) => (
     <Stack
         style={{
@@ -63,6 +65,7 @@ const AyahBox = ({ children }: AyahBoxProps) => (
 interface AyahTextProps {
     ayah: SurahViewResponseAyah;
 }
+
 const AyahText = ({ ayah }: AyahTextProps) => (
     <span
         style={{
@@ -92,6 +95,7 @@ const AyahText = ({ ayah }: AyahTextProps) => (
 interface AyahTranslationProps {
     translationText: TranslationViewResponseAyah;
 }
+
 const AyahTranslation = ({ translationText }: AyahTranslationProps) => (
     <span
         style={{

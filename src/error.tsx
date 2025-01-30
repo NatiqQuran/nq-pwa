@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { Button, Container, Main, Screen, SvgIcon } from "@yakad/ui";
 import { ReactComponent as LogoIcon } from "./assets/svg/logoicon.svg";
 
-export default function Error(props: { status?: number }) {
+const Error = (props: { status?: number }) => {
     const params = useParams();
 
     return (
@@ -24,4 +24,6 @@ export default function Error(props: { status?: number }) {
             </Main>
         </Screen>
     );
-}
+};
+
+export default Error;

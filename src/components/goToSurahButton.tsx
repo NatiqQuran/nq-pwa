@@ -7,7 +7,7 @@ interface RandomSurahButtonProps {
     surahNumber: number;
 }
 
-export const GoToSurahButton = (props: RandomSurahButtonProps) => {
+const GoToSurahButton = (props: RandomSurahButtonProps) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -20,3 +20,5 @@ export const GoToSurahButton = (props: RandomSurahButtonProps) => {
         </Button>
     );
 };
+
+export default GoToSurahButton;

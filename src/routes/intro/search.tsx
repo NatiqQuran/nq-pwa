@@ -20,6 +20,7 @@ import { GoToSurahButton } from "components/goToSurahButton";
 const Search = (props: { surahList: SurahListResponseData }) => {
     const [filteredSurahList, setFilteredSurahList] =
         useState<SurahListResponseData>(props.surahList);
+
     const [isSearching, setIsSearching] = useState<boolean>(false);
 
     const filterBySearchInputOnChange = (searchValue: string) => {

@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Button, Screen, Main, AppBar, SvgIcon } from "@yakad/ui";
+import {
+    Container,
+    Button,
+    Screen,
+    Main,
+    AppBar,
+    SvgIcon,
+    Stack,
+} from "@yakad/ui";
 import Symbol from "@yakad/symbols";
 
 import { ReactComponent as Logo } from "assets/svg/logoicon.svg";
@@ -46,11 +54,11 @@ export default function Offline() {
                         paddingBottom: "3rem",
                     }}
                 >
-                    <div>
+                    <Stack align="center">
                         <Symbol size={12} icon="offline_bolt" />
                         <h2>You are offline</h2>
-                    </div>
-                    <div>
+                    </Stack>
+                    <Stack align="center">
                         <Button
                             variant="filled"
                             icon={<Symbol icon="refresh" />}
@@ -58,7 +66,7 @@ export default function Offline() {
                         >
                             Refresh
                         </Button>
-                        <p>or</p>
+                        <p style={{ margin: 0 }}>or</p>
                         <Link to="/">
                             <Button
                                 variant="outlined"
@@ -67,7 +75,7 @@ export default function Offline() {
                                 Use offline mode
                             </Button>
                         </Link>
-                    </div>
+                    </Stack>
                 </Container>
             </Main>
         </Screen>

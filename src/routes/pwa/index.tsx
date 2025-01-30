@@ -7,6 +7,7 @@ import {
     Main,
     SvgIcon,
     Spacer,
+    Stack,
 } from "@yakad/ui";
 import Symbol from "@yakad/symbols";
 
@@ -62,7 +63,7 @@ export default function Pwa() {
                         paddingBottom: "3rem",
                     }}
                 >
-                    <div>
+                    <Stack align="center" style={{ gap: 0 }}>
                         <SvgIcon size={15}>
                             <Logo />
                         </SvgIcon>
@@ -74,8 +75,8 @@ export default function Pwa() {
                             <li>Keep a Quran text in your system</li>
                             <li>Full access to web version feathers</li>
                         </ul>
-                    </div>
-                    <div>
+                    </Stack>
+                    <Stack align="center" style={{ gap: 0 }}>
                         <Button
                             variant="filled"
                             icon={<Symbol icon="start" />}
@@ -92,7 +93,7 @@ export default function Pwa() {
                                 Read more
                             </Button>
                         </Link>
-                    </div>
+                    </Stack>
                 </Container>
             </Main>
         </Screen>

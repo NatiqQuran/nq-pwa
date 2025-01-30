@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { SurahListResponseItem, SurahListResponseData } from "@ntq/sdk";
+import { filterArrayBySearch } from "@yakad/lib";
 import {
     Container,
     GridContainer,
@@ -16,88 +17,33 @@ import { SurahPeriodIcon } from "components/surahPeriodIcon";
 import { RandomSurahButton } from "components/randomSurahButton";
 import { GoToSurahButton } from "components/goToSurahButton";
 
-function digitsToEnglish(str: string): string {
-    // Detect all Persian/Arabic Digit in range of their Unicode with a global RegEx character set
-    // Remove the Unicode base(2) range that not match
-    return str.replace(
-        /[\u0660-\u0669\u06f0-\u06f9]/g,
-        (char: string): string => (char.charCodeAt(0) & 0xf).toString()
-    );
-}
-
-function searchAble(str: string): string {
-    return digitsToEnglish(
-        str
-            .toLowerCase()
-            .replace("ة", "ه")
-            .replace("ؤ", "و")
-            .replace("آ", "ا")
-            .replace("أ", "ا")
-            .replace("أ", "ا")
-            .replace("إ", "ا")
-            .replace("ي", "ی")
-            .replace("ئ", "ی")
-            .replace("ك", "ک")
-    );
-}
-
-function arrayOfObjectsToString(arrayOfObjects: object[]): string {
-    const arrayOfJoinedObjects: string[] = arrayOfObjects.map((obj) =>
-        Object.values(obj).join(" ")
-    ); //join objects values
-    return arrayOfJoinedObjects.join(" "); //join array items
-}
-
-function filterSurahsByString(
-    surahList: SurahListResponseItem[],
-    searchValue: string
-): SurahListResponseData {
-    if (!searchValue) return surahList;
-
-    const searchAbleValue: string = searchAble(searchValue);
-
-    return surahList.filter((surah) => {
-        const newSurah = {
-            number: surah.number,
-            names: arrayOfObjectsToString(surah.names),
-            period: surah.period,
-        };
-        const searchableString: string = searchAble(
-            Object.values(newSurah).join(" ")
-        );
-
-        return searchableString.includes(searchAbleValue);
-    });
-}
-
-export default function Search(props: { surahList: SurahListResponseData }) {
+const Search = (props: { surahList: SurahListResponseData }) => {
     const [filteredSurahList, setFilteredSurahList] =
-        useState<SurahListResponseData>(
-            filterSurahsByString(props.surahList, "")
-        );
-
+        useState<SurahListResponseData>(props.surahList);
     const [isSearching, setIsSearching] = useState<boolean>(false);
 
-    const filterBySearchInputHandler = (searchValue: string) => {
-        setIsSearching(searchValue ? true : false);
+    const filterBySearchInputOnChange = (searchValue: string) => {
+        setIsSearching(Boolean(searchValue));
         setFilteredSurahList(
-            filterSurahsByString(props.surahList, searchValue)
+            filterArrayBySearch(props.surahList, searchValue, [
+                "number",
+                "names",
+                "period",
+                "arabic",
+            ])
         );
     };
 
     return (
         <Container size="md" style={{ marginTop: "2rem" }}>
-            <SearchBar onSearch={filterBySearchInputHandler} />
+            <SearchBar onSearch={filterBySearchInputOnChange} />
             {!isSearching && <RelatedSurahs surahList={props.surahList} />}
-            <SearchResault surahList={filteredSurahList} />
+            <SearchResult surahList={filteredSurahList} />
         </Container>
     );
-}
+};
 
-interface SearchBarProps {
-    onSearch: (query: string) => void;
-}
-const SearchBar = (props: SearchBarProps) => {
+const SearchBar = (props: { onSearch: (query: string) => void }) => {
     const searchBarRef = useRef<HTMLInputElement>(null);
 
     const scrollToSearchBar = () => {
@@ -139,7 +85,7 @@ const SearchBar = (props: SearchBarProps) => {
                             "rgb(var(--surfaceContainerColor, 243 237 247))",
                         color: "inherit",
                     }}
-                    type="Search"
+                    type="search"
                     placeholder="Search Surah by Name or Number"
                     onClick={scrollToSearchBar}
                     onChange={(e) => {
@@ -162,7 +108,7 @@ const RelatedSurahs = (props: { surahList: SurahListResponseData }) => (
     </Row>
 );
 
-const SearchResault = (props: { surahList: SurahListResponseItem[] }) => (
+const SearchResult = (props: { surahList: SurahListResponseItem[] }) => (
     <div
         style={{
             width: "100%",
@@ -179,7 +125,7 @@ const SearchResault = (props: { surahList: SurahListResponseItem[] }) => (
         ) : (
             <GridContainer>
                 {props.surahList.map((surah) => (
-                    <GridItem xl={4} md={6} xs={12}>
+                    <GridItem xl={4} md={6} xs={12} key={surah.uuid}>
                         <SurahLinkBox surah={surah} />
                     </GridItem>
                 ))}
@@ -220,3 +166,5 @@ const SurahLinkBox = (props: { surah: SurahListResponseData[0] }) => (
         </Card>
     </Link>
 );
+
+export default Search;
